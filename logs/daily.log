@@ -1,0 +1,491 @@
+2026-08-03 07:19:48,030 [INFO] werkzeug: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.19:5000
+2026-08-03 07:19:48,031 [INFO] werkzeug: [33mPress CTRL+C to quit[0m
+2026-08-03 07:19:48,033 [INFO] werkzeug:  * Restarting with stat
+2026-08-03 07:19:49,852 [WARNING] werkzeug:  * Debugger is active!
+2026-08-03 07:19:49,854 [INFO] werkzeug:  * Debugger PIN: 300-563-884
+2026-08-03 07:19:50,864 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 07:19:50] "[32mGET / HTTP/1.1[0m" 302 -
+2026-08-03 07:19:50,965 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 07:19:50] "GET /login HTTP/1.1" 200 -
+2026-08-03 07:19:51,039 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 07:19:51] "[36mGET /static/css/app.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 07:19:51,059 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 07:19:51] "[36mGET /static/css/sales.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 07:19:51,062 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 07:19:51] "[36mGET /static/css/billing.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 07:19:51,064 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 07:19:51] "[36mGET /static/css/admin.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 07:19:51,071 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 07:19:51] "[36mGET /static/img/logo/img.png HTTP/1.1[0m" 304 -
+2026-08-03 07:19:51,078 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 07:19:51] "[36mGET /static/css/responsive.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 07:19:51,079 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 07:19:51] "[36mGET /static/css/themes.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 07:19:51,082 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 07:19:51] "[36mGET /static/css/erp-menu.css?v=1.0 HTTP/1.1[0m" 304 -
+2026-08-03 07:19:51,111 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 07:19:51] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-08-03 07:19:51,112 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 07:19:51] "[36mGET /static/js/erp-menu.js?v=1.0 HTTP/1.1[0m" 304 -
+2026-08-03 07:20:10,887 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 07:20:10] "[32mPOST /login HTTP/1.1[0m" 302 -
+2026-08-03 07:20:11,155 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 07:20:11] "GET /dashboard HTTP/1.1" 200 -
+2026-08-03 07:20:11,207 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 07:20:11] "[36mGET /static/css/app.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 07:20:11,215 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 07:20:11] "[36mGET /static/css/billing.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 07:20:11,219 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 07:20:11] "[36mGET /static/css/sales.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 07:20:11,222 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 07:20:11] "[36mGET /static/css/admin.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 07:20:11,224 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 07:20:11] "[36mGET /static/css/responsive.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 07:20:11,239 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 07:20:11] "[36mGET /static/css/erp-menu.css?v=1.0 HTTP/1.1[0m" 304 -
+2026-08-03 07:20:11,242 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 07:20:11] "[36mGET /static/css/themes.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 07:20:11,247 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 07:20:11] "[36mGET /static/img/logo/img.png HTTP/1.1[0m" 304 -
+2026-08-03 07:20:11,249 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 07:20:11] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-08-03 07:20:11,250 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 07:20:11] "[36mGET /static/js/erp-menu.js?v=1.0 HTTP/1.1[0m" 304 -
+2026-08-03 07:20:15,377 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 07:20:15] "GET /settings HTTP/1.1" 200 -
+2026-08-03 07:20:15,410 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 07:20:15] "[36mGET /static/css/app.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 07:20:15,415 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 07:20:15] "[36mGET /static/css/admin.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 07:20:15,423 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 07:20:15] "[36mGET /static/css/billing.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 07:20:15,425 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 07:20:15] "[36mGET /static/css/sales.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 07:20:15,428 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 07:20:15] "[36mGET /static/css/responsive.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 07:20:15,435 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 07:20:15] "[36mGET /static/css/themes.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 07:20:15,441 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 07:20:15] "[36mGET /static/css/erp-menu.css?v=1.0 HTTP/1.1[0m" 304 -
+2026-08-03 07:20:15,450 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 07:20:15] "[36mGET /static/img/logo/img.png HTTP/1.1[0m" 304 -
+2026-08-03 07:20:15,451 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 07:20:15] "GET /static/css/settings.css?v=4.0 HTTP/1.1" 200 -
+2026-08-03 07:20:15,453 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 07:20:15] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-08-03 07:20:15,454 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 07:20:15] "[36mGET /static/js/erp-menu.js?v=1.0 HTTP/1.1[0m" 304 -
+2026-08-03 07:20:15,507 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 07:20:15] "GET /static/js/settings.js?v=4.0 HTTP/1.1" 200 -
+2026-08-03 16:52:22,611 [INFO] flask_wtf.csrf: The CSRF token is invalid.
+2026-08-03 16:53:03,153 [INFO] flask_wtf.csrf: The CSRF token is invalid.
+2026-08-03 17:20:07,367 [INFO] werkzeug: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.19:5000
+2026-08-03 17:20:07,367 [INFO] werkzeug: [33mPress CTRL+C to quit[0m
+2026-08-03 17:20:07,370 [INFO] werkzeug:  * Restarting with stat
+2026-08-03 17:20:08,746 [WARNING] werkzeug:  * Debugger is active!
+2026-08-03 17:20:08,748 [INFO] werkzeug:  * Debugger PIN: 300-563-884
+2026-08-03 17:20:13,504 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:20:13] "[32mGET / HTTP/1.1[0m" 302 -
+2026-08-03 17:20:13,537 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:20:13] "GET /login HTTP/1.1" 200 -
+2026-08-03 17:20:13,640 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:20:13] "[36mGET /static/css/admin.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:20:13,646 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:20:13] "[36mGET /static/css/sales.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:20:13,649 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:20:13] "[36mGET /static/css/responsive.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:20:13,653 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:20:13] "[36mGET /static/css/themes.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:20:13,658 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:20:13] "[36mGET /static/css/erp-menu.css?v=1.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:20:13,659 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:20:13] "[36mGET /static/img/logo/img.png HTTP/1.1[0m" 304 -
+2026-08-03 17:20:13,660 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:20:13] "[36mGET /static/css/app.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:20:13,665 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:20:13] "[36mGET /static/css/billing.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:20:13,671 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:20:13] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-08-03 17:20:13,676 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:20:13] "[36mGET /static/js/erp-menu.js?v=1.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:20:32,754 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:20:32] "[32mPOST /login HTTP/1.1[0m" 302 -
+2026-08-03 17:20:32,836 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:20:32] "GET /dashboard HTTP/1.1" 200 -
+2026-08-03 17:20:32,867 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:20:32] "[36mGET /static/css/app.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:20:32,872 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:20:32] "[36mGET /static/css/billing.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:20:32,873 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:20:32] "[36mGET /static/css/sales.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:20:32,874 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:20:32] "[36mGET /static/css/admin.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:20:32,876 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:20:32] "[36mGET /static/css/responsive.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:20:32,880 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:20:32] "[36mGET /static/css/erp-menu.css?v=1.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:20:32,881 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:20:32] "[36mGET /static/css/themes.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:20:32,888 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:20:32] "[36mGET /static/img/logo/img.png HTTP/1.1[0m" 304 -
+2026-08-03 17:20:32,890 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:20:32] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-08-03 17:20:32,890 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:20:32] "[36mGET /static/js/erp-menu.js?v=1.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:20:38,826 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:20:38] "GET /customers HTTP/1.1" 200 -
+2026-08-03 17:20:39,024 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:20:39] "[36mGET /static/css/app.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:20:39,030 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:20:39] "[36mGET /static/css/themes.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:20:39,160 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:20:39] "[36mGET /static/css/responsive.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:20:39,209 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:20:39] "[36mGET /static/css/sales.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:20:39,484 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:20:39] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-08-03 17:20:39,497 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:20:39] "[36mGET /static/css/billing.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:20:39,592 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:20:39] "[36mGET /static/js/erp-menu.js?v=1.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:20:39,596 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:20:39] "[36mGET /static/css/admin.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:20:39,641 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:20:39] "[36mGET /static/img/logo/img.png HTTP/1.1[0m" 304 -
+2026-08-03 17:20:39,672 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:20:39] "[36mGET /static/css/erp-menu.css?v=1.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:20:47,807 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:20:47] "GET /products HTTP/1.1" 200 -
+2026-08-03 17:20:47,835 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:20:47] "[36mGET /static/css/app.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:20:47,836 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:20:47] "[36mGET /static/css/admin.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:20:47,841 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:20:47] "[36mGET /static/css/billing.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:20:47,845 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:20:47] "[36mGET /static/css/sales.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:20:47,846 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:20:47] "[36mGET /static/css/responsive.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:20:47,850 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:20:47] "[36mGET /static/css/themes.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:20:47,851 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:20:47] "[36mGET /static/css/erp-menu.css?v=1.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:20:47,855 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:20:47] "[36mGET /static/img/logo/img.png HTTP/1.1[0m" 304 -
+2026-08-03 17:20:47,857 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:20:47] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-08-03 17:20:47,858 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:20:47] "[36mGET /static/js/erp-menu.js?v=1.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:20:50,201 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:20:50] "GET /suppliers HTTP/1.1" 200 -
+2026-08-03 17:20:50,223 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:20:50] "[36mGET /static/css/app.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:20:50,227 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:20:50] "[36mGET /static/css/admin.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:20:50,228 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:20:50] "[36mGET /static/css/sales.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:20:50,228 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:20:50] "[36mGET /static/css/billing.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:20:50,234 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:20:50] "[36mGET /static/css/responsive.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:20:50,234 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:20:50] "[36mGET /static/css/themes.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:20:50,236 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:20:50] "[36mGET /static/css/erp-menu.css?v=1.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:20:50,241 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:20:50] "[36mGET /static/img/logo/img.png HTTP/1.1[0m" 304 -
+2026-08-03 17:20:50,242 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:20:50] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-08-03 17:20:50,242 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:20:50] "[36mGET /static/js/erp-menu.js?v=1.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:20:52,688 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:20:52] "[32mGET /purchases HTTP/1.1[0m" 302 -
+2026-08-03 17:20:52,709 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:20:52] "GET /purchase-orders HTTP/1.1" 200 -
+2026-08-03 17:20:52,733 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:20:52] "[36mGET /static/css/app.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:20:52,735 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:20:52] "[36mGET /static/css/admin.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:20:52,740 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:20:52] "[36mGET /static/css/billing.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:20:52,742 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:20:52] "[36mGET /static/css/sales.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:20:52,746 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:20:52] "[36mGET /static/css/responsive.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:20:52,747 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:20:52] "[36mGET /static/img/logo/img.png HTTP/1.1[0m" 304 -
+2026-08-03 17:20:52,747 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:20:52] "[36mGET /static/css/themes.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:20:52,751 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:20:52] "[36mGET /static/css/erp-menu.css?v=1.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:20:52,753 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:20:52] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-08-03 17:20:52,754 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:20:52] "[36mGET /static/js/erp-menu.js?v=1.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:20:56,544 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:20:56] "GET /reports HTTP/1.1" 200 -
+2026-08-03 17:20:56,694 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:20:56] "[36mGET /static/css/admin.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:20:56,702 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:20:56] "[36mGET /static/css/sales.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:20:56,703 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:20:56] "[36mGET /static/css/app.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:20:56,738 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:20:56] "[36mGET /static/css/billing.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:20:56,739 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:20:56] "[36mGET /static/css/themes.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:20:56,740 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:20:56] "[36mGET /static/css/responsive.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:20:56,869 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:20:56] "[36mGET /static/css/erp-menu.css?v=1.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:20:56,934 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:20:56] "[36mGET /static/img/logo/img.png HTTP/1.1[0m" 304 -
+2026-08-03 17:20:56,940 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:20:56] "[36mGET /static/css/reports.css?v=2 HTTP/1.1[0m" 304 -
+2026-08-03 17:20:57,059 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:20:57] "[36mGET /static/js/erp-menu.js?v=1.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:20:57,061 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:20:57] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-08-03 17:21:00,713 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:21:00] "GET /users HTTP/1.1" 200 -
+2026-08-03 17:21:00,745 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:21:00] "[36mGET /static/css/app.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:21:00,748 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:21:00] "[36mGET /static/css/admin.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:21:00,751 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:21:00] "[36mGET /static/css/billing.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:21:00,760 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:21:00] "[36mGET /static/css/sales.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:21:00,762 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:21:00] "[36mGET /static/css/responsive.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:21:00,762 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:21:00] "[36mGET /static/css/themes.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:21:00,768 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:21:00] "[36mGET /static/img/logo/img.png HTTP/1.1[0m" 304 -
+2026-08-03 17:21:00,768 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:21:00] "[36mGET /static/css/erp-menu.css?v=1.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:21:00,771 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:21:00] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-08-03 17:21:00,777 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:21:00] "[36mGET /static/js/erp-menu.js?v=1.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:21:03,877 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:21:03] "GET /dashboard HTTP/1.1" 200 -
+2026-08-03 17:21:03,902 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:21:03] "[36mGET /static/css/admin.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:21:03,904 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:21:03] "[36mGET /static/css/billing.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:21:03,904 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:21:03] "[36mGET /static/css/app.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:21:03,909 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:21:03] "[36mGET /static/css/sales.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:21:03,910 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:21:03] "[36mGET /static/css/themes.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:21:03,912 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:21:03] "[36mGET /static/css/responsive.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:21:03,912 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:21:03] "[36mGET /static/css/erp-menu.css?v=1.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:21:03,917 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:21:03] "[36mGET /static/img/logo/img.png HTTP/1.1[0m" 304 -
+2026-08-03 17:21:03,920 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:21:03] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-08-03 17:21:03,922 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:21:03] "[36mGET /static/js/erp-menu.js?v=1.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:21:11,645 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:21:11] "GET /invoices/create HTTP/1.1" 200 -
+2026-08-03 17:21:11,986 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:21:11] "[36mGET /static/css/app.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:21:11,994 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:21:11] "[36mGET /static/css/sales.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:21:12,001 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:21:12] "[36mGET /static/css/billing.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:21:12,022 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:21:12] "[36mGET /static/css/admin.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:21:12,044 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:21:12] "[36mGET /static/css/responsive.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:21:12,053 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:21:12] "[36mGET /static/css/themes.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:21:12,071 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:21:12] "[36mGET /static/css/erp-menu.css?v=1.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:21:12,126 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:21:12] "[36mGET /static/img/logo/img.png HTTP/1.1[0m" 304 -
+2026-08-03 17:21:12,218 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:21:12] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-08-03 17:21:12,220 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:21:12] "[36mGET /static/js/erp-menu.js?v=1.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:21:13,395 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:21:13] "GET /invoices HTTP/1.1" 200 -
+2026-08-03 17:21:13,442 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:21:13] "[36mGET /static/css/app.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:21:13,457 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:21:13] "[36mGET /static/css/admin.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:21:13,459 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:21:13] "[36mGET /static/css/sales.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:21:13,461 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:21:13] "[36mGET /static/css/billing.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:21:13,466 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:21:13] "[36mGET /static/css/themes.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:21:13,468 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:21:13] "[36mGET /static/css/responsive.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:21:13,484 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:21:13] "[36mGET /static/css/erp-menu.css?v=1.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:21:13,486 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:21:13] "[36mGET /static/img/logo/img.png HTTP/1.1[0m" 304 -
+2026-08-03 17:21:13,494 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:21:13] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-08-03 17:21:13,496 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:21:13] "[36mGET /static/js/erp-menu.js?v=1.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:21:21,918 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:21:21] "GET /invoices/create HTTP/1.1" 200 -
+2026-08-03 17:21:21,941 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:21:21] "[36mGET /static/css/app.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:21:21,946 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:21:21] "[36mGET /static/css/admin.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:21:21,948 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:21:21] "[36mGET /static/css/sales.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:21:21,948 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:21:21] "[36mGET /static/css/billing.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:21:21,954 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:21:21] "[36mGET /static/css/responsive.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:21:21,959 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:21:21] "[36mGET /static/css/erp-menu.css?v=1.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:21:21,960 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:21:21] "[36mGET /static/css/themes.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:21:21,960 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:21:21] "[36mGET /static/img/logo/img.png HTTP/1.1[0m" 304 -
+2026-08-03 17:21:21,962 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:21:21] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-08-03 17:21:21,963 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:21:21] "[36mGET /static/js/erp-menu.js?v=1.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:21:27,063 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:21:27] "GET /api/customers/search?q=kam; HTTP/1.1" 200 -
+2026-08-03 17:21:27,866 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:21:27] "GET /api/customers/search?q=kam HTTP/1.1" 200 -
+2026-08-03 17:21:29,612 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:21:29] "GET /api/customers/search?q=kam HTTP/1.1" 200 -
+2026-08-03 17:21:29,766 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:21:29] "GET /api/customers/search?q=kam; HTTP/1.1" 200 -
+2026-08-03 17:21:30,682 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:21:30] "GET /api/customers/search?q=kam HTTP/1.1" 200 -
+2026-08-03 17:21:38,051 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:21:38] "GET /api/products/search?q=s&allow_out_of_stock=false HTTP/1.1" 200 -
+2026-08-03 17:21:38,333 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:21:38] "GET /api/products/search?q=st&allow_out_of_stock=false HTTP/1.1" 200 -
+2026-08-03 17:22:36,207 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:22:36] "POST /invoices/create HTTP/1.1" 200 -
+2026-08-03 17:22:36,877 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:22:36] "GET /invoices/13 HTTP/1.1" 200 -
+2026-08-03 17:22:36,909 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:22:36] "[36mGET /static/css/app.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:22:36,915 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:22:36] "[36mGET /static/css/billing.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:22:36,915 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:22:36] "[36mGET /static/css/admin.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:22:36,919 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:22:36] "[36mGET /static/css/sales.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:22:36,920 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:22:36] "[36mGET /static/css/responsive.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:22:36,923 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:22:36] "[36mGET /static/css/themes.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:22:36,925 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:22:36] "[36mGET /static/css/erp-menu.css?v=1.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:22:36,929 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:22:36] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-08-03 17:22:36,929 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:22:36] "[36mGET /static/img/logo/img.png HTTP/1.1[0m" 304 -
+2026-08-03 17:22:36,930 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:22:36] "[36mGET /static/js/erp-menu.js?v=1.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:26:58,766 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-08-03 17:26:58,942 [INFO] werkzeug:  * Restarting with stat
+2026-08-03 17:27:00,316 [WARNING] werkzeug:  * Debugger is active!
+2026-08-03 17:27:00,318 [INFO] werkzeug:  * Debugger PIN: 300-563-884
+2026-08-03 17:27:03,523 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-08-03 17:27:03,652 [INFO] werkzeug:  * Restarting with stat
+2026-08-03 17:27:04,926 [WARNING] werkzeug:  * Debugger is active!
+2026-08-03 17:27:04,928 [INFO] werkzeug:  * Debugger PIN: 300-563-884
+2026-08-03 17:27:08,119 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-08-03 17:27:08,238 [INFO] werkzeug:  * Restarting with stat
+2026-08-03 17:27:09,515 [WARNING] werkzeug:  * Debugger is active!
+2026-08-03 17:27:09,517 [INFO] werkzeug:  * Debugger PIN: 300-563-884
+2026-08-03 17:27:12,740 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-08-03 17:27:12,865 [INFO] werkzeug:  * Restarting with stat
+2026-08-03 17:27:14,151 [WARNING] werkzeug:  * Debugger is active!
+2026-08-03 17:27:14,153 [INFO] werkzeug:  * Debugger PIN: 300-563-884
+2026-08-03 17:27:21,532 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-08-03 17:27:21,713 [INFO] werkzeug:  * Restarting with stat
+2026-08-03 17:27:23,010 [WARNING] werkzeug:  * Debugger is active!
+2026-08-03 17:27:23,012 [INFO] werkzeug:  * Debugger PIN: 300-563-884
+2026-08-03 17:28:10,923 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\utils\\__init__.py', reloading
+2026-08-03 17:28:11,059 [INFO] werkzeug:  * Restarting with stat
+2026-08-03 17:28:12,344 [WARNING] werkzeug:  * Debugger is active!
+2026-08-03 17:28:12,346 [INFO] werkzeug:  * Debugger PIN: 300-563-884
+2026-08-03 17:28:18,659 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\services\\invoice_pdf_service.py', reloading
+2026-08-03 17:28:18,788 [INFO] werkzeug:  * Restarting with stat
+2026-08-03 17:28:20,094 [WARNING] werkzeug:  * Debugger is active!
+2026-08-03 17:28:20,096 [INFO] werkzeug:  * Debugger PIN: 300-563-884
+2026-08-03 17:35:32,330 [INFO] werkzeug: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.19:5000
+2026-08-03 17:35:32,330 [INFO] werkzeug: [33mPress CTRL+C to quit[0m
+2026-08-03 17:35:32,334 [INFO] werkzeug:  * Restarting with stat
+2026-08-03 17:35:34,320 [WARNING] werkzeug:  * Debugger is active!
+2026-08-03 17:35:34,323 [INFO] werkzeug:  * Debugger PIN: 300-563-884
+2026-08-03 17:35:46,532 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:35:46] "[33mGET /invoices/13 HTTP/1.1[0m" 404 -
+2026-08-03 17:35:46,745 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:35:46] "[36mGET /static/css/app.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:35:46,752 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:35:46] "[36mGET /static/css/erp-menu.css?v=1.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:35:46,754 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:35:46] "[36mGET /static/css/sales.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:35:46,759 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:35:46] "[36mGET /static/css/responsive.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:35:46,765 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:35:46] "[36mGET /static/css/billing.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:35:46,766 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:35:46] "[36mGET /static/css/themes.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:35:46,766 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:35:46] "[36mGET /static/css/admin.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:35:46,767 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:35:46] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-08-03 17:35:46,769 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:35:46] "[36mGET /static/js/erp-menu.js?v=1.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:35:46,805 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:35:46] "[36mGET /static/img/logo/img.png HTTP/1.1[0m" 304 -
+2026-08-03 17:35:50,001 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:35:50] "GET /dashboard HTTP/1.1" 200 -
+2026-08-03 17:35:50,025 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:35:50] "[36mGET /static/css/app.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:35:50,027 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:35:50] "[36mGET /static/css/admin.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:35:50,028 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:35:50] "[36mGET /static/css/billing.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:35:50,035 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:35:50] "[36mGET /static/css/sales.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:35:50,038 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:35:50] "[36mGET /static/css/responsive.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:35:50,039 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:35:50] "[36mGET /static/css/themes.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:35:50,045 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:35:50] "[36mGET /static/css/erp-menu.css?v=1.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:35:50,045 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:35:50] "[36mGET /static/img/logo/img.png HTTP/1.1[0m" 304 -
+2026-08-03 17:35:50,049 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:35:50] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-08-03 17:35:50,050 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:35:50] "[36mGET /static/js/erp-menu.js?v=1.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:35:55,507 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:35:55] "GET /customers HTTP/1.1" 200 -
+2026-08-03 17:35:55,532 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:35:55] "[36mGET /static/css/sales.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:35:55,532 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:35:55] "[36mGET /static/css/app.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:35:55,533 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:35:55] "[36mGET /static/css/billing.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:35:55,534 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:35:55] "[36mGET /static/css/admin.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:35:55,536 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:35:55] "[36mGET /static/css/responsive.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:35:55,538 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:35:55] "[36mGET /static/css/themes.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:35:55,545 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:35:55] "[36mGET /static/css/erp-menu.css?v=1.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:35:55,546 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:35:55] "[36mGET /static/img/logo/img.png HTTP/1.1[0m" 304 -
+2026-08-03 17:35:55,547 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:35:55] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-08-03 17:35:55,548 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:35:55] "[36mGET /static/js/erp-menu.js?v=1.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:35:59,243 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:35:59] "GET /invoices/create HTTP/1.1" 200 -
+2026-08-03 17:35:59,334 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:35:59] "[36mGET /static/css/app.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:35:59,345 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:35:59] "[36mGET /static/css/admin.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:35:59,518 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:35:59] "[36mGET /static/css/billing.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:35:59,525 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:35:59] "[36mGET /static/css/sales.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:35:59,612 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:35:59] "[36mGET /static/css/responsive.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:35:59,768 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:35:59] "[36mGET /static/css/themes.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:35:59,769 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:35:59] "[36mGET /static/css/erp-menu.css?v=1.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:35:59,785 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:35:59] "[36mGET /static/img/logo/img.png HTTP/1.1[0m" 304 -
+2026-08-03 17:35:59,785 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:35:59] "[36mGET /static/js/erp-menu.js?v=1.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:35:59,819 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:35:59] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-08-03 17:36:03,865 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:36:03] "GET /api/customers/search?q=ka HTTP/1.1" 200 -
+2026-08-03 17:36:16,974 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:36:16] "GET /api/products/search?q=s&allow_out_of_stock=false HTTP/1.1" 200 -
+2026-08-03 17:36:17,602 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:36:17] "GET /api/products/search?q=st&allow_out_of_stock=false HTTP/1.1" 200 -
+2026-08-03 17:36:51,231 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:36:51] "POST /invoices/create HTTP/1.1" 200 -
+2026-08-03 17:36:51,937 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:36:51] "GET /invoices/1 HTTP/1.1" 200 -
+2026-08-03 17:36:51,963 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:36:51] "[36mGET /static/css/billing.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:36:51,967 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:36:51] "[36mGET /static/css/responsive.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:36:51,973 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:36:51] "[36mGET /static/css/erp-menu.css?v=1.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:36:51,974 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:36:51] "[36mGET /static/css/themes.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:36:51,974 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:36:51] "[36mGET /static/css/app.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:36:51,975 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:36:51] "[36mGET /static/css/admin.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:36:51,976 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:36:51] "[36mGET /static/img/logo/img.png HTTP/1.1[0m" 304 -
+2026-08-03 17:36:51,985 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:36:51] "[36mGET /static/css/sales.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:36:51,988 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:36:51] "[36mGET /static/js/erp-menu.js?v=1.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:36:52,015 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:36:52] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-08-03 17:37:18,560 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:37:18] "GET /invoices/1/pdf/owner HTTP/1.1" 200 -
+2026-08-03 17:37:22,669 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:37:22] "GET /invoices/1/pdf/all HTTP/1.1" 200 -
+2026-08-03 17:37:26,131 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:37:26] "GET /invoices/1/print/owner HTTP/1.1" 200 -
+2026-08-03 17:37:26,145 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:37:26] "[36mGET /static/css/app.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:37:26,153 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:37:26] "[36mGET /static/css/admin.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:37:26,160 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:37:26] "[36mGET /static/css/billing.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:37:26,160 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:37:26] "[36mGET /static/css/sales.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:37:26,163 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:37:26] "[36mGET /static/css/responsive.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:37:26,166 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:37:26] "[36mGET /static/css/erp-menu.css?v=1.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:37:26,169 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:37:26] "[36mGET /static/css/themes.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:37:26,174 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:37:26] "[36mGET /static/img/logo/img.png HTTP/1.1[0m" 304 -
+2026-08-03 17:37:26,177 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:37:26] "[36mGET /static/js/erp-menu.js?v=1.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:37:26,178 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:37:26] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-08-03 17:38:02,554 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:38:02] "POST /api/invoices/1/payment HTTP/1.1" 200 -
+2026-08-03 17:38:02,588 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:38:02] "GET /invoices/1 HTTP/1.1" 200 -
+2026-08-03 17:38:02,621 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:38:02] "[36mGET /static/css/app.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:38:02,621 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:38:02] "[36mGET /static/css/admin.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:38:02,631 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:38:02] "[36mGET /static/css/billing.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:38:02,639 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:38:02] "[36mGET /static/css/sales.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:38:02,642 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:38:02] "[36mGET /static/css/responsive.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:38:02,644 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:38:02] "[36mGET /static/css/themes.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:38:02,654 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:38:02] "[36mGET /static/css/erp-menu.css?v=1.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:38:02,656 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:38:02] "[36mGET /static/img/logo/img.png HTTP/1.1[0m" 304 -
+2026-08-03 17:38:02,666 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:38:02] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-08-03 17:38:02,668 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:38:02] "[36mGET /static/js/erp-menu.js?v=1.0 HTTP/1.1[0m" 304 -
+2026-08-03 17:38:02,784 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:38:02] "[36mGET /static/img/logo/img.png HTTP/1.1[0m" 304 -
+2026-08-03 17:38:04,230 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:38:04] "POST /api/invoices/1/payment HTTP/1.1" 200 -
+2026-08-03 17:38:05,643 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:38:05] "POST /api/invoices/1/payment HTTP/1.1" 200 -
+2026-08-03 17:38:05,958 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 17:38:05] "POST /api/invoices/1/payment HTTP/1.1" 200 -
+2026-08-03 17:42:29,420 [INFO] flask_wtf.csrf: The CSRF token is invalid.
+2026-08-03 17:44:59,367 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-08-03 17:44:59,528 [INFO] werkzeug:  * Restarting with stat
+2026-08-03 17:45:00,934 [WARNING] werkzeug:  * Debugger is active!
+2026-08-03 17:45:00,936 [INFO] werkzeug:  * Debugger PIN: 300-563-884
+2026-08-03 17:45:04,141 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-08-03 17:45:04,262 [INFO] werkzeug:  * Restarting with stat
+2026-08-03 17:45:05,547 [WARNING] werkzeug:  * Debugger is active!
+2026-08-03 17:45:05,550 [INFO] werkzeug:  * Debugger PIN: 300-563-884
+2026-08-03 17:45:09,800 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-08-03 17:45:09,924 [INFO] werkzeug:  * Restarting with stat
+2026-08-03 17:45:11,229 [WARNING] werkzeug:  * Debugger is active!
+2026-08-03 17:45:11,231 [INFO] werkzeug:  * Debugger PIN: 300-563-884
+2026-08-03 17:45:12,348 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-08-03 17:45:12,538 [INFO] werkzeug:  * Restarting with stat
+2026-08-03 17:45:13,869 [WARNING] werkzeug:  * Debugger is active!
+2026-08-03 17:45:13,871 [INFO] werkzeug:  * Debugger PIN: 300-563-884
+2026-08-03 17:45:21,236 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-08-03 17:45:21,382 [INFO] werkzeug:  * Restarting with stat
+2026-08-03 17:45:22,677 [WARNING] werkzeug:  * Debugger is active!
+2026-08-03 17:45:22,679 [INFO] werkzeug:  * Debugger PIN: 300-563-884
+2026-08-03 17:45:32,097 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-08-03 17:45:32,225 [INFO] werkzeug:  * Restarting with stat
+2026-08-03 17:45:33,547 [WARNING] werkzeug:  * Debugger is active!
+2026-08-03 17:45:33,549 [INFO] werkzeug:  * Debugger PIN: 300-563-884
+2026-08-03 17:45:35,707 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-08-03 17:45:35,837 [INFO] werkzeug:  * Restarting with stat
+2026-08-03 17:45:37,138 [WARNING] werkzeug:  * Debugger is active!
+2026-08-03 17:45:37,140 [INFO] werkzeug:  * Debugger PIN: 300-563-884
+2026-08-03 17:45:40,326 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-08-03 17:45:40,449 [INFO] werkzeug:  * Restarting with stat
+2026-08-03 17:45:41,743 [WARNING] werkzeug:  * Debugger is active!
+2026-08-03 17:45:41,745 [INFO] werkzeug:  * Debugger PIN: 300-563-884
+2026-08-03 17:45:44,949 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-08-03 17:45:45,076 [INFO] werkzeug:  * Restarting with stat
+2026-08-03 17:45:46,362 [WARNING] werkzeug:  * Debugger is active!
+2026-08-03 17:45:46,364 [INFO] werkzeug:  * Debugger PIN: 300-563-884
+2026-08-03 17:45:49,593 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-08-03 17:45:49,771 [INFO] werkzeug:  * Restarting with stat
+2026-08-03 17:45:51,057 [WARNING] werkzeug:  * Debugger is active!
+2026-08-03 17:45:51,060 [INFO] werkzeug:  * Debugger PIN: 300-563-884
+2026-08-03 17:45:55,286 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-08-03 17:45:55,404 [INFO] werkzeug:  * Restarting with stat
+2026-08-03 17:45:56,682 [WARNING] werkzeug:  * Debugger is active!
+2026-08-03 17:45:56,685 [INFO] werkzeug:  * Debugger PIN: 300-563-884
+2026-08-03 17:46:07,168 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-08-03 17:46:07,299 [INFO] werkzeug:  * Restarting with stat
+2026-08-03 17:46:08,567 [WARNING] werkzeug:  * Debugger is active!
+2026-08-03 17:46:08,569 [INFO] werkzeug:  * Debugger PIN: 300-563-884
+2026-08-03 17:46:30,482 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-08-03 17:46:30,640 [INFO] werkzeug:  * Restarting with stat
+2026-08-03 17:46:31,991 [WARNING] werkzeug:  * Debugger is active!
+2026-08-03 17:46:31,993 [INFO] werkzeug:  * Debugger PIN: 300-563-884
+2026-08-03 17:46:36,238 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-08-03 17:46:36,373 [INFO] werkzeug:  * Restarting with stat
+2026-08-03 17:46:37,750 [WARNING] werkzeug:  * Debugger is active!
+2026-08-03 17:46:37,752 [INFO] werkzeug:  * Debugger PIN: 300-563-884
+2026-08-03 17:46:47,199 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-08-03 17:46:47,341 [INFO] werkzeug:  * Restarting with stat
+2026-08-03 17:46:48,789 [WARNING] werkzeug:  * Debugger is active!
+2026-08-03 17:46:48,791 [INFO] werkzeug:  * Debugger PIN: 300-563-884
+2026-08-03 17:46:53,054 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-08-03 17:46:53,225 [INFO] werkzeug:  * Restarting with stat
+2026-08-03 17:46:54,614 [WARNING] werkzeug:  * Debugger is active!
+2026-08-03 17:46:54,616 [INFO] werkzeug:  * Debugger PIN: 300-563-884
+2026-08-03 17:47:44,816 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-08-03 17:47:44,971 [INFO] werkzeug:  * Restarting with stat
+2026-08-03 17:47:46,338 [WARNING] werkzeug:  * Debugger is active!
+2026-08-03 17:47:46,340 [INFO] werkzeug:  * Debugger PIN: 300-563-884
+2026-08-03 17:48:04,174 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-08-03 17:48:04,339 [INFO] werkzeug:  * Restarting with stat
+2026-08-03 17:48:05,624 [WARNING] werkzeug:  * Debugger is active!
+2026-08-03 17:48:05,626 [INFO] werkzeug:  * Debugger PIN: 300-563-884
+2026-08-03 17:48:57,851 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-08-03 17:48:57,973 [INFO] werkzeug:  * Restarting with stat
+2026-08-03 17:48:59,270 [WARNING] werkzeug:  * Debugger is active!
+2026-08-03 17:48:59,272 [INFO] werkzeug:  * Debugger PIN: 300-563-884
+2026-08-03 17:50:01,775 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-08-03 17:50:01,905 [INFO] werkzeug:  * Restarting with stat
+2026-08-03 17:50:03,209 [WARNING] werkzeug:  * Debugger is active!
+2026-08-03 17:50:03,212 [INFO] werkzeug:  * Debugger PIN: 300-563-884
+2026-08-03 17:50:05,386 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-08-03 17:50:05,515 [INFO] werkzeug:  * Restarting with stat
+2026-08-03 17:50:06,817 [WARNING] werkzeug:  * Debugger is active!
+2026-08-03 17:50:06,819 [INFO] werkzeug:  * Debugger PIN: 300-563-884
+2026-08-03 17:50:08,981 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-08-03 17:50:09,118 [INFO] werkzeug:  * Restarting with stat
+2026-08-03 17:50:10,451 [WARNING] werkzeug:  * Debugger is active!
+2026-08-03 17:50:10,453 [INFO] werkzeug:  * Debugger PIN: 300-563-884
+2026-08-03 17:50:12,650 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-08-03 17:50:12,791 [INFO] werkzeug:  * Restarting with stat
+2026-08-03 17:50:14,102 [WARNING] werkzeug:  * Debugger is active!
+2026-08-03 17:50:14,104 [INFO] werkzeug:  * Debugger PIN: 300-563-884
+2026-08-03 17:52:17,890 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-08-03 17:52:18,023 [INFO] werkzeug:  * Restarting with stat
+2026-08-03 17:53:54,953 [INFO] flask_wtf.csrf: The CSRF token is missing.
+2026-08-03 17:56:36,658 [INFO] flask_wtf.csrf: The CSRF token is missing.
+2026-08-03 17:56:50,660 [INFO] flask_wtf.csrf: The CSRF token is missing.
+2026-08-03 18:13:27,311 [INFO] werkzeug: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.19:5000
+2026-08-03 18:13:27,311 [INFO] werkzeug: [33mPress CTRL+C to quit[0m
+2026-08-03 18:13:27,313 [INFO] werkzeug:  * Restarting with stat
+2026-08-03 18:13:28,687 [WARNING] werkzeug:  * Debugger is active!
+2026-08-03 18:13:28,689 [INFO] werkzeug:  * Debugger PIN: 300-563-884
+2026-08-03 18:13:35,971 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 18:13:35] "GET /invoices/1 HTTP/1.1" 200 -
+2026-08-03 18:13:36,238 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 18:13:36] "[36mGET /static/css/billing.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 18:13:36,248 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 18:13:36] "[36mGET /static/css/erp-menu.css?v=1.0 HTTP/1.1[0m" 304 -
+2026-08-03 18:13:36,256 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 18:13:36] "[36mGET /static/img/logo/img.png HTTP/1.1[0m" 304 -
+2026-08-03 18:13:36,260 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 18:13:36] "[36mGET /static/css/app.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 18:13:36,269 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 18:13:36] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-08-03 18:13:36,270 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 18:13:36] "[36mGET /static/js/erp-menu.js?v=1.0 HTTP/1.1[0m" 304 -
+2026-08-03 18:13:36,273 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 18:13:36] "[36mGET /static/css/sales.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 18:13:36,279 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 18:13:36] "[36mGET /static/css/themes.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 18:13:36,281 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 18:13:36] "[36mGET /static/css/admin.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 18:13:36,283 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 18:13:36] "[36mGET /static/css/responsive.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 18:13:48,565 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 18:13:48] "[32mGET / HTTP/1.1[0m" 302 -
+2026-08-03 18:13:49,262 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 18:13:49] "GET /dashboard HTTP/1.1" 200 -
+2026-08-03 18:13:50,320 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 18:13:50] "[36mGET /static/css/themes.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 18:13:50,830 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 18:13:50] "[36mGET /static/css/sales.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 18:13:50,900 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 18:13:50] "[36mGET /static/css/admin.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 18:13:50,962 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 18:13:50] "[36mGET /static/css/app.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 18:13:50,941 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 18:13:50] "[36mGET /static/css/billing.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 18:13:51,124 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 18:13:51] "[36mGET /static/css/responsive.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 18:13:51,134 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 18:13:51] "[36mGET /static/img/logo/img.png HTTP/1.1[0m" 304 -
+2026-08-03 18:13:51,141 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 18:13:51] "[36mGET /static/css/erp-menu.css?v=1.0 HTTP/1.1[0m" 304 -
+2026-08-03 18:13:51,225 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 18:13:51] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-08-03 18:13:51,225 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 18:13:51] "[36mGET /static/js/erp-menu.js?v=1.0 HTTP/1.1[0m" 304 -
+2026-08-03 18:13:51,989 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 18:13:51] "[36mGET /static/img/logo/img.png HTTP/1.1[0m" 304 -
+2026-08-03 18:14:04,212 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 18:14:04] "GET /invoices/create HTTP/1.1" 200 -
+2026-08-03 18:14:04,262 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 18:14:04] "[36mGET /static/css/app.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 18:14:04,267 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 18:14:04] "[36mGET /static/css/responsive.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 18:14:04,288 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 18:14:04] "[36mGET /static/css/sales.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 18:14:04,298 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 18:14:04] "[36mGET /static/css/admin.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 18:14:04,324 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 18:14:04] "[36mGET /static/css/billing.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 18:14:04,326 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 18:14:04] "[36mGET /static/css/themes.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 18:14:04,339 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 18:14:04] "[36mGET /static/css/erp-menu.css?v=1.0 HTTP/1.1[0m" 304 -
+2026-08-03 18:14:04,354 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 18:14:04] "[36mGET /static/img/logo/img.png HTTP/1.1[0m" 304 -
+2026-08-03 18:14:04,378 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 18:14:04] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-08-03 18:14:04,392 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 18:14:04] "[36mGET /static/js/erp-menu.js?v=1.0 HTTP/1.1[0m" 304 -
+2026-08-03 18:14:07,745 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 18:14:07] "GET /api/customers/search?q=k HTTP/1.1" 200 -
+2026-08-03 18:14:13,305 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 18:14:13] "GET /api/products/search?q=s&allow_out_of_stock=false HTTP/1.1" 200 -
+2026-08-03 18:14:48,219 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 18:14:48] "POST /invoices/create HTTP/1.1" 200 -
+2026-08-03 18:14:48,853 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 18:14:48] "GET /invoices/2 HTTP/1.1" 200 -
+2026-08-03 18:14:48,900 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 18:14:48] "[36mGET /static/css/app.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 18:14:48,905 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 18:14:48] "[36mGET /static/css/billing.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 18:14:48,906 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 18:14:48] "[36mGET /static/css/admin.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 18:14:48,910 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 18:14:48] "[36mGET /static/css/sales.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 18:14:48,912 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 18:14:48] "[36mGET /static/css/responsive.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 18:14:48,918 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 18:14:48] "[36mGET /static/css/themes.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-08-03 18:14:48,927 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 18:14:48] "[36mGET /static/css/erp-menu.css?v=1.0 HTTP/1.1[0m" 304 -
+2026-08-03 18:14:48,943 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 18:14:48] "[36mGET /static/img/logo/img.png HTTP/1.1[0m" 304 -
+2026-08-03 18:14:48,945 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 18:14:48] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-08-03 18:14:48,948 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 18:14:48] "[36mGET /static/js/erp-menu.js?v=1.0 HTTP/1.1[0m" 304 -
+2026-08-03 18:15:08,358 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 18:15:08] "POST /api/invoices/2/payment HTTP/1.1" 200 -
+2026-08-03 18:15:32,455 [INFO] werkzeug: 127.0.0.1 - - [03/Aug/2026 18:15:32] "POST /api/invoices/2/payment HTTP/1.1" 200 -

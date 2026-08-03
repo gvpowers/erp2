@@ -1,0 +1,68 @@
+2026-07-27 07:40:46,165 [INFO] werkzeug: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.19:5000
+2026-07-27 07:40:46,168 [INFO] werkzeug: [33mPress CTRL+C to quit[0m
+2026-07-27 07:40:46,178 [INFO] werkzeug:  * Restarting with stat
+2026-07-27 07:40:48,249 [WARNING] werkzeug:  * Debugger is active!
+2026-07-27 07:40:48,253 [INFO] werkzeug:  * Debugger PIN: 195-460-727
+2026-07-27 07:43:40,286 [INFO] werkzeug: 127.0.0.1 - - [27/Jul/2026 07:43:40] "[32mGET / HTTP/1.1[0m" 302 -
+2026-07-27 07:43:40,386 [INFO] werkzeug: 127.0.0.1 - - [27/Jul/2026 07:43:40] "GET /login HTTP/1.1" 200 -
+2026-07-27 07:43:40,508 [INFO] werkzeug: 127.0.0.1 - - [27/Jul/2026 07:43:40] "GET /static/css/app.css?v=8.0 HTTP/1.1" 200 -
+2026-07-27 07:43:40,520 [INFO] werkzeug: 127.0.0.1 - - [27/Jul/2026 07:43:40] "GET /static/css/sales.css?v=8.0 HTTP/1.1" 200 -
+2026-07-27 07:43:40,538 [INFO] werkzeug: 127.0.0.1 - - [27/Jul/2026 07:43:40] "GET /static/css/responsive.css?v=8.0 HTTP/1.1" 200 -
+2026-07-27 07:43:40,545 [INFO] werkzeug: 127.0.0.1 - - [27/Jul/2026 07:43:40] "GET /static/css/admin.css?v=8.0 HTTP/1.1" 200 -
+2026-07-27 07:43:40,549 [INFO] werkzeug: 127.0.0.1 - - [27/Jul/2026 07:43:40] "GET /static/img/logo/img.png HTTP/1.1" 200 -
+2026-07-27 07:43:40,569 [INFO] werkzeug: 127.0.0.1 - - [27/Jul/2026 07:43:40] "GET /static/css/themes.css?v=8.0 HTTP/1.1" 200 -
+2026-07-27 07:43:40,614 [INFO] werkzeug: 127.0.0.1 - - [27/Jul/2026 07:43:40] "GET /static/css/billing.css?v=8.0 HTTP/1.1" 200 -
+2026-07-27 07:43:40,667 [INFO] werkzeug: 127.0.0.1 - - [27/Jul/2026 07:43:40] "GET /static/js/app.js HTTP/1.1" 200 -
+2026-07-27 07:43:55,714 [INFO] werkzeug: 127.0.0.1 - - [27/Jul/2026 07:43:55] "[32mPOST /login HTTP/1.1[0m" 302 -
+2026-07-27 07:43:56,087 [INFO] werkzeug: 127.0.0.1 - - [27/Jul/2026 07:43:56] "[35m[1mGET /dashboard HTTP/1.1[0m" 500 -
+2026-07-27 07:43:56,140 [INFO] werkzeug: 127.0.0.1 - - [27/Jul/2026 07:43:56] "GET /dashboard?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2026-07-27 07:43:56,163 [INFO] werkzeug: 127.0.0.1 - - [27/Jul/2026 07:43:56] "GET /dashboard?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2026-07-27 07:43:56,232 [INFO] werkzeug: 127.0.0.1 - - [27/Jul/2026 07:43:56] "GET /dashboard?__debugger__=yes&cmd=resource&f=console.png&s=6zIQxUMKbTycU89D9fGd HTTP/1.1" 200 -
+2026-07-27 08:08:29,136 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\gvp\\app.py', reloading
+2026-07-27 08:08:29,379 [INFO] werkzeug:  * Restarting with stat
+2026-07-27 08:08:33,458 [WARNING] werkzeug:  * Debugger is active!
+2026-07-27 08:08:33,463 [INFO] werkzeug:  * Debugger PIN: 195-460-727
+2026-07-27 08:15:21,487 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\gvp\\app.py', reloading
+2026-07-27 08:15:21,696 [INFO] werkzeug:  * Restarting with stat
+2026-07-27 08:15:23,635 [WARNING] werkzeug:  * Debugger is active!
+2026-07-27 08:15:23,639 [INFO] werkzeug:  * Debugger PIN: 195-460-727
+2026-07-27 08:30:33,372 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-07-27 08:30:33,635 [INFO] werkzeug:  * Restarting with stat
+2026-07-27 08:30:35,607 [WARNING] werkzeug:  * Debugger is active!
+2026-07-27 08:30:35,614 [INFO] werkzeug:  * Debugger PIN: 195-460-727
+2026-07-27 08:30:43,452 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-07-27 08:30:43,784 [INFO] werkzeug:  * Restarting with stat
+2026-07-27 08:46:08,427 [INFO] werkzeug: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.19:5000
+2026-07-27 08:46:08,427 [INFO] werkzeug: [33mPress CTRL+C to quit[0m
+2026-07-27 08:46:08,432 [INFO] werkzeug:  * Restarting with stat
+2026-07-27 08:46:11,778 [WARNING] werkzeug:  * Debugger is active!
+2026-07-27 08:46:11,784 [INFO] werkzeug:  * Debugger PIN: 195-460-727
+2026-07-27 08:46:32,502 [INFO] werkzeug: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.19:5000
+2026-07-27 08:46:32,502 [INFO] werkzeug: [33mPress CTRL+C to quit[0m
+2026-07-27 08:46:32,505 [INFO] werkzeug:  * Restarting with stat
+2026-07-27 08:46:34,229 [WARNING] werkzeug:  * Debugger is active!
+2026-07-27 08:46:34,232 [INFO] werkzeug:  * Debugger PIN: 195-460-727
+2026-07-27 08:46:34,304 [INFO] werkzeug: 127.0.0.1 - - [27/Jul/2026 08:46:34] "[32mGET / HTTP/1.1[0m" 302 -
+2026-07-27 08:46:34,466 [INFO] werkzeug: 127.0.0.1 - - [27/Jul/2026 08:46:34] "GET /dashboard HTTP/1.1" 200 -
+2026-07-27 08:46:34,556 [INFO] werkzeug: 127.0.0.1 - - [27/Jul/2026 08:46:34] "[36mGET /static/css/app.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-27 08:46:34,569 [INFO] werkzeug: 127.0.0.1 - - [27/Jul/2026 08:46:34] "[36mGET /static/css/billing.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-27 08:46:34,570 [INFO] werkzeug: 127.0.0.1 - - [27/Jul/2026 08:46:34] "[36mGET /static/css/admin.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-27 08:46:34,577 [INFO] werkzeug: 127.0.0.1 - - [27/Jul/2026 08:46:34] "[36mGET /static/img/logo/img.png HTTP/1.1[0m" 304 -
+2026-07-27 08:46:34,578 [INFO] werkzeug: 127.0.0.1 - - [27/Jul/2026 08:46:34] "[36mGET /static/css/sales.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-27 08:46:34,591 [INFO] werkzeug: 127.0.0.1 - - [27/Jul/2026 08:46:34] "[36mGET /static/css/themes.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-27 08:46:34,594 [INFO] werkzeug: 127.0.0.1 - - [27/Jul/2026 08:46:34] "[36mGET /static/css/responsive.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-27 08:46:34,633 [INFO] werkzeug: 127.0.0.1 - - [27/Jul/2026 08:46:34] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-27 08:46:38,304 [INFO] werkzeug: 127.0.0.1 - - [27/Jul/2026 08:46:38] "[35m[1mGET /invoices/create HTTP/1.1[0m" 500 -
+2026-07-27 08:46:38,363 [INFO] werkzeug: 127.0.0.1 - - [27/Jul/2026 08:46:38] "GET /invoices/create?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2026-07-27 08:46:38,377 [INFO] werkzeug: 127.0.0.1 - - [27/Jul/2026 08:46:38] "GET /invoices/create?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2026-07-27 08:46:38,438 [INFO] werkzeug: 127.0.0.1 - - [27/Jul/2026 08:46:38] "GET /invoices/create?__debugger__=yes&cmd=resource&f=console.png&s=QW6vrtroZ6Oe7tcz1EHj HTTP/1.1" 200 -
+2026-07-27 08:46:38,457 [INFO] werkzeug: 127.0.0.1 - - [27/Jul/2026 08:46:38] "GET /invoices/create?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -

@@ -1,0 +1,1756 @@
+2026-07-20 18:19:04,294 [INFO] Database seeded successfully.
+2026-07-20 18:19:13,088 [INFO] Database seeded successfully.
+2026-07-20 18:19:13,156 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.19:5000
+2026-07-20 18:19:13,156 [INFO] [33mPress CTRL+C to quit[0m
+2026-07-20 18:19:13,159 [INFO]  * Restarting with stat
+2026-07-20 18:19:14,188 [INFO] Database seeded successfully.
+2026-07-20 18:19:14,201 [WARNING]  * Debugger is active!
+2026-07-20 18:19:14,203 [INFO]  * Debugger PIN: 195-460-727
+2026-07-20 18:19:17,275 [INFO] 127.0.0.1 - - [20/Jul/2026 18:19:17] "GET /login HTTP/1.1" 200 -
+2026-07-20 22:08:17,822 [INFO]  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-07-20 22:34:47,892 [INFO] Database seeded successfully.
+2026-07-20 22:35:00,410 [INFO] Database seeded successfully.
+2026-07-20 22:35:00,473 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.19:5000
+2026-07-20 22:35:00,473 [INFO] [33mPress CTRL+C to quit[0m
+2026-07-20 22:35:00,475 [INFO]  * Restarting with stat
+2026-07-20 22:35:02,740 [INFO] Database seeded successfully.
+2026-07-20 22:35:02,773 [WARNING]  * Debugger is active!
+2026-07-20 22:35:02,778 [INFO]  * Debugger PIN: 195-460-727
+2026-07-20 22:35:03,611 [INFO] 127.0.0.1 - - [20/Jul/2026 22:35:03] "GET /login HTTP/1.1" 200 -
+2026-07-20 22:35:03,662 [INFO] 127.0.0.1 - - [20/Jul/2026 22:35:03] "[32mGET / HTTP/1.1[0m" 302 -
+2026-07-20 22:37:56,505 [INFO] Database seeded successfully.
+2026-07-20 22:37:56,549 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.19:5000
+2026-07-20 22:37:56,549 [INFO] [33mPress CTRL+C to quit[0m
+2026-07-20 22:37:56,551 [INFO]  * Restarting with stat
+2026-07-20 22:37:58,072 [INFO] Database seeded successfully.
+2026-07-20 22:37:58,088 [WARNING]  * Debugger is active!
+2026-07-20 22:37:58,090 [INFO]  * Debugger PIN: 195-460-727
+2026-07-20 22:39:01,819 [INFO] Database seeded successfully.
+2026-07-20 22:39:01,970 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.19:5000
+2026-07-20 22:39:01,971 [INFO] [33mPress CTRL+C to quit[0m
+2026-07-20 22:39:01,974 [INFO]  * Restarting with stat
+2026-07-20 22:39:04,784 [INFO] Database seeded successfully.
+2026-07-20 22:39:04,818 [WARNING]  * Debugger is active!
+2026-07-20 22:39:04,822 [INFO]  * Debugger PIN: 195-460-727
+2026-07-20 22:39:22,081 [INFO] 127.0.0.1 - - [20/Jul/2026 22:39:22] "[32mGET / HTTP/1.1[0m" 302 -
+2026-07-20 22:39:22,100 [INFO] 127.0.0.1 - - [20/Jul/2026 22:39:22] "GET /login HTTP/1.1" 200 -
+2026-07-20 22:39:22,335 [INFO] 127.0.0.1 - - [20/Jul/2026 22:39:22] "GET /static/css/app.css HTTP/1.1" 200 -
+2026-07-20 22:39:22,337 [INFO] 127.0.0.1 - - [20/Jul/2026 22:39:22] "GET /static/css/themes.css HTTP/1.1" 200 -
+2026-07-20 22:39:22,347 [INFO] 127.0.0.1 - - [20/Jul/2026 22:39:22] "GET /static/css/billing.css HTTP/1.1" 200 -
+2026-07-20 22:39:22,348 [INFO] 127.0.0.1 - - [20/Jul/2026 22:39:22] "GET /static/css/admin.css HTTP/1.1" 200 -
+2026-07-20 22:39:22,359 [INFO] 127.0.0.1 - - [20/Jul/2026 22:39:22] "GET /static/css/sales.css HTTP/1.1" 200 -
+2026-07-20 22:39:22,405 [INFO] 127.0.0.1 - - [20/Jul/2026 22:39:22] "GET /static/css/responsive.css HTTP/1.1" 200 -
+2026-07-20 22:39:22,412 [INFO] 127.0.0.1 - - [20/Jul/2026 22:39:22] "GET /static/js/ui.js HTTP/1.1" 200 -
+2026-07-20 22:39:22,420 [INFO] 127.0.0.1 - - [20/Jul/2026 22:39:22] "GET /static/js/gst.js HTTP/1.1" 200 -
+2026-07-20 22:39:22,428 [INFO] 127.0.0.1 - - [20/Jul/2026 22:39:22] "GET /static/js/app.js HTTP/1.1" 200 -
+2026-07-20 22:39:22,436 [INFO] 127.0.0.1 - - [20/Jul/2026 22:39:22] "GET /static/js/billing.js HTTP/1.1" 200 -
+2026-07-20 22:39:22,448 [INFO] 127.0.0.1 - - [20/Jul/2026 22:39:22] "GET /static/js/customer.js HTTP/1.1" 200 -
+2026-07-20 22:39:22,448 [INFO] 127.0.0.1 - - [20/Jul/2026 22:39:22] "GET /static/js/inventory.js HTTP/1.1" 200 -
+2026-07-20 22:39:22,459 [INFO] 127.0.0.1 - - [20/Jul/2026 22:39:22] "GET /static/js/reports.js HTTP/1.1" 200 -
+2026-07-20 22:39:22,460 [INFO] 127.0.0.1 - - [20/Jul/2026 22:39:22] "GET /static/js/search.js HTTP/1.1" 200 -
+2026-07-20 22:39:23,596 [INFO] 127.0.0.1 - - [20/Jul/2026 22:39:23] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-07-20 22:39:32,100 [INFO] 127.0.0.1 - - [20/Jul/2026 22:39:32] "[32mPOST /login HTTP/1.1[0m" 302 -
+2026-07-20 22:39:32,271 [INFO] 127.0.0.1 - - [20/Jul/2026 22:39:32] "GET /dashboard HTTP/1.1" 200 -
+2026-07-20 22:39:32,315 [INFO] 127.0.0.1 - - [20/Jul/2026 22:39:32] "[36mGET /static/css/responsive.css HTTP/1.1[0m" 304 -
+2026-07-20 22:39:32,317 [INFO] 127.0.0.1 - - [20/Jul/2026 22:39:32] "[36mGET /static/css/sales.css HTTP/1.1[0m" 304 -
+2026-07-20 22:39:32,320 [INFO] 127.0.0.1 - - [20/Jul/2026 22:39:32] "[36mGET /static/css/app.css HTTP/1.1[0m" 304 -
+2026-07-20 22:39:32,322 [INFO] 127.0.0.1 - - [20/Jul/2026 22:39:32] "[36mGET /static/css/billing.css HTTP/1.1[0m" 304 -
+2026-07-20 22:39:32,326 [INFO] 127.0.0.1 - - [20/Jul/2026 22:39:32] "[36mGET /static/css/themes.css HTTP/1.1[0m" 304 -
+2026-07-20 22:39:32,329 [INFO] 127.0.0.1 - - [20/Jul/2026 22:39:32] "[36mGET /static/css/admin.css HTTP/1.1[0m" 304 -
+2026-07-20 22:39:32,347 [INFO] 127.0.0.1 - - [20/Jul/2026 22:39:32] "[36mGET /static/js/gst.js HTTP/1.1[0m" 304 -
+2026-07-20 22:39:32,347 [INFO] 127.0.0.1 - - [20/Jul/2026 22:39:32] "[36mGET /static/js/ui.js HTTP/1.1[0m" 304 -
+2026-07-20 22:39:32,354 [INFO] 127.0.0.1 - - [20/Jul/2026 22:39:32] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-20 22:39:32,357 [INFO] 127.0.0.1 - - [20/Jul/2026 22:39:32] "[36mGET /static/js/customer.js HTTP/1.1[0m" 304 -
+2026-07-20 22:39:32,357 [INFO] 127.0.0.1 - - [20/Jul/2026 22:39:32] "[36mGET /static/js/billing.js HTTP/1.1[0m" 304 -
+2026-07-20 22:39:32,368 [INFO] 127.0.0.1 - - [20/Jul/2026 22:39:32] "[36mGET /static/js/inventory.js HTTP/1.1[0m" 304 -
+2026-07-20 22:39:32,373 [INFO] 127.0.0.1 - - [20/Jul/2026 22:39:32] "[36mGET /static/js/reports.js HTTP/1.1[0m" 304 -
+2026-07-20 22:39:32,375 [INFO] 127.0.0.1 - - [20/Jul/2026 22:39:32] "[36mGET /static/js/search.js HTTP/1.1[0m" 304 -
+2026-07-20 22:39:55,827 [INFO] 127.0.0.1 - - [20/Jul/2026 22:39:55] "[31m[1mGET /invoices/new HTTP/1.1[0m" 403 -
+2026-07-20 22:39:55,851 [INFO] 127.0.0.1 - - [20/Jul/2026 22:39:55] "[36mGET /static/css/app.css HTTP/1.1[0m" 304 -
+2026-07-20 22:39:55,854 [INFO] 127.0.0.1 - - [20/Jul/2026 22:39:55] "[36mGET /static/css/themes.css HTTP/1.1[0m" 304 -
+2026-07-20 22:39:55,859 [INFO] 127.0.0.1 - - [20/Jul/2026 22:39:55] "[36mGET /static/css/responsive.css HTTP/1.1[0m" 304 -
+2026-07-20 22:39:55,864 [INFO] 127.0.0.1 - - [20/Jul/2026 22:39:55] "[36mGET /static/css/billing.css HTTP/1.1[0m" 304 -
+2026-07-20 22:39:55,871 [INFO] 127.0.0.1 - - [20/Jul/2026 22:39:55] "[36mGET /static/css/admin.css HTTP/1.1[0m" 304 -
+2026-07-20 22:39:55,879 [INFO] 127.0.0.1 - - [20/Jul/2026 22:39:55] "[36mGET /static/css/sales.css HTTP/1.1[0m" 304 -
+2026-07-20 22:39:55,882 [INFO] 127.0.0.1 - - [20/Jul/2026 22:39:55] "[36mGET /static/js/ui.js HTTP/1.1[0m" 304 -
+2026-07-20 22:39:55,889 [INFO] 127.0.0.1 - - [20/Jul/2026 22:39:55] "[36mGET /static/js/billing.js HTTP/1.1[0m" 304 -
+2026-07-20 22:39:55,893 [INFO] 127.0.0.1 - - [20/Jul/2026 22:39:55] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-20 22:39:55,893 [INFO] 127.0.0.1 - - [20/Jul/2026 22:39:55] "[36mGET /static/js/gst.js HTTP/1.1[0m" 304 -
+2026-07-20 22:39:55,894 [INFO] 127.0.0.1 - - [20/Jul/2026 22:39:55] "[36mGET /static/js/customer.js HTTP/1.1[0m" 304 -
+2026-07-20 22:39:55,910 [INFO] 127.0.0.1 - - [20/Jul/2026 22:39:55] "[36mGET /static/js/inventory.js HTTP/1.1[0m" 304 -
+2026-07-20 22:39:55,915 [INFO] 127.0.0.1 - - [20/Jul/2026 22:39:55] "[36mGET /static/js/reports.js HTTP/1.1[0m" 304 -
+2026-07-20 22:39:55,918 [INFO] 127.0.0.1 - - [20/Jul/2026 22:39:55] "[36mGET /static/js/search.js HTTP/1.1[0m" 304 -
+2026-07-20 22:39:58,036 [INFO] 127.0.0.1 - - [20/Jul/2026 22:39:58] "GET /dashboard HTTP/1.1" 200 -
+2026-07-20 22:39:58,067 [INFO] 127.0.0.1 - - [20/Jul/2026 22:39:58] "[36mGET /static/css/responsive.css HTTP/1.1[0m" 304 -
+2026-07-20 22:39:58,070 [INFO] 127.0.0.1 - - [20/Jul/2026 22:39:58] "[36mGET /static/css/themes.css HTTP/1.1[0m" 304 -
+2026-07-20 22:39:58,078 [INFO] 127.0.0.1 - - [20/Jul/2026 22:39:58] "[36mGET /static/css/app.css HTTP/1.1[0m" 304 -
+2026-07-20 22:39:58,084 [INFO] 127.0.0.1 - - [20/Jul/2026 22:39:58] "[36mGET /static/css/billing.css HTTP/1.1[0m" 304 -
+2026-07-20 22:39:58,088 [INFO] 127.0.0.1 - - [20/Jul/2026 22:39:58] "[36mGET /static/css/admin.css HTTP/1.1[0m" 304 -
+2026-07-20 22:39:58,105 [INFO] 127.0.0.1 - - [20/Jul/2026 22:39:58] "[36mGET /static/css/sales.css HTTP/1.1[0m" 304 -
+2026-07-20 22:39:58,109 [INFO] 127.0.0.1 - - [20/Jul/2026 22:39:58] "[36mGET /static/js/ui.js HTTP/1.1[0m" 304 -
+2026-07-20 22:39:58,119 [INFO] 127.0.0.1 - - [20/Jul/2026 22:39:58] "[36mGET /static/js/billing.js HTTP/1.1[0m" 304 -
+2026-07-20 22:39:58,120 [INFO] 127.0.0.1 - - [20/Jul/2026 22:39:58] "[36mGET /static/js/gst.js HTTP/1.1[0m" 304 -
+2026-07-20 22:39:58,129 [INFO] 127.0.0.1 - - [20/Jul/2026 22:39:58] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-20 22:39:58,146 [INFO] 127.0.0.1 - - [20/Jul/2026 22:39:58] "[36mGET /static/js/customer.js HTTP/1.1[0m" 304 -
+2026-07-20 22:39:58,149 [INFO] 127.0.0.1 - - [20/Jul/2026 22:39:58] "[36mGET /static/js/reports.js HTTP/1.1[0m" 304 -
+2026-07-20 22:39:58,160 [INFO] 127.0.0.1 - - [20/Jul/2026 22:39:58] "[36mGET /static/js/inventory.js HTTP/1.1[0m" 304 -
+2026-07-20 22:39:58,163 [INFO] 127.0.0.1 - - [20/Jul/2026 22:39:58] "[36mGET /static/js/search.js HTTP/1.1[0m" 304 -
+2026-07-20 22:42:35,538 [INFO] 127.0.0.1 - - [20/Jul/2026 22:42:35] "[32mPOST /logout HTTP/1.1[0m" 302 -
+2026-07-20 22:42:35,547 [INFO] 127.0.0.1 - - [20/Jul/2026 22:42:35] "GET /login HTTP/1.1" 200 -
+2026-07-20 22:42:35,567 [INFO] 127.0.0.1 - - [20/Jul/2026 22:42:35] "[36mGET /static/css/app.css HTTP/1.1[0m" 304 -
+2026-07-20 22:42:35,573 [INFO] 127.0.0.1 - - [20/Jul/2026 22:42:35] "[36mGET /static/css/themes.css HTTP/1.1[0m" 304 -
+2026-07-20 22:42:35,576 [INFO] 127.0.0.1 - - [20/Jul/2026 22:42:35] "[36mGET /static/css/responsive.css HTTP/1.1[0m" 304 -
+2026-07-20 22:42:35,579 [INFO] 127.0.0.1 - - [20/Jul/2026 22:42:35] "[36mGET /static/css/billing.css HTTP/1.1[0m" 304 -
+2026-07-20 22:42:35,581 [INFO] 127.0.0.1 - - [20/Jul/2026 22:42:35] "[36mGET /static/css/admin.css HTTP/1.1[0m" 304 -
+2026-07-20 22:42:35,593 [INFO] 127.0.0.1 - - [20/Jul/2026 22:42:35] "[36mGET /static/css/sales.css HTTP/1.1[0m" 304 -
+2026-07-20 22:42:35,595 [INFO] 127.0.0.1 - - [20/Jul/2026 22:42:35] "[36mGET /static/js/ui.js HTTP/1.1[0m" 304 -
+2026-07-20 22:42:35,597 [INFO] 127.0.0.1 - - [20/Jul/2026 22:42:35] "[36mGET /static/js/gst.js HTTP/1.1[0m" 304 -
+2026-07-20 22:42:35,606 [INFO] 127.0.0.1 - - [20/Jul/2026 22:42:35] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-20 22:42:35,614 [INFO] 127.0.0.1 - - [20/Jul/2026 22:42:35] "[36mGET /static/js/billing.js HTTP/1.1[0m" 304 -
+2026-07-20 22:42:35,617 [INFO] 127.0.0.1 - - [20/Jul/2026 22:42:35] "[36mGET /static/js/inventory.js HTTP/1.1[0m" 304 -
+2026-07-20 22:42:35,619 [INFO] 127.0.0.1 - - [20/Jul/2026 22:42:35] "[36mGET /static/js/customer.js HTTP/1.1[0m" 304 -
+2026-07-20 22:42:35,625 [INFO] 127.0.0.1 - - [20/Jul/2026 22:42:35] "[36mGET /static/js/reports.js HTTP/1.1[0m" 304 -
+2026-07-20 22:42:35,630 [INFO] 127.0.0.1 - - [20/Jul/2026 22:42:35] "[36mGET /static/js/search.js HTTP/1.1[0m" 304 -
+2026-07-20 22:42:41,382 [INFO] 127.0.0.1 - - [20/Jul/2026 22:42:41] "[32mPOST /login HTTP/1.1[0m" 302 -
+2026-07-20 22:42:41,435 [INFO] 127.0.0.1 - - [20/Jul/2026 22:42:41] "GET /invoices/new HTTP/1.1" 200 -
+2026-07-20 22:42:41,495 [INFO] 127.0.0.1 - - [20/Jul/2026 22:42:41] "[36mGET /static/css/app.css HTTP/1.1[0m" 304 -
+2026-07-20 22:42:41,511 [INFO] 127.0.0.1 - - [20/Jul/2026 22:42:41] "[36mGET /static/css/billing.css HTTP/1.1[0m" 304 -
+2026-07-20 22:42:41,514 [INFO] 127.0.0.1 - - [20/Jul/2026 22:42:41] "[36mGET /static/css/themes.css HTTP/1.1[0m" 304 -
+2026-07-20 22:42:41,515 [INFO] 127.0.0.1 - - [20/Jul/2026 22:42:41] "[36mGET /static/css/responsive.css HTTP/1.1[0m" 304 -
+2026-07-20 22:42:41,520 [INFO] 127.0.0.1 - - [20/Jul/2026 22:42:41] "[36mGET /static/css/admin.css HTTP/1.1[0m" 304 -
+2026-07-20 22:42:41,522 [INFO] 127.0.0.1 - - [20/Jul/2026 22:42:41] "[36mGET /static/css/sales.css HTTP/1.1[0m" 304 -
+2026-07-20 22:42:41,545 [INFO] 127.0.0.1 - - [20/Jul/2026 22:42:41] "[36mGET /static/js/ui.js HTTP/1.1[0m" 304 -
+2026-07-20 22:42:41,552 [INFO] 127.0.0.1 - - [20/Jul/2026 22:42:41] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-20 22:42:41,554 [INFO] 127.0.0.1 - - [20/Jul/2026 22:42:41] "[36mGET /static/js/gst.js HTTP/1.1[0m" 304 -
+2026-07-20 22:42:41,567 [INFO] 127.0.0.1 - - [20/Jul/2026 22:42:41] "[36mGET /static/js/billing.js HTTP/1.1[0m" 304 -
+2026-07-20 22:42:41,575 [INFO] 127.0.0.1 - - [20/Jul/2026 22:42:41] "[36mGET /static/js/customer.js HTTP/1.1[0m" 304 -
+2026-07-20 22:42:41,577 [INFO] 127.0.0.1 - - [20/Jul/2026 22:42:41] "[36mGET /static/js/reports.js HTTP/1.1[0m" 304 -
+2026-07-20 22:42:41,578 [INFO] 127.0.0.1 - - [20/Jul/2026 22:42:41] "[36mGET /static/js/inventory.js HTTP/1.1[0m" 304 -
+2026-07-20 22:42:41,579 [INFO] 127.0.0.1 - - [20/Jul/2026 22:42:41] "[36mGET /static/js/search.js HTTP/1.1[0m" 304 -
+2026-07-20 22:44:18,267 [INFO]  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-07-20 22:44:18,343 [INFO]  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-07-20 22:44:18,589 [INFO]  * Restarting with stat
+2026-07-20 22:44:22,829 [INFO] Database seeded successfully.
+2026-07-20 22:44:22,864 [WARNING]  * Debugger is active!
+2026-07-20 22:44:22,868 [INFO]  * Debugger PIN: 195-460-727
+2026-07-20 22:57:07,375 [INFO] Database seeded successfully.
+2026-07-20 22:57:18,060 [INFO] Database seeded successfully.
+2026-07-20 22:57:18,137 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.19:5000
+2026-07-20 22:57:18,137 [INFO] [33mPress CTRL+C to quit[0m
+2026-07-20 22:57:18,140 [INFO]  * Restarting with stat
+2026-07-20 22:57:20,570 [INFO] Database seeded successfully.
+2026-07-20 22:57:20,601 [WARNING]  * Debugger is active!
+2026-07-20 22:57:20,605 [INFO]  * Debugger PIN: 195-460-727
+2026-07-20 22:57:20,997 [INFO] 127.0.0.1 - - [20/Jul/2026 22:57:20] "GET /login HTTP/1.1" 200 -
+2026-07-20 23:04:20,975 [INFO] Database seeded successfully.
+2026-07-20 23:04:21,016 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-07-20 23:04:21,016 [INFO] [33mPress CTRL+C to quit[0m
+2026-07-20 23:04:21,018 [INFO]  * Restarting with stat
+2026-07-20 23:04:22,724 [INFO] Database seeded successfully.
+2026-07-20 23:04:22,751 [WARNING]  * Debugger is active!
+2026-07-20 23:04:22,754 [INFO]  * Debugger PIN: 195-460-727
+2026-07-20 23:04:22,813 [INFO] 127.0.0.1 - - [20/Jul/2026 23:04:22] "GET /login HTTP/1.1" 200 -
+2026-07-20 23:08:33,610 [INFO] Database seeded successfully.
+2026-07-20 23:08:33,656 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-07-20 23:08:33,656 [INFO] [33mPress CTRL+C to quit[0m
+2026-07-20 23:08:33,658 [INFO]  * Restarting with stat
+2026-07-20 23:08:35,568 [INFO] 127.0.0.1 - - [20/Jul/2026 23:08:35] "[32mGET / HTTP/1.1[0m" 302 -
+2026-07-20 23:08:35,666 [INFO] 127.0.0.1 - - [20/Jul/2026 23:08:35] "GET /invoices/new HTTP/1.1" 200 -
+2026-07-20 23:08:35,912 [INFO] 127.0.0.1 - - [20/Jul/2026 23:08:35] "GET /static/css/app.css HTTP/1.1" 200 -
+2026-07-20 23:08:35,922 [INFO] 127.0.0.1 - - [20/Jul/2026 23:08:35] "[36mGET /static/js/ui.js HTTP/1.1[0m" 304 -
+2026-07-20 23:08:35,931 [INFO] 127.0.0.1 - - [20/Jul/2026 23:08:35] "[36mGET /static/js/gst.js HTTP/1.1[0m" 304 -
+2026-07-20 23:08:35,940 [INFO] 127.0.0.1 - - [20/Jul/2026 23:08:35] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-20 23:08:35,948 [INFO] 127.0.0.1 - - [20/Jul/2026 23:08:35] "[36mGET /static/js/billing.js HTTP/1.1[0m" 304 -
+2026-07-20 23:08:35,956 [INFO] 127.0.0.1 - - [20/Jul/2026 23:08:35] "[36mGET /static/js/customer.js HTTP/1.1[0m" 304 -
+2026-07-20 23:08:35,964 [INFO] 127.0.0.1 - - [20/Jul/2026 23:08:35] "GET /static/css/themes.css HTTP/1.1" 200 -
+2026-07-20 23:08:35,964 [INFO] 127.0.0.1 - - [20/Jul/2026 23:08:35] "[36mGET /static/js/inventory.js HTTP/1.1[0m" 304 -
+2026-07-20 23:08:35,978 [INFO] 127.0.0.1 - - [20/Jul/2026 23:08:35] "[36mGET /static/js/reports.js HTTP/1.1[0m" 304 -
+2026-07-20 23:08:35,979 [INFO] 127.0.0.1 - - [20/Jul/2026 23:08:35] "[36mGET /static/js/search.js HTTP/1.1[0m" 304 -
+2026-07-20 23:08:35,982 [INFO] 127.0.0.1 - - [20/Jul/2026 23:08:35] "[36mGET /static/css/billing.css HTTP/1.1[0m" 304 -
+2026-07-20 23:08:35,987 [INFO] 127.0.0.1 - - [20/Jul/2026 23:08:35] "GET /static/css/sales.css HTTP/1.1" 200 -
+2026-07-20 23:08:35,987 [INFO] 127.0.0.1 - - [20/Jul/2026 23:08:35] "[36mGET /static/css/admin.css HTTP/1.1[0m" 304 -
+2026-07-20 23:08:35,988 [INFO] 127.0.0.1 - - [20/Jul/2026 23:08:35] "[36mGET /static/css/responsive.css HTTP/1.1[0m" 304 -
+2026-07-20 23:08:36,418 [INFO] Database seeded successfully.
+2026-07-20 23:08:36,449 [WARNING]  * Debugger is active!
+2026-07-20 23:08:36,455 [INFO]  * Debugger PIN: 195-460-727
+2026-07-20 23:08:52,282 [INFO] 127.0.0.1 - - [20/Jul/2026 23:08:52] "[32mPOST /logout HTTP/1.1[0m" 302 -
+2026-07-20 23:08:52,292 [INFO] 127.0.0.1 - - [20/Jul/2026 23:08:52] "GET /login HTTP/1.1" 200 -
+2026-07-20 23:08:52,318 [INFO] 127.0.0.1 - - [20/Jul/2026 23:08:52] "[36mGET /static/css/app.css HTTP/1.1[0m" 304 -
+2026-07-20 23:08:52,321 [INFO] 127.0.0.1 - - [20/Jul/2026 23:08:52] "[36mGET /static/css/responsive.css HTTP/1.1[0m" 304 -
+2026-07-20 23:08:52,325 [INFO] 127.0.0.1 - - [20/Jul/2026 23:08:52] "[36mGET /static/css/themes.css HTTP/1.1[0m" 304 -
+2026-07-20 23:08:52,330 [INFO] 127.0.0.1 - - [20/Jul/2026 23:08:52] "[36mGET /static/css/billing.css HTTP/1.1[0m" 304 -
+2026-07-20 23:08:52,335 [INFO] 127.0.0.1 - - [20/Jul/2026 23:08:52] "[36mGET /static/css/admin.css HTTP/1.1[0m" 304 -
+2026-07-20 23:08:52,339 [INFO] 127.0.0.1 - - [20/Jul/2026 23:08:52] "[36mGET /static/css/sales.css HTTP/1.1[0m" 304 -
+2026-07-20 23:08:52,342 [INFO] 127.0.0.1 - - [20/Jul/2026 23:08:52] "[36mGET /static/js/ui.js HTTP/1.1[0m" 304 -
+2026-07-20 23:08:52,347 [INFO] 127.0.0.1 - - [20/Jul/2026 23:08:52] "[36mGET /static/js/gst.js HTTP/1.1[0m" 304 -
+2026-07-20 23:08:52,351 [INFO] 127.0.0.1 - - [20/Jul/2026 23:08:52] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-20 23:08:52,356 [INFO] 127.0.0.1 - - [20/Jul/2026 23:08:52] "[36mGET /static/js/billing.js HTTP/1.1[0m" 304 -
+2026-07-20 23:08:52,360 [INFO] 127.0.0.1 - - [20/Jul/2026 23:08:52] "[36mGET /static/js/customer.js HTTP/1.1[0m" 304 -
+2026-07-20 23:08:52,367 [INFO] 127.0.0.1 - - [20/Jul/2026 23:08:52] "[36mGET /static/js/reports.js HTTP/1.1[0m" 304 -
+2026-07-20 23:08:52,368 [INFO] 127.0.0.1 - - [20/Jul/2026 23:08:52] "[36mGET /static/js/inventory.js HTTP/1.1[0m" 304 -
+2026-07-20 23:08:52,371 [INFO] 127.0.0.1 - - [20/Jul/2026 23:08:52] "[36mGET /static/js/search.js HTTP/1.1[0m" 304 -
+2026-07-20 23:09:02,651 [INFO] 127.0.0.1 - - [20/Jul/2026 23:09:02] "[32mPOST /login HTTP/1.1[0m" 302 -
+2026-07-20 23:09:02,784 [INFO] 127.0.0.1 - - [20/Jul/2026 23:09:02] "GET /dashboard HTTP/1.1" 200 -
+2026-07-20 23:09:02,816 [INFO] 127.0.0.1 - - [20/Jul/2026 23:09:02] "[36mGET /static/css/themes.css HTTP/1.1[0m" 304 -
+2026-07-20 23:09:02,816 [INFO] 127.0.0.1 - - [20/Jul/2026 23:09:02] "[36mGET /static/css/responsive.css HTTP/1.1[0m" 304 -
+2026-07-20 23:09:02,817 [INFO] 127.0.0.1 - - [20/Jul/2026 23:09:02] "[36mGET /static/css/app.css HTTP/1.1[0m" 304 -
+2026-07-20 23:09:02,834 [INFO] 127.0.0.1 - - [20/Jul/2026 23:09:02] "[36mGET /static/css/billing.css HTTP/1.1[0m" 304 -
+2026-07-20 23:09:02,838 [INFO] 127.0.0.1 - - [20/Jul/2026 23:09:02] "[36mGET /static/css/admin.css HTTP/1.1[0m" 304 -
+2026-07-20 23:09:02,840 [INFO] 127.0.0.1 - - [20/Jul/2026 23:09:02] "[36mGET /static/css/sales.css HTTP/1.1[0m" 304 -
+2026-07-20 23:09:02,854 [INFO] 127.0.0.1 - - [20/Jul/2026 23:09:02] "[36mGET /static/js/ui.js HTTP/1.1[0m" 304 -
+2026-07-20 23:09:02,856 [INFO] 127.0.0.1 - - [20/Jul/2026 23:09:02] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-20 23:09:02,856 [INFO] 127.0.0.1 - - [20/Jul/2026 23:09:02] "[36mGET /static/js/gst.js HTTP/1.1[0m" 304 -
+2026-07-20 23:09:02,864 [INFO] 127.0.0.1 - - [20/Jul/2026 23:09:02] "[36mGET /static/js/billing.js HTTP/1.1[0m" 304 -
+2026-07-20 23:09:02,869 [INFO] 127.0.0.1 - - [20/Jul/2026 23:09:02] "[36mGET /static/js/customer.js HTTP/1.1[0m" 304 -
+2026-07-20 23:09:02,874 [INFO] 127.0.0.1 - - [20/Jul/2026 23:09:02] "[36mGET /static/js/inventory.js HTTP/1.1[0m" 304 -
+2026-07-20 23:09:02,876 [INFO] 127.0.0.1 - - [20/Jul/2026 23:09:02] "[36mGET /static/js/reports.js HTTP/1.1[0m" 304 -
+2026-07-20 23:09:02,878 [INFO] 127.0.0.1 - - [20/Jul/2026 23:09:02] "[36mGET /static/js/search.js HTTP/1.1[0m" 304 -
+2026-07-20 23:18:33,771 [INFO] 127.0.0.1 - - [20/Jul/2026 23:18:33] "[31m[1mGET /invoices/new HTTP/1.1[0m" 403 -
+2026-07-20 23:18:33,815 [INFO] 127.0.0.1 - - [20/Jul/2026 23:18:33] "[36mGET /static/js/ui.js HTTP/1.1[0m" 304 -
+2026-07-20 23:18:33,816 [INFO] 127.0.0.1 - - [20/Jul/2026 23:18:33] "GET /static/css/app.css HTTP/1.1" 200 -
+2026-07-20 23:18:33,823 [INFO] 127.0.0.1 - - [20/Jul/2026 23:18:33] "[36mGET /static/js/gst.js HTTP/1.1[0m" 304 -
+2026-07-20 23:18:33,828 [INFO] 127.0.0.1 - - [20/Jul/2026 23:18:33] "[36mGET /static/js/billing.js HTTP/1.1[0m" 304 -
+2026-07-20 23:18:33,842 [INFO] 127.0.0.1 - - [20/Jul/2026 23:18:33] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-20 23:18:33,846 [INFO] 127.0.0.1 - - [20/Jul/2026 23:18:33] "[36mGET /static/js/customer.js HTTP/1.1[0m" 304 -
+2026-07-20 23:18:33,852 [INFO] 127.0.0.1 - - [20/Jul/2026 23:18:33] "[36mGET /static/js/reports.js HTTP/1.1[0m" 304 -
+2026-07-20 23:18:33,856 [INFO] 127.0.0.1 - - [20/Jul/2026 23:18:33] "[36mGET /static/js/inventory.js HTTP/1.1[0m" 304 -
+2026-07-20 23:18:33,858 [INFO] 127.0.0.1 - - [20/Jul/2026 23:18:33] "[36mGET /static/js/search.js HTTP/1.1[0m" 304 -
+2026-07-20 23:18:39,923 [INFO] 127.0.0.1 - - [20/Jul/2026 23:18:39] "GET /dashboard HTTP/1.1" 200 -
+2026-07-20 23:18:39,943 [INFO] 127.0.0.1 - - [20/Jul/2026 23:18:39] "GET /static/css/app.css HTTP/1.1" 200 -
+2026-07-20 23:18:39,957 [INFO] 127.0.0.1 - - [20/Jul/2026 23:18:39] "[36mGET /static/js/ui.js HTTP/1.1[0m" 304 -
+2026-07-20 23:18:39,978 [INFO] 127.0.0.1 - - [20/Jul/2026 23:18:39] "[36mGET /static/js/billing.js HTTP/1.1[0m" 304 -
+2026-07-20 23:18:39,979 [INFO] 127.0.0.1 - - [20/Jul/2026 23:18:39] "[36mGET /static/js/gst.js HTTP/1.1[0m" 304 -
+2026-07-20 23:18:39,982 [INFO] 127.0.0.1 - - [20/Jul/2026 23:18:39] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-20 23:18:39,984 [INFO] 127.0.0.1 - - [20/Jul/2026 23:18:39] "[36mGET /static/js/customer.js HTTP/1.1[0m" 304 -
+2026-07-20 23:18:39,987 [INFO] 127.0.0.1 - - [20/Jul/2026 23:18:39] "[36mGET /static/js/inventory.js HTTP/1.1[0m" 304 -
+2026-07-20 23:18:39,997 [INFO] 127.0.0.1 - - [20/Jul/2026 23:18:39] "[36mGET /static/js/reports.js HTTP/1.1[0m" 304 -
+2026-07-20 23:18:39,997 [INFO] 127.0.0.1 - - [20/Jul/2026 23:18:39] "[36mGET /static/js/search.js HTTP/1.1[0m" 304 -
+2026-07-20 23:18:49,545 [INFO] 127.0.0.1 - - [20/Jul/2026 23:18:49] "[33mGET /admin HTTP/1.1[0m" 404 -
+2026-07-20 23:18:50,449 [INFO] 127.0.0.1 - - [20/Jul/2026 23:18:50] "[33mGET /admin HTTP/1.1[0m" 404 -
+2026-07-20 23:18:50,510 [INFO] 127.0.0.1 - - [20/Jul/2026 23:18:50] "[36mGET /static/css/app.css HTTP/1.1[0m" 304 -
+2026-07-20 23:18:50,542 [INFO] 127.0.0.1 - - [20/Jul/2026 23:18:50] "[36mGET /static/js/ui.js HTTP/1.1[0m" 304 -
+2026-07-20 23:18:50,555 [INFO] 127.0.0.1 - - [20/Jul/2026 23:18:50] "[36mGET /static/js/billing.js HTTP/1.1[0m" 304 -
+2026-07-20 23:18:50,556 [INFO] 127.0.0.1 - - [20/Jul/2026 23:18:50] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-20 23:18:50,568 [INFO] 127.0.0.1 - - [20/Jul/2026 23:18:50] "[36mGET /static/js/gst.js HTTP/1.1[0m" 304 -
+2026-07-20 23:18:50,575 [INFO] 127.0.0.1 - - [20/Jul/2026 23:18:50] "[36mGET /static/js/customer.js HTTP/1.1[0m" 304 -
+2026-07-20 23:18:50,582 [INFO] 127.0.0.1 - - [20/Jul/2026 23:18:50] "[36mGET /static/js/inventory.js HTTP/1.1[0m" 304 -
+2026-07-20 23:18:50,594 [INFO] 127.0.0.1 - - [20/Jul/2026 23:18:50] "[36mGET /static/js/reports.js HTTP/1.1[0m" 304 -
+2026-07-20 23:18:50,597 [INFO] 127.0.0.1 - - [20/Jul/2026 23:18:50] "[36mGET /static/js/search.js HTTP/1.1[0m" 304 -
+2026-07-20 23:18:52,898 [INFO] 127.0.0.1 - - [20/Jul/2026 23:18:52] "GET /dashboard HTTP/1.1" 200 -
+2026-07-20 23:18:52,925 [INFO] 127.0.0.1 - - [20/Jul/2026 23:18:52] "[36mGET /static/css/app.css HTTP/1.1[0m" 304 -
+2026-07-20 23:18:52,934 [INFO] 127.0.0.1 - - [20/Jul/2026 23:18:52] "[36mGET /static/js/gst.js HTTP/1.1[0m" 304 -
+2026-07-20 23:18:52,935 [INFO] 127.0.0.1 - - [20/Jul/2026 23:18:52] "[36mGET /static/js/ui.js HTTP/1.1[0m" 304 -
+2026-07-20 23:18:52,945 [INFO] 127.0.0.1 - - [20/Jul/2026 23:18:52] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-20 23:18:52,954 [INFO] 127.0.0.1 - - [20/Jul/2026 23:18:52] "[36mGET /static/js/billing.js HTTP/1.1[0m" 304 -
+2026-07-20 23:18:52,961 [INFO] 127.0.0.1 - - [20/Jul/2026 23:18:52] "[36mGET /static/js/search.js HTTP/1.1[0m" 304 -
+2026-07-20 23:18:52,964 [INFO] 127.0.0.1 - - [20/Jul/2026 23:18:52] "[36mGET /static/js/inventory.js HTTP/1.1[0m" 304 -
+2026-07-20 23:18:52,968 [INFO] 127.0.0.1 - - [20/Jul/2026 23:18:52] "[36mGET /static/js/reports.js HTTP/1.1[0m" 304 -
+2026-07-20 23:18:52,969 [INFO] 127.0.0.1 - - [20/Jul/2026 23:18:52] "[36mGET /static/js/customer.js HTTP/1.1[0m" 304 -
+2026-07-20 23:33:02,106 [INFO] Database seeded successfully.
+2026-07-20 23:34:06,933 [INFO]  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-07-20 23:34:07,133 [INFO]  * Restarting with stat
+2026-07-20 23:34:07,478 [INFO]  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-07-20 23:34:09,190 [INFO]  * Restarting with stat
+2026-07-20 23:34:10,176 [INFO] Database seeded successfully.
+2026-07-20 23:34:10,194 [WARNING]  * Debugger is active!
+2026-07-20 23:34:10,196 [INFO]  * Debugger PIN: 195-460-727
+2026-07-20 23:34:11,303 [INFO] Database seeded successfully.
+2026-07-20 23:34:11,321 [WARNING]  * Debugger is active!
+2026-07-20 23:34:11,323 [INFO]  * Debugger PIN: 195-460-727
+2026-07-20 23:35:12,149 [INFO]  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-07-20 23:35:12,299 [INFO]  * Restarting with stat
+2026-07-20 23:35:12,375 [INFO]  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-07-20 23:35:12,678 [INFO]  * Restarting with stat
+2026-07-20 23:35:13,587 [INFO] Database seeded successfully.
+2026-07-20 23:35:13,602 [WARNING]  * Debugger is active!
+2026-07-20 23:35:13,604 [INFO]  * Debugger PIN: 195-460-727
+2026-07-20 23:35:14,779 [INFO] Database seeded successfully.
+2026-07-20 23:35:14,798 [WARNING]  * Debugger is active!
+2026-07-20 23:35:14,800 [INFO]  * Debugger PIN: 195-460-727
+2026-07-20 23:35:25,700 [INFO]  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-07-20 23:35:25,811 [INFO]  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-07-20 23:35:25,888 [INFO]  * Restarting with stat
+2026-07-20 23:35:27,948 [INFO]  * Restarting with stat
+2026-07-20 23:35:28,812 [INFO] Database seeded successfully.
+2026-07-20 23:35:28,829 [WARNING]  * Debugger is active!
+2026-07-20 23:35:28,831 [INFO]  * Debugger PIN: 195-460-727
+2026-07-20 23:35:30,939 [INFO] Database seeded successfully.
+2026-07-20 23:35:30,954 [WARNING]  * Debugger is active!
+2026-07-20 23:35:30,956 [INFO]  * Debugger PIN: 195-460-727
+2026-07-20 23:35:31,993 [INFO]  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-07-20 23:35:32,079 [INFO]  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-07-20 23:35:32,172 [INFO]  * Restarting with stat
+2026-07-20 23:35:32,318 [INFO]  * Restarting with stat
+2026-07-20 23:35:33,589 [INFO] Database seeded successfully.
+2026-07-20 23:35:33,606 [WARNING]  * Debugger is active!
+2026-07-20 23:35:33,608 [INFO]  * Debugger PIN: 195-460-727
+2026-07-20 23:35:33,823 [INFO] Database seeded successfully.
+2026-07-20 23:35:33,837 [WARNING]  * Debugger is active!
+2026-07-20 23:35:33,839 [INFO]  * Debugger PIN: 195-460-727
+2026-07-20 23:35:44,356 [INFO] Database seeded successfully.
+2026-07-20 23:41:52,035 [INFO] Database seeded successfully.
+2026-07-20 23:41:52,061 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-07-20 23:41:52,061 [INFO] [33mPress CTRL+C to quit[0m
+2026-07-20 23:41:52,062 [INFO]  * Restarting with stat
+2026-07-20 23:41:53,901 [INFO] 127.0.0.1 - - [20/Jul/2026 23:41:53] "[32mGET / HTTP/1.1[0m" 302 -
+2026-07-20 23:41:54,033 [INFO] 127.0.0.1 - - [20/Jul/2026 23:41:54] "GET /dashboard HTTP/1.1" 200 -
+2026-07-20 23:41:54,100 [INFO] Database seeded successfully.
+2026-07-20 23:41:54,119 [WARNING]  * Debugger is active!
+2026-07-20 23:41:54,121 [INFO]  * Debugger PIN: 195-460-727
+2026-07-20 23:41:54,155 [INFO] 127.0.0.1 - - [20/Jul/2026 23:41:54] "GET /static/css/app.css HTTP/1.1" 200 -
+2026-07-20 23:41:54,162 [INFO] 127.0.0.1 - - [20/Jul/2026 23:41:54] "[36mGET /static/js/inventory.js HTTP/1.1[0m" 304 -
+2026-07-20 23:41:54,169 [INFO] 127.0.0.1 - - [20/Jul/2026 23:41:54] "[36mGET /static/js/reports.js HTTP/1.1[0m" 304 -
+2026-07-20 23:41:54,175 [INFO] 127.0.0.1 - - [20/Jul/2026 23:41:54] "[36mGET /static/js/search.js HTTP/1.1[0m" 304 -
+2026-07-20 23:41:54,186 [INFO] 127.0.0.1 - - [20/Jul/2026 23:41:54] "[36mGET /static/js/gst.js HTTP/1.1[0m" 304 -
+2026-07-20 23:41:54,187 [INFO] 127.0.0.1 - - [20/Jul/2026 23:41:54] "[36mGET /static/js/billing.js HTTP/1.1[0m" 304 -
+2026-07-20 23:41:54,190 [INFO] 127.0.0.1 - - [20/Jul/2026 23:41:54] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-20 23:41:54,191 [INFO] 127.0.0.1 - - [20/Jul/2026 23:41:54] "[36mGET /static/js/ui.js HTTP/1.1[0m" 304 -
+2026-07-20 23:41:54,195 [INFO] 127.0.0.1 - - [20/Jul/2026 23:41:54] "[36mGET /static/js/customer.js HTTP/1.1[0m" 304 -
+2026-07-20 23:42:02,087 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:02] "[31m[1mGET /invoices/new HTTP/1.1[0m" 403 -
+2026-07-20 23:42:02,104 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:02] "[36mGET /static/js/ui.js HTTP/1.1[0m" 304 -
+2026-07-20 23:42:02,104 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:02] "[36mGET /static/css/app.css HTTP/1.1[0m" 304 -
+2026-07-20 23:42:02,106 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:02] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-20 23:42:02,107 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:02] "[36mGET /static/js/gst.js HTTP/1.1[0m" 304 -
+2026-07-20 23:42:02,114 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:02] "[36mGET /static/js/billing.js HTTP/1.1[0m" 304 -
+2026-07-20 23:42:02,117 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:02] "[36mGET /static/js/customer.js HTTP/1.1[0m" 304 -
+2026-07-20 23:42:02,120 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:02] "[36mGET /static/js/inventory.js HTTP/1.1[0m" 304 -
+2026-07-20 23:42:02,121 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:02] "[36mGET /static/js/reports.js HTTP/1.1[0m" 304 -
+2026-07-20 23:42:02,123 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:02] "[36mGET /static/js/search.js HTTP/1.1[0m" 304 -
+2026-07-20 23:42:03,288 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:03] "GET /dashboard HTTP/1.1" 200 -
+2026-07-20 23:42:03,304 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:03] "[36mGET /static/css/app.css HTTP/1.1[0m" 304 -
+2026-07-20 23:42:03,304 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:03] "[36mGET /static/js/ui.js HTTP/1.1[0m" 304 -
+2026-07-20 23:42:03,309 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:03] "[36mGET /static/js/gst.js HTTP/1.1[0m" 304 -
+2026-07-20 23:42:03,309 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:03] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-20 23:42:03,318 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:03] "[36mGET /static/js/billing.js HTTP/1.1[0m" 304 -
+2026-07-20 23:42:03,320 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:03] "[36mGET /static/js/inventory.js HTTP/1.1[0m" 304 -
+2026-07-20 23:42:03,321 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:03] "[36mGET /static/js/customer.js HTTP/1.1[0m" 304 -
+2026-07-20 23:42:03,322 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:03] "[36mGET /static/js/reports.js HTTP/1.1[0m" 304 -
+2026-07-20 23:42:03,323 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:03] "[36mGET /static/js/search.js HTTP/1.1[0m" 304 -
+2026-07-20 23:42:04,441 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:04] "GET /invoices HTTP/1.1" 200 -
+2026-07-20 23:42:04,456 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:04] "[36mGET /static/js/ui.js HTTP/1.1[0m" 304 -
+2026-07-20 23:42:04,456 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:04] "[36mGET /static/css/app.css HTTP/1.1[0m" 304 -
+2026-07-20 23:42:04,461 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:04] "[36mGET /static/js/gst.js HTTP/1.1[0m" 304 -
+2026-07-20 23:42:04,464 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:04] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-20 23:42:04,471 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:04] "[36mGET /static/js/billing.js HTTP/1.1[0m" 304 -
+2026-07-20 23:42:04,472 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:04] "[36mGET /static/js/inventory.js HTTP/1.1[0m" 304 -
+2026-07-20 23:42:04,472 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:04] "[36mGET /static/js/customer.js HTTP/1.1[0m" 304 -
+2026-07-20 23:42:04,475 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:04] "[36mGET /static/js/reports.js HTTP/1.1[0m" 304 -
+2026-07-20 23:42:04,477 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:04] "[36mGET /static/js/search.js HTTP/1.1[0m" 304 -
+2026-07-20 23:42:06,919 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:06] "GET /customers HTTP/1.1" 200 -
+2026-07-20 23:42:06,933 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:06] "[36mGET /static/css/app.css HTTP/1.1[0m" 304 -
+2026-07-20 23:42:06,934 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:06] "[36mGET /static/js/ui.js HTTP/1.1[0m" 304 -
+2026-07-20 23:42:06,937 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:06] "[36mGET /static/js/gst.js HTTP/1.1[0m" 304 -
+2026-07-20 23:42:06,941 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:06] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-20 23:42:06,945 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:06] "[36mGET /static/js/billing.js HTTP/1.1[0m" 304 -
+2026-07-20 23:42:06,950 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:06] "[36mGET /static/js/customer.js HTTP/1.1[0m" 304 -
+2026-07-20 23:42:06,954 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:06] "[36mGET /static/js/inventory.js HTTP/1.1[0m" 304 -
+2026-07-20 23:42:06,956 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:06] "[36mGET /static/js/reports.js HTTP/1.1[0m" 304 -
+2026-07-20 23:42:06,957 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:06] "[36mGET /static/js/search.js HTTP/1.1[0m" 304 -
+2026-07-20 23:42:08,570 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:08] "GET /products HTTP/1.1" 200 -
+2026-07-20 23:42:08,589 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:08] "[36mGET /static/css/app.css HTTP/1.1[0m" 304 -
+2026-07-20 23:42:08,597 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:08] "[36mGET /static/js/ui.js HTTP/1.1[0m" 304 -
+2026-07-20 23:42:08,598 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:08] "[36mGET /static/js/billing.js HTTP/1.1[0m" 304 -
+2026-07-20 23:42:08,599 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:08] "[36mGET /static/js/gst.js HTTP/1.1[0m" 304 -
+2026-07-20 23:42:08,599 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:08] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-20 23:42:08,603 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:08] "[36mGET /static/js/customer.js HTTP/1.1[0m" 304 -
+2026-07-20 23:42:08,612 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:08] "[36mGET /static/js/inventory.js HTTP/1.1[0m" 304 -
+2026-07-20 23:42:08,612 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:08] "[36mGET /static/js/reports.js HTTP/1.1[0m" 304 -
+2026-07-20 23:42:08,613 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:08] "[36mGET /static/js/search.js HTTP/1.1[0m" 304 -
+2026-07-20 23:42:09,608 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:09] "GET /inventory HTTP/1.1" 200 -
+2026-07-20 23:42:09,622 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:09] "[36mGET /static/js/ui.js HTTP/1.1[0m" 304 -
+2026-07-20 23:42:09,622 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:09] "[36mGET /static/css/app.css HTTP/1.1[0m" 304 -
+2026-07-20 23:42:09,625 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:09] "[36mGET /static/js/gst.js HTTP/1.1[0m" 304 -
+2026-07-20 23:42:09,628 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:09] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-20 23:42:09,635 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:09] "[36mGET /static/js/billing.js HTTP/1.1[0m" 304 -
+2026-07-20 23:42:09,637 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:09] "[36mGET /static/js/customer.js HTTP/1.1[0m" 304 -
+2026-07-20 23:42:09,640 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:09] "[36mGET /static/js/inventory.js HTTP/1.1[0m" 304 -
+2026-07-20 23:42:09,640 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:09] "[36mGET /static/js/reports.js HTTP/1.1[0m" 304 -
+2026-07-20 23:42:09,642 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:09] "[36mGET /static/js/search.js HTTP/1.1[0m" 304 -
+2026-07-20 23:42:10,330 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:10] "GET /suppliers HTTP/1.1" 200 -
+2026-07-20 23:42:10,345 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:10] "[36mGET /static/css/app.css HTTP/1.1[0m" 304 -
+2026-07-20 23:42:10,345 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:10] "[36mGET /static/js/ui.js HTTP/1.1[0m" 304 -
+2026-07-20 23:42:10,353 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:10] "[36mGET /static/js/gst.js HTTP/1.1[0m" 304 -
+2026-07-20 23:42:10,357 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:10] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-20 23:42:10,361 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:10] "[36mGET /static/js/billing.js HTTP/1.1[0m" 304 -
+2026-07-20 23:42:10,362 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:10] "[36mGET /static/js/customer.js HTTP/1.1[0m" 304 -
+2026-07-20 23:42:10,365 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:10] "[36mGET /static/js/inventory.js HTTP/1.1[0m" 304 -
+2026-07-20 23:42:10,366 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:10] "[36mGET /static/js/reports.js HTTP/1.1[0m" 304 -
+2026-07-20 23:42:10,366 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:10] "[36mGET /static/js/search.js HTTP/1.1[0m" 304 -
+2026-07-20 23:42:10,886 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:10] "GET /purchases HTTP/1.1" 200 -
+2026-07-20 23:42:10,899 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:10] "[36mGET /static/js/ui.js HTTP/1.1[0m" 304 -
+2026-07-20 23:42:10,903 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:10] "[36mGET /static/css/app.css HTTP/1.1[0m" 304 -
+2026-07-20 23:42:10,907 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:10] "[36mGET /static/js/gst.js HTTP/1.1[0m" 304 -
+2026-07-20 23:42:10,913 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:10] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-20 23:42:10,915 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:10] "[36mGET /static/js/billing.js HTTP/1.1[0m" 304 -
+2026-07-20 23:42:10,918 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:10] "[36mGET /static/js/inventory.js HTTP/1.1[0m" 304 -
+2026-07-20 23:42:10,921 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:10] "[36mGET /static/js/customer.js HTTP/1.1[0m" 304 -
+2026-07-20 23:42:10,923 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:10] "[36mGET /static/js/reports.js HTTP/1.1[0m" 304 -
+2026-07-20 23:42:10,926 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:10] "[36mGET /static/js/search.js HTTP/1.1[0m" 304 -
+2026-07-20 23:42:11,539 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:11] "GET /reports HTTP/1.1" 200 -
+2026-07-20 23:42:11,556 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:11] "[36mGET /static/js/gst.js HTTP/1.1[0m" 304 -
+2026-07-20 23:42:11,556 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:11] "[36mGET /static/js/ui.js HTTP/1.1[0m" 304 -
+2026-07-20 23:42:11,559 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:11] "[36mGET /static/css/app.css HTTP/1.1[0m" 304 -
+2026-07-20 23:42:11,570 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:11] "[36mGET /static/js/billing.js HTTP/1.1[0m" 304 -
+2026-07-20 23:42:11,570 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:11] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-20 23:42:11,574 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:11] "[36mGET /static/js/customer.js HTTP/1.1[0m" 304 -
+2026-07-20 23:42:11,580 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:11] "[36mGET /static/js/inventory.js HTTP/1.1[0m" 304 -
+2026-07-20 23:42:11,582 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:11] "[36mGET /static/js/search.js HTTP/1.1[0m" 304 -
+2026-07-20 23:42:11,582 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:11] "[36mGET /static/js/reports.js HTTP/1.1[0m" 304 -
+2026-07-20 23:42:13,035 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:13] "[35m[1mGET /users HTTP/1.1[0m" 500 -
+2026-07-20 23:42:13,062 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:13] "GET /users?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2026-07-20 23:42:13,080 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:13] "GET /users?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2026-07-20 23:42:13,114 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:13] "GET /users?__debugger__=yes&cmd=resource&f=console.png&s=8Jl1WSpYuQkGWkYbeD9R HTTP/1.1" 200 -
+2026-07-20 23:42:13,119 [INFO] 127.0.0.1 - - [20/Jul/2026 23:42:13] "GET /users?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2026-07-20 23:43:11,095 [INFO] Database seeded successfully.
+2026-07-20 23:44:43,999 [INFO] Database seeded successfully.
+2026-07-20 23:44:44,040 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-07-20 23:44:44,040 [INFO] [33mPress CTRL+C to quit[0m
+2026-07-20 23:44:44,042 [INFO]  * Restarting with stat
+2026-07-20 23:44:45,436 [INFO] Database seeded successfully.
+2026-07-20 23:44:45,451 [WARNING]  * Debugger is active!
+2026-07-20 23:44:45,453 [INFO]  * Debugger PIN: 195-460-727
+2026-07-20 23:44:45,559 [INFO] 127.0.0.1 - - [20/Jul/2026 23:44:45] "[32mGET / HTTP/1.1[0m" 302 -
+2026-07-20 23:44:45,619 [INFO] 127.0.0.1 - - [20/Jul/2026 23:44:45] "GET /dashboard HTTP/1.1" 200 -
+2026-07-20 23:44:45,637 [INFO] 127.0.0.1 - - [20/Jul/2026 23:44:45] "[36mGET /static/css/app.css HTTP/1.1[0m" 304 -
+2026-07-20 23:44:45,645 [INFO] 127.0.0.1 - - [20/Jul/2026 23:44:45] "[36mGET /static/js/ui.js HTTP/1.1[0m" 304 -
+2026-07-20 23:44:45,652 [INFO] 127.0.0.1 - - [20/Jul/2026 23:44:45] "[36mGET /static/js/gst.js HTTP/1.1[0m" 304 -
+2026-07-20 23:44:45,661 [INFO] 127.0.0.1 - - [20/Jul/2026 23:44:45] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-20 23:44:45,662 [INFO] 127.0.0.1 - - [20/Jul/2026 23:44:45] "[36mGET /static/js/billing.js HTTP/1.1[0m" 304 -
+2026-07-20 23:44:45,669 [INFO] 127.0.0.1 - - [20/Jul/2026 23:44:45] "[36mGET /static/js/customer.js HTTP/1.1[0m" 304 -
+2026-07-20 23:44:45,670 [INFO] 127.0.0.1 - - [20/Jul/2026 23:44:45] "[36mGET /static/js/inventory.js HTTP/1.1[0m" 304 -
+2026-07-20 23:44:45,673 [INFO] 127.0.0.1 - - [20/Jul/2026 23:44:45] "[36mGET /static/js/reports.js HTTP/1.1[0m" 304 -
+2026-07-20 23:44:45,675 [INFO] 127.0.0.1 - - [20/Jul/2026 23:44:45] "[36mGET /static/js/search.js HTTP/1.1[0m" 304 -
+2026-07-20 23:44:48,268 [INFO] 127.0.0.1 - - [20/Jul/2026 23:44:48] "GET /users HTTP/1.1" 200 -
+2026-07-20 23:44:48,283 [INFO] 127.0.0.1 - - [20/Jul/2026 23:44:48] "[36mGET /static/css/app.css HTTP/1.1[0m" 304 -
+2026-07-20 23:44:48,286 [INFO] 127.0.0.1 - - [20/Jul/2026 23:44:48] "[36mGET /static/js/ui.js HTTP/1.1[0m" 304 -
+2026-07-20 23:44:48,293 [INFO] 127.0.0.1 - - [20/Jul/2026 23:44:48] "[36mGET /static/js/gst.js HTTP/1.1[0m" 304 -
+2026-07-20 23:44:48,298 [INFO] 127.0.0.1 - - [20/Jul/2026 23:44:48] "[36mGET /static/js/billing.js HTTP/1.1[0m" 304 -
+2026-07-20 23:44:48,299 [INFO] 127.0.0.1 - - [20/Jul/2026 23:44:48] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-20 23:44:48,301 [INFO] 127.0.0.1 - - [20/Jul/2026 23:44:48] "[36mGET /static/js/customer.js HTTP/1.1[0m" 304 -
+2026-07-20 23:44:48,305 [INFO] 127.0.0.1 - - [20/Jul/2026 23:44:48] "[36mGET /static/js/inventory.js HTTP/1.1[0m" 304 -
+2026-07-20 23:44:48,308 [INFO] 127.0.0.1 - - [20/Jul/2026 23:44:48] "[36mGET /static/js/reports.js HTTP/1.1[0m" 304 -
+2026-07-20 23:44:48,312 [INFO] 127.0.0.1 - - [20/Jul/2026 23:44:48] "[36mGET /static/js/search.js HTTP/1.1[0m" 304 -
+2026-07-20 23:44:51,777 [INFO] 127.0.0.1 - - [20/Jul/2026 23:44:51] "GET /settings HTTP/1.1" 200 -
+2026-07-20 23:44:51,799 [INFO] 127.0.0.1 - - [20/Jul/2026 23:44:51] "[36mGET /static/css/app.css HTTP/1.1[0m" 304 -
+2026-07-20 23:44:51,800 [INFO] 127.0.0.1 - - [20/Jul/2026 23:44:51] "[36mGET /static/js/ui.js HTTP/1.1[0m" 304 -
+2026-07-20 23:44:51,804 [INFO] 127.0.0.1 - - [20/Jul/2026 23:44:51] "[36mGET /static/js/gst.js HTTP/1.1[0m" 304 -
+2026-07-20 23:44:51,807 [INFO] 127.0.0.1 - - [20/Jul/2026 23:44:51] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-20 23:44:51,810 [INFO] 127.0.0.1 - - [20/Jul/2026 23:44:51] "[36mGET /static/js/billing.js HTTP/1.1[0m" 304 -
+2026-07-20 23:44:51,816 [INFO] 127.0.0.1 - - [20/Jul/2026 23:44:51] "[36mGET /static/js/customer.js HTTP/1.1[0m" 304 -
+2026-07-20 23:44:51,819 [INFO] 127.0.0.1 - - [20/Jul/2026 23:44:51] "[36mGET /static/js/inventory.js HTTP/1.1[0m" 304 -
+2026-07-20 23:44:51,819 [INFO] 127.0.0.1 - - [20/Jul/2026 23:44:51] "[36mGET /static/js/reports.js HTTP/1.1[0m" 304 -
+2026-07-20 23:44:51,821 [INFO] 127.0.0.1 - - [20/Jul/2026 23:44:51] "[36mGET /static/js/search.js HTTP/1.1[0m" 304 -
+2026-07-20 23:45:03,255 [INFO] 127.0.0.1 - - [20/Jul/2026 23:45:03] "[35m[1mGET /audit-logs HTTP/1.1[0m" 500 -
+2026-07-20 23:45:03,263 [INFO] 127.0.0.1 - - [20/Jul/2026 23:45:03] "GET /audit-logs?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2026-07-20 23:45:03,264 [INFO] 127.0.0.1 - - [20/Jul/2026 23:45:03] "GET /audit-logs?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2026-07-20 23:45:03,273 [INFO] 127.0.0.1 - - [20/Jul/2026 23:45:03] "GET /audit-logs?__debugger__=yes&cmd=resource&f=console.png&s=8Jl1WSpYuQkGWkYbeD9R HTTP/1.1" 200 -
+2026-07-20 23:45:03,295 [INFO] 127.0.0.1 - - [20/Jul/2026 23:45:03] "GET /audit-logs?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2026-07-20 23:45:21,872 [INFO] 127.0.0.1 - - [20/Jul/2026 23:45:21] "[35m[1mGET /audit-logs HTTP/1.1[0m" 500 -
+2026-07-20 23:45:21,888 [INFO] 127.0.0.1 - - [20/Jul/2026 23:45:21] "[36mGET /audit-logs?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2026-07-20 23:45:21,889 [INFO] 127.0.0.1 - - [20/Jul/2026 23:45:21] "[36mGET /audit-logs?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2026-07-20 23:45:21,905 [INFO] 127.0.0.1 - - [20/Jul/2026 23:45:21] "[36mGET /audit-logs?__debugger__=yes&cmd=resource&f=console.png&s=8Jl1WSpYuQkGWkYbeD9R HTTP/1.1[0m" 304 -
+2026-07-20 23:45:24,893 [INFO] 127.0.0.1 - - [20/Jul/2026 23:45:24] "GET /backup HTTP/1.1" 200 -
+2026-07-20 23:45:24,905 [INFO] 127.0.0.1 - - [20/Jul/2026 23:45:24] "[36mGET /static/css/app.css HTTP/1.1[0m" 304 -
+2026-07-20 23:45:24,912 [INFO] 127.0.0.1 - - [20/Jul/2026 23:45:24] "[36mGET /static/js/ui.js HTTP/1.1[0m" 304 -
+2026-07-20 23:45:24,913 [INFO] 127.0.0.1 - - [20/Jul/2026 23:45:24] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-20 23:45:24,914 [INFO] 127.0.0.1 - - [20/Jul/2026 23:45:24] "[36mGET /static/js/gst.js HTTP/1.1[0m" 304 -
+2026-07-20 23:45:24,923 [INFO] 127.0.0.1 - - [20/Jul/2026 23:45:24] "[36mGET /static/js/billing.js HTTP/1.1[0m" 304 -
+2026-07-20 23:45:24,927 [INFO] 127.0.0.1 - - [20/Jul/2026 23:45:24] "[36mGET /static/js/reports.js HTTP/1.1[0m" 304 -
+2026-07-20 23:45:24,929 [INFO] 127.0.0.1 - - [20/Jul/2026 23:45:24] "[36mGET /static/js/customer.js HTTP/1.1[0m" 304 -
+2026-07-20 23:45:24,933 [INFO] 127.0.0.1 - - [20/Jul/2026 23:45:24] "[36mGET /static/js/inventory.js HTTP/1.1[0m" 304 -
+2026-07-20 23:45:24,933 [INFO] 127.0.0.1 - - [20/Jul/2026 23:45:24] "[36mGET /static/js/search.js HTTP/1.1[0m" 304 -
+2026-07-20 23:45:29,605 [INFO] 127.0.0.1 - - [20/Jul/2026 23:45:29] "[31m[1mGET /invoices/new HTTP/1.1[0m" 403 -
+2026-07-20 23:45:29,618 [INFO] 127.0.0.1 - - [20/Jul/2026 23:45:29] "[36mGET /static/css/app.css HTTP/1.1[0m" 304 -
+2026-07-20 23:45:29,623 [INFO] 127.0.0.1 - - [20/Jul/2026 23:45:29] "[36mGET /static/js/ui.js HTTP/1.1[0m" 304 -
+2026-07-20 23:45:29,631 [INFO] 127.0.0.1 - - [20/Jul/2026 23:45:29] "[36mGET /static/js/gst.js HTTP/1.1[0m" 304 -
+2026-07-20 23:45:29,631 [INFO] 127.0.0.1 - - [20/Jul/2026 23:45:29] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-20 23:45:29,634 [INFO] 127.0.0.1 - - [20/Jul/2026 23:45:29] "[36mGET /static/js/billing.js HTTP/1.1[0m" 304 -
+2026-07-20 23:45:29,642 [INFO] 127.0.0.1 - - [20/Jul/2026 23:45:29] "[36mGET /static/js/customer.js HTTP/1.1[0m" 304 -
+2026-07-20 23:45:29,644 [INFO] 127.0.0.1 - - [20/Jul/2026 23:45:29] "[36mGET /static/js/inventory.js HTTP/1.1[0m" 304 -
+2026-07-20 23:45:29,647 [INFO] 127.0.0.1 - - [20/Jul/2026 23:45:29] "[36mGET /static/js/reports.js HTTP/1.1[0m" 304 -
+2026-07-20 23:45:29,648 [INFO] 127.0.0.1 - - [20/Jul/2026 23:45:29] "[36mGET /static/js/search.js HTTP/1.1[0m" 304 -
+2026-07-20 23:45:41,885 [INFO] 127.0.0.1 - - [20/Jul/2026 23:45:41] "[31m[1mGET /invoices/new HTTP/1.1[0m" 403 -
+2026-07-20 23:45:41,902 [INFO] 127.0.0.1 - - [20/Jul/2026 23:45:41] "[36mGET /static/css/app.css HTTP/1.1[0m" 304 -
+2026-07-20 23:45:41,903 [INFO] 127.0.0.1 - - [20/Jul/2026 23:45:41] "[36mGET /static/js/gst.js HTTP/1.1[0m" 304 -
+2026-07-20 23:45:41,904 [INFO] 127.0.0.1 - - [20/Jul/2026 23:45:41] "[36mGET /static/js/ui.js HTTP/1.1[0m" 304 -
+2026-07-20 23:45:41,920 [INFO] 127.0.0.1 - - [20/Jul/2026 23:45:41] "[36mGET /static/js/billing.js HTTP/1.1[0m" 304 -
+2026-07-20 23:45:41,921 [INFO] 127.0.0.1 - - [20/Jul/2026 23:45:41] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-20 23:45:41,926 [INFO] 127.0.0.1 - - [20/Jul/2026 23:45:41] "[36mGET /static/js/customer.js HTTP/1.1[0m" 304 -
+2026-07-20 23:45:41,927 [INFO] 127.0.0.1 - - [20/Jul/2026 23:45:41] "[36mGET /static/js/inventory.js HTTP/1.1[0m" 304 -
+2026-07-20 23:45:41,935 [INFO] 127.0.0.1 - - [20/Jul/2026 23:45:41] "[36mGET /static/js/reports.js HTTP/1.1[0m" 304 -
+2026-07-20 23:45:41,936 [INFO] 127.0.0.1 - - [20/Jul/2026 23:45:41] "[36mGET /static/js/search.js HTTP/1.1[0m" 304 -
+2026-07-20 23:45:44,134 [INFO] 127.0.0.1 - - [20/Jul/2026 23:45:44] "GET /invoices HTTP/1.1" 200 -
+2026-07-20 23:45:44,151 [INFO] 127.0.0.1 - - [20/Jul/2026 23:45:44] "[36mGET /static/css/app.css HTTP/1.1[0m" 304 -
+2026-07-20 23:45:44,153 [INFO] 127.0.0.1 - - [20/Jul/2026 23:45:44] "[36mGET /static/js/ui.js HTTP/1.1[0m" 304 -
+2026-07-20 23:45:44,159 [INFO] 127.0.0.1 - - [20/Jul/2026 23:45:44] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-20 23:45:44,165 [INFO] 127.0.0.1 - - [20/Jul/2026 23:45:44] "[36mGET /static/js/gst.js HTTP/1.1[0m" 304 -
+2026-07-20 23:45:44,168 [INFO] 127.0.0.1 - - [20/Jul/2026 23:45:44] "[36mGET /static/js/billing.js HTTP/1.1[0m" 304 -
+2026-07-20 23:45:44,175 [INFO] 127.0.0.1 - - [20/Jul/2026 23:45:44] "[36mGET /static/js/customer.js HTTP/1.1[0m" 304 -
+2026-07-20 23:45:44,177 [INFO] 127.0.0.1 - - [20/Jul/2026 23:45:44] "[36mGET /static/js/reports.js HTTP/1.1[0m" 304 -
+2026-07-20 23:45:44,177 [INFO] 127.0.0.1 - - [20/Jul/2026 23:45:44] "[36mGET /static/js/inventory.js HTTP/1.1[0m" 304 -
+2026-07-20 23:45:44,178 [INFO] 127.0.0.1 - - [20/Jul/2026 23:45:44] "[36mGET /static/js/search.js HTTP/1.1[0m" 304 -
+2026-07-20 23:45:47,563 [INFO] 127.0.0.1 - - [20/Jul/2026 23:45:47] "[32mPOST /logout HTTP/1.1[0m" 302 -
+2026-07-20 23:45:47,571 [INFO] 127.0.0.1 - - [20/Jul/2026 23:45:47] "GET /login HTTP/1.1" 200 -
+2026-07-20 23:45:47,585 [INFO] 127.0.0.1 - - [20/Jul/2026 23:45:47] "[36mGET /static/css/app.css HTTP/1.1[0m" 304 -
+2026-07-20 23:45:47,586 [INFO] 127.0.0.1 - - [20/Jul/2026 23:45:47] "[36mGET /static/js/ui.js HTTP/1.1[0m" 304 -
+2026-07-20 23:45:47,590 [INFO] 127.0.0.1 - - [20/Jul/2026 23:45:47] "[36mGET /static/js/gst.js HTTP/1.1[0m" 304 -
+2026-07-20 23:45:47,594 [INFO] 127.0.0.1 - - [20/Jul/2026 23:45:47] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-20 23:45:47,597 [INFO] 127.0.0.1 - - [20/Jul/2026 23:45:47] "[36mGET /static/js/billing.js HTTP/1.1[0m" 304 -
+2026-07-20 23:45:47,599 [INFO] 127.0.0.1 - - [20/Jul/2026 23:45:47] "[36mGET /static/js/customer.js HTTP/1.1[0m" 304 -
+2026-07-20 23:45:47,605 [INFO] 127.0.0.1 - - [20/Jul/2026 23:45:47] "[36mGET /static/js/inventory.js HTTP/1.1[0m" 304 -
+2026-07-20 23:45:47,606 [INFO] 127.0.0.1 - - [20/Jul/2026 23:45:47] "[36mGET /static/js/reports.js HTTP/1.1[0m" 304 -
+2026-07-20 23:45:47,607 [INFO] 127.0.0.1 - - [20/Jul/2026 23:45:47] "[36mGET /static/js/search.js HTTP/1.1[0m" 304 -
+2026-07-20 23:46:03,298 [INFO] 127.0.0.1 - - [20/Jul/2026 23:46:03] "[32mPOST /login HTTP/1.1[0m" 302 -
+2026-07-20 23:46:03,327 [INFO] 127.0.0.1 - - [20/Jul/2026 23:46:03] "GET /invoices/new HTTP/1.1" 200 -
+2026-07-20 23:46:03,365 [INFO] 127.0.0.1 - - [20/Jul/2026 23:46:03] "[36mGET /static/js/gst.js HTTP/1.1[0m" 304 -
+2026-07-20 23:46:03,366 [INFO] 127.0.0.1 - - [20/Jul/2026 23:46:03] "[36mGET /static/css/app.css HTTP/1.1[0m" 304 -
+2026-07-20 23:46:03,368 [INFO] 127.0.0.1 - - [20/Jul/2026 23:46:03] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-20 23:46:03,369 [INFO] 127.0.0.1 - - [20/Jul/2026 23:46:03] "[36mGET /static/js/ui.js HTTP/1.1[0m" 304 -
+2026-07-20 23:46:03,372 [INFO] 127.0.0.1 - - [20/Jul/2026 23:46:03] "[36mGET /static/js/billing.js HTTP/1.1[0m" 304 -
+2026-07-20 23:46:03,374 [INFO] 127.0.0.1 - - [20/Jul/2026 23:46:03] "[36mGET /static/js/customer.js HTTP/1.1[0m" 304 -
+2026-07-20 23:46:03,389 [INFO] 127.0.0.1 - - [20/Jul/2026 23:46:03] "[36mGET /static/js/inventory.js HTTP/1.1[0m" 304 -
+2026-07-20 23:46:03,390 [INFO] 127.0.0.1 - - [20/Jul/2026 23:46:03] "[36mGET /static/js/search.js HTTP/1.1[0m" 304 -
+2026-07-20 23:46:03,394 [INFO] 127.0.0.1 - - [20/Jul/2026 23:46:03] "[36mGET /static/js/reports.js HTTP/1.1[0m" 304 -
+2026-07-20 23:46:24,229 [INFO] 127.0.0.1 - - [20/Jul/2026 23:46:24] "GET /api/customers/search?q=kaml HTTP/1.1" 200 -
+2026-07-20 23:46:24,272 [INFO] 127.0.0.1 - - [20/Jul/2026 23:46:24] "GET /api/customers/search?q=kaml HTTP/1.1" 200 -
+2026-07-20 23:46:24,865 [INFO] 127.0.0.1 - - [20/Jul/2026 23:46:24] "GET /api/customers/search?q=kamle HTTP/1.1" 200 -
+2026-07-20 23:46:25,441 [INFO] 127.0.0.1 - - [20/Jul/2026 23:46:25] "GET /api/customers/search?q=kamleshv HTTP/1.1" 200 -
+2026-07-20 23:46:25,713 [INFO] 127.0.0.1 - - [20/Jul/2026 23:46:25] "GET /api/customers/search?q=kamleshvra HTTP/1.1" 200 -
+2026-07-20 23:46:25,761 [INFO] 127.0.0.1 - - [20/Jul/2026 23:46:25] "GET /api/customers/search?q=kamleshvra HTTP/1.1" 200 -
+2026-07-20 23:46:26,959 [INFO] 127.0.0.1 - - [20/Jul/2026 23:46:26] "GET /api/customers/search?q=kamleshvar4 HTTP/1.1" 200 -
+2026-07-20 23:46:27,014 [INFO] 127.0.0.1 - - [20/Jul/2026 23:46:27] "GET /api/customers/search?q=kamleshvar4 HTTP/1.1" 200 -
+2026-07-20 23:46:27,429 [INFO] 127.0.0.1 - - [20/Jul/2026 23:46:27] "GET /api/customers/search?q=kamleshvar HTTP/1.1" 200 -
+2026-07-20 23:46:27,477 [INFO] 127.0.0.1 - - [20/Jul/2026 23:46:27] "GET /api/customers/search?q=kamleshvar HTTP/1.1" 200 -
+2026-07-20 23:46:54,270 [INFO] 127.0.0.1 - - [20/Jul/2026 23:46:54] "GET /api/products/search?q=qwe HTTP/1.1" 200 -
+2026-07-20 23:46:54,355 [INFO] 127.0.0.1 - - [20/Jul/2026 23:46:54] "GET /api/products/search?q=qwe HTTP/1.1" 200 -
+2026-07-20 23:46:56,760 [INFO] 127.0.0.1 - - [20/Jul/2026 23:46:56] "GET /api/products/search?q=batt HTTP/1.1" 200 -
+2026-07-20 23:46:56,855 [INFO] 127.0.0.1 - - [20/Jul/2026 23:46:56] "GET /api/products/search?q=batt HTTP/1.1" 200 -
+2026-07-20 23:46:57,713 [INFO] 127.0.0.1 - - [20/Jul/2026 23:46:57] "GET /api/products/search?q=batter HTTP/1.1" 200 -
+2026-07-20 23:46:57,805 [INFO] 127.0.0.1 - - [20/Jul/2026 23:46:57] "GET /api/products/search?q=batter HTTP/1.1" 200 -
+2026-07-20 23:46:58,058 [INFO] 127.0.0.1 - - [20/Jul/2026 23:46:58] "GET /api/products/search?q=battery HTTP/1.1" 200 -
+2026-07-20 23:46:58,160 [INFO] 127.0.0.1 - - [20/Jul/2026 23:46:58] "GET /api/products/search?q=battery HTTP/1.1" 200 -
+2026-07-20 23:52:48,318 [INFO] Database seeded successfully.
+2026-07-20 23:54:37,378 [INFO]  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-07-20 23:54:37,491 [INFO]  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-07-20 23:54:37,620 [INFO]  * Restarting with stat
+2026-07-20 23:54:38,666 [INFO]  * Restarting with stat
+2026-07-20 23:54:41,767 [INFO] Database seeded successfully.
+2026-07-20 23:54:41,767 [INFO] Database seeded successfully.
+2026-07-20 23:54:41,786 [WARNING]  * Debugger is active!
+2026-07-20 23:54:41,788 [INFO]  * Debugger PIN: 195-460-727
+2026-07-20 23:54:41,788 [INFO]  * Debugger PIN: 195-460-727
+2026-07-20 23:54:53,534 [INFO] Database seeded successfully.
+2026-07-21 18:03:15,663 [INFO] Database seeded successfully.
+2026-07-21 18:03:15,728 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-07-21 18:03:15,728 [INFO] [33mPress CTRL+C to quit[0m
+2026-07-21 18:03:15,731 [INFO]  * Restarting with stat
+2026-07-21 18:03:16,719 [INFO] Database seeded successfully.
+2026-07-21 18:03:16,732 [WARNING]  * Debugger is active!
+2026-07-21 18:03:16,734 [INFO]  * Debugger PIN: 195-460-727
+2026-07-21 18:03:19,348 [INFO] 127.0.0.1 - - [21/Jul/2026 18:03:19] "[32mGET / HTTP/1.1[0m" 302 -
+2026-07-21 18:03:19,380 [INFO] 127.0.0.1 - - [21/Jul/2026 18:03:19] "GET /login HTTP/1.1" 200 -
+2026-07-21 18:03:19,534 [INFO] 127.0.0.1 - - [21/Jul/2026 18:03:19] "[36mGET /static/css/app.css HTTP/1.1[0m" 304 -
+2026-07-21 18:03:19,543 [INFO] 127.0.0.1 - - [21/Jul/2026 18:03:19] "[36mGET /static/js/inventory.js HTTP/1.1[0m" 304 -
+2026-07-21 18:03:19,549 [INFO] 127.0.0.1 - - [21/Jul/2026 18:03:19] "[36mGET /static/js/ui.js HTTP/1.1[0m" 304 -
+2026-07-21 18:03:19,555 [INFO] 127.0.0.1 - - [21/Jul/2026 18:03:19] "[36mGET /static/js/reports.js HTTP/1.1[0m" 304 -
+2026-07-21 18:03:19,558 [INFO] 127.0.0.1 - - [21/Jul/2026 18:03:19] "[36mGET /static/js/customer.js HTTP/1.1[0m" 304 -
+2026-07-21 18:03:19,563 [INFO] 127.0.0.1 - - [21/Jul/2026 18:03:19] "[36mGET /static/js/search.js HTTP/1.1[0m" 304 -
+2026-07-21 18:03:19,565 [INFO] 127.0.0.1 - - [21/Jul/2026 18:03:19] "[36mGET /static/js/gst.js HTTP/1.1[0m" 304 -
+2026-07-21 18:03:19,566 [INFO] 127.0.0.1 - - [21/Jul/2026 18:03:19] "GET /static/js/billing.js HTTP/1.1" 200 -
+2026-07-21 18:03:19,577 [INFO] 127.0.0.1 - - [21/Jul/2026 18:03:19] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-21 18:03:20,448 [INFO] 127.0.0.1 - - [21/Jul/2026 18:03:20] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-07-21 18:03:46,230 [INFO] 127.0.0.1 - - [21/Jul/2026 18:03:46] "[32mPOST /login HTTP/1.1[0m" 302 -
+2026-07-21 18:03:46,303 [INFO] 127.0.0.1 - - [21/Jul/2026 18:03:46] "GET /dashboard HTTP/1.1" 200 -
+2026-07-21 18:03:46,329 [INFO] 127.0.0.1 - - [21/Jul/2026 18:03:46] "[36mGET /static/css/app.css HTTP/1.1[0m" 304 -
+2026-07-21 18:03:46,332 [INFO] 127.0.0.1 - - [21/Jul/2026 18:03:46] "[36mGET /static/js/gst.js HTTP/1.1[0m" 304 -
+2026-07-21 18:03:46,332 [INFO] 127.0.0.1 - - [21/Jul/2026 18:03:46] "[36mGET /static/js/ui.js HTTP/1.1[0m" 304 -
+2026-07-21 18:03:46,332 [INFO] 127.0.0.1 - - [21/Jul/2026 18:03:46] "[36mGET /static/js/billing.js HTTP/1.1[0m" 304 -
+2026-07-21 18:03:46,334 [INFO] 127.0.0.1 - - [21/Jul/2026 18:03:46] "[36mGET /static/js/customer.js HTTP/1.1[0m" 304 -
+2026-07-21 18:03:46,337 [INFO] 127.0.0.1 - - [21/Jul/2026 18:03:46] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-21 18:03:46,344 [INFO] 127.0.0.1 - - [21/Jul/2026 18:03:46] "[36mGET /static/js/reports.js HTTP/1.1[0m" 304 -
+2026-07-21 18:03:46,344 [INFO] 127.0.0.1 - - [21/Jul/2026 18:03:46] "[36mGET /static/js/inventory.js HTTP/1.1[0m" 304 -
+2026-07-21 18:03:46,345 [INFO] 127.0.0.1 - - [21/Jul/2026 18:03:46] "[36mGET /static/js/search.js HTTP/1.1[0m" 304 -
+2026-07-21 18:03:51,712 [INFO] 127.0.0.1 - - [21/Jul/2026 18:03:51] "[31m[1mGET /invoices/new HTTP/1.1[0m" 403 -
+2026-07-21 18:03:51,839 [INFO] 127.0.0.1 - - [21/Jul/2026 18:03:51] "[36mGET /static/css/app.css HTTP/1.1[0m" 304 -
+2026-07-21 18:03:51,849 [INFO] 127.0.0.1 - - [21/Jul/2026 18:03:51] "[36mGET /static/js/ui.js HTTP/1.1[0m" 304 -
+2026-07-21 18:03:51,862 [INFO] 127.0.0.1 - - [21/Jul/2026 18:03:51] "[36mGET /static/js/gst.js HTTP/1.1[0m" 304 -
+2026-07-21 18:03:51,868 [INFO] 127.0.0.1 - - [21/Jul/2026 18:03:51] "[36mGET /static/js/billing.js HTTP/1.1[0m" 304 -
+2026-07-21 18:03:51,882 [INFO] 127.0.0.1 - - [21/Jul/2026 18:03:51] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-21 18:03:52,038 [INFO] 127.0.0.1 - - [21/Jul/2026 18:03:52] "[36mGET /static/js/customer.js HTTP/1.1[0m" 304 -
+2026-07-21 18:03:52,041 [INFO] 127.0.0.1 - - [21/Jul/2026 18:03:52] "[36mGET /static/js/inventory.js HTTP/1.1[0m" 304 -
+2026-07-21 18:03:52,045 [INFO] 127.0.0.1 - - [21/Jul/2026 18:03:52] "[36mGET /static/js/reports.js HTTP/1.1[0m" 304 -
+2026-07-21 18:03:52,077 [INFO] 127.0.0.1 - - [21/Jul/2026 18:03:52] "[36mGET /static/js/search.js HTTP/1.1[0m" 304 -
+2026-07-21 18:07:11,812 [INFO]  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-07-21 18:07:11,996 [INFO]  * Restarting with stat
+2026-07-21 18:07:14,029 [INFO] Database seeded successfully.
+2026-07-21 18:07:14,043 [WARNING]  * Debugger is active!
+2026-07-21 18:07:14,045 [INFO]  * Debugger PIN: 195-460-727
+2026-07-21 18:07:58,817 [INFO] Database seeded successfully.
+2026-07-21 18:07:58,847 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-07-21 18:07:58,847 [INFO] [33mPress CTRL+C to quit[0m
+2026-07-21 18:07:58,849 [INFO]  * Restarting with stat
+2026-07-21 18:08:05,553 [INFO] Database seeded successfully.
+2026-07-21 18:08:05,581 [WARNING]  * Debugger is active!
+2026-07-21 18:08:05,585 [INFO]  * Debugger PIN: 195-460-727
+2026-07-21 18:08:05,757 [INFO] 127.0.0.1 - - [21/Jul/2026 18:08:05] "GET /invoices/new HTTP/1.1" 200 -
+2026-07-21 18:08:05,909 [INFO] 127.0.0.1 - - [21/Jul/2026 18:08:05] "[36mGET /static/css/app.css HTTP/1.1[0m" 304 -
+2026-07-21 18:08:05,918 [INFO] 127.0.0.1 - - [21/Jul/2026 18:08:05] "[36mGET /static/js/inventory.js HTTP/1.1[0m" 304 -
+2026-07-21 18:08:05,926 [INFO] 127.0.0.1 - - [21/Jul/2026 18:08:05] "[36mGET /static/js/reports.js HTTP/1.1[0m" 304 -
+2026-07-21 18:08:05,934 [INFO] 127.0.0.1 - - [21/Jul/2026 18:08:05] "[36mGET /static/js/ui.js HTTP/1.1[0m" 304 -
+2026-07-21 18:08:05,936 [INFO] 127.0.0.1 - - [21/Jul/2026 18:08:05] "[36mGET /static/js/search.js HTTP/1.1[0m" 304 -
+2026-07-21 18:08:05,953 [INFO] 127.0.0.1 - - [21/Jul/2026 18:08:05] "[36mGET /static/js/billing.js HTTP/1.1[0m" 304 -
+2026-07-21 18:08:05,957 [INFO] 127.0.0.1 - - [21/Jul/2026 18:08:05] "[36mGET /static/js/gst.js HTTP/1.1[0m" 304 -
+2026-07-21 18:08:05,961 [INFO] 127.0.0.1 - - [21/Jul/2026 18:08:05] "[36mGET /static/js/customer.js HTTP/1.1[0m" 304 -
+2026-07-21 18:08:05,962 [INFO] 127.0.0.1 - - [21/Jul/2026 18:08:05] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-21 18:08:12,855 [INFO] 127.0.0.1 - - [21/Jul/2026 18:08:12] "GET /invoices HTTP/1.1" 200 -
+2026-07-21 18:08:12,872 [INFO] 127.0.0.1 - - [21/Jul/2026 18:08:12] "[36mGET /static/css/app.css HTTP/1.1[0m" 304 -
+2026-07-21 18:08:12,888 [INFO] 127.0.0.1 - - [21/Jul/2026 18:08:12] "[36mGET /static/js/ui.js HTTP/1.1[0m" 304 -
+2026-07-21 18:08:12,898 [INFO] 127.0.0.1 - - [21/Jul/2026 18:08:12] "[36mGET /static/js/gst.js HTTP/1.1[0m" 304 -
+2026-07-21 18:08:12,907 [INFO] 127.0.0.1 - - [21/Jul/2026 18:08:12] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-21 18:08:12,913 [INFO] 127.0.0.1 - - [21/Jul/2026 18:08:12] "[36mGET /static/js/billing.js HTTP/1.1[0m" 304 -
+2026-07-21 18:08:12,913 [INFO] 127.0.0.1 - - [21/Jul/2026 18:08:12] "[36mGET /static/js/inventory.js HTTP/1.1[0m" 304 -
+2026-07-21 18:08:12,916 [INFO] 127.0.0.1 - - [21/Jul/2026 18:08:12] "[36mGET /static/js/customer.js HTTP/1.1[0m" 304 -
+2026-07-21 18:08:12,918 [INFO] 127.0.0.1 - - [21/Jul/2026 18:08:12] "[36mGET /static/js/reports.js HTTP/1.1[0m" 304 -
+2026-07-21 18:08:12,924 [INFO] 127.0.0.1 - - [21/Jul/2026 18:08:12] "[36mGET /static/js/search.js HTTP/1.1[0m" 304 -
+2026-07-21 18:08:14,973 [INFO] 127.0.0.1 - - [21/Jul/2026 18:08:14] "GET /invoices/new HTTP/1.1" 200 -
+2026-07-21 18:08:14,994 [INFO] 127.0.0.1 - - [21/Jul/2026 18:08:14] "[36mGET /static/css/app.css HTTP/1.1[0m" 304 -
+2026-07-21 18:08:15,005 [INFO] 127.0.0.1 - - [21/Jul/2026 18:08:15] "[36mGET /static/js/gst.js HTTP/1.1[0m" 304 -
+2026-07-21 18:08:15,006 [INFO] 127.0.0.1 - - [21/Jul/2026 18:08:15] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-21 18:08:15,010 [INFO] 127.0.0.1 - - [21/Jul/2026 18:08:15] "[36mGET /static/js/billing.js HTTP/1.1[0m" 304 -
+2026-07-21 18:08:15,015 [INFO] 127.0.0.1 - - [21/Jul/2026 18:08:15] "[36mGET /static/js/ui.js HTTP/1.1[0m" 304 -
+2026-07-21 18:08:15,022 [INFO] 127.0.0.1 - - [21/Jul/2026 18:08:15] "[36mGET /static/js/customer.js HTTP/1.1[0m" 304 -
+2026-07-21 18:08:15,027 [INFO] 127.0.0.1 - - [21/Jul/2026 18:08:15] "[36mGET /static/js/inventory.js HTTP/1.1[0m" 304 -
+2026-07-21 18:08:15,027 [INFO] 127.0.0.1 - - [21/Jul/2026 18:08:15] "[36mGET /static/js/reports.js HTTP/1.1[0m" 304 -
+2026-07-21 18:08:15,029 [INFO] 127.0.0.1 - - [21/Jul/2026 18:08:15] "[36mGET /static/js/search.js HTTP/1.1[0m" 304 -
+2026-07-21 18:16:34,260 [INFO]  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-07-21 18:16:34,457 [INFO]  * Restarting with stat
+2026-07-21 18:16:36,672 [INFO] Database seeded successfully.
+2026-07-21 18:16:36,688 [WARNING]  * Debugger is active!
+2026-07-21 18:16:36,691 [INFO]  * Debugger PIN: 195-460-727
+2026-07-21 18:17:19,241 [INFO]  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-07-21 18:17:19,425 [INFO]  * Restarting with stat
+2026-07-21 18:17:21,518 [INFO] Database seeded successfully.
+2026-07-21 18:17:21,536 [WARNING]  * Debugger is active!
+2026-07-21 18:17:21,537 [INFO]  * Debugger PIN: 195-460-727
+2026-07-21 18:18:55,340 [INFO]  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-07-21 18:18:55,515 [INFO]  * Restarting with stat
+2026-07-21 18:18:57,702 [INFO] Database seeded successfully.
+2026-07-21 18:18:57,717 [WARNING]  * Debugger is active!
+2026-07-21 18:18:57,719 [INFO]  * Debugger PIN: 195-460-727
+2026-07-21 18:19:07,305 [INFO]  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-07-21 18:19:08,136 [INFO]  * Restarting with stat
+2026-07-21 18:19:11,351 [INFO] Database seeded successfully.
+2026-07-21 18:19:11,373 [WARNING]  * Debugger is active!
+2026-07-21 18:19:11,376 [INFO]  * Debugger PIN: 195-460-727
+2026-07-21 18:21:13,401 [INFO]  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-07-21 18:21:13,569 [INFO]  * Restarting with stat
+2026-07-21 18:21:14,805 [INFO] Database seeded successfully.
+2026-07-21 18:21:14,820 [WARNING]  * Debugger is active!
+2026-07-21 18:21:14,822 [INFO]  * Debugger PIN: 195-460-727
+2026-07-21 18:21:20,529 [INFO]  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-07-21 18:21:22,732 [INFO]  * Restarting with stat
+2026-07-21 18:21:25,718 [INFO] Database seeded successfully.
+2026-07-21 18:21:25,734 [WARNING]  * Debugger is active!
+2026-07-21 18:21:25,736 [INFO]  * Debugger PIN: 195-460-727
+2026-07-21 18:22:00,833 [INFO]  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-07-21 18:22:01,011 [INFO]  * Restarting with stat
+2026-07-21 18:22:02,220 [INFO] Database seeded successfully.
+2026-07-21 18:22:02,233 [WARNING]  * Debugger is active!
+2026-07-21 18:22:02,235 [INFO]  * Debugger PIN: 195-460-727
+2026-07-21 18:24:53,625 [INFO]  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-07-21 18:24:53,764 [INFO]  * Restarting with stat
+2026-07-21 18:24:56,091 [INFO] Database seeded successfully.
+2026-07-21 18:24:56,107 [WARNING]  * Debugger is active!
+2026-07-21 18:24:56,109 [INFO]  * Debugger PIN: 195-460-727
+2026-07-21 18:26:01,554 [INFO]  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-07-21 18:26:01,713 [INFO]  * Restarting with stat
+2026-07-21 18:26:04,088 [INFO] Database seeded successfully.
+2026-07-21 18:26:04,104 [WARNING]  * Debugger is active!
+2026-07-21 18:26:04,106 [INFO]  * Debugger PIN: 195-460-727
+2026-07-21 18:27:06,371 [INFO]  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-07-21 18:27:06,568 [INFO]  * Restarting with stat
+2026-07-21 18:27:08,855 [INFO] Database seeded successfully.
+2026-07-21 18:27:08,873 [WARNING]  * Debugger is active!
+2026-07-21 18:27:08,875 [INFO]  * Debugger PIN: 195-460-727
+2026-07-21 18:27:24,777 [INFO]  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-07-21 18:27:24,902 [INFO]  * Restarting with stat
+2026-07-21 18:27:27,215 [INFO] Database seeded successfully.
+2026-07-21 18:27:27,232 [WARNING]  * Debugger is active!
+2026-07-21 18:27:27,234 [INFO]  * Debugger PIN: 195-460-727
+2026-07-21 18:27:44,181 [INFO]  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-07-21 18:27:44,344 [INFO]  * Restarting with stat
+2026-07-21 18:27:46,593 [INFO] Database seeded successfully.
+2026-07-21 18:27:46,611 [WARNING]  * Debugger is active!
+2026-07-21 18:27:46,613 [INFO]  * Debugger PIN: 195-460-727
+2026-07-21 22:13:33,856 [INFO]  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-07-21 22:13:34,008 [INFO]  * Restarting with stat
+2026-07-21 22:13:36,407 [INFO] Database seeded successfully.
+2026-07-21 22:13:36,434 [WARNING]  * Debugger is active!
+2026-07-21 22:13:36,436 [INFO]  * Debugger PIN: 195-460-727
+2026-07-21 22:13:58,700 [INFO]  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-07-21 22:13:58,875 [INFO]  * Restarting with stat
+2026-07-21 22:14:01,242 [INFO] Database seeded successfully.
+2026-07-21 22:14:01,257 [WARNING]  * Debugger is active!
+2026-07-21 22:14:01,259 [INFO]  * Debugger PIN: 195-460-727
+2026-07-21 22:14:24,586 [INFO]  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-07-21 22:14:24,880 [INFO]  * Restarting with stat
+2026-07-21 22:14:27,189 [INFO] Database seeded successfully.
+2026-07-21 22:14:27,205 [WARNING]  * Debugger is active!
+2026-07-21 22:14:27,207 [INFO]  * Debugger PIN: 195-460-727
+2026-07-21 22:14:55,801 [INFO]  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-07-21 22:14:56,076 [INFO]  * Restarting with stat
+2026-07-21 22:14:58,476 [INFO] Database seeded successfully.
+2026-07-21 22:14:58,499 [WARNING]  * Debugger is active!
+2026-07-21 22:14:58,501 [INFO]  * Debugger PIN: 195-460-727
+2026-07-21 22:15:02,826 [INFO]  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-07-21 22:15:03,015 [INFO]  * Restarting with stat
+2026-07-21 22:15:05,348 [INFO] Database seeded successfully.
+2026-07-21 22:15:05,367 [WARNING]  * Debugger is active!
+2026-07-21 22:15:05,370 [INFO]  * Debugger PIN: 195-460-727
+2026-07-21 22:16:20,496 [INFO]  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-07-21 22:16:20,699 [INFO]  * Restarting with stat
+2026-07-21 22:16:23,197 [INFO] Database seeded successfully.
+2026-07-21 22:16:23,226 [WARNING]  * Debugger is active!
+2026-07-21 22:16:23,228 [INFO]  * Debugger PIN: 195-460-727
+2026-07-21 22:42:20,795 [INFO] Database seeded successfully.
+2026-07-21 22:42:20,893 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-07-21 22:42:20,893 [INFO] [33mPress CTRL+C to quit[0m
+2026-07-21 22:42:20,896 [INFO]  * Restarting with stat
+2026-07-21 22:42:22,153 [INFO] Database seeded successfully.
+2026-07-21 22:42:22,169 [WARNING]  * Debugger is active!
+2026-07-21 22:42:22,170 [INFO]  * Debugger PIN: 195-460-727
+2026-07-21 22:42:23,696 [INFO] 127.0.0.1 - - [21/Jul/2026 22:42:23] "[32mGET / HTTP/1.1[0m" 302 -
+2026-07-21 22:42:24,061 [INFO] 127.0.0.1 - - [21/Jul/2026 22:42:24] "[35m[1mGET /invoices/new HTTP/1.1[0m" 500 -
+2026-07-21 22:42:24,146 [INFO] 127.0.0.1 - - [21/Jul/2026 22:42:24] "GET /invoices/new?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2026-07-21 22:42:24,151 [INFO] 127.0.0.1 - - [21/Jul/2026 22:42:24] "GET /invoices/new?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2026-07-21 22:42:24,194 [INFO] 127.0.0.1 - - [21/Jul/2026 22:42:24] "GET /invoices/new?__debugger__=yes&cmd=resource&f=console.png&s=i42IhEwlTxXnzg5wovrc HTTP/1.1" 200 -
+2026-07-21 22:42:24,212 [INFO] 127.0.0.1 - - [21/Jul/2026 22:42:24] "GET /invoices/new?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2026-07-21 22:44:49,837 [INFO] 127.0.0.1 - - [21/Jul/2026 22:44:49] "GET /invoices/new HTTP/1.1" 200 -
+2026-07-21 22:44:49,866 [INFO] 127.0.0.1 - - [21/Jul/2026 22:44:49] "[36mGET /static/css/app.css HTTP/1.1[0m" 304 -
+2026-07-21 22:44:49,895 [INFO] 127.0.0.1 - - [21/Jul/2026 22:44:49] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-21 22:44:49,897 [INFO] 127.0.0.1 - - [21/Jul/2026 22:44:49] "[36mGET /static/js/ui.js HTTP/1.1[0m" 304 -
+2026-07-21 22:44:49,899 [INFO] 127.0.0.1 - - [21/Jul/2026 22:44:49] "[36mGET /static/js/billing.js HTTP/1.1[0m" 304 -
+2026-07-21 22:44:49,907 [INFO] 127.0.0.1 - - [21/Jul/2026 22:44:49] "[36mGET /static/js/gst.js HTTP/1.1[0m" 304 -
+2026-07-21 22:44:49,911 [INFO] 127.0.0.1 - - [21/Jul/2026 22:44:49] "[36mGET /static/js/inventory.js HTTP/1.1[0m" 304 -
+2026-07-21 22:44:49,912 [INFO] 127.0.0.1 - - [21/Jul/2026 22:44:49] "[36mGET /static/js/customer.js HTTP/1.1[0m" 304 -
+2026-07-21 22:44:49,947 [INFO] 127.0.0.1 - - [21/Jul/2026 22:44:49] "[36mGET /static/js/reports.js HTTP/1.1[0m" 304 -
+2026-07-21 22:44:49,949 [INFO] 127.0.0.1 - - [21/Jul/2026 22:44:49] "[36mGET /static/js/search.js HTTP/1.1[0m" 304 -
+2026-07-21 22:44:50,139 [INFO] 127.0.0.1 - - [21/Jul/2026 22:44:50] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-07-21 22:44:55,748 [INFO] 127.0.0.1 - - [21/Jul/2026 22:44:55] "GET /invoices HTTP/1.1" 200 -
+2026-07-21 22:44:55,765 [INFO] 127.0.0.1 - - [21/Jul/2026 22:44:55] "[36mGET /static/css/app.css HTTP/1.1[0m" 304 -
+2026-07-21 22:44:55,768 [INFO] 127.0.0.1 - - [21/Jul/2026 22:44:55] "[36mGET /static/js/ui.js HTTP/1.1[0m" 304 -
+2026-07-21 22:44:55,776 [INFO] 127.0.0.1 - - [21/Jul/2026 22:44:55] "[36mGET /static/js/gst.js HTTP/1.1[0m" 304 -
+2026-07-21 22:44:55,782 [INFO] 127.0.0.1 - - [21/Jul/2026 22:44:55] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-21 22:44:55,782 [INFO] 127.0.0.1 - - [21/Jul/2026 22:44:55] "[36mGET /static/js/billing.js HTTP/1.1[0m" 304 -
+2026-07-21 22:44:55,786 [INFO] 127.0.0.1 - - [21/Jul/2026 22:44:55] "[36mGET /static/js/customer.js HTTP/1.1[0m" 304 -
+2026-07-21 22:44:55,792 [INFO] 127.0.0.1 - - [21/Jul/2026 22:44:55] "[36mGET /static/js/inventory.js HTTP/1.1[0m" 304 -
+2026-07-21 22:44:55,793 [INFO] 127.0.0.1 - - [21/Jul/2026 22:44:55] "[36mGET /static/js/reports.js HTTP/1.1[0m" 304 -
+2026-07-21 22:44:55,793 [INFO] 127.0.0.1 - - [21/Jul/2026 22:44:55] "[36mGET /static/js/search.js HTTP/1.1[0m" 304 -
+2026-07-21 22:48:05,540 [INFO]  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-07-21 22:48:05,785 [INFO]  * Restarting with stat
+2026-07-21 22:48:08,228 [INFO] Database seeded successfully.
+2026-07-21 22:48:08,244 [WARNING]  * Debugger is active!
+2026-07-21 22:48:08,247 [INFO]  * Debugger PIN: 195-460-727
+2026-07-21 22:48:27,217 [INFO]  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-07-21 22:48:27,450 [INFO]  * Restarting with stat
+2026-07-21 22:48:29,738 [INFO] Database seeded successfully.
+2026-07-21 22:48:29,753 [WARNING]  * Debugger is active!
+2026-07-21 22:48:29,755 [INFO]  * Debugger PIN: 195-460-727
+2026-07-21 22:48:34,708 [INFO]  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-07-21 22:48:35,226 [INFO]  * Restarting with stat
+2026-07-21 22:48:38,280 [INFO] Database seeded successfully.
+2026-07-21 22:48:38,305 [WARNING]  * Debugger is active!
+2026-07-21 22:48:38,308 [INFO]  * Debugger PIN: 195-460-727
+2026-07-21 22:48:43,912 [INFO]  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-07-21 22:48:44,192 [INFO]  * Restarting with stat
+2026-07-21 22:48:47,780 [INFO] Database seeded successfully.
+2026-07-21 22:48:47,856 [WARNING]  * Debugger is active!
+2026-07-21 22:48:47,863 [INFO]  * Debugger PIN: 195-460-727
+2026-07-21 22:48:59,627 [INFO]  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-07-21 22:48:59,835 [INFO]  * Restarting with stat
+2026-07-21 22:49:04,010 [INFO] Database seeded successfully.
+2026-07-21 22:49:04,132 [WARNING]  * Debugger is active!
+2026-07-21 22:49:04,140 [INFO]  * Debugger PIN: 195-460-727
+2026-07-21 22:49:06,865 [INFO]  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-07-21 22:49:07,180 [INFO]  * Restarting with stat
+2026-07-21 22:49:10,561 [INFO] Database seeded successfully.
+2026-07-21 22:49:10,581 [WARNING]  * Debugger is active!
+2026-07-21 22:49:10,583 [INFO]  * Debugger PIN: 195-460-727
+2026-07-21 22:49:49,830 [INFO]  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-07-21 22:49:50,051 [INFO]  * Restarting with stat
+2026-07-21 22:49:51,499 [INFO] Database seeded successfully.
+2026-07-21 22:49:51,516 [WARNING]  * Debugger is active!
+2026-07-21 22:49:51,518 [INFO]  * Debugger PIN: 195-460-727
+2026-07-21 22:50:29,568 [INFO]  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-07-21 22:50:29,782 [INFO]  * Restarting with stat
+2026-07-21 22:50:34,345 [INFO] Database seeded successfully.
+2026-07-21 22:50:34,399 [WARNING]  * Debugger is active!
+2026-07-21 22:50:34,403 [INFO]  * Debugger PIN: 195-460-727
+2026-07-21 22:55:44,812 [INFO] 127.0.0.1 - - [21/Jul/2026 22:55:44] "GET /api/notifications HTTP/1.1" 200 -
+2026-07-21 23:11:21,002 [INFO] Database seeded successfully.
+2026-07-21 23:11:34,498 [INFO] Database seeded successfully.
+2026-07-21 23:11:45,564 [INFO] Database seeded successfully.
+2026-07-21 23:12:01,322 [INFO] Database seeded successfully.
+2026-07-21 23:12:34,879 [INFO] Database seeded successfully.
+2026-07-21 23:12:34,912 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-07-21 23:12:34,912 [INFO] [33mPress CTRL+C to quit[0m
+2026-07-21 23:12:34,913 [INFO]  * Restarting with stat
+2026-07-21 23:12:36,192 [INFO] Database seeded successfully.
+2026-07-21 23:12:36,209 [WARNING]  * Debugger is active!
+2026-07-21 23:12:36,211 [INFO]  * Debugger PIN: 195-460-727
+2026-07-21 23:12:38,132 [INFO] 127.0.0.1 - - [21/Jul/2026 23:12:38] "[32mGET / HTTP/1.1[0m" 302 -
+2026-07-21 23:12:38,236 [INFO] 127.0.0.1 - - [21/Jul/2026 23:12:38] "GET /invoices/new HTTP/1.1" 200 -
+2026-07-21 23:12:38,374 [INFO] 127.0.0.1 - - [21/Jul/2026 23:12:38] "GET /static/css/app.css HTTP/1.1" 200 -
+2026-07-21 23:12:38,391 [INFO] 127.0.0.1 - - [21/Jul/2026 23:12:38] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-21 23:12:44,275 [INFO] 127.0.0.1 - - [21/Jul/2026 23:12:44] "GET /invoices HTTP/1.1" 200 -
+2026-07-21 23:12:44,297 [INFO] 127.0.0.1 - - [21/Jul/2026 23:12:44] "[36mGET /static/css/app.css HTTP/1.1[0m" 304 -
+2026-07-21 23:12:44,298 [INFO] 127.0.0.1 - - [21/Jul/2026 23:12:44] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-21 23:12:50,700 [INFO] 127.0.0.1 - - [21/Jul/2026 23:12:50] "GET /invoices/new HTTP/1.1" 200 -
+2026-07-21 23:12:50,726 [INFO] 127.0.0.1 - - [21/Jul/2026 23:12:50] "[36mGET /static/css/app.css HTTP/1.1[0m" 304 -
+2026-07-21 23:12:50,727 [INFO] 127.0.0.1 - - [21/Jul/2026 23:12:50] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-21 23:12:51,823 [INFO] 127.0.0.1 - - [21/Jul/2026 23:12:51] "GET /invoices HTTP/1.1" 200 -
+2026-07-21 23:12:51,839 [INFO] 127.0.0.1 - - [21/Jul/2026 23:12:51] "[36mGET /static/css/app.css HTTP/1.1[0m" 304 -
+2026-07-21 23:12:51,840 [INFO] 127.0.0.1 - - [21/Jul/2026 23:12:51] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-21 23:12:54,308 [INFO] 127.0.0.1 - - [21/Jul/2026 23:12:54] "GET /customers HTTP/1.1" 200 -
+2026-07-21 23:12:54,327 [INFO] 127.0.0.1 - - [21/Jul/2026 23:12:54] "[36mGET /static/css/app.css HTTP/1.1[0m" 304 -
+2026-07-21 23:12:54,328 [INFO] 127.0.0.1 - - [21/Jul/2026 23:12:54] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-21 23:12:55,518 [INFO] 127.0.0.1 - - [21/Jul/2026 23:12:55] "[35m[1mGET /products HTTP/1.1[0m" 500 -
+2026-07-21 23:12:55,530 [INFO] 127.0.0.1 - - [21/Jul/2026 23:12:55] "GET /products?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2026-07-21 23:12:55,531 [INFO] 127.0.0.1 - - [21/Jul/2026 23:12:55] "GET /products?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2026-07-21 23:12:55,544 [INFO] 127.0.0.1 - - [21/Jul/2026 23:12:55] "GET /products?__debugger__=yes&cmd=resource&f=console.png&s=Gx0Wnrr8YzP2BNSzdAuQ HTTP/1.1" 200 -
+2026-07-21 23:12:55,570 [INFO] 127.0.0.1 - - [21/Jul/2026 23:12:55] "GET /products?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2026-07-21 23:17:02,116 [INFO] Database seeded successfully.
+2026-07-22 00:11:17,759 [INFO] 127.0.0.1 - - [22/Jul/2026 00:11:17] "GET /products HTTP/1.1" 200 -
+2026-07-22 00:11:17,771 [INFO] 127.0.0.1 - - [22/Jul/2026 00:11:17] "GET /static/css/app.css?v=2.0 HTTP/1.1" 200 -
+2026-07-22 00:11:17,774 [INFO] 127.0.0.1 - - [22/Jul/2026 00:11:17] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-22 13:59:40,272 [INFO] Database seeded successfully.
+2026-07-22 13:59:40,322 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-07-22 13:59:40,322 [INFO] [33mPress CTRL+C to quit[0m
+2026-07-22 13:59:40,325 [INFO]  * Restarting with stat
+2026-07-22 13:59:41,462 [INFO] Database seeded successfully.
+2026-07-22 13:59:41,477 [WARNING]  * Debugger is active!
+2026-07-22 13:59:41,479 [INFO]  * Debugger PIN: 195-460-727
+2026-07-22 13:59:48,338 [INFO] 127.0.0.1 - - [22/Jul/2026 13:59:48] "[32mGET / HTTP/1.1[0m" 302 -
+2026-07-22 13:59:48,556 [INFO] 127.0.0.1 - - [22/Jul/2026 13:59:48] "GET /invoices/new HTTP/1.1" 200 -
+2026-07-22 13:59:50,957 [INFO] 127.0.0.1 - - [22/Jul/2026 13:59:50] "GET /static/css/app.css?v=2.0 HTTP/1.1" 200 -
+2026-07-22 13:59:50,980 [INFO] 127.0.0.1 - - [22/Jul/2026 13:59:50] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-22 13:59:51,251 [INFO] 127.0.0.1 - - [22/Jul/2026 13:59:51] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-07-22 14:07:31,606 [INFO] 127.0.0.1 - - [22/Jul/2026 14:07:31] "GET /invoices HTTP/1.1" 200 -
+2026-07-22 14:07:31,618 [INFO] 127.0.0.1 - - [22/Jul/2026 14:07:31] "[36mGET /static/css/app.css?v=2.0 HTTP/1.1[0m" 304 -
+2026-07-22 14:07:31,621 [INFO] 127.0.0.1 - - [22/Jul/2026 14:07:31] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-22 14:07:35,363 [INFO] 127.0.0.1 - - [22/Jul/2026 14:07:35] "[32mGET /dashboard HTTP/1.1[0m" 302 -
+2026-07-22 14:07:35,371 [INFO] 127.0.0.1 - - [22/Jul/2026 14:07:35] "GET /invoices/new HTTP/1.1" 200 -
+2026-07-22 14:07:35,385 [INFO] 127.0.0.1 - - [22/Jul/2026 14:07:35] "[36mGET /static/css/app.css?v=2.0 HTTP/1.1[0m" 304 -
+2026-07-22 14:07:35,385 [INFO] 127.0.0.1 - - [22/Jul/2026 14:07:35] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-22 14:07:37,474 [INFO] 127.0.0.1 - - [22/Jul/2026 14:07:37] "GET /invoices/new HTTP/1.1" 200 -
+2026-07-22 14:07:37,487 [INFO] 127.0.0.1 - - [22/Jul/2026 14:07:37] "[36mGET /static/css/app.css?v=2.0 HTTP/1.1[0m" 304 -
+2026-07-22 14:07:37,487 [INFO] 127.0.0.1 - - [22/Jul/2026 14:07:37] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-22 14:07:39,590 [INFO] 127.0.0.1 - - [22/Jul/2026 14:07:39] "GET /quotations HTTP/1.1" 200 -
+2026-07-22 14:07:39,601 [INFO] 127.0.0.1 - - [22/Jul/2026 14:07:39] "[36mGET /static/css/app.css?v=2.0 HTTP/1.1[0m" 304 -
+2026-07-22 14:07:39,602 [INFO] 127.0.0.1 - - [22/Jul/2026 14:07:39] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-22 14:07:41,094 [INFO] 127.0.0.1 - - [22/Jul/2026 14:07:41] "[32mGET /dashboard HTTP/1.1[0m" 302 -
+2026-07-22 14:07:41,101 [INFO] 127.0.0.1 - - [22/Jul/2026 14:07:41] "GET /invoices/new HTTP/1.1" 200 -
+2026-07-22 14:07:41,113 [INFO] 127.0.0.1 - - [22/Jul/2026 14:07:41] "[36mGET /static/css/app.css?v=2.0 HTTP/1.1[0m" 304 -
+2026-07-22 14:07:41,113 [INFO] 127.0.0.1 - - [22/Jul/2026 14:07:41] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-22 14:07:42,677 [INFO] 127.0.0.1 - - [22/Jul/2026 14:07:42] "GET /quotations HTTP/1.1" 200 -
+2026-07-22 14:07:42,689 [INFO] 127.0.0.1 - - [22/Jul/2026 14:07:42] "[36mGET /static/css/app.css?v=2.0 HTTP/1.1[0m" 304 -
+2026-07-22 14:07:42,689 [INFO] 127.0.0.1 - - [22/Jul/2026 14:07:42] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-22 14:07:46,127 [INFO] 127.0.0.1 - - [22/Jul/2026 14:07:46] "GET /quotations/new HTTP/1.1" 200 -
+2026-07-22 14:07:46,138 [INFO] 127.0.0.1 - - [22/Jul/2026 14:07:46] "[36mGET /static/css/app.css?v=2.0 HTTP/1.1[0m" 304 -
+2026-07-22 14:07:46,139 [INFO] 127.0.0.1 - - [22/Jul/2026 14:07:46] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-23 13:56:07,913 [INFO] Database seeded successfully.
+2026-07-23 13:56:22,545 [INFO] Database seeded successfully.
+2026-07-23 13:57:15,686 [INFO] Database seeded successfully.
+2026-07-23 13:57:33,685 [INFO] Database seeded successfully.
+2026-07-23 13:58:57,542 [INFO] Database seeded successfully.
+2026-07-23 13:59:15,125 [INFO] Database seeded successfully.
+2026-07-23 14:02:53,432 [INFO] Database seeded successfully.
+2026-07-23 14:03:45,731 [INFO] Database seeded successfully.
+2026-07-23 14:04:41,883 [INFO] Database seeded successfully.
+2026-07-23 14:04:41,925 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-07-23 14:04:41,925 [INFO] [33mPress CTRL+C to quit[0m
+2026-07-23 14:04:41,931 [INFO]  * Restarting with stat
+2026-07-23 14:04:43,218 [INFO] Database seeded successfully.
+2026-07-23 14:04:43,232 [WARNING]  * Debugger is active!
+2026-07-23 14:04:43,234 [INFO]  * Debugger PIN: 195-460-727
+2026-07-23 14:04:45,403 [INFO] 127.0.0.1 - - [23/Jul/2026 14:04:45] "[32mGET / HTTP/1.1[0m" 302 -
+2026-07-23 14:04:45,499 [INFO] 127.0.0.1 - - [23/Jul/2026 14:04:45] "GET /invoices/new HTTP/1.1" 200 -
+2026-07-23 14:04:45,597 [INFO] 127.0.0.1 - - [23/Jul/2026 14:04:45] "[36mGET /static/css/app.css?v=2.0 HTTP/1.1[0m" 304 -
+2026-07-23 14:04:45,603 [INFO] 127.0.0.1 - - [23/Jul/2026 14:04:45] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-23 14:04:46,912 [INFO] 127.0.0.1 - - [23/Jul/2026 14:04:46] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-07-23 14:04:53,085 [INFO] 127.0.0.1 - - [23/Jul/2026 14:04:53] "GET /invoices HTTP/1.1" 200 -
+2026-07-23 14:04:53,096 [INFO] 127.0.0.1 - - [23/Jul/2026 14:04:53] "[36mGET /static/css/app.css?v=2.0 HTTP/1.1[0m" 304 -
+2026-07-23 14:04:53,097 [INFO] 127.0.0.1 - - [23/Jul/2026 14:04:53] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-23 14:05:01,364 [INFO] 127.0.0.1 - - [23/Jul/2026 14:05:01] "GET /invoices HTTP/1.1" 200 -
+2026-07-23 14:05:01,379 [INFO] 127.0.0.1 - - [23/Jul/2026 14:05:01] "[36mGET /static/css/app.css?v=2.0 HTTP/1.1[0m" 304 -
+2026-07-23 14:05:01,380 [INFO] 127.0.0.1 - - [23/Jul/2026 14:05:01] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-23 14:06:59,864 [INFO] Database seeded successfully.
+2026-07-23 14:07:13,811 [INFO] Database seeded successfully.
+2026-07-23 14:07:37,876 [INFO] Database seeded successfully.
+2026-07-23 14:07:37,883 [INFO] The CSRF token is missing.
+2026-07-23 14:07:55,982 [INFO] Database seeded successfully.
+2026-07-23 14:08:38,578 [INFO] Database seeded successfully.
+2026-07-23 14:08:38,606 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-07-23 14:08:38,606 [INFO] [33mPress CTRL+C to quit[0m
+2026-07-23 14:08:38,608 [INFO]  * Restarting with stat
+2026-07-23 14:08:39,936 [INFO] Database seeded successfully.
+2026-07-23 14:08:39,955 [WARNING]  * Debugger is active!
+2026-07-23 14:08:39,957 [INFO]  * Debugger PIN: 195-460-727
+2026-07-23 14:08:40,094 [INFO] 127.0.0.1 - - [23/Jul/2026 14:08:40] "[32mGET / HTTP/1.1[0m" 302 -
+2026-07-23 14:08:40,164 [INFO] 127.0.0.1 - - [23/Jul/2026 14:08:40] "GET /invoices/new HTTP/1.1" 200 -
+2026-07-23 14:08:40,249 [INFO] 127.0.0.1 - - [23/Jul/2026 14:08:40] "[36mGET /static/css/app.css?v=2.0 HTTP/1.1[0m" 304 -
+2026-07-23 14:08:40,269 [INFO] 127.0.0.1 - - [23/Jul/2026 14:08:40] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-23 14:08:45,920 [INFO] 127.0.0.1 - - [23/Jul/2026 14:08:45] "GET /invoices HTTP/1.1" 200 -
+2026-07-23 14:08:45,932 [INFO] 127.0.0.1 - - [23/Jul/2026 14:08:45] "[36mGET /static/css/app.css?v=2.0 HTTP/1.1[0m" 304 -
+2026-07-23 14:08:45,933 [INFO] 127.0.0.1 - - [23/Jul/2026 14:08:45] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-23 14:08:47,989 [INFO] 127.0.0.1 - - [23/Jul/2026 14:08:47] "GET /invoices/new HTTP/1.1" 200 -
+2026-07-23 14:08:48,004 [INFO] 127.0.0.1 - - [23/Jul/2026 14:08:48] "[36mGET /static/css/app.css?v=2.0 HTTP/1.1[0m" 304 -
+2026-07-23 14:08:48,005 [INFO] 127.0.0.1 - - [23/Jul/2026 14:08:48] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-23 14:08:51,734 [INFO] 127.0.0.1 - - [23/Jul/2026 14:08:51] "GET /invoices/new HTTP/1.1" 200 -
+2026-07-23 14:08:51,752 [INFO] 127.0.0.1 - - [23/Jul/2026 14:08:51] "[36mGET /static/css/app.css?v=2.0 HTTP/1.1[0m" 304 -
+2026-07-23 14:08:51,753 [INFO] 127.0.0.1 - - [23/Jul/2026 14:08:51] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-23 14:08:52,266 [INFO] 127.0.0.1 - - [23/Jul/2026 14:08:52] "GET /invoices HTTP/1.1" 200 -
+2026-07-23 14:08:52,277 [INFO] 127.0.0.1 - - [23/Jul/2026 14:08:52] "[36mGET /static/css/app.css?v=2.0 HTTP/1.1[0m" 304 -
+2026-07-23 14:08:52,278 [INFO] 127.0.0.1 - - [23/Jul/2026 14:08:52] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-23 14:08:54,350 [INFO] 127.0.0.1 - - [23/Jul/2026 14:08:54] "GET /products HTTP/1.1" 200 -
+2026-07-23 14:08:54,362 [INFO] 127.0.0.1 - - [23/Jul/2026 14:08:54] "[36mGET /static/css/app.css?v=2.0 HTTP/1.1[0m" 304 -
+2026-07-23 14:08:54,362 [INFO] 127.0.0.1 - - [23/Jul/2026 14:08:54] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-23 14:08:59,620 [INFO] 127.0.0.1 - - [23/Jul/2026 14:08:59] "GET /invoices/new HTTP/1.1" 200 -
+2026-07-23 14:08:59,632 [INFO] 127.0.0.1 - - [23/Jul/2026 14:08:59] "[36mGET /static/css/app.css?v=2.0 HTTP/1.1[0m" 304 -
+2026-07-23 14:08:59,633 [INFO] 127.0.0.1 - - [23/Jul/2026 14:08:59] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-23 14:09:03,927 [INFO] 127.0.0.1 - - [23/Jul/2026 14:09:03] "GET /api/customers/search?q=kaml HTTP/1.1" 200 -
+2026-07-23 14:09:29,771 [INFO] 127.0.0.1 - - [23/Jul/2026 14:09:29] "GET /api/products/search?q=hav HTTP/1.1" 200 -
+2026-07-23 14:09:39,398 [INFO] 127.0.0.1 - - [23/Jul/2026 14:09:39] "GET /invoices/new HTTP/1.1" 200 -
+2026-07-23 14:09:39,416 [INFO] 127.0.0.1 - - [23/Jul/2026 14:09:39] "[36mGET /static/css/app.css?v=2.0 HTTP/1.1[0m" 304 -
+2026-07-23 14:09:39,417 [INFO] 127.0.0.1 - - [23/Jul/2026 14:09:39] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-23 14:09:39,986 [INFO] 127.0.0.1 - - [23/Jul/2026 14:09:39] "GET /invoices HTTP/1.1" 200 -
+2026-07-23 14:09:39,998 [INFO] 127.0.0.1 - - [23/Jul/2026 14:09:39] "[36mGET /static/css/app.css?v=2.0 HTTP/1.1[0m" 304 -
+2026-07-23 14:09:40,001 [INFO] 127.0.0.1 - - [23/Jul/2026 14:09:40] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-23 14:09:41,752 [INFO] 127.0.0.1 - - [23/Jul/2026 14:09:41] "GET /products HTTP/1.1" 200 -
+2026-07-23 14:09:41,766 [INFO] 127.0.0.1 - - [23/Jul/2026 14:09:41] "[36mGET /static/css/app.css?v=2.0 HTTP/1.1[0m" 304 -
+2026-07-23 14:09:41,767 [INFO] 127.0.0.1 - - [23/Jul/2026 14:09:41] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-23 14:09:46,871 [INFO] 127.0.0.1 - - [23/Jul/2026 14:09:46] "GET /products/27 HTTP/1.1" 200 -
+2026-07-23 14:09:46,886 [INFO] 127.0.0.1 - - [23/Jul/2026 14:09:46] "[36mGET /static/css/app.css?v=2.0 HTTP/1.1[0m" 304 -
+2026-07-23 14:09:46,888 [INFO] 127.0.0.1 - - [23/Jul/2026 14:09:46] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-23 14:09:52,692 [INFO] 127.0.0.1 - - [23/Jul/2026 14:09:52] "[32mGET /dashboard HTTP/1.1[0m" 302 -
+2026-07-23 14:09:52,700 [INFO] 127.0.0.1 - - [23/Jul/2026 14:09:52] "GET /invoices/new HTTP/1.1" 200 -
+2026-07-23 14:09:52,712 [INFO] 127.0.0.1 - - [23/Jul/2026 14:09:52] "[36mGET /static/css/app.css?v=2.0 HTTP/1.1[0m" 304 -
+2026-07-23 14:09:52,712 [INFO] 127.0.0.1 - - [23/Jul/2026 14:09:52] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-23 14:09:57,312 [INFO] 127.0.0.1 - - [23/Jul/2026 14:09:57] "GET /invoices/new HTTP/1.1" 200 -
+2026-07-23 14:09:57,330 [INFO] 127.0.0.1 - - [23/Jul/2026 14:09:57] "[36mGET /static/css/app.css?v=2.0 HTTP/1.1[0m" 304 -
+2026-07-23 14:09:57,331 [INFO] 127.0.0.1 - - [23/Jul/2026 14:09:57] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-23 14:10:03,115 [INFO] 127.0.0.1 - - [23/Jul/2026 14:10:03] "GET /api/products/search?q=h HTTP/1.1" 200 -
+2026-07-23 14:10:03,834 [INFO] 127.0.0.1 - - [23/Jul/2026 14:10:03] "GET /api/products/search?q=ha HTTP/1.1" 200 -
+2026-07-23 14:20:39,688 [INFO] Database seeded successfully.
+2026-07-23 14:20:39,713 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-07-23 14:20:39,713 [INFO] [33mPress CTRL+C to quit[0m
+2026-07-23 14:20:39,714 [INFO]  * Restarting with stat
+2026-07-23 14:20:40,869 [INFO] Database seeded successfully.
+2026-07-23 14:20:40,884 [WARNING]  * Debugger is active!
+2026-07-23 14:20:40,886 [INFO]  * Debugger PIN: 195-460-727
+2026-07-23 14:20:42,990 [INFO] 127.0.0.1 - - [23/Jul/2026 14:20:42] "[32mGET / HTTP/1.1[0m" 302 -
+2026-07-23 14:20:43,045 [INFO] 127.0.0.1 - - [23/Jul/2026 14:20:43] "GET /invoices/new HTTP/1.1" 200 -
+2026-07-23 14:20:43,107 [INFO] 127.0.0.1 - - [23/Jul/2026 14:20:43] "[36mGET /static/css/app.css?v=2.0 HTTP/1.1[0m" 304 -
+2026-07-23 14:20:43,118 [INFO] 127.0.0.1 - - [23/Jul/2026 14:20:43] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-23 14:20:48,175 [INFO] 127.0.0.1 - - [23/Jul/2026 14:20:48] "GET /invoices HTTP/1.1" 200 -
+2026-07-23 14:20:48,217 [INFO] 127.0.0.1 - - [23/Jul/2026 14:20:48] "[36mGET /static/css/app.css?v=2.0 HTTP/1.1[0m" 304 -
+2026-07-23 14:20:48,224 [INFO] 127.0.0.1 - - [23/Jul/2026 14:20:48] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-23 14:20:49,308 [INFO] 127.0.0.1 - - [23/Jul/2026 14:20:49] "GET /invoices/new HTTP/1.1" 200 -
+2026-07-23 14:20:49,319 [INFO] 127.0.0.1 - - [23/Jul/2026 14:20:49] "[36mGET /static/css/app.css?v=2.0 HTTP/1.1[0m" 304 -
+2026-07-23 14:20:49,320 [INFO] 127.0.0.1 - - [23/Jul/2026 14:20:49] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-23 14:20:56,981 [INFO] 127.0.0.1 - - [23/Jul/2026 14:20:56] "GET /api/products/search?q=h HTTP/1.1" 200 -
+2026-07-23 14:21:35,792 [INFO] 127.0.0.1 - - [23/Jul/2026 14:21:35] "POST /invoices/create HTTP/1.1" 200 -
+2026-07-23 14:21:36,434 [INFO] 127.0.0.1 - - [23/Jul/2026 14:21:36] "GET /invoices/1 HTTP/1.1" 200 -
+2026-07-23 14:21:36,445 [INFO] 127.0.0.1 - - [23/Jul/2026 14:21:36] "[36mGET /static/css/app.css?v=2.0 HTTP/1.1[0m" 304 -
+2026-07-23 14:21:36,446 [INFO] 127.0.0.1 - - [23/Jul/2026 14:21:36] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-23 14:21:39,002 [INFO] 127.0.0.1 - - [23/Jul/2026 14:21:39] "[35m[1mGET /invoices HTTP/1.1[0m" 500 -
+2026-07-23 14:21:39,025 [INFO] 127.0.0.1 - - [23/Jul/2026 14:21:39] "GET /invoices?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2026-07-23 14:21:39,035 [INFO] 127.0.0.1 - - [23/Jul/2026 14:21:39] "GET /invoices?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2026-07-23 14:21:39,057 [INFO] 127.0.0.1 - - [23/Jul/2026 14:21:39] "GET /invoices?__debugger__=yes&cmd=resource&f=console.png&s=imrFyQNOZibnjFyaiMac HTTP/1.1" 200 -
+2026-07-23 14:21:39,064 [INFO] 127.0.0.1 - - [23/Jul/2026 14:21:39] "GET /invoices?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2026-07-23 14:22:20,179 [INFO] 127.0.0.1 - - [23/Jul/2026 14:22:20] "GET /invoices HTTP/1.1" 200 -
+2026-07-23 14:22:20,191 [INFO] 127.0.0.1 - - [23/Jul/2026 14:22:20] "[36mGET /static/css/app.css?v=2.0 HTTP/1.1[0m" 304 -
+2026-07-23 14:22:20,192 [INFO] 127.0.0.1 - - [23/Jul/2026 14:22:20] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-23 14:27:46,464 [INFO]  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-07-23 14:27:46,658 [INFO]  * Restarting with stat
+2026-07-23 14:27:48,838 [INFO] Database seeded successfully.
+2026-07-23 14:27:48,854 [WARNING]  * Debugger is active!
+2026-07-23 14:27:48,856 [INFO]  * Debugger PIN: 195-460-727
+2026-07-23 14:30:42,177 [INFO]  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-07-23 14:30:42,346 [INFO]  * Restarting with stat
+2026-07-23 14:30:44,470 [INFO] Database seeded successfully.
+2026-07-23 14:30:44,487 [WARNING]  * Debugger is active!
+2026-07-23 14:30:44,489 [INFO]  * Debugger PIN: 195-460-727
+2026-07-23 14:31:26,089 [INFO]  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-07-23 14:31:26,249 [INFO]  * Restarting with stat
+2026-07-23 14:31:28,345 [INFO] Database seeded successfully.
+2026-07-23 14:31:28,360 [WARNING]  * Debugger is active!
+2026-07-23 14:31:28,362 [INFO]  * Debugger PIN: 195-460-727
+2026-07-23 14:31:56,829 [INFO]  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-07-23 14:31:57,027 [INFO]  * Restarting with stat
+2026-07-23 14:31:59,084 [INFO] Database seeded successfully.
+2026-07-23 14:31:59,101 [WARNING]  * Debugger is active!
+2026-07-23 14:31:59,103 [INFO]  * Debugger PIN: 195-460-727
+2026-07-23 14:32:01,288 [INFO]  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-07-23 14:32:01,449 [INFO]  * Restarting with stat
+2026-07-23 14:32:03,506 [INFO] Database seeded successfully.
+2026-07-23 14:32:03,520 [WARNING]  * Debugger is active!
+2026-07-23 14:32:03,522 [INFO]  * Debugger PIN: 195-460-727
+2026-07-23 16:40:06,652 [INFO] Database seeded successfully.
+2026-07-23 16:40:06,712 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-07-23 16:40:06,712 [INFO] [33mPress CTRL+C to quit[0m
+2026-07-23 16:40:06,715 [INFO]  * Restarting with stat
+2026-07-23 16:40:07,976 [INFO] Database seeded successfully.
+2026-07-23 16:40:07,992 [WARNING]  * Debugger is active!
+2026-07-23 16:40:08,005 [INFO]  * Debugger PIN: 195-460-727
+2026-07-23 16:40:09,818 [INFO] 127.0.0.1 - - [23/Jul/2026 16:40:09] "[32mGET / HTTP/1.1[0m" 302 -
+2026-07-23 16:40:10,162 [INFO] 127.0.0.1 - - [23/Jul/2026 16:40:10] "GET /invoices/new HTTP/1.1" 200 -
+2026-07-23 16:40:10,339 [INFO] 127.0.0.1 - - [23/Jul/2026 16:40:10] "GET /static/css/app.css?v=2.1 HTTP/1.1" 200 -
+2026-07-23 16:40:10,354 [INFO] 127.0.0.1 - - [23/Jul/2026 16:40:10] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-23 16:40:23,951 [INFO] 127.0.0.1 - - [23/Jul/2026 16:40:23] "GET /invoices HTTP/1.1" 200 -
+2026-07-23 16:40:23,970 [INFO] 127.0.0.1 - - [23/Jul/2026 16:40:23] "[36mGET /static/css/app.css?v=2.1 HTTP/1.1[0m" 304 -
+2026-07-23 16:40:23,971 [INFO] 127.0.0.1 - - [23/Jul/2026 16:40:23] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-23 16:40:32,567 [INFO] 127.0.0.1 - - [23/Jul/2026 16:40:32] "GET /invoices/1 HTTP/1.1" 200 -
+2026-07-23 16:40:32,585 [INFO] 127.0.0.1 - - [23/Jul/2026 16:40:32] "[36mGET /static/css/app.css?v=2.1 HTTP/1.1[0m" 304 -
+2026-07-23 16:40:32,587 [INFO] 127.0.0.1 - - [23/Jul/2026 16:40:32] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-23 16:40:39,225 [INFO] Database seeded successfully.
+2026-07-23 16:40:39,330 [INFO] 127.0.0.1 - - [23/Jul/2026 16:40:39] "GET /invoices/1/print/owner HTTP/1.1" 200 -
+2026-07-23 16:41:22,193 [INFO] 127.0.0.1 - - [23/Jul/2026 16:41:22] "GET /invoices/1/pdf/all HTTP/1.1" 200 -
+2026-07-23 17:43:37,469 [INFO] Database seeded successfully.
+2026-07-23 17:43:37,525 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-07-23 17:43:37,525 [INFO] [33mPress CTRL+C to quit[0m
+2026-07-23 17:43:37,528 [INFO]  * Restarting with stat
+2026-07-23 17:43:39,497 [INFO] Database seeded successfully.
+2026-07-23 17:43:39,540 [WARNING]  * Debugger is active!
+2026-07-23 17:43:39,545 [INFO]  * Debugger PIN: 195-460-727
+2026-07-23 17:43:40,420 [INFO] 127.0.0.1 - - [23/Jul/2026 17:43:40] "[32mGET / HTTP/1.1[0m" 302 -
+2026-07-23 17:43:40,484 [INFO] 127.0.0.1 - - [23/Jul/2026 17:43:40] "GET /invoices/new HTTP/1.1" 200 -
+2026-07-23 17:43:40,553 [INFO] 127.0.0.1 - - [23/Jul/2026 17:43:40] "[36mGET /static/css/app.css?v=2.1 HTTP/1.1[0m" 304 -
+2026-07-23 17:43:40,577 [INFO] 127.0.0.1 - - [23/Jul/2026 17:43:40] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-23 17:43:45,531 [INFO] 127.0.0.1 - - [23/Jul/2026 17:43:45] "GET /invoices/new HTTP/1.1" 200 -
+2026-07-23 17:43:45,548 [INFO] 127.0.0.1 - - [23/Jul/2026 17:43:45] "[36mGET /static/css/app.css?v=2.1 HTTP/1.1[0m" 304 -
+2026-07-23 17:43:45,550 [INFO] 127.0.0.1 - - [23/Jul/2026 17:43:45] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-23 17:43:46,684 [INFO] 127.0.0.1 - - [23/Jul/2026 17:43:46] "GET /invoices HTTP/1.1" 200 -
+2026-07-23 17:43:46,697 [INFO] 127.0.0.1 - - [23/Jul/2026 17:43:46] "[36mGET /static/css/app.css?v=2.1 HTTP/1.1[0m" 304 -
+2026-07-23 17:43:46,699 [INFO] 127.0.0.1 - - [23/Jul/2026 17:43:46] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-23 17:44:08,124 [INFO] 127.0.0.1 - - [23/Jul/2026 17:44:08] "GET /invoices/1 HTTP/1.1" 200 -
+2026-07-23 17:44:08,142 [INFO] 127.0.0.1 - - [23/Jul/2026 17:44:08] "[36mGET /static/css/app.css?v=2.1 HTTP/1.1[0m" 304 -
+2026-07-23 17:44:08,143 [INFO] 127.0.0.1 - - [23/Jul/2026 17:44:08] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-23 17:44:26,688 [INFO] 127.0.0.1 - - [23/Jul/2026 17:44:26] "POST /api/invoices/1/payment HTTP/1.1" 200 -
+2026-07-23 17:44:26,710 [INFO] 127.0.0.1 - - [23/Jul/2026 17:44:26] "GET /invoices/1 HTTP/1.1" 200 -
+2026-07-23 17:44:26,731 [INFO] 127.0.0.1 - - [23/Jul/2026 17:44:26] "[36mGET /static/css/app.css?v=2.1 HTTP/1.1[0m" 304 -
+2026-07-23 17:44:26,733 [INFO] 127.0.0.1 - - [23/Jul/2026 17:44:26] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-23 17:58:11,899 [INFO] Database seeded successfully.
+2026-07-23 17:58:11,911 [INFO] The CSRF token is missing.
+2026-07-23 17:59:04,138 [INFO] Database seeded successfully.
+2026-07-23 17:59:30,735 [INFO] Database seeded successfully.
+2026-07-23 18:00:24,719 [INFO] Database seeded successfully.
+2026-07-23 18:02:07,742 [INFO] Database seeded successfully.
+2026-07-23 18:03:07,592 [INFO]  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-07-23 18:03:07,844 [INFO]  * Restarting with stat
+2026-07-23 18:03:10,421 [INFO] Database seeded successfully.
+2026-07-23 18:03:10,450 [WARNING]  * Debugger is active!
+2026-07-23 18:03:10,452 [INFO]  * Debugger PIN: 195-460-727
+2026-07-23 18:03:42,676 [INFO] Database seeded successfully.
+2026-07-23 18:03:43,230 [ERROR] Exception on /reports/gst [GET]
+Traceback (most recent call last):
+  File "C:\Users\kamle\PycharmProjects\PythonProject\.venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\kamle\PycharmProjects\PythonProject\.venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\kamle\PycharmProjects\PythonProject\.venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\kamle\PycharmProjects\PythonProject\.venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\kamle\PycharmProjects\PythonProject\.venv\Lib\site-packages\flask_login\utils.py", line 290, in decorated_view
+    return current_app.ensure_sync(func)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\kamle\PycharmProjects\PythonProject\GV_POWERS_ERP\app.py", line 2456, in gst_report
+    return render_template("reports/gst_report.html",
+                           invoices=invoices, hsn_summary=dict(hsn_summary),
+    ...<8 lines>...
+                           total_igst=total_igst,
+                           total_invoice_count=total_invoice_count)
+  File "C:\Users\kamle\PycharmProjects\PythonProject\.venv\Lib\site-packages\flask\templating.py", line 150, in render_template
+    return _render(app, template, context)
+  File "C:\Users\kamle\PycharmProjects\PythonProject\.venv\Lib\site-packages\flask\templating.py", line 131, in _render
+    rv = template.render(context)
+  File "C:\Users\kamle\PycharmProjects\PythonProject\.venv\Lib\site-packages\jinja2\environment.py", line 1295, in render
+    self.environment.handle_exception()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\kamle\PycharmProjects\PythonProject\.venv\Lib\site-packages\jinja2\environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "C:\Users\kamle\PycharmProjects\PythonProject\GV_POWERS_ERP\templates\reports\gst_report.html", line 1, in top-level template code
+    {% extends "layouts/admin_layout.html" %}
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kamle\PycharmProjects\PythonProject\GV_POWERS_ERP\templates\layouts\admin_layout.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "C:\Users\kamle\PycharmProjects\PythonProject\GV_POWERS_ERP\templates\base.html", line 33, in top-level template code
+    {% block body %}{% endblock %}
+    ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kamle\PycharmProjects\PythonProject\GV_POWERS_ERP\templates\layouts\admin_layout.html", line 154, in block 'body'
+    {% block content %}{% endblock %}
+    ^^^^^^^^^^^^^
+  File "C:\Users\kamle\PycharmProjects\PythonProject\GV_POWERS_ERP\templates\reports\gst_report.html", line 173, in block 'content'
+    <td class="text-right">\u20b9{{ "%.2f"|format(data.taxable_value) }}</td>
+    ^^^^^^^^^^^^^
+  File "C:\Users\kamle\PycharmProjects\PythonProject\.venv\Lib\site-packages\jinja2\filters.py", line 1043, in do_format
+    return soft_str(value) % (kwargs or args)
+           ~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~
+jinja2.exceptions.UndefinedError: 'dict object' has no attribute 'taxable_value'
+2026-07-23 18:03:43,385 [ERROR] Exception on /reports/customers [GET]
+Traceback (most recent call last):
+  File "C:\Users\kamle\PycharmProjects\PythonProject\.venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\kamle\PycharmProjects\PythonProject\.venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\kamle\PycharmProjects\PythonProject\.venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\kamle\PycharmProjects\PythonProject\.venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\kamle\PycharmProjects\PythonProject\.venv\Lib\site-packages\flask_login\utils.py", line 290, in decorated_view
+    return current_app.ensure_sync(func)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\kamle\PycharmProjects\PythonProject\GV_POWERS_ERP\app.py", line 2537, in customer_report
+    return render_template("reports/customer_report.html", customer_data=customer_data)
+  File "C:\Users\kamle\PycharmProjects\PythonProject\.venv\Lib\site-packages\flask\templating.py", line 150, in render_template
+    return _render(app, template, context)
+  File "C:\Users\kamle\PycharmProjects\PythonProject\.venv\Lib\site-packages\flask\templating.py", line 131, in _render
+    rv = template.render(context)
+  File "C:\Users\kamle\PycharmProjects\PythonProject\.venv\Lib\site-packages\jinja2\environment.py", line 1295, in render
+    self.environment.handle_exception()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\kamle\PycharmProjects\PythonProject\.venv\Lib\site-packages\jinja2\environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "C:\Users\kamle\PycharmProjects\PythonProject\GV_POWERS_ERP\templates\reports\customer_report.html", line 1, in top-level template code
+    {% extends "layouts/admin_layout.html" %}
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kamle\PycharmProjects\PythonProject\GV_POWERS_ERP\templates\layouts\admin_layout.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "C:\Users\kamle\PycharmProjects\PythonProject\GV_POWERS_ERP\templates\base.html", line 33, in top-level template code
+    {% block body %}{% endblock %}
+    ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kamle\PycharmProjects\PythonProject\GV_POWERS_ERP\templates\layouts\admin_layout.html", line 154, in block 'body'
+    {% block content %}{% endblock %}
+    ^^^^^^^^^^^^^
+  File "C:\Users\kamle\PycharmProjects\PythonProject\GV_POWERS_ERP\templates\reports\customer_report.html", line 173, in block 'content'
+    const customerData = {{ customer_data|tojson|safe if customer_data else '[]' }};
+    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kamle\PycharmProjects\PythonProject\.venv\Lib\site-packages\jinja2\filters.py", line 1721, in do_tojson
+    return htmlsafe_json_dumps(value, dumps=dumps, **kwargs)
+  File "C:\Users\kamle\PycharmProjects\PythonProject\.venv\Lib\site-packages\jinja2\utils.py", line 669, in htmlsafe_json_dumps
+    dumps(obj, **kwargs)
+    ~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\kamle\PycharmProjects\PythonProject\.venv\Lib\site-packages\flask\json\provider.py", line 179, in dumps
+    return json.dumps(obj, **kwargs)
+           ~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\kamle\AppData\Local\Programs\Python\Python313\Lib\json\__init__.py", line 242, in dumps
+    **kw).encode(obj)
+          ~~~~~~^^^^^
+  File "C:\Users\kamle\AppData\Local\Programs\Python\Python313\Lib\json\encoder.py", line 202, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "C:\Users\kamle\AppData\Local\Programs\Python\Python313\Lib\json\encoder.py", line 263, in iterencode
+    return _iterencode(o, 0)
+  File "C:\Users\kamle\PycharmProjects\PythonProject\.venv\Lib\site-packages\flask\json\provider.py", line 121, in _default
+    raise TypeError(f"Object of type {type(o).__name__} is not JSON serializable")
+TypeError: Object of type Customer is not JSON serializable
+2026-07-23 18:03:43,597 [ERROR] Exception on /reports/gst [GET]
+Traceback (most recent call last):
+  File "C:\Users\kamle\PycharmProjects\PythonProject\.venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\kamle\PycharmProjects\PythonProject\.venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\kamle\PycharmProjects\PythonProject\.venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\kamle\PycharmProjects\PythonProject\.venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\kamle\PycharmProjects\PythonProject\.venv\Lib\site-packages\flask_login\utils.py", line 290, in decorated_view
+    return current_app.ensure_sync(func)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\kamle\PycharmProjects\PythonProject\GV_POWERS_ERP\app.py", line 2456, in gst_report
+    return render_template("reports/gst_report.html",
+                           invoices=invoices, hsn_summary=dict(hsn_summary),
+    ...<8 lines>...
+                           total_igst=total_igst,
+                           total_invoice_count=total_invoice_count)
+  File "C:\Users\kamle\PycharmProjects\PythonProject\.venv\Lib\site-packages\flask\templating.py", line 150, in render_template
+    return _render(app, template, context)
+  File "C:\Users\kamle\PycharmProjects\PythonProject\.venv\Lib\site-packages\flask\templating.py", line 131, in _render
+    rv = template.render(context)
+  File "C:\Users\kamle\PycharmProjects\PythonProject\.venv\Lib\site-packages\jinja2\environment.py", line 1295, in render
+    self.environment.handle_exception()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\kamle\PycharmProjects\PythonProject\.venv\Lib\site-packages\jinja2\environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "C:\Users\kamle\PycharmProjects\PythonProject\GV_POWERS_ERP\templates\reports\gst_report.html", line 1, in top-level template code
+    {% extends "layouts/admin_layout.html" %}
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kamle\PycharmProjects\PythonProject\GV_POWERS_ERP\templates\layouts\admin_layout.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "C:\Users\kamle\PycharmProjects\PythonProject\GV_POWERS_ERP\templates\base.html", line 33, in top-level template code
+    {% block body %}{% endblock %}
+    ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kamle\PycharmProjects\PythonProject\GV_POWERS_ERP\templates\layouts\admin_layout.html", line 154, in block 'body'
+    {% block content %}{% endblock %}
+    ^^^^^^^^^^^^^
+  File "C:\Users\kamle\PycharmProjects\PythonProject\GV_POWERS_ERP\templates\reports\gst_report.html", line 173, in block 'content'
+    <td class="text-right">\u20b9{{ "%.2f"|format(data.taxable_value) }}</td>
+    ^^^^^^^^^^^^^
+  File "C:\Users\kamle\PycharmProjects\PythonProject\.venv\Lib\site-packages\jinja2\filters.py", line 1043, in do_format
+    return soft_str(value) % (kwargs or args)
+           ~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~
+jinja2.exceptions.UndefinedError: 'dict object' has no attribute 'taxable_value'
+2026-07-23 18:04:03,396 [INFO] Database seeded successfully.
+2026-07-23 18:05:12,433 [INFO]  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-07-23 18:05:12,775 [INFO]  * Restarting with stat
+2026-07-23 18:05:15,814 [INFO] Database seeded successfully.
+2026-07-23 18:05:15,834 [WARNING]  * Debugger is active!
+2026-07-23 18:05:15,836 [INFO]  * Debugger PIN: 195-460-727
+2026-07-23 18:05:43,122 [INFO]  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-07-23 18:05:43,499 [INFO]  * Restarting with stat
+2026-07-23 18:05:46,958 [INFO] Database seeded successfully.
+2026-07-23 18:05:46,975 [WARNING]  * Debugger is active!
+2026-07-23 18:05:46,977 [INFO]  * Debugger PIN: 195-460-727
+2026-07-23 18:06:43,253 [INFO]  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-07-23 18:06:43,506 [INFO]  * Restarting with stat
+2026-07-23 18:06:46,088 [INFO] Database seeded successfully.
+2026-07-23 18:06:46,104 [WARNING]  * Debugger is active!
+2026-07-23 18:06:46,106 [INFO]  * Debugger PIN: 195-460-727
+2026-07-23 18:06:50,705 [INFO] Database seeded successfully.
+2026-07-23 18:06:51,166 [ERROR] Exception on /reports/gst [GET]
+Traceback (most recent call last):
+  File "C:\Users\kamle\PycharmProjects\PythonProject\.venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\kamle\PycharmProjects\PythonProject\.venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\kamle\PycharmProjects\PythonProject\.venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\kamle\PycharmProjects\PythonProject\.venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\kamle\PycharmProjects\PythonProject\.venv\Lib\site-packages\flask_login\utils.py", line 290, in decorated_view
+    return current_app.ensure_sync(func)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\kamle\PycharmProjects\PythonProject\GV_POWERS_ERP\app.py", line 2456, in gst_report
+    return render_template("reports/gst_report.html",
+                           invoices=invoices, hsn_summary=dict(hsn_summary),
+    ...<8 lines>...
+                           total_igst=total_igst,
+                           total_invoice_count=total_invoice_count)
+  File "C:\Users\kamle\PycharmProjects\PythonProject\.venv\Lib\site-packages\flask\templating.py", line 150, in render_template
+    return _render(app, template, context)
+  File "C:\Users\kamle\PycharmProjects\PythonProject\.venv\Lib\site-packages\flask\templating.py", line 131, in _render
+    rv = template.render(context)
+  File "C:\Users\kamle\PycharmProjects\PythonProject\.venv\Lib\site-packages\jinja2\environment.py", line 1295, in render
+    self.environment.handle_exception()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\kamle\PycharmProjects\PythonProject\.venv\Lib\site-packages\jinja2\environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "C:\Users\kamle\PycharmProjects\PythonProject\GV_POWERS_ERP\templates\reports\gst_report.html", line 1, in top-level template code
+    {% extends "layouts/admin_layout.html" %}
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kamle\PycharmProjects\PythonProject\GV_POWERS_ERP\templates\layouts\admin_layout.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "C:\Users\kamle\PycharmProjects\PythonProject\GV_POWERS_ERP\templates\base.html", line 33, in top-level template code
+    {% block body %}{% endblock %}
+    ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kamle\PycharmProjects\PythonProject\GV_POWERS_ERP\templates\layouts\admin_layout.html", line 154, in block 'body'
+    {% block content %}{% endblock %}
+    ^^^^^^^^^^^^^
+  File "C:\Users\kamle\PycharmProjects\PythonProject\GV_POWERS_ERP\templates\reports\gst_report.html", line 248, in block 'content'
+    <td class="text-right" style="color:var(--erp-primary)">\u20b9{{ "%.2f"|format(grand_total) }}</td>
+    ^^^^^^^^^^^^^
+  File "C:\Users\kamle\PycharmProjects\PythonProject\.venv\Lib\site-packages\jinja2\filters.py", line 1043, in do_format
+    return soft_str(value) % (kwargs or args)
+           ~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~
+jinja2.exceptions.UndefinedError: 'grand_total' is undefined
+2026-07-23 18:06:51,280 [ERROR] Exception on /reports/gst [GET]
+Traceback (most recent call last):
+  File "C:\Users\kamle\PycharmProjects\PythonProject\.venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\kamle\PycharmProjects\PythonProject\.venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\kamle\PycharmProjects\PythonProject\.venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\kamle\PycharmProjects\PythonProject\.venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\kamle\PycharmProjects\PythonProject\.venv\Lib\site-packages\flask_login\utils.py", line 290, in decorated_view
+    return current_app.ensure_sync(func)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\kamle\PycharmProjects\PythonProject\GV_POWERS_ERP\app.py", line 2456, in gst_report
+    return render_template("reports/gst_report.html",
+                           invoices=invoices, hsn_summary=dict(hsn_summary),
+    ...<8 lines>...
+                           total_igst=total_igst,
+                           total_invoice_count=total_invoice_count)
+  File "C:\Users\kamle\PycharmProjects\PythonProject\.venv\Lib\site-packages\flask\templating.py", line 150, in render_template
+    return _render(app, template, context)
+  File "C:\Users\kamle\PycharmProjects\PythonProject\.venv\Lib\site-packages\flask\templating.py", line 131, in _render
+    rv = template.render(context)
+  File "C:\Users\kamle\PycharmProjects\PythonProject\.venv\Lib\site-packages\jinja2\environment.py", line 1295, in render
+    self.environment.handle_exception()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\kamle\PycharmProjects\PythonProject\.venv\Lib\site-packages\jinja2\environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "C:\Users\kamle\PycharmProjects\PythonProject\GV_POWERS_ERP\templates\reports\gst_report.html", line 1, in top-level template code
+    {% extends "layouts/admin_layout.html" %}
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kamle\PycharmProjects\PythonProject\GV_POWERS_ERP\templates\layouts\admin_layout.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "C:\Users\kamle\PycharmProjects\PythonProject\GV_POWERS_ERP\templates\base.html", line 33, in top-level template code
+    {% block body %}{% endblock %}
+    ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kamle\PycharmProjects\PythonProject\GV_POWERS_ERP\templates\layouts\admin_layout.html", line 154, in block 'body'
+    {% block content %}{% endblock %}
+    ^^^^^^^^^^^^^
+  File "C:\Users\kamle\PycharmProjects\PythonProject\GV_POWERS_ERP\templates\reports\gst_report.html", line 248, in block 'content'
+    <td class="text-right" style="color:var(--erp-primary)">\u20b9{{ "%.2f"|format(grand_total) }}</td>
+    ^^^^^^^^^^^^^
+  File "C:\Users\kamle\PycharmProjects\PythonProject\.venv\Lib\site-packages\jinja2\filters.py", line 1043, in do_format
+    return soft_str(value) % (kwargs or args)
+           ~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~
+jinja2.exceptions.UndefinedError: 'grand_total' is undefined
+2026-07-23 18:07:09,290 [INFO] Database seeded successfully.
+2026-07-23 18:07:49,862 [INFO]  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-07-23 18:07:50,103 [INFO]  * Restarting with stat
+2026-07-23 18:07:52,686 [INFO] Database seeded successfully.
+2026-07-23 18:07:52,709 [WARNING]  * Debugger is active!
+2026-07-23 18:07:52,711 [INFO]  * Debugger PIN: 195-460-727
+2026-07-23 18:08:26,599 [INFO] Database seeded successfully.
+2026-07-23 18:51:40,204 [INFO] Database seeded successfully.
+2026-07-23 18:51:40,237 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-07-23 18:51:40,237 [INFO] [33mPress CTRL+C to quit[0m
+2026-07-23 18:51:40,238 [INFO]  * Restarting with stat
+2026-07-23 18:51:41,302 [INFO] Database seeded successfully.
+2026-07-23 18:51:41,316 [WARNING]  * Debugger is active!
+2026-07-23 18:51:41,318 [INFO]  * Debugger PIN: 195-460-727
+2026-07-23 18:51:42,638 [INFO] 127.0.0.1 - - [23/Jul/2026 18:51:42] "[32mGET / HTTP/1.1[0m" 302 -
+2026-07-23 18:51:42,832 [INFO] 127.0.0.1 - - [23/Jul/2026 18:51:42] "GET /dashboard HTTP/1.1" 200 -
+2026-07-23 18:51:42,911 [INFO] 127.0.0.1 - - [23/Jul/2026 18:51:42] "GET /static/css/app.css?v=2.1 HTTP/1.1" 200 -
+2026-07-23 18:51:42,925 [INFO] 127.0.0.1 - - [23/Jul/2026 18:51:42] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-23 18:51:48,168 [INFO] 127.0.0.1 - - [23/Jul/2026 18:51:48] "GET /invoices/new HTTP/1.1" 200 -
+2026-07-23 18:51:48,179 [INFO] 127.0.0.1 - - [23/Jul/2026 18:51:48] "[36mGET /static/css/app.css?v=2.1 HTTP/1.1[0m" 304 -
+2026-07-23 18:51:48,180 [INFO] 127.0.0.1 - - [23/Jul/2026 18:51:48] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-23 18:51:49,807 [INFO] 127.0.0.1 - - [23/Jul/2026 18:51:49] "GET /invoices HTTP/1.1" 200 -
+2026-07-23 18:51:49,816 [INFO] 127.0.0.1 - - [23/Jul/2026 18:51:49] "[36mGET /static/css/app.css?v=2.1 HTTP/1.1[0m" 304 -
+2026-07-23 18:51:49,818 [INFO] 127.0.0.1 - - [23/Jul/2026 18:51:49] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-23 18:51:50,700 [INFO] 127.0.0.1 - - [23/Jul/2026 18:51:50] "GET /dashboard HTTP/1.1" 200 -
+2026-07-23 18:51:50,711 [INFO] 127.0.0.1 - - [23/Jul/2026 18:51:50] "[36mGET /static/css/app.css?v=2.1 HTTP/1.1[0m" 304 -
+2026-07-23 18:51:50,711 [INFO] 127.0.0.1 - - [23/Jul/2026 18:51:50] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-23 18:51:53,349 [INFO] 127.0.0.1 - - [23/Jul/2026 18:51:53] "GET /quotations HTTP/1.1" 200 -
+2026-07-23 18:51:53,358 [INFO] 127.0.0.1 - - [23/Jul/2026 18:51:53] "[36mGET /static/css/app.css?v=2.1 HTTP/1.1[0m" 304 -
+2026-07-23 18:51:53,359 [INFO] 127.0.0.1 - - [23/Jul/2026 18:51:53] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-23 18:51:54,581 [INFO] 127.0.0.1 - - [23/Jul/2026 18:51:54] "GET /dashboard HTTP/1.1" 200 -
+2026-07-23 18:51:54,591 [INFO] 127.0.0.1 - - [23/Jul/2026 18:51:54] "[36mGET /static/css/app.css?v=2.1 HTTP/1.1[0m" 304 -
+2026-07-23 18:51:54,592 [INFO] 127.0.0.1 - - [23/Jul/2026 18:51:54] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-23 18:52:15,566 [INFO] 127.0.0.1 - - [23/Jul/2026 18:52:15] "GET /quotations HTTP/1.1" 200 -
+2026-07-23 18:52:15,579 [INFO] 127.0.0.1 - - [23/Jul/2026 18:52:15] "[36mGET /static/css/app.css?v=2.1 HTTP/1.1[0m" 304 -
+2026-07-23 18:52:15,580 [INFO] 127.0.0.1 - - [23/Jul/2026 18:52:15] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-23 18:52:49,152 [INFO] 127.0.0.1 - - [23/Jul/2026 18:52:49] "GET /invoices/new HTTP/1.1" 200 -
+2026-07-23 18:52:49,162 [INFO] 127.0.0.1 - - [23/Jul/2026 18:52:49] "[36mGET /static/css/app.css?v=2.1 HTTP/1.1[0m" 304 -
+2026-07-23 18:52:49,165 [INFO] 127.0.0.1 - - [23/Jul/2026 18:52:49] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-23 18:53:07,239 [INFO] 127.0.0.1 - - [23/Jul/2026 18:53:07] "GET /quotations HTTP/1.1" 200 -
+2026-07-23 18:53:07,251 [INFO] 127.0.0.1 - - [23/Jul/2026 18:53:07] "[36mGET /static/css/app.css?v=2.1 HTTP/1.1[0m" 304 -
+2026-07-23 18:53:07,252 [INFO] 127.0.0.1 - - [23/Jul/2026 18:53:07] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-23 18:53:08,178 [INFO] 127.0.0.1 - - [23/Jul/2026 18:53:08] "GET /products HTTP/1.1" 200 -
+2026-07-23 18:53:08,191 [INFO] 127.0.0.1 - - [23/Jul/2026 18:53:08] "[36mGET /static/css/app.css?v=2.1 HTTP/1.1[0m" 304 -
+2026-07-23 18:53:08,191 [INFO] 127.0.0.1 - - [23/Jul/2026 18:53:08] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-23 18:53:08,845 [INFO] 127.0.0.1 - - [23/Jul/2026 18:53:08] "GET /customers HTTP/1.1" 200 -
+2026-07-23 18:53:08,857 [INFO] 127.0.0.1 - - [23/Jul/2026 18:53:08] "[36mGET /static/css/app.css?v=2.1 HTTP/1.1[0m" 304 -
+2026-07-23 18:53:08,857 [INFO] 127.0.0.1 - - [23/Jul/2026 18:53:08] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-23 18:53:09,775 [INFO] 127.0.0.1 - - [23/Jul/2026 18:53:09] "GET /products HTTP/1.1" 200 -
+2026-07-23 18:53:09,788 [INFO] 127.0.0.1 - - [23/Jul/2026 18:53:09] "[36mGET /static/css/app.css?v=2.1 HTTP/1.1[0m" 304 -
+2026-07-23 18:53:09,789 [INFO] 127.0.0.1 - - [23/Jul/2026 18:53:09] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-23 18:56:18,275 [INFO] 127.0.0.1 - - [23/Jul/2026 18:56:18] "GET /products/27 HTTP/1.1" 200 -
+2026-07-23 18:56:18,289 [INFO] 127.0.0.1 - - [23/Jul/2026 18:56:18] "[36mGET /static/css/app.css?v=2.1 HTTP/1.1[0m" 304 -
+2026-07-23 18:56:18,290 [INFO] 127.0.0.1 - - [23/Jul/2026 18:56:18] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-23 18:56:21,558 [INFO] 127.0.0.1 - - [23/Jul/2026 18:56:21] "GET /products HTTP/1.1" 200 -
+2026-07-23 18:56:21,571 [INFO] 127.0.0.1 - - [23/Jul/2026 18:56:21] "[36mGET /static/css/app.css?v=2.1 HTTP/1.1[0m" 304 -
+2026-07-23 18:56:21,571 [INFO] 127.0.0.1 - - [23/Jul/2026 18:56:21] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-23 18:56:35,448 [INFO] 127.0.0.1 - - [23/Jul/2026 18:56:35] "GET /invoices/new HTTP/1.1" 200 -
+2026-07-23 18:56:35,461 [INFO] 127.0.0.1 - - [23/Jul/2026 18:56:35] "[36mGET /static/css/app.css?v=2.1 HTTP/1.1[0m" 304 -
+2026-07-23 18:56:35,462 [INFO] 127.0.0.1 - - [23/Jul/2026 18:56:35] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-23 18:56:44,050 [INFO] 127.0.0.1 - - [23/Jul/2026 18:56:44] "GET /api/products/search?q=u HTTP/1.1" 200 -
+2026-07-23 18:56:45,326 [INFO] 127.0.0.1 - - [23/Jul/2026 18:56:45] "GET /api/products/search?q=up HTTP/1.1" 200 -
+2026-07-23 19:12:38,696 [INFO] Database seeded successfully.
+2026-07-23 19:12:38,712 [INFO] The CSRF token is missing.
+2026-07-23 19:12:55,599 [INFO] Database seeded successfully.
+2026-07-23 19:13:15,376 [INFO] Database seeded successfully.
+2026-07-23 19:13:27,753 [INFO] Database seeded successfully.
+2026-07-23 19:20:19,597 [INFO] Database seeded successfully.
+2026-07-23 22:31:53,550 [INFO] Database seeded successfully.
+2026-07-23 22:31:53,582 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-07-23 22:31:53,582 [INFO] [33mPress CTRL+C to quit[0m
+2026-07-23 22:31:53,584 [INFO]  * Restarting with stat
+2026-07-23 22:31:55,258 [INFO] Database seeded successfully.
+2026-07-23 22:31:55,281 [WARNING]  * Debugger is active!
+2026-07-23 22:31:55,283 [INFO]  * Debugger PIN: 195-460-727
+2026-07-23 22:31:55,508 [INFO] 127.0.0.1 - - [23/Jul/2026 22:31:55] "GET /invoices/new HTTP/1.1" 200 -
+2026-07-23 22:31:55,567 [INFO] 127.0.0.1 - - [23/Jul/2026 22:31:55] "GET /static/css/app.css?v=5.0 HTTP/1.1" 200 -
+2026-07-23 22:31:55,571 [INFO] 127.0.0.1 - - [23/Jul/2026 22:31:55] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-23 22:31:56,875 [INFO] 127.0.0.1 - - [23/Jul/2026 22:31:56] "GET /invoices/new HTTP/1.1" 200 -
+2026-07-23 22:31:56,890 [INFO] 127.0.0.1 - - [23/Jul/2026 22:31:56] "[36mGET /static/css/app.css?v=5.0 HTTP/1.1[0m" 304 -
+2026-07-23 22:31:56,891 [INFO] 127.0.0.1 - - [23/Jul/2026 22:31:56] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-23 22:31:57,340 [INFO] 127.0.0.1 - - [23/Jul/2026 22:31:57] "GET /invoices/new HTTP/1.1" 200 -
+2026-07-23 22:31:57,352 [INFO] 127.0.0.1 - - [23/Jul/2026 22:31:57] "[36mGET /static/css/app.css?v=5.0 HTTP/1.1[0m" 304 -
+2026-07-23 22:31:57,353 [INFO] 127.0.0.1 - - [23/Jul/2026 22:31:57] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-23 22:32:01,702 [INFO] 127.0.0.1 - - [23/Jul/2026 22:32:01] "[32mGET / HTTP/1.1[0m" 302 -
+2026-07-23 22:32:01,837 [INFO] 127.0.0.1 - - [23/Jul/2026 22:32:01] "GET /dashboard HTTP/1.1" 200 -
+2026-07-23 22:32:01,855 [INFO] 127.0.0.1 - - [23/Jul/2026 22:32:01] "[36mGET /static/css/app.css?v=5.0 HTTP/1.1[0m" 304 -
+2026-07-23 22:32:01,863 [INFO] 127.0.0.1 - - [23/Jul/2026 22:32:01] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-23 22:32:14,214 [INFO] 127.0.0.1 - - [23/Jul/2026 22:32:14] "GET /invoices/new HTTP/1.1" 200 -
+2026-07-23 22:32:14,230 [INFO] 127.0.0.1 - - [23/Jul/2026 22:32:14] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-23 22:32:14,230 [INFO] 127.0.0.1 - - [23/Jul/2026 22:32:14] "[36mGET /static/css/app.css?v=5.0 HTTP/1.1[0m" 304 -
+2026-07-23 22:32:15,332 [INFO] 127.0.0.1 - - [23/Jul/2026 22:32:15] "GET /invoices HTTP/1.1" 200 -
+2026-07-23 22:32:15,344 [INFO] 127.0.0.1 - - [23/Jul/2026 22:32:15] "[36mGET /static/css/app.css?v=5.0 HTTP/1.1[0m" 304 -
+2026-07-23 22:32:15,345 [INFO] 127.0.0.1 - - [23/Jul/2026 22:32:15] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-23 22:32:22,422 [INFO] 127.0.0.1 - - [23/Jul/2026 22:32:22] "GET /quotations HTTP/1.1" 200 -
+2026-07-23 22:32:22,436 [INFO] 127.0.0.1 - - [23/Jul/2026 22:32:22] "[36mGET /static/css/app.css?v=5.0 HTTP/1.1[0m" 304 -
+2026-07-23 22:32:22,437 [INFO] 127.0.0.1 - - [23/Jul/2026 22:32:22] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-23 22:32:23,060 [INFO] 127.0.0.1 - - [23/Jul/2026 22:32:23] "GET /customers HTTP/1.1" 200 -
+2026-07-23 22:32:23,080 [INFO] 127.0.0.1 - - [23/Jul/2026 22:32:23] "[36mGET /static/css/app.css?v=5.0 HTTP/1.1[0m" 304 -
+2026-07-23 22:32:23,081 [INFO] 127.0.0.1 - - [23/Jul/2026 22:32:23] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-23 22:32:24,323 [INFO] 127.0.0.1 - - [23/Jul/2026 22:32:24] "GET /products HTTP/1.1" 200 -
+2026-07-23 22:32:24,337 [INFO] 127.0.0.1 - - [23/Jul/2026 22:32:24] "[36mGET /static/css/app.css?v=5.0 HTTP/1.1[0m" 304 -
+2026-07-23 22:32:24,338 [INFO] 127.0.0.1 - - [23/Jul/2026 22:32:24] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-23 22:32:25,384 [INFO] 127.0.0.1 - - [23/Jul/2026 22:32:25] "GET /inventory HTTP/1.1" 200 -
+2026-07-23 22:32:25,401 [INFO] 127.0.0.1 - - [23/Jul/2026 22:32:25] "[36mGET /static/css/app.css?v=5.0 HTTP/1.1[0m" 304 -
+2026-07-23 22:32:25,402 [INFO] 127.0.0.1 - - [23/Jul/2026 22:32:25] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-23 22:32:26,642 [INFO] 127.0.0.1 - - [23/Jul/2026 22:32:26] "GET /suppliers HTTP/1.1" 200 -
+2026-07-23 22:32:26,663 [INFO] 127.0.0.1 - - [23/Jul/2026 22:32:26] "[36mGET /static/css/app.css?v=5.0 HTTP/1.1[0m" 304 -
+2026-07-23 22:32:26,664 [INFO] 127.0.0.1 - - [23/Jul/2026 22:32:26] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-23 22:32:28,685 [INFO] 127.0.0.1 - - [23/Jul/2026 22:32:28] "GET /purchases HTTP/1.1" 200 -
+2026-07-23 22:32:28,697 [INFO] 127.0.0.1 - - [23/Jul/2026 22:32:28] "[36mGET /static/css/app.css?v=5.0 HTTP/1.1[0m" 304 -
+2026-07-23 22:32:28,698 [INFO] 127.0.0.1 - - [23/Jul/2026 22:32:28] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-23 22:49:37,629 [INFO] Database seeded successfully.
+2026-07-23 22:55:41,733 [INFO] Database seeded successfully.
+2026-07-23 23:10:42,822 [INFO] Database seeded successfully.
+2026-07-23 23:10:42,828 [INFO] The CSRF token is missing.
+2026-07-23 23:10:56,418 [INFO] Database seeded successfully.
+2026-07-23 23:10:56,424 [INFO] The CSRF token is missing.
+2026-07-23 23:11:15,299 [INFO] Database seeded successfully.
+2026-07-23 23:11:26,680 [INFO] Database seeded successfully.
+2026-07-23 23:11:42,269 [INFO] Database seeded successfully.
+2026-07-23 23:25:37,414 [INFO] Database seeded successfully.
+2026-07-23 23:25:55,500 [INFO] Database seeded successfully.
+2026-07-23 23:26:37,455 [INFO] Database seeded successfully.
+2026-07-23 23:28:59,342 [INFO] Database seeded successfully.
+2026-07-23 23:28:59,370 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-07-23 23:28:59,370 [INFO] [33mPress CTRL+C to quit[0m
+2026-07-23 23:28:59,372 [INFO]  * Restarting with stat
+2026-07-23 23:29:00,569 [INFO] Database seeded successfully.
+2026-07-23 23:29:00,583 [WARNING]  * Debugger is active!
+2026-07-23 23:29:00,585 [INFO]  * Debugger PIN: 195-460-727
+2026-07-23 23:29:09,932 [INFO] 127.0.0.1 - - [23/Jul/2026 23:29:09] "[32mGET / HTTP/1.1[0m" 302 -
+2026-07-23 23:29:10,011 [INFO] 127.0.0.1 - - [23/Jul/2026 23:29:10] "GET /dashboard HTTP/1.1" 200 -
+2026-07-23 23:29:10,072 [INFO] 127.0.0.1 - - [23/Jul/2026 23:29:10] "GET /static/css/app.css?v=7.0 HTTP/1.1" 200 -
+2026-07-23 23:29:10,076 [INFO] 127.0.0.1 - - [23/Jul/2026 23:29:10] "GET /static/img/logo/img.png HTTP/1.1" 200 -
+2026-07-23 23:29:10,083 [INFO] 127.0.0.1 - - [23/Jul/2026 23:29:10] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-23 23:29:15,780 [INFO] 127.0.0.1 - - [23/Jul/2026 23:29:15] "GET /invoices/new HTTP/1.1" 200 -
+2026-07-23 23:29:15,798 [INFO] 127.0.0.1 - - [23/Jul/2026 23:29:15] "[36mGET /static/css/app.css?v=7.0 HTTP/1.1[0m" 304 -
+2026-07-23 23:29:15,804 [INFO] 127.0.0.1 - - [23/Jul/2026 23:29:15] "[36mGET /static/img/logo/img.png HTTP/1.1[0m" 304 -
+2026-07-23 23:29:15,804 [INFO] 127.0.0.1 - - [23/Jul/2026 23:29:15] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-23 23:29:16,430 [INFO] 127.0.0.1 - - [23/Jul/2026 23:29:16] "[36mGET /static/img/logo/img.png HTTP/1.1[0m" 304 -
+2026-07-23 23:29:30,410 [INFO] 127.0.0.1 - - [23/Jul/2026 23:29:30] "GET /customers HTTP/1.1" 200 -
+2026-07-23 23:29:30,415 [INFO] 127.0.0.1 - - [23/Jul/2026 23:29:30] "GET /customers HTTP/1.1" 200 -
+2026-07-23 23:29:30,433 [INFO] 127.0.0.1 - - [23/Jul/2026 23:29:30] "[36mGET /static/css/app.css?v=7.0 HTTP/1.1[0m" 304 -
+2026-07-23 23:29:30,434 [INFO] 127.0.0.1 - - [23/Jul/2026 23:29:30] "[36mGET /static/img/logo/img.png HTTP/1.1[0m" 304 -
+2026-07-23 23:29:30,436 [INFO] 127.0.0.1 - - [23/Jul/2026 23:29:30] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-23 23:29:48,942 [INFO] 127.0.0.1 - - [23/Jul/2026 23:29:48] "GET /inventory HTTP/1.1" 200 -
+2026-07-23 23:29:48,959 [INFO] 127.0.0.1 - - [23/Jul/2026 23:29:48] "[36mGET /static/css/app.css?v=7.0 HTTP/1.1[0m" 304 -
+2026-07-23 23:29:48,961 [INFO] 127.0.0.1 - - [23/Jul/2026 23:29:48] "[36mGET /static/img/logo/img.png HTTP/1.1[0m" 304 -
+2026-07-23 23:29:48,962 [INFO] 127.0.0.1 - - [23/Jul/2026 23:29:48] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-23 23:29:50,584 [INFO] 127.0.0.1 - - [23/Jul/2026 23:29:50] "GET /reports HTTP/1.1" 200 -
+2026-07-23 23:29:50,600 [INFO] 127.0.0.1 - - [23/Jul/2026 23:29:50] "[36mGET /static/css/app.css?v=7.0 HTTP/1.1[0m" 304 -
+2026-07-23 23:29:50,603 [INFO] 127.0.0.1 - - [23/Jul/2026 23:29:50] "[36mGET /static/img/logo/img.png HTTP/1.1[0m" 304 -
+2026-07-23 23:29:50,604 [INFO] 127.0.0.1 - - [23/Jul/2026 23:29:50] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-23 23:29:52,845 [INFO] 127.0.0.1 - - [23/Jul/2026 23:29:52] "GET /reports/inventory HTTP/1.1" 200 -
+2026-07-23 23:29:52,862 [INFO] 127.0.0.1 - - [23/Jul/2026 23:29:52] "[36mGET /static/css/app.css?v=7.0 HTTP/1.1[0m" 304 -
+2026-07-23 23:29:52,863 [INFO] 127.0.0.1 - - [23/Jul/2026 23:29:52] "[36mGET /static/img/logo/img.png HTTP/1.1[0m" 304 -
+2026-07-23 23:29:52,863 [INFO] 127.0.0.1 - - [23/Jul/2026 23:29:52] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-23 23:29:58,916 [INFO] 127.0.0.1 - - [23/Jul/2026 23:29:58] "GET /users HTTP/1.1" 200 -
+2026-07-23 23:29:58,929 [INFO] 127.0.0.1 - - [23/Jul/2026 23:29:58] "[36mGET /static/css/app.css?v=7.0 HTTP/1.1[0m" 304 -
+2026-07-23 23:29:58,931 [INFO] 127.0.0.1 - - [23/Jul/2026 23:29:58] "[36mGET /static/img/logo/img.png HTTP/1.1[0m" 304 -
+2026-07-23 23:29:58,932 [INFO] 127.0.0.1 - - [23/Jul/2026 23:29:58] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-23 23:30:14,295 [INFO] 127.0.0.1 - - [23/Jul/2026 23:30:14] "GET /settings HTTP/1.1" 200 -
+2026-07-23 23:30:14,315 [INFO] 127.0.0.1 - - [23/Jul/2026 23:30:14] "[36mGET /static/css/app.css?v=7.0 HTTP/1.1[0m" 304 -
+2026-07-23 23:30:14,318 [INFO] 127.0.0.1 - - [23/Jul/2026 23:30:14] "[36mGET /static/img/logo/img.png HTTP/1.1[0m" 304 -
+2026-07-23 23:30:14,319 [INFO] 127.0.0.1 - - [23/Jul/2026 23:30:14] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-23 23:30:22,244 [INFO] 127.0.0.1 - - [23/Jul/2026 23:30:22] "GET /audit-logs HTTP/1.1" 200 -
+2026-07-23 23:30:22,260 [INFO] 127.0.0.1 - - [23/Jul/2026 23:30:22] "[36mGET /static/css/app.css?v=7.0 HTTP/1.1[0m" 304 -
+2026-07-23 23:30:22,261 [INFO] 127.0.0.1 - - [23/Jul/2026 23:30:22] "[36mGET /static/img/logo/img.png HTTP/1.1[0m" 304 -
+2026-07-23 23:30:22,261 [INFO] 127.0.0.1 - - [23/Jul/2026 23:30:22] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-23 23:30:43,661 [INFO] 127.0.0.1 - - [23/Jul/2026 23:30:43] "GET /dashboard HTTP/1.1" 200 -
+2026-07-23 23:30:43,676 [INFO] 127.0.0.1 - - [23/Jul/2026 23:30:43] "[36mGET /static/css/app.css?v=7.0 HTTP/1.1[0m" 304 -
+2026-07-23 23:30:43,679 [INFO] 127.0.0.1 - - [23/Jul/2026 23:30:43] "[36mGET /static/img/logo/img.png HTTP/1.1[0m" 304 -
+2026-07-23 23:30:43,680 [INFO] 127.0.0.1 - - [23/Jul/2026 23:30:43] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-23 23:31:33,003 [INFO]  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\services\\invoice_pdf_service.py', reloading
+2026-07-23 23:31:33,225 [INFO]  * Restarting with stat
+2026-07-23 23:31:35,663 [INFO] Database seeded successfully.
+2026-07-23 23:31:35,686 [WARNING]  * Debugger is active!
+2026-07-23 23:31:35,688 [INFO]  * Debugger PIN: 195-460-727
+2026-07-24 10:50:33,320 [INFO] Database seeded successfully.
+2026-07-24 10:50:33,366 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-07-24 10:50:33,366 [INFO] [33mPress CTRL+C to quit[0m
+2026-07-24 10:50:33,368 [INFO]  * Restarting with stat
+2026-07-24 10:50:34,684 [INFO] Database seeded successfully.
+2026-07-24 10:50:34,698 [WARNING]  * Debugger is active!
+2026-07-24 10:50:34,708 [INFO]  * Debugger PIN: 195-460-727
+2026-07-24 12:20:20,952 [INFO] Database seeded successfully.
+2026-07-24 12:20:37,421 [INFO] Database seeded successfully.
+2026-07-24 12:20:37,542 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-07-24 12:20:37,542 [INFO] [33mPress CTRL+C to quit[0m
+2026-07-24 12:20:37,544 [INFO]  * Restarting with stat
+2026-07-24 12:20:39,422 [INFO] Database seeded successfully.
+2026-07-24 12:20:39,438 [WARNING]  * Debugger is active!
+2026-07-24 12:20:39,441 [INFO]  * Debugger PIN: 195-460-727
+2026-07-24 12:21:02,004 [INFO] Database seeded successfully.
+2026-07-24 12:21:02,030 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-07-24 12:21:02,030 [INFO] [33mPress CTRL+C to quit[0m
+2026-07-24 12:21:02,031 [INFO]  * Restarting with stat
+2026-07-24 12:21:03,205 [INFO] Database seeded successfully.
+2026-07-24 12:21:03,220 [WARNING]  * Debugger is active!
+2026-07-24 12:21:03,222 [INFO]  * Debugger PIN: 195-460-727
+2026-07-24 12:21:05,629 [INFO] 127.0.0.1 - - [24/Jul/2026 12:21:05] "[32mGET / HTTP/1.1[0m" 302 -
+2026-07-24 12:21:05,695 [INFO] 127.0.0.1 - - [24/Jul/2026 12:21:05] "GET /dashboard HTTP/1.1" 200 -
+2026-07-24 12:21:05,838 [INFO] 127.0.0.1 - - [24/Jul/2026 12:21:05] "GET /static/css/billing.css?v=8.0 HTTP/1.1" 200 -
+2026-07-24 12:21:05,845 [INFO] 127.0.0.1 - - [24/Jul/2026 12:21:05] "[36mGET /static/img/logo/img.png HTTP/1.1[0m" 304 -
+2026-07-24 12:21:05,846 [INFO] 127.0.0.1 - - [24/Jul/2026 12:21:05] "GET /static/css/admin.css?v=8.0 HTTP/1.1" 200 -
+2026-07-24 12:21:05,852 [INFO] 127.0.0.1 - - [24/Jul/2026 12:21:05] "GET /static/css/app.css?v=8.0 HTTP/1.1" 200 -
+2026-07-24 12:21:05,852 [INFO] 127.0.0.1 - - [24/Jul/2026 12:21:05] "GET /static/css/sales.css?v=8.0 HTTP/1.1" 200 -
+2026-07-24 12:21:05,853 [INFO] 127.0.0.1 - - [24/Jul/2026 12:21:05] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-24 12:21:05,857 [INFO] 127.0.0.1 - - [24/Jul/2026 12:21:05] "GET /static/css/themes.css?v=8.0 HTTP/1.1" 200 -
+2026-07-24 12:21:05,857 [INFO] 127.0.0.1 - - [24/Jul/2026 12:21:05] "GET /static/css/responsive.css?v=8.0 HTTP/1.1" 200 -
+2026-07-24 12:21:06,066 [INFO] 127.0.0.1 - - [24/Jul/2026 12:21:06] "[36mGET /static/img/logo/img.png HTTP/1.1[0m" 304 -
+2026-07-24 12:21:12,728 [INFO] 127.0.0.1 - - [24/Jul/2026 12:21:12] "GET /invoices HTTP/1.1" 200 -
+2026-07-24 12:21:12,747 [INFO] 127.0.0.1 - - [24/Jul/2026 12:21:12] "[36mGET /static/css/app.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 12:21:12,753 [INFO] 127.0.0.1 - - [24/Jul/2026 12:21:12] "[36mGET /static/css/admin.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 12:21:12,756 [INFO] 127.0.0.1 - - [24/Jul/2026 12:21:12] "[36mGET /static/css/billing.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 12:21:12,758 [INFO] 127.0.0.1 - - [24/Jul/2026 12:21:12] "[36mGET /static/css/sales.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 12:21:12,760 [INFO] 127.0.0.1 - - [24/Jul/2026 12:21:12] "[36mGET /static/css/themes.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 12:21:12,760 [INFO] 127.0.0.1 - - [24/Jul/2026 12:21:12] "[36mGET /static/css/responsive.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 12:21:12,764 [INFO] 127.0.0.1 - - [24/Jul/2026 12:21:12] "[36mGET /static/img/logo/img.png HTTP/1.1[0m" 304 -
+2026-07-24 12:21:12,764 [INFO] 127.0.0.1 - - [24/Jul/2026 12:21:12] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-24 12:21:29,935 [INFO] 127.0.0.1 - - [24/Jul/2026 12:21:29] "GET /invoices/1 HTTP/1.1" 200 -
+2026-07-24 12:21:29,950 [INFO] 127.0.0.1 - - [24/Jul/2026 12:21:29] "[36mGET /static/css/app.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 12:21:29,953 [INFO] 127.0.0.1 - - [24/Jul/2026 12:21:29] "[36mGET /static/css/admin.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 12:21:29,961 [INFO] 127.0.0.1 - - [24/Jul/2026 12:21:29] "[36mGET /static/css/sales.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 12:21:29,961 [INFO] 127.0.0.1 - - [24/Jul/2026 12:21:29] "[36mGET /static/css/billing.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 12:21:29,967 [INFO] 127.0.0.1 - - [24/Jul/2026 12:21:29] "[36mGET /static/css/responsive.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 12:21:29,967 [INFO] 127.0.0.1 - - [24/Jul/2026 12:21:29] "[36mGET /static/css/themes.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 12:21:29,967 [INFO] 127.0.0.1 - - [24/Jul/2026 12:21:29] "[36mGET /static/img/logo/img.png HTTP/1.1[0m" 304 -
+2026-07-24 12:21:29,967 [INFO] 127.0.0.1 - - [24/Jul/2026 12:21:29] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-24 12:21:53,564 [INFO] 127.0.0.1 - - [24/Jul/2026 12:21:53] "GET /dashboard HTTP/1.1" 200 -
+2026-07-24 12:21:53,582 [INFO] 127.0.0.1 - - [24/Jul/2026 12:21:53] "[36mGET /static/css/app.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 12:21:53,587 [INFO] 127.0.0.1 - - [24/Jul/2026 12:21:53] "[36mGET /static/css/admin.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 12:21:53,591 [INFO] 127.0.0.1 - - [24/Jul/2026 12:21:53] "[36mGET /static/css/billing.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 12:21:53,591 [INFO] 127.0.0.1 - - [24/Jul/2026 12:21:53] "[36mGET /static/css/sales.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 12:21:53,597 [INFO] 127.0.0.1 - - [24/Jul/2026 12:21:53] "[36mGET /static/css/responsive.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 12:21:53,598 [INFO] 127.0.0.1 - - [24/Jul/2026 12:21:53] "[36mGET /static/css/themes.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 12:21:53,600 [INFO] 127.0.0.1 - - [24/Jul/2026 12:21:53] "[36mGET /static/img/logo/img.png HTTP/1.1[0m" 304 -
+2026-07-24 12:21:53,602 [INFO] 127.0.0.1 - - [24/Jul/2026 12:21:53] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-24 12:21:55,027 [INFO] 127.0.0.1 - - [24/Jul/2026 12:21:55] "GET /dashboard HTTP/1.1" 200 -
+2026-07-24 12:21:55,043 [INFO] 127.0.0.1 - - [24/Jul/2026 12:21:55] "[36mGET /static/css/app.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 12:21:55,047 [INFO] 127.0.0.1 - - [24/Jul/2026 12:21:55] "[36mGET /static/css/admin.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 12:21:55,053 [INFO] 127.0.0.1 - - [24/Jul/2026 12:21:55] "[36mGET /static/css/billing.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 12:21:55,055 [INFO] 127.0.0.1 - - [24/Jul/2026 12:21:55] "[36mGET /static/css/sales.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 12:21:55,057 [INFO] 127.0.0.1 - - [24/Jul/2026 12:21:55] "[36mGET /static/css/responsive.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 12:21:55,059 [INFO] 127.0.0.1 - - [24/Jul/2026 12:21:55] "[36mGET /static/css/themes.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 12:21:55,062 [INFO] 127.0.0.1 - - [24/Jul/2026 12:21:55] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-24 12:21:55,062 [INFO] 127.0.0.1 - - [24/Jul/2026 12:21:55] "[36mGET /static/img/logo/img.png HTTP/1.1[0m" 304 -
+2026-07-24 12:38:22,557 [INFO] Database seeded successfully.
+2026-07-24 22:48:07,068 [INFO] Database seeded successfully.
+2026-07-24 22:48:07,175 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-07-24 22:48:07,175 [INFO] [33mPress CTRL+C to quit[0m
+2026-07-24 22:48:07,178 [INFO]  * Restarting with stat
+2026-07-24 22:48:09,522 [INFO] Database seeded successfully.
+2026-07-24 22:48:09,552 [WARNING]  * Debugger is active!
+2026-07-24 22:48:09,557 [INFO]  * Debugger PIN: 195-460-727
+2026-07-24 22:48:11,523 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:11] "[32mGET / HTTP/1.1[0m" 302 -
+2026-07-24 22:48:11,707 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:11] "GET /dashboard HTTP/1.1" 200 -
+2026-07-24 22:48:11,961 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:11] "GET /static/css/app.css?v=8.0 HTTP/1.1" 200 -
+2026-07-24 22:48:11,971 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:11] "[36mGET /static/img/logo/img.png HTTP/1.1[0m" 304 -
+2026-07-24 22:48:11,985 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:11] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-24 22:48:12,003 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:12] "[36mGET /static/css/admin.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:12,021 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:12] "GET /static/css/responsive.css?v=8.0 HTTP/1.1" 200 -
+2026-07-24 22:48:12,024 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:12] "[36mGET /static/css/billing.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:12,026 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:12] "[36mGET /static/css/sales.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:12,028 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:12] "[36mGET /static/css/themes.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:13,828 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:13] "GET /invoices/new HTTP/1.1" 200 -
+2026-07-24 22:48:13,863 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:13] "[36mGET /static/css/app.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:13,870 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:13] "[36mGET /static/css/admin.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:13,882 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:13] "[36mGET /static/css/billing.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:13,889 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:13] "[36mGET /static/css/sales.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:13,892 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:13] "[36mGET /static/css/responsive.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:13,893 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:13] "[36mGET /static/css/themes.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:13,895 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:13] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-24 22:48:13,895 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:13] "[36mGET /static/img/logo/img.png HTTP/1.1[0m" 304 -
+2026-07-24 22:48:16,296 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:16] "GET /dashboard HTTP/1.1" 200 -
+2026-07-24 22:48:16,327 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:16] "[36mGET /static/css/app.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:16,328 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:16] "[36mGET /static/css/admin.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:16,334 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:16] "[36mGET /static/css/billing.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:16,338 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:16] "[36mGET /static/css/sales.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:16,349 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:16] "[36mGET /static/css/responsive.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:16,350 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:16] "[36mGET /static/css/themes.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:16,354 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:16] "[36mGET /static/img/logo/img.png HTTP/1.1[0m" 304 -
+2026-07-24 22:48:16,355 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:16] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-24 22:48:17,826 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:17] "GET /invoices/new HTTP/1.1" 200 -
+2026-07-24 22:48:17,850 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:17] "[36mGET /static/css/app.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:17,857 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:17] "[36mGET /static/css/admin.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:17,860 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:17] "[36mGET /static/css/billing.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:17,864 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:17] "[36mGET /static/css/sales.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:17,869 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:17] "[36mGET /static/css/responsive.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:17,874 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:17] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-24 22:48:17,876 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:17] "[36mGET /static/css/themes.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:17,876 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:17] "[36mGET /static/img/logo/img.png HTTP/1.1[0m" 304 -
+2026-07-24 22:48:19,635 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:19] "GET /invoices HTTP/1.1" 200 -
+2026-07-24 22:48:19,663 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:19] "[36mGET /static/css/app.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:19,671 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:19] "[36mGET /static/css/admin.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:19,681 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:19] "[36mGET /static/css/billing.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:19,683 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:19] "[36mGET /static/css/sales.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:19,688 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:19] "[36mGET /static/css/responsive.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:19,694 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:19] "[36mGET /static/css/themes.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:19,695 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:19] "[36mGET /static/img/logo/img.png HTTP/1.1[0m" 304 -
+2026-07-24 22:48:19,696 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:19] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-24 22:48:23,485 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:23] "GET /quotations HTTP/1.1" 200 -
+2026-07-24 22:48:23,509 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:23] "[36mGET /static/css/app.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:23,521 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:23] "[36mGET /static/css/admin.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:23,524 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:23] "[36mGET /static/css/billing.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:23,529 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:23] "[36mGET /static/css/responsive.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:23,529 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:23] "[36mGET /static/css/sales.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:23,532 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:23] "[36mGET /static/css/themes.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:23,536 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:23] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-24 22:48:23,537 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:23] "[36mGET /static/img/logo/img.png HTTP/1.1[0m" 304 -
+2026-07-24 22:48:24,636 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:24] "GET /customers HTTP/1.1" 200 -
+2026-07-24 22:48:24,662 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:24] "[36mGET /static/css/app.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:24,673 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:24] "[36mGET /static/css/admin.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:24,683 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:24] "[36mGET /static/css/billing.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:24,691 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:24] "[36mGET /static/css/sales.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:24,692 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:24] "[36mGET /static/css/responsive.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:24,700 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:24] "[36mGET /static/img/logo/img.png HTTP/1.1[0m" 304 -
+2026-07-24 22:48:24,700 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:24] "[36mGET /static/css/themes.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:24,701 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:24] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-24 22:48:25,791 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:25] "GET /products HTTP/1.1" 200 -
+2026-07-24 22:48:25,826 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:25] "[36mGET /static/css/app.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:25,838 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:25] "[36mGET /static/css/billing.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:25,841 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:25] "[36mGET /static/css/admin.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:25,847 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:25] "[36mGET /static/css/responsive.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:25,849 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:25] "[36mGET /static/css/sales.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:25,851 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:25] "[36mGET /static/css/themes.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:25,854 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:25] "[36mGET /static/img/logo/img.png HTTP/1.1[0m" 304 -
+2026-07-24 22:48:25,856 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:25] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-24 22:48:27,084 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:27] "GET /inventory HTTP/1.1" 200 -
+2026-07-24 22:48:27,126 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:27] "[36mGET /static/css/app.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:27,133 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:27] "[36mGET /static/css/admin.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:27,139 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:27] "[36mGET /static/css/billing.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:27,150 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:27] "[36mGET /static/css/sales.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:27,151 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:27] "[36mGET /static/css/responsive.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:27,153 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:27] "[36mGET /static/css/themes.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:27,158 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:27] "[36mGET /static/img/logo/img.png HTTP/1.1[0m" 304 -
+2026-07-24 22:48:27,165 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:27] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-24 22:48:27,805 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:27] "GET /suppliers HTTP/1.1" 200 -
+2026-07-24 22:48:27,841 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:27] "[36mGET /static/css/admin.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:27,841 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:27] "[36mGET /static/css/app.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:27,859 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:27] "[36mGET /static/css/billing.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:27,863 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:27] "[36mGET /static/css/sales.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:27,870 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:27] "[36mGET /static/css/responsive.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:27,878 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:27] "[36mGET /static/css/themes.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:27,879 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:27] "[36mGET /static/img/logo/img.png HTTP/1.1[0m" 304 -
+2026-07-24 22:48:27,880 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:27] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-24 22:48:28,874 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:28] "GET /purchases HTTP/1.1" 200 -
+2026-07-24 22:48:28,898 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:28] "[36mGET /static/css/app.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:28,906 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:28] "[36mGET /static/css/admin.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:28,910 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:28] "[36mGET /static/css/billing.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:28,922 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:28] "[36mGET /static/css/sales.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:28,925 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:28] "[36mGET /static/css/responsive.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:28,926 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:28] "[36mGET /static/css/themes.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:28,929 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:28] "[36mGET /static/img/logo/img.png HTTP/1.1[0m" 304 -
+2026-07-24 22:48:28,932 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:28] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-24 22:48:29,576 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:29] "GET /customers HTTP/1.1" 200 -
+2026-07-24 22:48:29,596 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:29] "[36mGET /static/css/app.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:29,598 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:29] "[36mGET /static/css/admin.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:29,610 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:29] "[36mGET /static/css/billing.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:29,611 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:29] "[36mGET /static/css/sales.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:29,616 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:29] "[36mGET /static/css/responsive.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:29,619 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:29] "[36mGET /static/img/logo/img.png HTTP/1.1[0m" 304 -
+2026-07-24 22:48:29,621 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:29] "[36mGET /static/css/themes.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:29,622 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:29] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-24 22:48:30,669 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:30] "GET /inventory HTTP/1.1" 200 -
+2026-07-24 22:48:30,696 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:30] "[36mGET /static/css/app.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:30,702 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:30] "[36mGET /static/css/billing.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:30,713 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:30] "[36mGET /static/css/admin.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:30,716 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:30] "[36mGET /static/css/sales.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:30,720 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:30] "[36mGET /static/css/responsive.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:30,729 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:30] "[36mGET /static/css/themes.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:30,731 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:30] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-24 22:48:30,733 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:30] "[36mGET /static/img/logo/img.png HTTP/1.1[0m" 304 -
+2026-07-24 22:48:31,616 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:31] "GET /suppliers HTTP/1.1" 200 -
+2026-07-24 22:48:31,645 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:31] "[36mGET /static/css/app.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:31,653 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:31] "[36mGET /static/css/admin.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:31,654 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:31] "[36mGET /static/css/billing.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:31,669 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:31] "[36mGET /static/css/responsive.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:31,674 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:31] "[36mGET /static/css/sales.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:31,678 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:31] "[36mGET /static/css/themes.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:31,681 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:31] "[36mGET /static/img/logo/img.png HTTP/1.1[0m" 304 -
+2026-07-24 22:48:31,682 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:31] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-24 22:48:42,217 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:42] "GET /inventory HTTP/1.1" 200 -
+2026-07-24 22:48:42,238 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:42] "[36mGET /static/css/app.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:42,246 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:42] "[36mGET /static/css/admin.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:42,253 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:42] "[36mGET /static/css/billing.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:42,256 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:42] "[36mGET /static/css/responsive.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:42,258 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:42] "[36mGET /static/css/sales.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:42,262 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:42] "[36mGET /static/css/themes.css?v=8.0 HTTP/1.1[0m" 304 -
+2026-07-24 22:48:42,264 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:42] "[36mGET /static/img/logo/img.png HTTP/1.1[0m" 304 -
+2026-07-24 22:48:42,265 [INFO] 127.0.0.1 - - [24/Jul/2026 22:48:42] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2026-07-24 22:53:21,739 [INFO]  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\config.py', reloading
+2026-07-24 22:53:22,012 [INFO]  * Restarting with stat
+2026-07-24 22:53:25,404 [INFO] Database seeded successfully.
+2026-07-24 22:53:25,429 [WARNING]  * Debugger is active!
+2026-07-24 22:53:25,433 [INFO]  * Debugger PIN: 195-460-727
+2026-07-24 22:55:42,458 [INFO]  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\services\\__init__.py', reloading
+2026-07-24 22:55:42,672 [INFO]  * Restarting with stat
+2026-07-24 22:55:46,055 [INFO] Database seeded successfully.
+2026-07-24 22:55:46,085 [WARNING]  * Debugger is active!
+2026-07-24 22:55:46,089 [INFO]  * Debugger PIN: 195-460-727
+2026-07-24 23:02:13,026 [INFO]  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-07-24 23:02:13,242 [INFO]  * Restarting with stat

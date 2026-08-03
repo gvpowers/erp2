@@ -1,0 +1,108 @@
+2026-07-29 07:18:29,947 [INFO] werkzeug:  * Restarting with stat
+2026-07-29 07:18:35,202 [WARNING] werkzeug:  * Debugger is active!
+2026-07-29 07:18:35,207 [INFO] werkzeug:  * Debugger PIN: 195-460-727
+2026-07-29 07:19:02,904 [INFO] werkzeug: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.19:5000
+2026-07-29 07:19:02,905 [INFO] werkzeug: [33mPress CTRL+C to quit[0m
+2026-07-29 07:19:02,907 [INFO] werkzeug:  * Restarting with stat
+2026-07-29 07:19:04,697 [WARNING] werkzeug:  * Debugger is active!
+2026-07-29 07:19:04,701 [INFO] werkzeug:  * Debugger PIN: 195-460-727
+2026-07-29 07:19:04,814 [INFO] werkzeug: 127.0.0.1 - - [29/Jul/2026 07:19:04] "GET /login HTTP/1.1" 200 -
+2026-07-29 07:36:35,275 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-07-29 07:36:35,619 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-07-29 07:36:35,839 [INFO] werkzeug:  * Restarting with stat
+2026-07-29 07:36:39,134 [WARNING] werkzeug:  * Debugger is active!
+2026-07-29 07:36:39,138 [INFO] werkzeug:  * Debugger PIN: 195-460-727
+2026-07-29 07:36:52,498 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-07-29 07:36:52,683 [INFO] werkzeug:  * Restarting with stat
+2026-07-29 07:36:55,853 [WARNING] werkzeug:  * Debugger is active!
+2026-07-29 07:36:55,858 [INFO] werkzeug:  * Debugger PIN: 195-460-727
+2026-07-29 07:37:02,621 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-07-29 07:37:02,806 [INFO] werkzeug:  * Restarting with stat
+2026-07-29 07:37:05,976 [WARNING] werkzeug:  * Debugger is active!
+2026-07-29 07:37:05,980 [INFO] werkzeug:  * Debugger PIN: 195-460-727
+2026-07-29 07:37:09,457 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-07-29 07:37:09,655 [INFO] werkzeug:  * Restarting with stat
+2026-07-29 07:37:12,827 [WARNING] werkzeug:  * Debugger is active!
+2026-07-29 07:37:12,832 [INFO] werkzeug:  * Debugger PIN: 195-460-727
+2026-07-29 07:37:14,136 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-07-29 07:37:14,344 [INFO] werkzeug:  * Restarting with stat
+2026-07-29 07:37:17,505 [WARNING] werkzeug:  * Debugger is active!
+2026-07-29 07:37:17,509 [INFO] werkzeug:  * Debugger PIN: 195-460-727
+2026-07-29 07:37:30,858 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-07-29 07:37:31,068 [INFO] werkzeug:  * Restarting with stat
+2026-07-29 07:37:34,244 [WARNING] werkzeug:  * Debugger is active!
+2026-07-29 07:37:34,247 [INFO] werkzeug:  * Debugger PIN: 195-460-727
+2026-07-29 07:37:36,644 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-07-29 07:37:36,827 [INFO] werkzeug:  * Restarting with stat
+2026-07-29 07:37:39,869 [WARNING] werkzeug:  * Debugger is active!
+2026-07-29 07:37:39,873 [INFO] werkzeug:  * Debugger PIN: 195-460-727
+2026-07-29 07:37:43,305 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-07-29 07:37:43,512 [INFO] werkzeug:  * Restarting with stat
+2026-07-29 07:37:46,733 [WARNING] werkzeug:  * Debugger is active!
+2026-07-29 07:37:46,737 [INFO] werkzeug:  * Debugger PIN: 195-460-727
+2026-07-29 07:38:11,041 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-07-29 07:38:11,266 [INFO] werkzeug:  * Restarting with stat
+2026-07-29 07:38:14,412 [WARNING] werkzeug:  * Debugger is active!
+2026-07-29 07:38:14,416 [INFO] werkzeug:  * Debugger PIN: 195-460-727
+2026-07-29 07:38:35,501 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-07-29 07:38:35,730 [INFO] werkzeug:  * Restarting with stat
+2026-07-29 07:38:38,804 [WARNING] werkzeug:  * Debugger is active!
+2026-07-29 07:38:38,810 [INFO] werkzeug:  * Debugger PIN: 195-460-727
+2026-07-29 07:38:52,155 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-07-29 07:38:52,395 [INFO] werkzeug:  * Restarting with stat
+2026-07-29 07:38:55,540 [WARNING] werkzeug:  * Debugger is active!
+2026-07-29 07:38:55,544 [INFO] werkzeug:  * Debugger PIN: 195-460-727
+2026-07-29 07:39:10,036 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-07-29 07:39:10,247 [INFO] werkzeug:  * Restarting with stat
+2026-07-29 07:39:13,373 [WARNING] werkzeug:  * Debugger is active!
+2026-07-29 07:39:13,379 [INFO] werkzeug:  * Debugger PIN: 195-460-727
+2026-07-29 07:39:20,199 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-07-29 07:39:20,459 [INFO] werkzeug:  * Restarting with stat
+2026-07-29 07:39:23,605 [WARNING] werkzeug:  * Debugger is active!
+2026-07-29 07:39:23,609 [INFO] werkzeug:  * Debugger PIN: 195-460-727
+2026-07-29 07:39:35,907 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-07-29 07:39:36,102 [INFO] werkzeug:  * Restarting with stat
+2026-07-29 07:39:39,307 [WARNING] werkzeug:  * Debugger is active!
+2026-07-29 07:39:39,311 [INFO] werkzeug:  * Debugger PIN: 195-460-727
+2026-07-29 07:40:08,185 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-07-29 07:40:08,506 [INFO] werkzeug:  * Restarting with stat
+2026-07-29 07:40:11,692 [WARNING] werkzeug:  * Debugger is active!
+2026-07-29 07:40:11,696 [INFO] werkzeug:  * Debugger PIN: 195-460-727
+2026-07-29 07:40:44,662 [INFO] werkzeug: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.19:5000
+2026-07-29 07:40:44,663 [INFO] werkzeug: [33mPress CTRL+C to quit[0m
+2026-07-29 07:40:44,665 [INFO] werkzeug:  * Restarting with stat
+2026-07-29 07:40:46,891 [WARNING] werkzeug:  * Debugger is active!
+2026-07-29 07:40:46,894 [INFO] werkzeug:  * Debugger PIN: 195-460-727
+2026-07-29 07:40:47,017 [INFO] werkzeug: 127.0.0.1 - - [29/Jul/2026 07:40:47] "GET /login HTTP/1.1" 200 -
+2026-07-29 17:39:12,281 [INFO] werkzeug: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.19:5000
+2026-07-29 17:39:12,281 [INFO] werkzeug: [33mPress CTRL+C to quit[0m
+2026-07-29 17:39:12,285 [INFO] werkzeug:  * Restarting with stat
+2026-07-29 17:39:14,484 [WARNING] werkzeug:  * Debugger is active!
+2026-07-29 17:39:14,488 [INFO] werkzeug:  * Debugger PIN: 195-460-727
+2026-07-29 17:39:14,724 [INFO] werkzeug: 127.0.0.1 - - [29/Jul/2026 17:39:14] "GET /login HTTP/1.1" 200 -
+2026-07-29 17:39:14,791 [INFO] flask_wtf.csrf: The CSRF token is missing.
+2026-07-29 17:39:14,792 [INFO] werkzeug: 127.0.0.1 - - [29/Jul/2026 17:39:14] "[31m[1mPOST /login HTTP/1.1[0m" 400 -
+2026-07-29 17:58:41,571 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-07-29 18:38:05,550 [INFO] werkzeug: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.19:5000
+2026-07-29 18:38:05,550 [INFO] werkzeug: [33mPress CTRL+C to quit[0m
+2026-07-29 18:38:05,552 [INFO] werkzeug:  * Restarting with stat
+2026-07-29 18:38:06,713 [WARNING] werkzeug:  * Debugger is active!
+2026-07-29 18:38:06,717 [INFO] werkzeug:  * Debugger PIN: 195-460-727
+2026-07-29 22:03:51,915 [INFO] werkzeug: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-07-29 22:03:51,915 [INFO] werkzeug: [33mPress CTRL+C to quit[0m
+2026-07-29 22:10:08,134 [INFO] werkzeug: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-07-29 22:10:08,134 [INFO] werkzeug: [33mPress CTRL+C to quit[0m
