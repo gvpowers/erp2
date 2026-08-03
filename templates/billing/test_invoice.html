@@ -1,0 +1,277 @@
+{% extends "layouts/admin_layout.html" %}
+{% block page_title %}Invoice PDF Test{% endblock %}
+{% block back_link %}<a href="/" class="ih-back-link"><i data-lucide="arrow-left"></i> Back to ERP</a>{% endblock %}
+{% block content %}
+
+<style>
+    .test-page-wrapper { max-width: 1200px; margin: 0 auto; }
+    .test-badge { background: var(--color-warning); color: #fff; font-size: 0.65rem; font-weight: 700; padding: 3px 10px; border-radius: var(--radius-full); text-transform: uppercase; letter-spacing: 0.05em; margin-left: 10px; vertical-align: middle; }
+
+    .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+    .info-item { padding: 14px 16px; background: var(--bg-gray); border-radius: var(--radius-lg); border: 1px solid var(--border-color); }
+    .info-item .label { font-size: 0.68rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.03em; font-weight: 600; }
+    .info-item .value { font-size: 0.95rem; font-weight: 600; color: var(--text-primary); margin-top: 4px; }
+
+    .action-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .copy-card { border: 1px solid var(--border-color); border-radius: var(--radius-xl); padding: 20px; text-align: center; transition: all 0.2s; cursor: pointer; position: relative; overflow: hidden; background: var(--bg-white); }
+    .copy-card:hover { border-color: var(--color-primary); box-shadow: 0 4px 15px rgba(37,99,235,0.1); transform: translateY(-2px); }
+    .copy-card .copy-icon { width: 52px; height: 52px; border-radius: var(--radius-xl); display: flex; align-items: center; justify-content: center; margin: 0 auto 14px; font-size: 1.4rem; }
+    .copy-card .copy-name { font-size: 0.9rem; font-weight: 600; color: var(--text-primary); margin-bottom: 6px; }
+    .copy-card .copy-desc { font-size: 0.72rem; color: var(--text-muted); margin-bottom: 16px; line-height: 1.5; }
+    .copy-card .btn-group-vertical { width: 100%; gap: 8px; display: flex; flex-direction: column; }
+    .copy-card .btn { font-size: 0.78rem; font-weight: 500; padding: 8px 14px; border-radius: var(--radius-md); width: 100%; justify-content: center; }
+    .copy-owner .copy-icon { background: var(--color-danger-light); color: var(--color-danger); }
+    .copy-customer .copy-icon { background: var(--color-primary-light); color: var(--color-primary); }
+    .copy-gst .copy-icon { background: var(--color-success-light); color: var(--color-success); }
+
+    .pdf-preview { background: var(--bg-white); border: 1px solid var(--border-color); border-radius: var(--radius-xl); overflow: hidden; box-shadow: var(--shadow-card); }
+    .pdf-tabs { display: flex; background: var(--bg-gray); border-bottom: 1px solid var(--border-color); }
+    .pdf-tab { padding: 11px 22px; font-size: 0.8rem; font-weight: 600; color: var(--text-muted); cursor: pointer; border-bottom: 2px solid transparent; transition: all 0.15s; }
+    .pdf-tab:hover { color: var(--text-primary); background: var(--bg-hover); }
+    .pdf-tab.active { color: var(--color-primary); border-bottom-color: var(--color-primary); background: var(--bg-white); }
+    .pdf-frame { width: 100%; height: 700px; border: none; }
+
+    .sample-table { width: 100%; border-collapse: collapse; margin-top: 12px; }
+    .sample-table th { background: var(--color-primary-hover); color: #fff; padding: 9px 12px; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; text-align: left; }
+    .sample-table th:last-child, .sample-table td:last-child { text-align: right; }
+    .sample-table th:first-child { border-radius: var(--radius-md) 0 0 0; }
+    .sample-table th:last-child { border-radius: 0 var(--radius-md) 0 0; }
+    .sample-table td { padding: 8px 12px; font-size: 0.8rem; border-bottom: 1px solid var(--border-light); }
+    .sample-table tr:last-child td { border-bottom: none; }
+    .sample-table tr:nth-child(even) { background: var(--bg-gray); }
+
+    .summary-box { max-width: 340px; margin-left: auto; margin-top: 16px; background: var(--bg-gray); border-radius: var(--radius-lg); padding: 16px; border: 1px solid var(--border-light); }
+    .summary-row { display: flex; justify-content: space-between; padding: 4px 0; font-size: 0.82rem; }
+    .summary-row .sl { color: var(--text-muted); }
+    .summary-row .sv { font-weight: 500; font-family: var(--font-mono); }
+    .summary-row.grand { border-top: 2px solid var(--color-primary); margin-top: 8px; padding-top: 10px; }
+    .summary-row.grand .sl { font-weight: 700; font-size: 0.9rem; }
+    .summary-row.grand .sv { font-weight: 800; color: var(--color-primary); font-size: 1.1rem; font-family: var(--font-mono); }
+
+    .amount-words { background: var(--bg-gray); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 12px 16px; font-size: 0.78rem; color: var(--text-muted); font-style: italic; margin-top: 14px; }
+    .amount-words strong { color: var(--text-primary); font-style: normal; }
+
+    @media(max-width:768px) {
+        .action-grid { grid-template-columns: 1fr; }
+        .info-grid { grid-template-columns: 1fr 1fr; }
+    }
+</style>
+
+<div class="test-page-wrapper">
+    <!-- Page Header -->
+    <div class="page-header mb-24">
+        <div class="page-header-left">
+            <h1 style="display:flex;align-items:center;gap:12px;">
+                <span style="width:40px;height:40px;background:var(--color-warning-light);border-radius:var(--radius-lg);display:flex;align-items:center;justify-content:center;"><i data-lucide="flask-conical" style="width:20px;height:20px;color:var(--color-warning);"></i></span>
+                Invoice PDF Test
+                <span class="test-badge">TEST</span>
+            </h1>
+            <p style="font-size:0.85rem;color:var(--text-muted);">Preview and test invoice PDF generation for all copy types</p>
+        </div>
+    </div>
+
+    <!-- Invoice Summary -->
+    <div class="card mb-24">
+        <div class="card-header">
+            <i data-lucide="file-text" style="width:18px;height:18px;color:var(--color-primary);"></i>
+            <span>Test Invoice Summary</span>
+        </div>
+        <div class="card-body">
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="label">Invoice Number</div>
+                    <div class="value" style="font-family:var(--font-mono);">{{ invoice.invoice_number }}</div>
+                </div>
+                <div class="info-item">
+                    <div class="label">Date</div>
+                    <div class="value">{{ invoice.invoice_date }}</div>
+                </div>
+                <div class="info-item">
+                    <div class="label">Customer</div>
+                    <div class="value">{{ invoice.customer_name }}</div>
+                </div>
+                <div class="info-item">
+                    <div class="label">Grand Total</div>
+                    <div class="value" style="color:var(--color-primary-hover);font-family:var(--font-mono);">Rs. {{ "%.2f"|format(invoice.grand_total) }}</div>
+                </div>
+                <div class="info-item">
+                    <div class="label">Amount Paid</div>
+                    <div class="value" style="color:var(--color-success);font-family:var(--font-mono);">Rs. {{ "%.2f"|format(invoice.amount_paid) }}</div>
+                </div>
+                <div class="info-item">
+                    <div class="label">Balance</div>
+                    <div class="value" style="color:{% if invoice.grand_total - invoice.amount_paid > 0 %}var(--color-danger){% else %}var(--color-success){% endif %};font-family:var(--font-mono);">Rs. {{ "%.2f"|format(invoice.grand_total - invoice.amount_paid) }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Download / Print Actions -->
+    <div class="card mb-24">
+        <div class="card-header">
+            <i data-lucide="download" style="width:18px;height:18px;color:var(--color-primary);"></i>
+            <span>Download & Print Invoice PDFs</span>
+        </div>
+        <div class="card-body">
+            <div class="action-grid">
+                <!-- Owner Copy -->
+                <div class="copy-card copy-owner">
+                    <div class="copy-icon">&#128196;</div>
+                    <div class="copy-name">Owner Copy</div>
+                    <div class="copy-desc">Internal business copy with purchase cost, profit margin, and audit info</div>
+                    <div class="btn-group-vertical">
+                        <button class="btn btn-danger" onclick="downloadPdf('owner', 'Owner_Copy')">
+                            &#11015; Download Owner Copy
+                        </button>
+                        <button class="btn btn-info" onclick="printPdf('owner')">
+                            &#128424; Print Owner Copy
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Customer Copy -->
+                <div class="copy-card copy-customer">
+                    <div class="copy-icon">&#128196;</div>
+                    <div class="copy-name">Customer Copy</div>
+                    <div class="copy-desc">Clean customer invoice with payment details, terms, and QR code</div>
+                    <div class="btn-group-vertical">
+                        <button class="btn btn-primary" onclick="downloadPdf('customer', 'Customer_Copy')">
+                            &#11015; Download Customer Copy
+                        </button>
+                        <button class="btn btn-info" onclick="printPdf('customer')">
+                            &#128424; Print Customer Copy
+                        </button>
+                    </div>
+                </div>
+
+                <!-- GST Tax Copy -->
+                <div class="copy-card copy-gst">
+                    <div class="copy-icon">&#128196;</div>
+                    <div class="copy-name">GST Tax Copy</div>
+                    <div class="copy-desc">GST filing copy with HSN summary, tax breakup, and signature area</div>
+                    <div class="btn-group-vertical">
+                        <button class="btn btn-success" onclick="downloadPdf('gst', 'GST_Tax_Copy')">
+                            &#11015; Download GST Tax Copy
+                        </button>
+                        <button class="btn btn-info" onclick="printPdf('gst')">
+                            &#128424; Print GST Tax Copy
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Download All -->
+            <div style="text-align:center;margin-top:20px;">
+                <button class="btn btn-info" onclick="downloadAll()" style="padding:10px 28px;font-size:0.85rem;font-weight:600;border-radius:var(--radius-lg);">
+                    &#128230; Download All 3 Copies (ZIP)
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Invoice Preview Table -->
+    <div class="card mb-24">
+        <div class="card-header">
+            <i data-lucide="table" style="width:18px;height:18px;color:var(--color-primary);"></i>
+            <span>Invoice Items Preview</span>
+        </div>
+        <div class="card-body" style="overflow-x:auto;">
+            <table class="sample-table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Product Name</th>
+                        <th>HSN</th>
+                        <th>Qty</th>
+                        <th style="text-align:right;">Rate</th>
+                        <th style="text-align:right;">Disc%</th>
+                        <th style="text-align:right;">GST%</th>
+                        <th style="text-align:right;">Taxable</th>
+                        <th style="text-align:right;">CGST</th>
+                        <th style="text-align:right;">SGST</th>
+                        <th style="text-align:right;">Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in invoice.items %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td style="font-weight:500;">{{ item.product_name }}</td>
+                        <td>{{ item.hsn }}</td>
+                        <td>{{ item.qty }} {{ item.unit }}</td>
+                        <td style="text-align:right;font-family:var(--font-mono);">Rs. {{ "%.2f"|format(item.price) }}</td>
+                        <td style="text-align:right;">{{ item.discount }}%</td>
+                        <td style="text-align:right;">{{ item.gst_rate }}%</td>
+                        <td style="text-align:right;font-weight:500;font-family:var(--font-mono);">Rs. {{ "%.2f"|format(item.taxable_value) }}</td>
+                        <td style="text-align:right;color:var(--text-muted);font-family:var(--font-mono);">Rs. {{ "%.2f"|format(item.cgst) }}</td>
+                        <td style="text-align:right;color:var(--text-muted);font-family:var(--font-mono);">Rs. {{ "%.2f"|format(item.sgst) }}</td>
+                        <td style="text-align:right;font-weight:600;color:var(--color-primary-hover);font-family:var(--font-mono);">Rs. {{ "%.2f"|format(item.total) }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <div class="summary-box">
+                <div class="summary-row"><span class="sl">Taxable Amount</span><span class="sv">Rs. {{ "%.2f"|format(invoice.total_taxable) }}</span></div>
+                <div class="summary-row"><span class="sl">CGST</span><span class="sv">Rs. {{ "%.2f"|format(invoice.total_cgst) }}</span></div>
+                <div class="summary-row"><span class="sl">SGST</span><span class="sv">Rs. {{ "%.2f"|format(invoice.total_sgst) }}</span></div>
+                {% if invoice.round_off != 0 %}
+                <div class="summary-row"><span class="sl">Round Off</span><span class="sv">{{ "%.2f"|format(invoice.round_off) }}</span></div>
+                {% endif %}
+                <div class="summary-row grand"><span class="sl">Grand Total</span><span class="sv">Rs. {{ "%.2f"|format(invoice.grand_total) }}</span></div>
+            </div>
+
+            <div class="amount-words">
+                Amount in words: <strong>{{ amount_words }}</strong>
+            </div>
+        </div>
+    </div>
+
+    <!-- PDF Preview -->
+    <div class="pdf-preview mb-24">
+        <div class="pdf-tabs">
+            <div class="pdf-tab active" onclick="switchPreview('owner', this)">Owner Copy</div>
+            <div class="pdf-tab" onclick="switchPreview('customer', this)">Customer Copy</div>
+            <div class="pdf-tab" onclick="switchPreview('gst', this)">GST Tax Copy</div>
+        </div>
+        <iframe id="pdfFrame" class="pdf-frame" src="data:application/pdf;base64,{{ owner_pdf }}"></iframe>
+    </div>
+</div>
+
+<script>
+const pdfs = {
+    owner: 'data:application/pdf;base64,{{ owner_pdf }}',
+    customer: 'data:application/pdf;base64,{{ customer_pdf }}',
+    gst: 'data:application/pdf;base64,{{ gst_pdf }}'
+};
+
+function switchPreview(type, tab) {
+    document.querySelectorAll('.pdf-tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('pdfFrame').src = pdfs[type];
+}
+
+function downloadPdf(type, filename) {
+    const a = document.createElement('a');
+    a.href = pdfs[type];
+    a.download = '{{ invoice.invoice_number }}_' + filename + '.pdf';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+}
+
+function printPdf(type) {
+    const win = window.open('', '_blank');
+    win.document.write('<html><head><title>Print Invoice</title></head><body style="margin:0;">');
+    win.document.write('<iframe src="' + pdfs[type] + '" style="width:100%;height:100%;border:none;" onload="setTimeout(function(){window.print();},500);"></iframe>');
+    win.document.write('</body></html>');
+}
+
+function downloadAll() {
+    downloadPdf('owner', 'Owner_Copy');
+    setTimeout(() => downloadPdf('customer', 'Customer_Copy'), 500);
+    setTimeout(() => downloadPdf('gst', 'GST_Tax_Copy'), 1000);
+}
+</script>
+
+{% endblock %}

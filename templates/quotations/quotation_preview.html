@@ -1,0 +1,199 @@
+﻿{% extends "layouts/admin_layout.html" %}
+{% block page_title %}Quotation {{ quotation.quotation_number }}{% endblock %}
+{% block back_link %}<a href="{{ url_for('quotations_list') }}" class="ih-back-link"><i data-lucide="arrow-left"></i> Back to Quotations</a>{% endblock %}
+{% block content %}
+
+<style>
+  .preview-layout{max-width:1000px;margin:0 auto}
+  .preview-action-bar{display:flex;justify-content:space-between;align-items:center;padding:16px 24px;background:var(--bg-white);border:1px solid var(--border-color);border-radius:var(--radius-lg);margin-bottom:20px;flex-wrap:wrap;gap:12px}
+  .preview-action-bar .back-btn{display:flex;align-items:center;gap:6px;color:var(--text-muted);font-size:0.85rem;font-weight:500;cursor:pointer;background:none;border:none;padding:8px 12px;border-radius:var(--radius-md);transition:color 0.15s,background 0.15s;text-decoration:none}
+  .preview-action-bar .back-btn:hover{color:var(--text-primary);background:var(--bg-gray)}
+  .preview-action-bar .back-btn i{width:18px;height:18px}
+  .preview-action-bar .action-btns{display:flex;gap:8px}
+  .preview-document{background:var(--bg-white);border:1px solid var(--border-color);border-radius:var(--radius-lg);overflow:hidden}
+  .preview-header{display:flex;justify-content:space-between;align-items:flex-start;padding:36px;border-bottom:1px solid var(--border-color);flex-wrap:wrap;gap:24px}
+  .company-block{display:flex;gap:16px;align-items:flex-start}
+  .company-logo{width:56px;height:56px;border-radius:var(--radius-lg);background:var(--color-primary);display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.1rem;font-weight:800;letter-spacing:-0.02em;flex-shrink:0}
+  .company-info .company-name{font-size:1.25rem;font-weight:700;color:var(--text-primary);margin-bottom:4px}
+  .company-info .company-detail{font-size:0.78rem;color:var(--text-muted);line-height:1.7}
+  .q-title-block{text-align:right}
+  .q-title{font-size:2rem;font-weight:800;color:var(--color-primary);letter-spacing:-0.03em;margin:0}
+  .q-number{font-size:0.85rem;color:var(--text-muted);margin-top:4px}
+  .preview-body{padding:36px}
+  .detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:28px}
+  .detail-section{background:var(--bg-gray);border-radius:var(--radius-md);padding:20px;border:1px solid var(--border-light)}
+  .detail-section-title{font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:var(--text-muted);margin-bottom:14px;display:flex;align-items:center;gap:6px}
+  .detail-section-title i{width:14px;height:14px;color:var(--color-primary)}
+  .cust-name{font-size:1rem;font-weight:600;color:var(--text-primary);margin-bottom:6px}
+  .detail-row{display:flex;justify-content:space-between;padding:4px 0;font-size:0.82rem}
+  .detail-row .dlabel{color:var(--text-muted)}
+  .detail-row .dvalue{font-weight:500;color:var(--text-primary)}
+  .items-table{width:100%;border-collapse:collapse;margin-bottom:28px}
+  .items-table thead th{padding:12px 14px;font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:var(--text-muted);background:var(--bg-gray);border-bottom:2px solid var(--border-color);text-align:left;white-space:nowrap}
+  .items-table thead th.text-right{text-align:right}
+  .items-table thead th.text-center{text-align:center}
+  .items-table tbody td{padding:12px 14px;font-size:0.82rem;color:var(--text-primary);border-bottom:1px solid var(--border-light);vertical-align:middle}
+  .items-table tbody td.text-right{text-align:right}
+  .items-table tbody td.text-center{text-align:center}
+  .items-table tbody tr:last-child td{border-bottom:none}
+  .totals-section{display:flex;justify-content:flex-end;margin-bottom:28px}
+  .totals-box{width:340px;background:var(--bg-gray);border-radius:var(--radius-md);padding:20px;border:1px solid var(--border-light)}
+  .totals-row{display:flex;justify-content:space-between;padding:5px 0;font-size:0.82rem}
+  .totals-row .tlabel{color:var(--text-muted)}
+  .totals-row .tvalue{font-weight:500;color:var(--text-primary)}
+  .totals-row.grand{border-top:2px solid var(--color-primary);margin-top:10px;padding-top:12px}
+  .totals-row.grand .tlabel{font-weight:700;color:var(--text-primary);font-size:0.95rem}
+  .totals-row.grand .tvalue{font-weight:800;color:var(--color-primary);font-size:1.25rem}
+  .tax-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px;padding-top:10px;border-top:1px solid var(--border-color)}
+  .tax-item{text-align:center}
+  .tax-item .tax-label{font-size:0.68rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.03em}
+  .tax-item .tax-val{font-size:0.85rem;font-weight:600;color:var(--text-primary);margin-top:2px}
+  .section-box{background:var(--bg-gray);border-radius:var(--radius-md);padding:18px;border:1px solid var(--border-light);margin-bottom:20px}
+  .section-box-title{font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:var(--text-muted);margin-bottom:10px;display:flex;align-items:center;gap:6px}
+  .section-box-title i{width:14px;height:14px;color:var(--color-primary)}
+  .terms-text{font-size:0.8rem;color:var(--text-secondary);line-height:1.7;white-space:pre-wrap}
+  .amount-words{background:var(--bg-gray);border-radius:var(--radius-md);padding:12px 16px;margin-bottom:24px;font-size:0.8rem;color:var(--text-secondary);border:1px solid var(--border-light);font-style:italic}
+  .amount-words strong{color:var(--text-primary);font-style:normal}
+  @media(max-width:700px){.detail-grid{grid-template-columns:1fr}.preview-header{flex-direction:column}.q-title-block{text-align:left}.totals-box{width:100%}}
+</style>
+
+<div class="preview-layout">
+  <div class="preview-action-bar">
+    <button class="back-btn" onclick="history.back()"><i data-lucide="arrow-left"></i> Back to Quotations</button>
+    <div class="action-btns">
+      <button class="btn btn-outline-secondary btn-sm" onclick="window.print()"><i data-lucide="printer"></i> Print</button>
+      {% if quotation.status in ('draft', 'sent') %}
+      <form method="POST" action="{{ url_for('convert_quotation_to_invoice', qid=quotation.id) }}" style="display:inline" onsubmit="return confirm('Convert this quotation to an invoice?')">
+        <button type="submit" class="btn btn-success btn-sm"><i data-lucide="file-plus"></i> Convert to Invoice</button>
+      </form>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="preview-document">
+    <div class="preview-header">
+      <div class="company-block">
+        <div class="company-logo">{{ company.name[:2] if company.name else 'GV' }}</div>
+        <div class="company-info">
+          <div class="company-name">{{ company.name }}</div>
+<div class="company-detail">
+            GSTIN: {{ company.gstin }}<br>
+            {{ company.address }}<br>
+            {{ company.state }} ({{ company.state_code }})<br>
+            Phone: {{ company.phone }}
+            {% if company.mobile %} &middot; Mob: {{ company.mobile }}{% endif %}
+            &middot; {{ company.email }}
+          </div>
+        </div>
+      </div>
+      <div class="q-title-block">
+        <div class="q-title">QUOTATION</div>
+        <div class="q-number">{{ quotation.quotation_number }}</div>
+        <div class="mt-8">
+          {% set sc = 'draft' %}
+          {% if quotation.status == 'sent' %}{% set sc = 'sent' %}
+          {% elif quotation.status == 'accepted' %}{% set sc = 'accepted' %}
+          {% elif quotation.status == 'rejected' %}{% set sc = 'rejected' %}
+          {% elif quotation.status == 'expired' %}{% set sc = 'expired' %}
+          {% endif %}
+          {% if sc == 'draft' %}<span class="badge badge-warning">{{ quotation.status|upper }}</span>
+          {% elif sc == 'sent' %}<span class="badge badge-info">{{ quotation.status|upper }}</span>
+          {% elif sc == 'accepted' %}<span class="badge badge-success">{{ quotation.status|upper }}</span>
+          {% elif sc == 'rejected' %}<span class="badge badge-danger">{{ quotation.status|upper }}</span>
+          {% else %}<span class="badge badge-secondary">{{ quotation.status|upper }}</span>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <div class="preview-body">
+      <div class="detail-grid">
+        <div class="detail-section">
+          <div class="detail-section-title"><i data-lucide="user"></i> Bill To</div>
+          <div class="cust-name">{{ quotation.customer_name }}</div>
+          {% if quotation.customer_mobile %}<div class="detail-row"><span class="dlabel">Mobile</span><span class="dvalue">{{ quotation.customer_mobile }}</span></div>{% endif %}
+          {% if quotation.customer_state %}<div class="detail-row"><span class="dlabel">State</span><span class="dvalue">{{ quotation.customer_state }} ({{ quotation.customer_gstin[:2] if quotation.customer_gstin else '' }})</span></div>{% endif %}
+          {% if quotation.customer_gstin %}<div class="detail-row"><span class="dlabel">GSTIN</span><span class="dvalue">{{ quotation.customer_gstin }}</span></div>{% endif %}
+        </div>
+        <div class="detail-section">
+          <div class="detail-section-title"><i data-lucide="file-check"></i> Quotation Details</div>
+          <div class="detail-row"><span class="dlabel">Quotation #</span><span class="dvalue">{{ quotation.quotation_number }}</span></div>
+          <div class="detail-row"><span class="dlabel">Date</span><span class="dvalue">{{ quotation.quotation_date }}</span></div>
+          {% if quotation.valid_until %}<div class="detail-row"><span class="dlabel">Valid Until</span><span class="dvalue">{{ quotation.valid_until }}</span></div>{% endif %}
+          <div class="detail-row"><span class="dlabel">Created By</span><span class="dvalue">{{ quotation.user.full_name if quotation.user else '\u2014' }}</span></div>
+        </div>
+      </div>
+
+      <table class="items-table">
+        <thead>
+          <tr>
+            <th class="text-center">#</th>
+            <th>Product</th>
+            <th>HSN</th>
+            <th class="text-right">Qty</th>
+            <th class="text-right">Price</th>
+            <th class="text-right">Disc %</th>
+            <th class="text-right">GST %</th>
+            <th class="text-right">Taxable</th>
+            <th class="text-right">CGST</th>
+            <th class="text-right">SGST</th>
+            <th class="text-right">IGST</th>
+            <th class="text-right">Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in quotation.items %}
+          <tr>
+            <td class="text-center text-muted">{{ loop.index }}</td>
+            <td style="font-weight:500">{{ item.product_name }}</td>
+            <td class="text-muted">{{ item.hsn or '\u2014' }}</td>
+            <td class="text-right">{{ item.qty }} {{ item.unit }}</td>
+            <td class="text-right">&#8377;{{ "%.2f"|format(item.price) }}</td>
+            <td class="text-right">{{ item.discount }}%</td>
+            <td class="text-right">{{ item.gst_rate }}%</td>
+            <td class="text-right" style="font-weight:500">&#8377;{{ "%.2f"|format(item.taxable_value) }}</td>
+            <td class="text-right text-muted">&#8377;{{ "%.2f"|format(item.cgst) }}</td>
+            <td class="text-right text-muted">&#8377;{{ "%.2f"|format(item.sgst) }}</td>
+            <td class="text-right text-muted">&#8377;{{ "%.2f"|format(item.igst) }}</td>
+            <td class="text-right" style="font-weight:600;color:var(--color-primary)">&#8377;{{ "%.2f"|format(item.total) }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      <div class="totals-section">
+        <div class="totals-box">
+          <div class="totals-row"><span class="tlabel">Subtotal</span><span class="tvalue">&#8377;{{ "%.2f"|format(quotation.subtotal) }}</span></div>
+          {% if quotation.total_discount > 0 %}
+          <div class="totals-row"><span class="tlabel">Discount</span><span class="tvalue text-success">-&#8377;{{ "%.2f"|format(quotation.total_discount) }}</span></div>
+          {% endif %}
+          <div class="totals-row"><span class="tlabel">Taxable Amount</span><span class="tvalue">&#8377;{{ "%.2f"|format(quotation.total_taxable) }}</span></div>
+          <div class="tax-grid">
+            <div class="tax-item"><div class="tax-label">CGST</div><div class="tax-val">&#8377;{{ "%.2f"|format(quotation.total_cgst) }}</div></div>
+            <div class="tax-item"><div class="tax-label">SGST</div><div class="tax-val">&#8377;{{ "%.2f"|format(quotation.total_sgst) }}</div></div>
+            <div class="tax-item"><div class="tax-label">IGST</div><div class="tax-val">&#8377;{{ "%.2f"|format(quotation.total_igst) }}</div></div>
+          </div>
+          <div class="totals-row grand"><span class="tlabel">Grand Total</span><span class="tvalue">&#8377;{{ "%.2f"|format(quotation.grand_total) }}</span></div>
+          <div class="amount-words" style="margin-top:10px;padding-top:10px;border-top:1px dashed rgba(0,0,0,0.08);">
+            Amount in words: <strong>{{ amount_words if amount_words else 'Rupees Zero Only' }}</strong>
+          </div>
+        </div>
+      </div>
+
+      {% if quotation.terms %}
+      <div class="section-box">
+        <div class="section-box-title"><i data-lucide="scroll-text"></i> Terms &amp; Conditions</div>
+        <div class="terms-text">{{ quotation.terms }}</div>
+      </div>
+      {% endif %}
+
+      {% if quotation.notes %}
+      <div class="section-box">
+        <div class="section-box-title"><i data-lucide="sticky-note"></i> Notes</div>
+        <div class="terms-text">{{ quotation.notes }}</div>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}
