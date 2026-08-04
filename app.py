@@ -77,13 +77,13 @@ class Config:
     COMPANY_NAME = os.getenv("COMPANY_NAME", "GV Powers")
     COMPANY_TAGLINE = os.getenv("COMPANY_TAGLINE", "Powering A Better Tomorrow")
     COMPANY_SERVICES = os.getenv("COMPANY_SERVICES", "Solar Energy | UPS Systems | Inverters | RO Solutions | Electricals")
-    COMPANY_GSTIN = os.getenv("COMPANY_GSTIN", "29AAAAA0000A1Z5")
-    COMPANY_PAN = os.getenv("COMPANY_PAN", "AAAAA0000A")
-    COMPANY_STATE = os.getenv("COMPANY_STATE", "Karnataka")
-    COMPANY_STATE_CODE = int(os.getenv("COMPANY_STATE_CODE", "29"))
-    COMPANY_ADDRESS = os.getenv("COMPANY_ADDRESS", "Bangalore, Karnataka, India")
-    COMPANY_PHONE = os.getenv("COMPANY_PHONE", "+91-9876543210")
-    COMPANY_MOBILE = os.getenv("COMPANY_MOBILE", "")
+    COMPANY_GSTIN = os.getenv("COMPANY_GSTIN", "33AGEPV1534G2ZJ")
+    COMPANY_PAN = os.getenv("COMPANY_PAN", "AGEPV1534G")
+    COMPANY_STATE = os.getenv("COMPANY_STATE", "Tamil Nadu")
+    COMPANY_STATE_CODE = int(os.getenv("COMPANY_STATE_CODE", "33"))
+    COMPANY_ADDRESS = os.getenv("COMPANY_ADDRESS", "No. 10, Kadharkhan Street, Opp. Railway Junction, Salem - 636005, Tamil Nadu")
+    COMPANY_PHONE = os.getenv("COMPANY_PHONE", "+91 98940 79090")
+    COMPANY_MOBILE = os.getenv("COMPANY_MOBILE", "+91 98940 79095")
     COMPANY_EMAIL = os.getenv("COMPANY_EMAIL", "gvpowerssalem@gmail.com")
     COMPANY_WEBSITE = os.getenv("COMPANY_WEBSITE", "https://gvpowers.in")
     BANK_NAME = os.getenv("BANK_NAME", "State Bank of India")
@@ -535,13 +535,13 @@ def create_app(config_class=None):
         "name": app.config.get('COMPANY_NAME', 'GV Powers'),
         "tagline": app.config.get('COMPANY_TAGLINE', 'Powering A Better Tomorrow'),
         "services": app.config.get('COMPANY_SERVICES', 'Solar Energy | UPS Systems | Inverters | RO Solutions | Electricals'),
-        "gstin": app.config.get('COMPANY_GSTIN', '29AAAAA0000A1Z5'),
-        "pan": app.config.get('COMPANY_PAN', 'AAAAA0000A'),
-        "state": app.config.get('COMPANY_STATE', 'Karnataka'),
-        "state_code": app.config.get('COMPANY_STATE_CODE', 29),
-        "address": app.config.get('COMPANY_ADDRESS', 'Bangalore, Karnataka, India'),
-        "phone": app.config.get('COMPANY_PHONE', '+91-9876543210'),
-        "mobile": app.config.get('COMPANY_MOBILE', ''),
+        "gstin": app.config.get('COMPANY_GSTIN', '33AGEPV1534G2ZJ'),
+        "pan": app.config.get('COMPANY_PAN', 'AGEPV1534G'),
+        "state": app.config.get('COMPANY_STATE', 'Tamil Nadu'),
+        "state_code": app.config.get('COMPANY_STATE_CODE', 33),
+        "address": app.config.get('COMPANY_ADDRESS', 'No. 10, Kadharkhan Street, Opp. Railway Junction, Salem - 636005, Tamil Nadu'),
+        "phone": app.config.get('COMPANY_PHONE', '+91 98940 79090'),
+        "mobile": app.config.get('COMPANY_MOBILE', '+91 98940 79095'),
         "email": app.config.get('COMPANY_EMAIL', 'gvpowerssalem@gmail.com'),
         "website": app.config.get('COMPANY_WEBSITE', 'https://gvpowers.in'),
         "bank_name": app.config.get('BANK_NAME', 'State Bank of India'),
@@ -572,6 +572,7 @@ def create_app(config_class=None):
         _ensure_product_columns()
         _ensure_payment_columns()
         _seed_database()
+        _ensure_default_settings()
         _load_company_settings(app)
     return app
 
@@ -1045,10 +1046,34 @@ class BackupService:
 
 
 def _load_company_settings(app):
+    """Refresh in-memory COMPANY config from the settings table.
+
+    The config dict is rebuilt from the application defaults on every call so
+    stale/removed values (for example an invalid PAN saved earlier) can never
+    leak back into the admin panel or PDFs and block the settings save.
+    """
     try:
         settings = {s.key: s.value for s in Settings.query.all()}
-        if not settings: return
         co = app.config.setdefault('COMPANY', {})
+        co.update({
+            'name': app.config.get('COMPANY_NAME', 'GV Powers'),
+            'tagline': app.config.get('COMPANY_TAGLINE', 'Powering A Better Tomorrow'),
+            'services': app.config.get('COMPANY_SERVICES', 'Solar Energy | UPS Systems | Inverters | RO Solutions | Electricals'),
+            'gstin': app.config.get('COMPANY_GSTIN', '33AGEPV1534G2ZJ'),
+            'pan': app.config.get('COMPANY_PAN', 'AGEPV1534G'),
+            'state': app.config.get('COMPANY_STATE', 'Tamil Nadu'),
+            'state_code': app.config.get('COMPANY_STATE_CODE', 33),
+            'address': app.config.get('COMPANY_ADDRESS', 'No. 10, Kadharkhan Street, Opp. Railway Junction, Salem - 636005, Tamil Nadu'),
+            'phone': app.config.get('COMPANY_PHONE', '+91 98940 79090'),
+            'mobile': app.config.get('COMPANY_MOBILE', '+91 98940 79095'),
+            'email': app.config.get('COMPANY_EMAIL', 'gvpowerssalem@gmail.com'),
+            'website': app.config.get('COMPANY_WEBSITE', 'https://gvpowers.in'),
+            'bank_name': app.config.get('BANK_NAME', 'State Bank of India'),
+            'bank_account': app.config.get('BANK_ACCOUNT', '12345678901234'),
+            'bank_ifsc': app.config.get('BANK_IFSC', 'SBIN0001234'),
+            'upi_id': app.config.get('UPI_ID', 'gvpowers@upi'),
+            'city': '', 'pincode': '', 'country': 'India', 'bank_branch': '',
+        })
         field_map = {
             'company_name': 'name', 'company_gstin': 'gstin', 'company_pan': 'pan',
             'company_state': 'state', 'company_address': 'address',
@@ -1069,6 +1094,52 @@ def _load_company_settings(app):
         app.config['COMPANY'] = co
     except Exception:
         pass
+
+
+def _ensure_default_settings():
+    """Idempotently seed required company settings so the admin panel always
+    has valid defaults: GSTIN, optional PAN and the billing email address.
+    Invalid identity values stored earlier are healed so they can never block
+    the Settings > Save Changes validation.
+    """
+    defaults = {
+        'company_name': app.config.get('COMPANY_NAME', 'GV Powers'),
+        'company_gstin': app.config.get('COMPANY_GSTIN', '33AGEPV1534G2ZJ'),
+        'company_pan': app.config.get('COMPANY_PAN', 'AGEPV1534G'),
+        'company_state': app.config.get('COMPANY_STATE', 'Tamil Nadu'),
+        'company_state_code': str(app.config.get('COMPANY_STATE_CODE', 33)),
+        'company_address': app.config.get('COMPANY_ADDRESS', ''),
+        'company_phone': app.config.get('COMPANY_PHONE', ''),
+        'company_mobile': app.config.get('COMPANY_MOBILE', ''),
+        'company_email': app.config.get('COMPANY_EMAIL', 'gvpowerssalem@gmail.com'),
+        'company_website': app.config.get('COMPANY_WEBSITE', ''),
+        'company_city': 'Salem',
+        'company_pincode': '636005',
+        'company_country': 'India',
+        'bank_name': app.config.get('BANK_NAME', ''),
+        'bank_account': app.config.get('BANK_ACCOUNT', ''),
+        'bank_ifsc': app.config.get('BANK_IFSC', ''),
+        'upi_id': app.config.get('UPI_ID', ''),
+    }
+    changed = False
+    for key, default_val in defaults.items():
+        existing = Settings.query.filter_by(key=key).first()
+        if existing is not None:
+            cur = (existing.value or '').strip()
+            if key == 'company_gstin' and cur and not _GSTIN_RE.match(cur.upper()):
+                existing.value = default_val
+                changed = True
+            elif key == 'company_pan' and cur and not _PAN_RE.match(cur.upper()):
+                existing.value = default_val
+                changed = True
+            elif key == 'company_email' and cur and not _EMAIL_RE.match(cur):
+                existing.value = default_val
+                changed = True
+            continue
+        db.session.add(Settings(key=key, value=default_val))
+        changed = True
+    if changed:
+        db.session.commit()
 
 
 def _seed_database():
@@ -1879,6 +1950,7 @@ def settings_page():
                 return jsonify({'success': False, 'error': 'Database error.'}), 200
             flash('Database error while saving settings.', 'danger')
             return redirect(url_for('settings_page'))
+    _load_company_settings(current_app)
     email_configured = bool((os.getenv('MAIL_PASSWORD') or os.getenv('SMTP_PASSWORD') or '').strip()
                             and (os.getenv('MAIL_USERNAME') or os.getenv('SMTP_EMAIL') or '').strip())
     import flask as _flask, platform as _platform, socket as _socket

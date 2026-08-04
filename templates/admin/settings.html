@@ -108,7 +108,7 @@
               </div>
               <div class="gv-field">
                 <label class="gv-label">Phone 2</label>
-                <input type="tel" class="gv-input" name="company_mobile" value="{{ settings.get('company_mobile') or settings.get('company_mobile') or '' }}" placeholder="+91-0000000000">
+                <input type="tel" class="gv-input" name="company_mobile" value="{{ settings.get('company_mobile') or company.mobile or '' }}" placeholder="+91-0000000000">
               </div>
 
               <div class="gv-field">

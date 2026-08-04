@@ -44,12 +44,13 @@ class Config:
         "COMPANY_SERVICES",
         "Solar Energy | UPS Systems | Inverters | RO Solutions | Electricals",
     )
-    COMPANY_GSTIN = os.getenv("COMPANY_GSTIN", "29AAAAA0000A1Z5")
-    COMPANY_PAN = os.getenv("COMPANY_PAN", "AAAAA0000A")
-    COMPANY_STATE = os.getenv("COMPANY_STATE", "Karnataka")
-    COMPANY_STATE_CODE = int(os.getenv("COMPANY_STATE_CODE", "29"))
-    COMPANY_ADDRESS = os.getenv("COMPANY_ADDRESS", "Bangalore, Karnataka, India")
-    COMPANY_PHONE = os.getenv("COMPANY_PHONE", "+91-9876543210")
+    COMPANY_GSTIN = os.getenv("COMPANY_GSTIN", "33AGEPV1534G2ZJ")
+    COMPANY_PAN = os.getenv("COMPANY_PAN", "AGEPV1534G")
+    COMPANY_STATE = os.getenv("COMPANY_STATE", "Tamil Nadu")
+    COMPANY_STATE_CODE = int(os.getenv("COMPANY_STATE_CODE", "33"))
+    COMPANY_ADDRESS = os.getenv("COMPANY_ADDRESS", "No. 10, Kadharkhan Street, Opp. Railway Junction, Salem - 636005, Tamil Nadu")
+    COMPANY_PHONE = os.getenv("COMPANY_PHONE", "+91 98940 79090")
+    COMPANY_MOBILE = os.getenv("COMPANY_MOBILE", "+91 98940 79095")
     COMPANY_EMAIL = os.getenv("COMPANY_EMAIL", "gvpowerssalem@gmail.com")
     COMPANY_WEBSITE = os.getenv("COMPANY_WEBSITE", "https://gvpowers.in")
 
