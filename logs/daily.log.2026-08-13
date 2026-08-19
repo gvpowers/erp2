@@ -1,0 +1,3 @@
+2026-08-13 13:01:00,407 [INFO] flask_wtf.csrf: The CSRF token is missing.
+2026-08-13 13:03:03,164 [INFO] flask_wtf.csrf: The CSRF token is invalid.
+2026-08-13 13:03:04,577 [INFO] flask_wtf.csrf: The CSRF token is invalid.

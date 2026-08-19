@@ -15,9 +15,6 @@ class Supplier(db.Model):
     state = db.Column(db.String(100), nullable=True)
     state_code = db.Column(db.Integer, default=29)
     gstin = db.Column(db.String(20), nullable=True)
-    bank_name = db.Column(db.String(100), nullable=True)
-    bank_account = db.Column(db.String(50), nullable=True)
-    bank_ifsc = db.Column(db.String(20), nullable=True)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
     products = db.relationship("Product", backref="supplier", lazy="dynamic")

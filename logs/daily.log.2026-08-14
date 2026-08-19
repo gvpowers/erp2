@@ -1,0 +1,61 @@
+2026-08-14 22:04:12,764 [INFO] flask_wtf.csrf: The CSRF token is invalid.
+2026-08-14 22:05:30,747 [INFO] flask_wtf.csrf: The CSRF token is invalid.
+2026-08-14 22:06:36,152 [INFO] app: Settings saved successfully by user gvpowers@admin
+2026-08-14 22:07:35,044 [INFO] flask_wtf.csrf: The CSRF token is invalid.
+2026-08-14 22:11:13,412 [INFO] werkzeug: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.6:5000
+2026-08-14 22:11:13,412 [INFO] werkzeug: [33mPress CTRL+C to quit[0m
+2026-08-14 22:11:13,414 [INFO] werkzeug:  * Restarting with stat
+2026-08-14 22:11:14,792 [WARNING] werkzeug:  * Debugger is active!
+2026-08-14 22:11:14,794 [INFO] werkzeug:  * Debugger PIN: 195-460-727
+2026-08-14 22:11:27,098 [INFO] werkzeug: 127.0.0.1 - - [14/Aug/2026 22:11:27] "[32mGET / HTTP/1.1[0m" 302 -
+2026-08-14 22:11:27,125 [INFO] werkzeug: 127.0.0.1 - - [14/Aug/2026 22:11:27] "GET /login HTTP/1.1" 200 -
+2026-08-14 22:11:27,179 [INFO] werkzeug: 127.0.0.1 - - [14/Aug/2026 22:11:27] "GET /static/css/app.css?v=8.0 HTTP/1.1" 200 -
+2026-08-14 22:11:27,186 [INFO] werkzeug: 127.0.0.1 - - [14/Aug/2026 22:11:27] "GET /static/css/admin.css?v=8.0 HTTP/1.1" 200 -
+2026-08-14 22:11:27,193 [INFO] werkzeug: 127.0.0.1 - - [14/Aug/2026 22:11:27] "GET /static/css/billing.css?v=8.0 HTTP/1.1" 200 -
+2026-08-14 22:11:27,196 [INFO] werkzeug: 127.0.0.1 - - [14/Aug/2026 22:11:27] "GET /static/css/sales.css?v=8.0 HTTP/1.1" 200 -
+2026-08-14 22:11:27,198 [INFO] werkzeug: 127.0.0.1 - - [14/Aug/2026 22:11:27] "GET /static/css/responsive.css?v=8.0 HTTP/1.1" 200 -
+2026-08-14 22:11:27,202 [INFO] werkzeug: 127.0.0.1 - - [14/Aug/2026 22:11:27] "GET /static/css/themes.css?v=8.0 HTTP/1.1" 200 -
+2026-08-14 22:11:27,206 [INFO] werkzeug: 127.0.0.1 - - [14/Aug/2026 22:11:27] "GET /static/css/erp-menu.css?v=1.0 HTTP/1.1" 200 -
+2026-08-14 22:11:27,207 [INFO] werkzeug: 127.0.0.1 - - [14/Aug/2026 22:11:27] "GET /static/img/logo/img.png HTTP/1.1" 200 -
+2026-08-14 22:11:27,255 [INFO] werkzeug: 127.0.0.1 - - [14/Aug/2026 22:11:27] "GET /static/js/erp-menu.js?v=1.0 HTTP/1.1" 200 -
+2026-08-14 22:11:28,969 [INFO] werkzeug: 127.0.0.1 - - [14/Aug/2026 22:11:28] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-14 22:11:46,867 [INFO] werkzeug: 127.0.0.1 - - [14/Aug/2026 22:11:46] "[32mPOST /login HTTP/1.1[0m" 302 -
+2026-08-14 22:11:46,931 [INFO] werkzeug: 127.0.0.1 - - [14/Aug/2026 22:11:46] "GET /dashboard HTTP/1.1" 200 -
+2026-08-14 22:11:48,670 [INFO] werkzeug: 127.0.0.1 - - [14/Aug/2026 22:11:48] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-14 22:11:50,180 [INFO] werkzeug: 127.0.0.1 - - [14/Aug/2026 22:11:50] "GET /invoices/create HTTP/1.1" 200 -
+2026-08-14 22:11:52,236 [INFO] werkzeug: 127.0.0.1 - - [14/Aug/2026 22:11:52] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-14 22:11:52,499 [INFO] werkzeug: 127.0.0.1 - - [14/Aug/2026 22:11:52] "GET /customers HTTP/1.1" 200 -
+2026-08-14 22:11:55,383 [INFO] werkzeug: 127.0.0.1 - - [14/Aug/2026 22:11:55] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-14 22:11:57,992 [INFO] werkzeug: 127.0.0.1 - - [14/Aug/2026 22:11:57] "GET /invoices HTTP/1.1" 200 -
+2026-08-14 22:11:59,820 [INFO] werkzeug: 127.0.0.1 - - [14/Aug/2026 22:11:59] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-14 22:12:01,281 [INFO] werkzeug: 127.0.0.1 - - [14/Aug/2026 22:12:01] "GET /invoices/create HTTP/1.1" 200 -
+2026-08-14 22:12:02,893 [INFO] werkzeug: 127.0.0.1 - - [14/Aug/2026 22:12:02] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-14 22:12:03,833 [INFO] werkzeug: 127.0.0.1 - - [14/Aug/2026 22:12:03] "GET /invoices HTTP/1.1" 200 -
+2026-08-14 22:12:04,651 [INFO] werkzeug: 127.0.0.1 - - [14/Aug/2026 22:12:04] "GET /quotations HTTP/1.1" 200 -
+2026-08-14 22:12:05,375 [INFO] werkzeug: 127.0.0.1 - - [14/Aug/2026 22:12:05] "GET /customers HTTP/1.1" 200 -
+2026-08-14 22:12:07,126 [INFO] werkzeug: 127.0.0.1 - - [14/Aug/2026 22:12:07] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-14 22:12:08,937 [INFO] werkzeug: 127.0.0.1 - - [14/Aug/2026 22:12:08] "GET /products HTTP/1.1" 200 -
+2026-08-14 22:12:11,603 [INFO] werkzeug: 127.0.0.1 - - [14/Aug/2026 22:12:11] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-14 22:12:26,212 [INFO] werkzeug: 127.0.0.1 - - [14/Aug/2026 22:12:26] "[32mPOST /products/add HTTP/1.1[0m" 302 -
+2026-08-14 22:12:26,234 [INFO] werkzeug: 127.0.0.1 - - [14/Aug/2026 22:12:26] "GET /products HTTP/1.1" 200 -
+2026-08-14 22:12:27,937 [INFO] werkzeug: 127.0.0.1 - - [14/Aug/2026 22:12:27] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-14 22:12:55,920 [INFO] werkzeug: 127.0.0.1 - - [14/Aug/2026 22:12:55] "[32mPOST /products/1/edit HTTP/1.1[0m" 302 -
+2026-08-14 22:12:55,974 [INFO] werkzeug: 127.0.0.1 - - [14/Aug/2026 22:12:55] "GET /products/1 HTTP/1.1" 200 -
+2026-08-14 22:12:57,703 [INFO] werkzeug: 127.0.0.1 - - [14/Aug/2026 22:12:57] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-14 22:13:09,487 [INFO] werkzeug: 127.0.0.1 - - [14/Aug/2026 22:13:09] "[32mPOST /products/1/stock/add HTTP/1.1[0m" 302 -
+2026-08-14 22:13:09,613 [INFO] werkzeug: 127.0.0.1 - - [14/Aug/2026 22:13:09] "GET /products/1 HTTP/1.1" 200 -
+2026-08-14 22:13:11,540 [INFO] werkzeug: 127.0.0.1 - - [14/Aug/2026 22:13:11] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-14 22:13:11,956 [INFO] werkzeug: 127.0.0.1 - - [14/Aug/2026 22:13:11] "GET /invoices/create HTTP/1.1" 200 -
+2026-08-14 22:13:13,619 [INFO] werkzeug: 127.0.0.1 - - [14/Aug/2026 22:13:13] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-14 22:13:16,771 [INFO] werkzeug: 127.0.0.1 - - [14/Aug/2026 22:13:16] "GET /api/customers/search?q=k HTTP/1.1" 200 -
+2026-08-14 22:13:21,056 [INFO] werkzeug: 127.0.0.1 - - [14/Aug/2026 22:13:21] "GET /api/products/search?q=er&allow_out_of_stock=false HTTP/1.1" 200 -
+2026-08-14 22:13:21,235 [INFO] werkzeug: 127.0.0.1 - - [14/Aug/2026 22:13:21] "GET /api/products/search?q=ert&allow_out_of_stock=false HTTP/1.1" 200 -
+2026-08-14 22:14:07,678 [INFO] werkzeug: 127.0.0.1 - - [14/Aug/2026 22:14:07] "POST /invoices/create HTTP/1.1" 200 -
+2026-08-14 22:14:08,364 [INFO] werkzeug: 127.0.0.1 - - [14/Aug/2026 22:14:08] "GET /invoices/1 HTTP/1.1" 200 -
+2026-08-14 22:14:09,990 [INFO] werkzeug: 127.0.0.1 - - [14/Aug/2026 22:14:09] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-14 22:14:16,041 [INFO] werkzeug: 127.0.0.1 - - [14/Aug/2026 22:14:16] "GET /invoices/1/pdf/customer HTTP/1.1" 200 -
+2026-08-14 22:14:17,054 [INFO] werkzeug: 127.0.0.1 - - [14/Aug/2026 22:14:17] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-14 22:14:47,061 [INFO] werkzeug: 127.0.0.1 - - [14/Aug/2026 22:14:47] "[33mGET /sw.js HTTP/1.1[0m" 404 -

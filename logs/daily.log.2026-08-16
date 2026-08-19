@@ -1,0 +1,421 @@
+2026-08-16 13:05:17,199 [INFO] werkzeug: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.6:5000
+2026-08-16 13:05:17,201 [INFO] werkzeug: [33mPress CTRL+C to quit[0m
+2026-08-16 13:05:17,202 [INFO] werkzeug:  * Restarting with stat
+2026-08-16 13:05:18,638 [WARNING] werkzeug:  * Debugger is active!
+2026-08-16 13:05:18,640 [INFO] werkzeug:  * Debugger PIN: 195-460-727
+2026-08-16 13:05:22,689 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:05:22] "[32mGET / HTTP/1.1[0m" 302 -
+2026-08-16 13:05:22,819 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:05:22] "GET /login HTTP/1.1" 200 -
+2026-08-16 13:05:24,554 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:05:24] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-16 13:05:41,290 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:05:41] "[32mPOST /login HTTP/1.1[0m" 302 -
+2026-08-16 13:05:41,404 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:05:41] "GET /dashboard HTTP/1.1" 200 -
+2026-08-16 13:05:43,153 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:05:43] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-16 13:05:48,049 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:05:48] "GET /invoices/create HTTP/1.1" 200 -
+2026-08-16 13:05:49,679 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:05:49] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-16 13:06:19,103 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:06:19] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-16 13:07:06,016 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:07:06] "GET /quotations HTTP/1.1" 200 -
+2026-08-16 13:07:07,985 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:07:07] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-16 13:07:17,243 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:07:17] "GET /customers HTTP/1.1" 200 -
+2026-08-16 13:07:18,821 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:07:18] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-16 13:07:20,933 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:07:20] "GET /products HTTP/1.1" 200 -
+2026-08-16 13:07:22,542 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:07:22] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-16 13:07:24,350 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:07:24] "GET /suppliers HTTP/1.1" 200 -
+2026-08-16 13:07:25,941 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:07:25] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-16 13:07:31,763 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:07:31] "[32mGET /purchases HTTP/1.1[0m" 302 -
+2026-08-16 13:07:31,802 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:07:31] "GET /purchase-orders HTTP/1.1" 200 -
+2026-08-16 13:07:33,429 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:07:33] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-16 13:07:36,223 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:07:36] "GET /reports HTTP/1.1" 200 -
+2026-08-16 13:07:36,286 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:07:36] "GET /static/css/reports.css?v=2 HTTP/1.1" 200 -
+2026-08-16 13:07:37,917 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:07:37] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-16 13:08:02,270 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:08:02] "GET /users HTTP/1.1" 200 -
+2026-08-16 13:08:03,909 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:08:03] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-16 13:08:12,172 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:08:12] "[32mPOST /users/1/delete HTTP/1.1[0m" 302 -
+2026-08-16 13:08:12,180 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:08:12] "GET /users HTTP/1.1" 200 -
+2026-08-16 13:08:13,818 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:08:13] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-16 13:08:20,820 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:08:20] "GET /settings HTTP/1.1" 200 -
+2026-08-16 13:08:20,852 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:08:20] "GET /static/css/settings.css?v=4.0 HTTP/1.1" 200 -
+2026-08-16 13:08:20,877 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:08:20] "GET /static/js/settings.js?v=4.0 HTTP/1.1" 200 -
+2026-08-16 13:08:22,534 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:08:22] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-16 13:08:51,891 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:08:51] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-16 13:09:29,670 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:09:29] "GET /reports HTTP/1.1" 200 -
+2026-08-16 13:09:31,293 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:09:31] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-16 13:10:00,695 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:10:00] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-16 13:10:26,275 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:10:26] "GET /backup HTTP/1.1" 200 -
+2026-08-16 13:10:27,900 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:10:27] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-16 13:10:41,117 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:10:41] "GET /dashboard HTTP/1.1" 200 -
+2026-08-16 13:10:42,832 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:10:42] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-16 13:10:43,721 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:10:43] "GET /settings HTTP/1.1" 200 -
+2026-08-16 13:10:45,328 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:10:45] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-16 13:11:14,772 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:11:14] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-16 13:18:08,674 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-08-16 13:18:08,836 [INFO] werkzeug:  * Restarting with stat
+2026-08-16 13:18:11,367 [WARNING] werkzeug:  * Debugger is active!
+2026-08-16 13:18:11,370 [INFO] werkzeug:  * Debugger PIN: 195-460-727
+2026-08-16 13:18:14,697 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-08-16 13:18:14,821 [INFO] werkzeug:  * Restarting with stat
+2026-08-16 13:18:17,301 [WARNING] werkzeug:  * Debugger is active!
+2026-08-16 13:18:17,303 [INFO] werkzeug:  * Debugger PIN: 195-460-727
+2026-08-16 13:18:19,568 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-08-16 13:18:19,692 [INFO] werkzeug:  * Restarting with stat
+2026-08-16 13:18:22,150 [WARNING] werkzeug:  * Debugger is active!
+2026-08-16 13:18:22,153 [INFO] werkzeug:  * Debugger PIN: 195-460-727
+2026-08-16 13:18:22,310 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-08-16 13:18:22,479 [INFO] werkzeug:  * Restarting with stat
+2026-08-16 13:18:24,888 [WARNING] werkzeug:  * Debugger is active!
+2026-08-16 13:18:24,891 [INFO] werkzeug:  * Debugger PIN: 195-460-727
+2026-08-16 13:18:26,115 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-08-16 13:18:26,253 [INFO] werkzeug:  * Restarting with stat
+2026-08-16 13:18:28,683 [WARNING] werkzeug:  * Debugger is active!
+2026-08-16 13:18:28,685 [INFO] werkzeug:  * Debugger PIN: 195-460-727
+2026-08-16 13:18:29,944 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-08-16 13:18:30,097 [INFO] werkzeug:  * Restarting with stat
+2026-08-16 13:18:32,590 [WARNING] werkzeug:  * Debugger is active!
+2026-08-16 13:18:32,592 [INFO] werkzeug:  * Debugger PIN: 195-460-727
+2026-08-16 13:18:38,069 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\utils\\__init__.py', reloading
+2026-08-16 13:18:38,200 [INFO] werkzeug:  * Restarting with stat
+2026-08-16 13:18:40,578 [WARNING] werkzeug:  * Debugger is active!
+2026-08-16 13:18:40,581 [INFO] werkzeug:  * Debugger PIN: 195-460-727
+2026-08-16 13:18:41,789 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\utils\\__init__.py', reloading
+2026-08-16 13:18:41,909 [INFO] werkzeug:  * Restarting with stat
+2026-08-16 13:18:44,360 [WARNING] werkzeug:  * Debugger is active!
+2026-08-16 13:18:44,362 [INFO] werkzeug:  * Debugger PIN: 195-460-727
+2026-08-16 13:19:35,656 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-08-16 13:19:35,778 [INFO] werkzeug:  * Restarting with stat
+2026-08-16 13:19:38,233 [WARNING] werkzeug:  * Debugger is active!
+2026-08-16 13:19:38,235 [INFO] werkzeug:  * Debugger PIN: 195-460-727
+2026-08-16 13:19:45,867 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-08-16 13:19:46,001 [INFO] werkzeug:  * Restarting with stat
+2026-08-16 13:19:48,394 [WARNING] werkzeug:  * Debugger is active!
+2026-08-16 13:19:48,397 [INFO] werkzeug:  * Debugger PIN: 195-460-727
+2026-08-16 13:19:49,602 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-08-16 13:19:49,726 [INFO] werkzeug:  * Restarting with stat
+2026-08-16 13:19:52,152 [WARNING] werkzeug:  * Debugger is active!
+2026-08-16 13:19:52,155 [INFO] werkzeug:  * Debugger PIN: 195-460-727
+2026-08-16 13:19:53,362 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-08-16 13:19:53,515 [INFO] werkzeug:  * Restarting with stat
+2026-08-16 13:19:55,877 [WARNING] werkzeug:  * Debugger is active!
+2026-08-16 13:19:55,879 [INFO] werkzeug:  * Debugger PIN: 195-460-727
+2026-08-16 13:20:00,287 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-08-16 13:20:00,410 [INFO] werkzeug:  * Restarting with stat
+2026-08-16 13:20:02,916 [WARNING] werkzeug:  * Debugger is active!
+2026-08-16 13:20:02,918 [INFO] werkzeug:  * Debugger PIN: 195-460-727
+2026-08-16 13:20:06,258 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-08-16 13:20:06,384 [INFO] werkzeug:  * Restarting with stat
+2026-08-16 13:20:08,842 [WARNING] werkzeug:  * Debugger is active!
+2026-08-16 13:20:08,844 [INFO] werkzeug:  * Debugger PIN: 195-460-727
+2026-08-16 13:23:05,189 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-08-16 13:23:05,315 [INFO] werkzeug:  * Restarting with stat
+2026-08-16 13:23:07,845 [WARNING] werkzeug:  * Debugger is active!
+2026-08-16 13:23:07,847 [INFO] werkzeug:  * Debugger PIN: 195-460-727
+2026-08-16 13:23:47,016 [INFO] werkzeug: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.6:5000
+2026-08-16 13:23:47,016 [INFO] werkzeug: [33mPress CTRL+C to quit[0m
+2026-08-16 13:23:47,018 [INFO] werkzeug:  * Restarting with stat
+2026-08-16 13:23:49,355 [WARNING] werkzeug:  * Debugger is active!
+2026-08-16 13:23:49,357 [INFO] werkzeug:  * Debugger PIN: 195-460-727
+2026-08-16 13:23:49,435 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:23:49] "[32mGET / HTTP/1.1[0m" 302 -
+2026-08-16 13:23:49,497 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:23:49] "GET /dashboard HTTP/1.1" 200 -
+2026-08-16 13:23:51,329 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:23:51] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-16 13:23:55,975 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:23:55] "GET /settings HTTP/1.1" 200 -
+2026-08-16 13:23:57,830 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:23:57] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-16 13:24:23,808 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:24:23] "[32mGET /purchases HTTP/1.1[0m" 302 -
+2026-08-16 13:24:23,828 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:24:23] "GET /purchase-orders HTTP/1.1" 200 -
+2026-08-16 13:24:25,421 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:24:25] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-16 13:24:25,773 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:24:25] "GET /suppliers HTTP/1.1" 200 -
+2026-08-16 13:24:27,432 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:24:27] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-16 13:24:30,470 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:24:30] "GET /products HTTP/1.1" 200 -
+2026-08-16 13:24:31,076 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:24:31] "GET /customers HTTP/1.1" 200 -
+2026-08-16 13:24:32,435 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:24:32] "GET /quotations HTTP/1.1" 200 -
+2026-08-16 13:24:32,706 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:24:32] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-16 13:24:33,868 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:24:33] "GET /invoices HTTP/1.1" 200 -
+2026-08-16 13:24:34,030 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:24:34] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-16 13:24:35,521 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:24:35] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-16 13:24:36,243 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:24:36] "GET /dashboard HTTP/1.1" 200 -
+2026-08-16 13:24:37,921 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:24:37] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-16 13:24:42,554 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:24:42] "GET /invoices/create HTTP/1.1" 200 -
+2026-08-16 13:24:44,197 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:24:44] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-16 13:25:13,610 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:25:13] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-16 13:35:37,025 [INFO] werkzeug: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.6:5000
+2026-08-16 13:35:37,025 [INFO] werkzeug: [33mPress CTRL+C to quit[0m
+2026-08-16 13:35:37,026 [INFO] werkzeug:  * Restarting with stat
+2026-08-16 13:35:38,487 [WARNING] werkzeug:  * Debugger is active!
+2026-08-16 13:35:38,489 [INFO] werkzeug:  * Debugger PIN: 195-460-727
+2026-08-16 13:35:39,303 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:35:39] "GET /invoices/create HTTP/1.1" 200 -
+2026-08-16 13:35:40,249 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:35:40] "GET /invoices/create HTTP/1.1" 200 -
+2026-08-16 13:35:40,510 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:35:40] "GET /invoices/create HTTP/1.1" 200 -
+2026-08-16 13:35:40,751 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:35:40] "GET /invoices/create HTTP/1.1" 200 -
+2026-08-16 13:35:40,930 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:35:40] "GET /invoices/create HTTP/1.1" 200 -
+2026-08-16 13:35:41,223 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:35:41] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-16 13:35:41,244 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:35:41] "GET /invoices/create HTTP/1.1" 200 -
+2026-08-16 13:35:42,858 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:35:42] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-16 13:35:44,273 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:35:44] "GET /settings HTTP/1.1" 200 -
+2026-08-16 13:35:44,350 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:35:44] "GET /static/js/settings.js?v=5.0 HTTP/1.1" 200 -
+2026-08-16 13:35:44,352 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:35:44] "GET /static/css/settings.css?v=5.0 HTTP/1.1" 200 -
+2026-08-16 13:35:45,960 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:35:45] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-16 13:36:14,939 [INFO] app: Settings saved successfully by user gvpowers@admin
+2026-08-16 13:36:14,943 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:36:14] "POST /settings HTTP/1.1" 200 -
+2026-08-16 13:36:15,379 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:36:15] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-16 13:36:17,460 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:36:17] "GET /dashboard HTTP/1.1" 200 -
+2026-08-16 13:36:19,301 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:36:19] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-16 13:36:48,525 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:36:48] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-16 13:40:30,909 [INFO] werkzeug: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.6:5000
+2026-08-16 13:40:30,909 [INFO] werkzeug: [33mPress CTRL+C to quit[0m
+2026-08-16 13:40:30,910 [INFO] werkzeug:  * Restarting with stat
+2026-08-16 13:40:32,312 [WARNING] werkzeug:  * Debugger is active!
+2026-08-16 13:40:32,314 [INFO] werkzeug:  * Debugger PIN: 195-460-727
+2026-08-16 13:40:33,072 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:40:33] "GET /dashboard HTTP/1.1" 200 -
+2026-08-16 13:40:34,182 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:40:34] "GET /dashboard HTTP/1.1" 200 -
+2026-08-16 13:40:34,404 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:40:34] "GET /dashboard HTTP/1.1" 200 -
+2026-08-16 13:40:34,629 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:40:34] "GET /dashboard HTTP/1.1" 200 -
+2026-08-16 13:40:34,714 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:40:34] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-16 13:40:34,794 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:40:34] "GET /dashboard HTTP/1.1" 200 -
+2026-08-16 13:40:36,443 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:40:36] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-16 13:40:38,987 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:40:38] "[32mGET / HTTP/1.1[0m" 302 -
+2026-08-16 13:40:39,015 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:40:39] "GET /dashboard HTTP/1.1" 200 -
+2026-08-16 13:40:40,847 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:40:40] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-16 13:41:10,131 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:41:10] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-16 13:42:46,273 [INFO] werkzeug: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.6:5000
+2026-08-16 13:42:46,273 [INFO] werkzeug: [33mPress CTRL+C to quit[0m
+2026-08-16 13:42:46,274 [INFO] werkzeug:  * Restarting with stat
+2026-08-16 13:42:47,767 [WARNING] werkzeug:  * Debugger is active!
+2026-08-16 13:42:47,769 [INFO] werkzeug:  * Debugger PIN: 195-460-727
+2026-08-16 13:42:47,844 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:42:47] "[32mGET / HTTP/1.1[0m" 302 -
+2026-08-16 13:42:47,900 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:42:47] "GET /dashboard HTTP/1.1" 200 -
+2026-08-16 13:42:49,670 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:42:49] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-16 13:43:19,039 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:43:19] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-16 13:49:50,408 [INFO] werkzeug: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.6:5000
+2026-08-16 13:49:50,409 [INFO] werkzeug: [33mPress CTRL+C to quit[0m
+2026-08-16 13:49:50,415 [INFO] werkzeug:  * Restarting with stat
+2026-08-16 13:49:52,578 [WARNING] werkzeug:  * Debugger is active!
+2026-08-16 13:49:52,582 [INFO] werkzeug:  * Debugger PIN: 195-460-727
+2026-08-16 13:49:52,698 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:49:52] "[32mGET / HTTP/1.1[0m" 302 -
+2026-08-16 13:49:52,775 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:49:52] "GET /dashboard HTTP/1.1" 200 -
+2026-08-16 13:49:52,879 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:49:52] "GET /static/css/app.css?v=9.0 HTTP/1.1" 200 -
+2026-08-16 13:49:52,886 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:49:52] "GET /static/css/responsive.css?v=9.0 HTTP/1.1" 200 -
+2026-08-16 13:49:54,665 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 13:49:54] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-16 16:55:57,827 [INFO] flask_wtf.csrf: The CSRF token is missing.
+2026-08-16 16:55:57,833 [INFO] flask_wtf.csrf: The CSRF token is missing.
+2026-08-16 16:56:06,969 [INFO] flask_wtf.csrf: The CSRF token is missing.
+2026-08-16 16:56:06,970 [INFO] flask_wtf.csrf: The CSRF token is missing.
+2026-08-16 16:56:17,245 [INFO] flask_wtf.csrf: The CSRF token is missing.
+2026-08-16 16:56:17,246 [INFO] flask_wtf.csrf: The CSRF token is missing.
+2026-08-16 16:56:38,940 [INFO] flask_wtf.csrf: The CSRF token is missing.
+2026-08-16 16:56:48,851 [INFO] flask_wtf.csrf: The CSRF token is missing.
+2026-08-16 16:56:54,005 [INFO] flask_wtf.csrf: The CSRF token is missing.
+2026-08-16 16:56:58,653 [INFO] flask_wtf.csrf: The CSRF token is missing.
+2026-08-16 16:57:21,244 [INFO] flask_wtf.csrf: The CSRF token is missing.
+2026-08-16 16:57:21,245 [INFO] flask_wtf.csrf: The CSRF token is missing.
+2026-08-16 16:57:21,246 [INFO] flask_wtf.csrf: The CSRF token is missing.
+2026-08-16 16:57:21,252 [INFO] flask_wtf.csrf: The CSRF token is missing.
+2026-08-16 17:11:46,379 [INFO] flask_wtf.csrf: The CSRF token is missing.
+2026-08-16 17:11:47,004 [INFO] flask_wtf.csrf: The CSRF token is missing.
+2026-08-16 17:11:47,022 [INFO] flask_wtf.csrf: The CSRF token is missing.
+2026-08-16 17:11:47,530 [INFO] flask_wtf.csrf: The CSRF token is missing.
+2026-08-16 17:11:47,554 [INFO] flask_wtf.csrf: The CSRF token is missing.
+2026-08-16 17:11:48,070 [INFO] flask_wtf.csrf: The CSRF token is missing.
+2026-08-16 17:11:48,088 [INFO] flask_wtf.csrf: The CSRF token is missing.
+2026-08-16 17:11:48,601 [INFO] flask_wtf.csrf: The CSRF token is missing.
+2026-08-16 17:11:48,622 [INFO] flask_wtf.csrf: The CSRF token is missing.
+2026-08-16 17:11:49,203 [INFO] flask_wtf.csrf: The CSRF token is missing.
+2026-08-16 17:11:49,220 [INFO] flask_wtf.csrf: The CSRF token is missing.
+2026-08-16 17:11:49,730 [INFO] flask_wtf.csrf: The CSRF token is missing.
+2026-08-16 17:11:49,746 [INFO] flask_wtf.csrf: The CSRF token is missing.
+2026-08-16 17:11:50,244 [INFO] flask_wtf.csrf: The CSRF token is missing.
+2026-08-16 17:11:50,262 [INFO] flask_wtf.csrf: The CSRF token is missing.
+2026-08-16 17:11:50,755 [INFO] flask_wtf.csrf: The CSRF token is missing.
+2026-08-16 17:11:51,291 [INFO] flask_wtf.csrf: The CSRF token is missing.
+2026-08-16 17:11:51,307 [INFO] flask_wtf.csrf: The CSRF token is missing.
+2026-08-16 17:11:51,308 [INFO] flask_wtf.csrf: The CSRF token is missing.
+2026-08-16 17:11:51,810 [INFO] flask_wtf.csrf: The CSRF token is missing.
+2026-08-16 17:11:52,384 [INFO] flask_wtf.csrf: The CSRF token is missing.
+2026-08-16 17:11:52,886 [INFO] flask_wtf.csrf: The CSRF token is missing.
+2026-08-16 17:11:53,411 [INFO] flask_wtf.csrf: The CSRF token is missing.
+2026-08-16 17:11:53,938 [INFO] flask_wtf.csrf: The CSRF token is missing.
+2026-08-16 17:11:54,955 [INFO] flask_wtf.csrf: The CSRF token is missing.
+2026-08-16 17:11:55,501 [INFO] flask_wtf.csrf: The CSRF token is missing.
+2026-08-16 17:11:56,021 [INFO] flask_wtf.csrf: The CSRF token is missing.
+2026-08-16 17:11:57,363 [INFO] flask_wtf.csrf: The CSRF token is missing.
+2026-08-16 17:11:57,930 [INFO] flask_wtf.csrf: The CSRF token is missing.
+2026-08-16 17:12:01,075 [INFO] flask_wtf.csrf: The CSRF token is missing.
+2026-08-16 17:12:01,594 [INFO] flask_wtf.csrf: The CSRF token is missing.
+2026-08-16 17:12:02,571 [INFO] flask_wtf.csrf: The CSRF token is missing.
+2026-08-16 17:21:54,070 [INFO] werkzeug: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.6:5000
+2026-08-16 17:21:54,070 [INFO] werkzeug: [33mPress CTRL+C to quit[0m
+2026-08-16 17:21:54,074 [INFO] werkzeug:  * Restarting with stat
+2026-08-16 17:21:59,155 [WARNING] werkzeug:  * Debugger is active!
+2026-08-16 17:21:59,159 [INFO] werkzeug:  * Debugger PIN: 195-460-727
+2026-08-16 17:21:59,285 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 17:21:59] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-16 17:21:59,331 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 17:21:59] "GET /invoices/create HTTP/1.1" 200 -
+2026-08-16 17:22:01,027 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 17:22:01] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-16 17:22:12,127 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 17:22:12] "GET /invoices HTTP/1.1" 200 -
+2026-08-16 17:22:13,817 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 17:22:13] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-16 17:22:43,212 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 17:22:43] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-16 17:22:43,279 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 17:22:43] "GET /customers HTTP/1.1" 200 -
+2026-08-16 17:22:44,628 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 17:22:44] "GET /products HTTP/1.1" 200 -
+2026-08-16 17:22:44,885 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 17:22:44] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-16 17:22:46,262 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 17:22:46] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-16 17:22:47,045 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 17:22:47] "GET /invoices HTTP/1.1" 200 -
+2026-08-16 17:22:48,710 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 17:22:48] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-16 17:22:51,691 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 17:22:51] "GET /quotations HTTP/1.1" 200 -
+2026-08-16 17:22:53,279 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 17:22:53] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-16 17:22:53,612 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 17:22:53] "GET /customers HTTP/1.1" 200 -
+2026-08-16 17:22:54,442 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 17:22:54] "GET /products HTTP/1.1" 200 -
+2026-08-16 17:22:55,113 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 17:22:55] "GET /suppliers HTTP/1.1" 200 -
+2026-08-16 17:22:55,849 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 17:22:55] "[32mGET /purchases HTTP/1.1[0m" 302 -
+2026-08-16 17:22:55,869 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 17:22:55] "GET /purchase-orders HTTP/1.1" 200 -
+2026-08-16 17:22:57,454 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 17:22:57] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-16 17:22:58,970 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 17:22:58] "[32mGET /purchases HTTP/1.1[0m" 302 -
+2026-08-16 17:22:58,979 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 17:22:58] "GET /purchase-orders HTTP/1.1" 200 -
+2026-08-16 17:23:00,566 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 17:23:00] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-16 17:23:02,837 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 17:23:02] "GET /reports HTTP/1.1" 200 -
+2026-08-16 17:23:04,470 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 17:23:04] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-16 17:23:05,409 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 17:23:05] "GET /reports/low-stock HTTP/1.1" 200 -
+2026-08-16 17:23:05,463 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 17:23:05] "GET /static/js/reports.js?v=2 HTTP/1.1" 200 -
+2026-08-16 17:23:07,104 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 17:23:07] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-16 17:23:18,689 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 17:23:18] "GET /users HTTP/1.1" 200 -
+2026-08-16 17:23:19,856 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 17:23:19] "GET /suppliers HTTP/1.1" 200 -
+2026-08-16 17:23:20,364 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 17:23:20] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-16 17:23:21,374 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 17:23:21] "GET /settings HTTP/1.1" 200 -
+2026-08-16 17:23:21,414 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 17:23:21] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-16 17:23:23,027 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 17:23:23] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-16 17:23:52,425 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 17:23:52] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-16 17:24:13,760 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 17:24:13] "GET /reports HTTP/1.1" 200 -
+2026-08-16 17:24:15,443 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 17:24:15] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-16 17:24:17,920 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 17:24:17] "GET /reports/low-stock HTTP/1.1" 200 -
+2026-08-16 17:24:19,656 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 17:24:19] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-16 17:24:48,948 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 17:24:48] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-16 17:30:29,153 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-08-16 17:30:29,312 [INFO] werkzeug:  * Restarting with stat
+2026-08-16 17:30:31,814 [WARNING] werkzeug:  * Debugger is active!
+2026-08-16 17:30:31,817 [INFO] werkzeug:  * Debugger PIN: 195-460-727
+2026-08-16 17:30:49,657 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-08-16 17:30:49,839 [INFO] werkzeug:  * Restarting with stat
+2026-08-16 17:30:52,208 [WARNING] werkzeug:  * Debugger is active!
+2026-08-16 17:30:52,210 [INFO] werkzeug:  * Debugger PIN: 195-460-727
+2026-08-16 17:30:54,387 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-08-16 17:30:54,513 [INFO] werkzeug:  * Restarting with stat
+2026-08-16 17:30:56,912 [WARNING] werkzeug:  * Debugger is active!
+2026-08-16 17:30:56,915 [INFO] werkzeug:  * Debugger PIN: 195-460-727
+2026-08-16 17:31:03,281 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-08-16 17:31:03,440 [INFO] werkzeug:  * Restarting with stat
+2026-08-16 17:31:05,814 [WARNING] werkzeug:  * Debugger is active!
+2026-08-16 17:31:05,817 [INFO] werkzeug:  * Debugger PIN: 195-460-727
+2026-08-16 17:32:12,850 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-08-16 17:32:12,972 [INFO] werkzeug:  * Restarting with stat
+2026-08-16 17:32:15,505 [WARNING] werkzeug:  * Debugger is active!
+2026-08-16 17:32:15,507 [INFO] werkzeug:  * Debugger PIN: 195-460-727
+2026-08-16 17:32:17,692 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-08-16 17:32:17,819 [INFO] werkzeug:  * Restarting with stat
+2026-08-16 17:32:20,377 [WARNING] werkzeug:  * Debugger is active!
+2026-08-16 17:32:20,379 [INFO] werkzeug:  * Debugger PIN: 195-460-727
+2026-08-16 17:35:47,082 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-08-16 17:35:47,206 [INFO] werkzeug:  * Restarting with stat
+2026-08-16 17:35:49,693 [WARNING] werkzeug:  * Debugger is active!
+2026-08-16 17:35:49,696 [INFO] werkzeug:  * Debugger PIN: 195-460-727
+2026-08-16 17:35:50,823 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\tests\\test_invoice_edit.py', reloading
+2026-08-16 17:35:50,952 [INFO] werkzeug:  * Restarting with stat
+2026-08-16 17:35:53,329 [WARNING] werkzeug:  * Debugger is active!
+2026-08-16 17:35:53,332 [INFO] werkzeug:  * Debugger PIN: 195-460-727
+2026-08-16 17:35:59,682 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\tests\\test_invoice_edit.py', reloading
+2026-08-16 17:35:59,812 [INFO] werkzeug:  * Restarting with stat
+2026-08-16 17:36:02,207 [WARNING] werkzeug:  * Debugger is active!
+2026-08-16 17:36:02,209 [INFO] werkzeug:  * Debugger PIN: 195-460-727
+2026-08-16 17:39:33,771 [INFO] flask_wtf.csrf: The CSRF token is missing.
+2026-08-16 17:39:34,438 [INFO] flask_wtf.csrf: The CSRF token is missing.
+2026-08-16 17:39:35,111 [INFO] flask_wtf.csrf: The CSRF token is missing.
+2026-08-16 17:39:35,803 [INFO] flask_wtf.csrf: The CSRF token is missing.
+2026-08-16 17:40:31,575 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-08-16 17:40:31,706 [INFO] werkzeug:  * Restarting with stat
+2026-08-16 17:40:34,077 [WARNING] werkzeug:  * Debugger is active!
+2026-08-16 17:40:34,081 [INFO] werkzeug:  * Debugger PIN: 195-460-727
+2026-08-16 17:41:08,215 [INFO] flask_wtf.csrf: The CSRF token is missing.
+2026-08-16 17:42:05,012 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\tests\\test_invoice_edit.py', reloading
+2026-08-16 17:42:05,139 [INFO] werkzeug:  * Restarting with stat
+2026-08-16 17:42:07,538 [WARNING] werkzeug:  * Debugger is active!
+2026-08-16 17:42:07,540 [INFO] werkzeug:  * Debugger PIN: 195-460-727
+2026-08-16 17:42:08,679 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\tests\\test_sidebar.py', reloading
+2026-08-16 17:42:08,820 [INFO] werkzeug:  * Restarting with stat
+2026-08-16 17:42:11,145 [WARNING] werkzeug:  * Debugger is active!
+2026-08-16 17:42:11,147 [INFO] werkzeug:  * Debugger PIN: 195-460-727
+2026-08-16 17:46:06,624 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\tests\\test_invoice_edit.py', reloading
+2026-08-16 17:46:06,745 [INFO] werkzeug:  * Restarting with stat
+2026-08-16 17:46:08,015 [WARNING] werkzeug:  * Debugger is active!
+2026-08-16 17:46:08,017 [INFO] werkzeug:  * Debugger PIN: 195-460-727
+2026-08-16 18:02:25,245 [INFO] werkzeug: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.6:5000
+2026-08-16 18:02:25,245 [INFO] werkzeug: [33mPress CTRL+C to quit[0m
+2026-08-16 18:02:25,247 [INFO] werkzeug:  * Restarting with stat
+2026-08-16 18:02:26,577 [WARNING] werkzeug:  * Debugger is active!
+2026-08-16 18:02:26,580 [INFO] werkzeug:  * Debugger PIN: 195-460-727
+2026-08-16 18:02:26,658 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 18:02:26] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-16 18:02:26,709 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 18:02:26] "GET /invoices HTTP/1.1" 200 -
+2026-08-16 18:02:28,341 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 18:02:28] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-16 18:02:33,527 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 18:02:33] "GET /reports/low-stock HTTP/1.1" 200 -
+2026-08-16 18:02:35,384 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 18:02:35] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-16 18:02:35,803 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 18:02:35] "GET /reports HTTP/1.1" 200 -
+2026-08-16 18:02:37,418 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 18:02:37] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-16 18:03:06,834 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 18:03:06] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-16 22:02:16,216 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 22:02:16] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-16 22:25:15,343 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 22:25:15] "GET /reports/low-stock HTTP/1.1" 200 -
+2026-08-16 22:25:15,415 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 22:25:15] "GET /static/js/app.js?v=2.0 HTTP/1.1" 200 -
+2026-08-16 22:25:16,962 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 22:25:16] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-16 22:25:18,880 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 22:25:18] "GET /dashboard HTTP/1.1" 200 -
+2026-08-16 22:25:19,835 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 22:25:19] "GET /invoices/create HTTP/1.1" 200 -
+2026-08-16 22:25:21,466 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 22:25:21] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-16 22:25:31,004 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 22:25:31] "GET /invoices HTTP/1.1" 200 -
+2026-08-16 22:25:32,627 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 22:25:32] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-16 22:25:37,141 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 22:25:37] "GET /invoices/create HTTP/1.1" 200 -
+2026-08-16 22:25:38,715 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 22:25:38] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-16 22:25:39,407 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 22:25:39] "GET /invoices HTTP/1.1" 200 -
+2026-08-16 22:25:40,076 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 22:25:40] "GET /invoices/create HTTP/1.1" 200 -
+2026-08-16 22:25:41,345 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 22:25:41] "GET /invoices HTTP/1.1" 200 -
+2026-08-16 22:25:41,698 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 22:25:41] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-16 22:25:41,899 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 22:25:41] "GET /invoices/create HTTP/1.1" 200 -
+2026-08-16 22:25:43,643 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 22:25:43] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-16 22:26:12,944 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 22:26:12] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-16 22:31:19,766 [INFO] werkzeug: 127.0.0.1 - - [16/Aug/2026 22:31:19] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-16 22:34:52,647 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-08-16 22:34:52,855 [INFO] werkzeug:  * Restarting with stat
+2026-08-16 22:34:54,217 [WARNING] werkzeug:  * Debugger is active!
+2026-08-16 22:34:54,220 [INFO] werkzeug:  * Debugger PIN: 195-460-727
+2026-08-16 22:35:00,582 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-08-16 22:35:00,780 [INFO] werkzeug:  * Restarting with stat
+2026-08-16 22:35:02,050 [WARNING] werkzeug:  * Debugger is active!
+2026-08-16 22:35:02,052 [INFO] werkzeug:  * Debugger PIN: 195-460-727
+2026-08-16 22:35:17,397 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-08-16 22:35:17,803 [INFO] werkzeug:  * Restarting with stat
+2026-08-16 22:35:19,805 [WARNING] werkzeug:  * Debugger is active!
+2026-08-16 22:35:19,807 [INFO] werkzeug:  * Debugger PIN: 195-460-727
+2026-08-16 22:35:22,018 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-08-16 22:35:22,212 [INFO] werkzeug:  * Restarting with stat
+2026-08-16 22:35:23,598 [WARNING] werkzeug:  * Debugger is active!
+2026-08-16 22:35:23,600 [INFO] werkzeug:  * Debugger PIN: 195-460-727
+2026-08-16 22:35:25,792 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-08-16 22:35:25,950 [INFO] werkzeug:  * Restarting with stat
+2026-08-16 22:35:27,319 [WARNING] werkzeug:  * Debugger is active!
+2026-08-16 22:35:27,322 [INFO] werkzeug:  * Debugger PIN: 195-460-727
+2026-08-16 22:37:11,967 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\tests\\test_invoice_numbering.py', reloading
+2026-08-16 22:37:12,189 [INFO] werkzeug:  * Restarting with stat
+2026-08-16 22:37:13,470 [WARNING] werkzeug:  * Debugger is active!
+2026-08-16 22:37:13,472 [INFO] werkzeug:  * Debugger PIN: 195-460-727

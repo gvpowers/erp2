@@ -1,0 +1,69 @@
+2026-08-15 15:18:42,497 [INFO] werkzeug: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.6:5000
+2026-08-15 15:18:42,499 [INFO] werkzeug: [33mPress CTRL+C to quit[0m
+2026-08-15 15:18:42,501 [INFO] werkzeug:  * Restarting with stat
+2026-08-15 15:18:44,384 [WARNING] werkzeug:  * Debugger is active!
+2026-08-15 15:18:44,390 [INFO] werkzeug:  * Debugger PIN: 195-460-727
+2026-08-15 15:18:59,008 [INFO] werkzeug: 127.0.0.1 - - [15/Aug/2026 15:18:59] "[32mGET / HTTP/1.1[0m" 302 -
+2026-08-15 15:18:59,052 [INFO] werkzeug: 127.0.0.1 - - [15/Aug/2026 15:18:59] "GET /login HTTP/1.1" 200 -
+2026-08-15 15:19:00,997 [INFO] werkzeug: 127.0.0.1 - - [15/Aug/2026 15:19:00] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-15 15:19:19,563 [INFO] werkzeug: 127.0.0.1 - - [15/Aug/2026 15:19:19] "[32mPOST /login HTTP/1.1[0m" 302 -
+2026-08-15 15:19:19,646 [INFO] werkzeug: 127.0.0.1 - - [15/Aug/2026 15:19:19] "GET /dashboard HTTP/1.1" 200 -
+2026-08-15 15:19:21,488 [INFO] werkzeug: 127.0.0.1 - - [15/Aug/2026 15:19:21] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-15 15:19:26,060 [INFO] werkzeug: 127.0.0.1 - - [15/Aug/2026 15:19:26] "GET /products HTTP/1.1" 200 -
+2026-08-15 15:19:27,718 [INFO] werkzeug: 127.0.0.1 - - [15/Aug/2026 15:19:27] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-15 15:19:29,544 [INFO] werkzeug: 127.0.0.1 - - [15/Aug/2026 15:19:29] "GET /invoices/create HTTP/1.1" 200 -
+2026-08-15 15:19:31,242 [INFO] werkzeug: 127.0.0.1 - - [15/Aug/2026 15:19:31] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-15 15:20:22,319 [INFO] werkzeug: 127.0.0.1 - - [15/Aug/2026 15:20:22] "POST /invoices/create HTTP/1.1" 200 -
+2026-08-15 15:20:22,987 [INFO] werkzeug: 127.0.0.1 - - [15/Aug/2026 15:20:22] "GET /invoices/2 HTTP/1.1" 200 -
+2026-08-15 15:20:25,019 [INFO] werkzeug: 127.0.0.1 - - [15/Aug/2026 15:20:25] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-15 15:20:39,803 [INFO] werkzeug: 127.0.0.1 - - [15/Aug/2026 15:20:39] "GET /invoices/2/pdf/owner HTTP/1.1" 200 -
+2026-08-15 15:20:40,814 [INFO] werkzeug: 127.0.0.1 - - [15/Aug/2026 15:20:40] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-15 15:21:05,080 [INFO] werkzeug: 127.0.0.1 - - [15/Aug/2026 15:21:05] "POST /invoices/2/email HTTP/1.1" 200 -
+2026-08-15 15:21:15,129 [INFO] werkzeug: 127.0.0.1 - - [15/Aug/2026 15:21:15] "[33mGET /sw.js HTTP/1.1[0m" 404 -
+2026-08-15 15:26:38,407 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-08-15 15:26:38,755 [INFO] werkzeug:  * Restarting with stat
+2026-08-15 15:26:42,512 [WARNING] werkzeug:  * Debugger is active!
+2026-08-15 15:26:42,516 [INFO] werkzeug:  * Debugger PIN: 195-460-727
+2026-08-15 15:26:47,330 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-08-15 15:26:47,606 [INFO] werkzeug:  * Restarting with stat
+2026-08-15 15:26:52,951 [WARNING] werkzeug:  * Debugger is active!
+2026-08-15 15:26:52,957 [INFO] werkzeug:  * Debugger PIN: 195-460-727
+2026-08-15 15:27:18,829 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-08-15 15:27:19,202 [INFO] werkzeug:  * Restarting with stat
+2026-08-15 15:27:22,985 [WARNING] werkzeug:  * Debugger is active!
+2026-08-15 15:27:22,990 [INFO] werkzeug:  * Debugger PIN: 195-460-727
+2026-08-15 15:28:06,652 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-08-15 15:28:06,998 [INFO] werkzeug:  * Restarting with stat
+2026-08-15 15:28:10,785 [WARNING] werkzeug:  * Debugger is active!
+2026-08-15 15:28:10,788 [INFO] werkzeug:  * Debugger PIN: 195-460-727
+2026-08-15 15:29:27,800 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-08-15 15:29:28,073 [INFO] werkzeug:  * Restarting with stat
+2026-08-15 15:29:31,762 [WARNING] werkzeug:  * Debugger is active!
+2026-08-15 15:29:31,766 [INFO] werkzeug:  * Debugger PIN: 195-460-727
+2026-08-15 15:29:34,550 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-08-15 15:29:35,067 [INFO] werkzeug:  * Restarting with stat
+2026-08-15 15:29:38,881 [WARNING] werkzeug:  * Debugger is active!
+2026-08-15 15:29:38,886 [INFO] werkzeug:  * Debugger PIN: 195-460-727
+2026-08-15 15:30:19,482 [INFO] werkzeug:  * Detected change in 'C:\\Users\\kamle\\PycharmProjects\\PythonProject\\GV_POWERS_ERP\\app.py', reloading
+2026-08-15 15:30:19,789 [INFO] werkzeug:  * Restarting with stat
+2026-08-15 15:30:23,655 [WARNING] werkzeug:  * Debugger is active!
+2026-08-15 15:30:23,659 [INFO] werkzeug:  * Debugger PIN: 195-460-727
+2026-08-15 15:36:33,046 [INFO] werkzeug: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.6:5000
+2026-08-15 15:36:33,047 [INFO] werkzeug: [33mPress CTRL+C to quit[0m
+2026-08-15 15:36:33,049 [INFO] werkzeug:  * Restarting with stat
+2026-08-15 15:36:35,840 [WARNING] werkzeug:  * Debugger is active!
+2026-08-15 15:36:35,845 [INFO] werkzeug:  * Debugger PIN: 195-460-727
+2026-08-15 15:37:24,025 [INFO] werkzeug: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.6:5000
+2026-08-15 15:37:24,026 [INFO] werkzeug: [33mPress CTRL+C to quit[0m
+2026-08-15 15:37:24,028 [INFO] werkzeug:  * Restarting with stat
+2026-08-15 15:37:26,625 [WARNING] werkzeug:  * Debugger is active!
+2026-08-15 15:37:26,629 [INFO] werkzeug:  * Debugger PIN: 195-460-727
