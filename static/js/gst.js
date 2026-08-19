@@ -183,7 +183,7 @@ const GST = (() => {
 
     // ── Format GST Amount for Display ─────────────────────────
     function formatGSTAmount(amount) {
-        return (typeof UI !== 'undefined' && UI.formatCurrency) ? UI.formatCurrency(amount) : '\u20B9' + round2(amount || 0).toFixed(2);
+        return (typeof UI !== 'undefined' && UI.formatCurrency) ? UI.formatCurrency(amount) : 'Rs. ' + round2(amount || 0).toFixed(2);
     }
 
     // ── Get State Name by Code ────────────────────────────────

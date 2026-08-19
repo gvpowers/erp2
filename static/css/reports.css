@@ -72,8 +72,8 @@
 .rpt-stat-badge{position:absolute;top:1rem;right:1rem}
 
 /* ---- Reports dashboard cards (used on /reports hub) ---- */
-.rpt-card-title{font-size:1.1rem;font-weight:700;color:var(--erp-text);margin-bottom:.4rem}
-.rpt-card-desc{font-size:.82rem;color:var(--erp-text-muted);line-height:1.6}
+.rpt-card-title{font-size:1.1rem;font-weight:700;color:var(--erp-text);margin-bottom:.3rem}
+.rpt-card-desc{font-size:.82rem;color:var(--erp-text-muted);line-height:1.55}
 .rpt-section-label{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--erp-text-muted);margin-bottom:1rem;display:flex;align-items:center;gap:.5rem}
 .rpt-section-label i{width:16px;height:16px;color:var(--erp-primary)}
 
@@ -84,10 +84,70 @@
 .rpt-card-head h3 i{width:17px;height:17px;color:var(--erp-primary)}
 .rpt-card-body{padding:1.2rem}
 
-.rpt-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;margin-bottom:1.4rem}
+.rpt-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.2rem;margin-bottom:1.4rem}
 .rpt-grid.cols-2 .rpt-card{grid-column:auto}
 .rpt-grid .rpt-card{min-width:0}
-@media(max-width:1100px){.rpt-grid{grid-template-columns:1fr}}
+@media(max-width:767px){.rpt-grid{grid-template-columns:1fr}}
+
+/* ---- Report navigation cards (used on /reports hub) ---- */
+.rpt-nav-card{
+  display:flex;flex-direction:column;align-items:flex-start;
+  padding:1.5rem;min-height:0;margin:0;
+  background:var(--erp-surface);border:1px solid var(--border);border-radius:16px;
+  box-shadow:0 1px 3px rgba(15,23,42,.05);text-decoration:none;
+  transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease;
+}
+.rpt-nav-card:hover{transform:translateY(-2px);border-color:var(--erp-primary);box-shadow:0 8px 24px rgba(37,99,235,.1)}
+.rpt-nav-card .rpt-card-title{font-size:1.05rem;font-weight:700;color:var(--erp-text);margin-bottom:.3rem}
+.rpt-nav-card .rpt-card-desc{font-size:.82rem;color:var(--erp-text-muted);line-height:1.5}
+.rpt-nav-card:hover .rpt-card-title{color:var(--erp-primary)}
+
+.rpt-card-icon{
+  width:48px;height:48px;min-width:48px;min-height:48px;
+  display:flex;align-items:center;justify-content:center;
+  border-radius:13px;margin-bottom:.9rem;flex:0 0 48px;
+}
+.rpt-card-icon i{width:22px;height:22px}
+.rpt-card-icon.blue{background:rgba(59,130,246,.1);color:#3b82f6}
+.rpt-card-icon.indigo{background:rgba(99,102,241,.1);color:#6366f1}
+.rpt-card-icon.green{background:rgba(16,185,129,.1);color:#10b981}
+.rpt-card-icon.orange{background:rgba(249,115,22,.1);color:#f97316}
+.rpt-card-icon.teal{background:rgba(20,184,166,.1);color:#14b8a6}
+.rpt-card-icon.amber{background:rgba(245,158,11,.1);color:#f59e0b}
+.rpt-card-icon.purple{background:rgba(139,92,246,.1);color:#8b5cf6}
+.rpt-card-icon.red{background:rgba(239,68,68,.1);color:#ef4444}
+
+.rpt-card-cat{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--erp-text-muted);margin-bottom:.3rem}
+
+/* ---- Card action link ---- */
+.rpt-card-action{
+  display:inline-flex;align-items:center;gap:.4rem;
+  margin-top:auto;padding-top:1rem;
+  font-size:.8rem;font-weight:600;color:var(--erp-primary);
+  transition:gap .2s ease;
+}
+.rpt-card-action i{width:14px;height:14px;transition:transform .2s ease}
+.rpt-nav-card:hover .rpt-card-action{gap:.55rem}
+.rpt-nav-card:hover .rpt-card-action i{transform:translateX(2px)}
+
+/* ---- Quick exports ---- */
+.export-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:1rem;margin-bottom:1.4rem}
+.rpt-export{
+  display:flex;align-items:center;gap:.9rem;padding:1rem 1.1rem;
+  background:var(--erp-surface);border:1px solid var(--border);border-radius:14px;
+  text-decoration:none;transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease;
+}
+.rpt-export:hover{transform:translateY(-2px);border-color:var(--erp-primary);box-shadow:0 8px 20px rgba(37,99,235,.1)}
+.rpt-export-ico{
+  width:42px;height:42px;min-width:42px;border-radius:12px;
+  display:flex;align-items:center;justify-content:center;flex:0 0 42px;
+}
+.rpt-export-ico i{width:20px;height:20px}
+.rpt-export-ico.excel{background:rgba(16,185,129,.12);color:#10b981}
+.rpt-export-ico.csv{background:rgba(59,130,246,.12);color:#3b82f6}
+.rpt-export-body{min-width:0}
+.rpt-export-title{font-size:.9rem;font-weight:700;color:var(--erp-text)}
+.rpt-export-sub{font-size:.72rem;color:var(--erp-text-muted);margin-top:2px}
 
 .chart-box{position:relative;height:300px}
 .chart-box.tall{height:360px}
@@ -148,7 +208,7 @@
 .rpt-ok-semi{display:flex;justify-content:space-between;gap:1rem}
 
 .empty-state{text-align:center;padding:2.5rem 1rem;color:var(--erp-text-muted)}
-.empty-state i{width:40px;height:40px;opacity:.35;margin-bottom:.6rem}
+.empty-state .empty-state-icon i{width:36px;height:36px;opacity:.35;margin-bottom:.6rem}
 
 ::-webkit-scrollbar{width:8px;height:8px}
 ::-webkit-scrollbar-track{background:transparent}

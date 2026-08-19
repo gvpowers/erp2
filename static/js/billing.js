@@ -306,7 +306,7 @@ document.addEventListener('DOMContentLoaded', () => {
             </td>
             <td style="width:120px;">
                 <div class="input-group input-group-sm">
-                    <span class="input-group-text">₹</span>
+                    <span class="input-group-text">Rs.</span>
                     <input type="number" name="items[${itemId}][price]" class="form-control form-control-sm item-price"
                            value="${fmtNum(price)}" min="0" step="0.01"
                            onchange="window.Billing.recalculateRow('${itemId}')"
@@ -317,7 +317,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <select name="items[${itemId}][discount_type]" class="form-select form-select-sm item-discount-type"
                         onchange="window.Billing.recalculateRow('${itemId}')">
                     <option value="percent">%</option>
-                    <option value="fixed">₹</option>
+                    <option value="fixed">Rs.</option>
                 </select>
             </td>
             <td style="width:90px;">

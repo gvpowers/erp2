@@ -358,7 +358,7 @@ document.addEventListener('DOMContentLoaded', () => {
             modal.querySelector('.customer-detail-gstin').textContent = data.gstin || '-';
             modal.querySelector('.customer-detail-state').textContent = data.state || '-';
             modal.querySelector('.customer-detail-pan').textContent = data.pan || '-';
-            modal.querySelector('.customer-detail-balance').textContent = (typeof UI !== 'undefined' && UI.formatCurrency) ? UI.formatCurrency(data.balance || 0) : '\u20B9' + (data.balance || 0).toFixed(2);
+            modal.querySelector('.customer-detail-balance').textContent = (typeof UI !== 'undefined' && UI.formatCurrency) ? UI.formatCurrency(data.balance || 0) : 'Rs. ' + (data.balance || 0).toFixed(2);
 
             bootstrap.Modal.getOrCreateInstance(modal).show();
         });

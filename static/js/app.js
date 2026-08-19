@@ -519,13 +519,46 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ── Preserve Sidebar Scroll Position ──────────────────────
+    // The sidebar nav (`.sidebar-nav`, overflow-y:auto) is the scroll container.
+    // Save its position before leaving the page and restore it after reload so
+    // navigation between pages keeps the sidebar where the user left it.
     const sidebarNav = document.querySelector('.sidebar-nav');
+    const SIDEBAR_SCROLL_KEY = 'sidebar_scroll';
+
+    function saveSidebarScroll() {
+        try {
+            sessionStorage.setItem(SIDEBAR_SCROLL_KEY, String(sidebarNav.scrollTop));
+        } catch (err) { /* storage unavailable - ignore */ }
+    }
+    function restoreSidebarScroll() {
+        if (!sidebarNav) return;
+        try {
+            const pos = parseInt(sessionStorage.getItem(SIDEBAR_SCROLL_KEY), 10);
+            if (Number.isFinite(pos) && pos > 0) sidebarNav.scrollTop = pos;
+        } catch (err) { /* storage unavailable - ignore */ }
+    }
+
     if (sidebarNav) {
-        const saved = sessionStorage.getItem('sidebar_scroll');
-        if (saved) sidebarNav.scrollTop = parseInt(saved, 10);
+        // Save while scrolling (throttled to avoid blocking on sessionStorage writes).
+        let scrollSaveTimer = null;
         sidebarNav.addEventListener('scroll', () => {
-            sessionStorage.setItem('sidebar_scroll', sidebarNav.scrollTop);
+            if (scrollSaveTimer) return;
+            scrollSaveTimer = setTimeout(() => { scrollSaveTimer = null; saveSidebarScroll(); }, 120);
         });
+        // Save synchronously right before a sidebar link navigates away.
+        document.addEventListener('click', (e) => {
+            const link = e.target && e.target.closest ? e.target.closest('a') : null;
+            if (link && link.target !== '_blank' && sidebarNav.contains(link)) saveSidebarScroll();
+        }, true);
+        // Fallback for refresh, Back/Forward and form submits (e.g. Logout).
+        window.addEventListener('pagehide', saveSidebarScroll);
+        restoreSidebarScroll();
+        // Re-apply on BFCache restores (Back/Forward) where DOMContentLoaded does not re-fire.
+        window.addEventListener('pageshow', restoreSidebarScroll);
+    } else {
+        // No sidebar here (login, error or print page): drop any stale position
+        // so a fresh login never restores a previous session's scroll offset.
+        try { sessionStorage.removeItem(SIDEBAR_SCROLL_KEY); } catch (err) { /* ignore */ }
     }
 
     // ── Print Buttons ─────────────────────────────────────────

@@ -107,8 +107,8 @@
         var bv = b.cells[idx] ? b.cells[idx].textContent.trim() : '';
         var res;
         if (isNum) {
-          var an = parseFloat(String(av).replace(/[₹,LR%]/g, '')) || 0;
-          var bn = parseFloat(String(bv).replace(/[₹,LR%]/g, '')) || 0;
+          var an = parseFloat(String(av).replace(/Rs\.|[₹,LR%s]/g, '')) || 0;
+          var bn = parseFloat(String(bv).replace(/Rs\.|[₹,LR%s]/g, '')) || 0;
           res = an - bn;
         } else {
           res = String(av).localeCompare(String(bv));
@@ -218,7 +218,7 @@
         cfg.options.scales = cfg.options.scales || {};
         if (cfg.money !== false) {
           cfg.options.scales.y = {
-            ticks: { callback: function (v) { return '₹' + fmtInt(v); } },
+            ticks: { callback: function (v) { return 'Rs. ' + fmtInt(v); } },
             grid: { color: 'rgba(0,0,0,.05)' }
           };
         } else {
@@ -237,7 +237,7 @@
       if (cfg.money !== false) {
         cfg.options.plugins.tooltip = { callbacks: { label: function (ctx) {
           var v = ctx.parsed !== undefined && ctx.parsed.y != null ? ctx.parsed.y : (ctx.parsed !== undefined ? ctx.parsed : NaN);
-          return ' ' + (cfg.currency !== false ? '₹' : '') + fmtNumber(v);
+          return ' ' + (cfg.currency !== false ? 'Rs. ' : '') + fmtNumber(v);
         } } };
       }
 

@@ -17,49 +17,28 @@
 
     // Validation rules: name -> [type, module]
     const RULES = {
-        company_name:     ['required'],
-        company_gstin:    ['gstin'],
-        company_pan:      ['pan'],
-        company_email:    ['email'],
-        company_phone:    ['phone'],
-        company_mobile:   ['phone'],
-        company_website:  ['url'],
-        company_state_code: ['number'],
-        company_pincode:  ['pincode'],
-        bank_account:     ['account'],
-        bank_ifsc:        ['ifsc'],
-        upi_id:           ['upi'],
+        // Company identity fields are FIXED (read-only) — no client validation needed.
     };
 
     const GSTIN_RE = /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[0-9A-Z]{1}Z[0-9A-Z]{1}$/;
-    const PAN_RE = /^[A-Z]{5}[0-9]{4}[A-Z]{1}$/;
-    const IFSC_RE = /^[A-Z]{4}0[A-Z0-9]{6}$/;
 
     const CHECKS = {
         required: function (v) { return v.length > 0; },
         gstin:    function (v) { return GSTIN_RE.test(v); },
-        pan:      function (v) { return PAN_RE.test(v); },
         email:    function (v) { return /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v); },
         phone:    function (v) { return /^[0-9+()\-.\s]{10,18}$/.test(v); },
         url:      function (v) { return /^(https?:\/\/)?([\w-]+\.)+[\w-]+(\/\S*)?$/.test(v); },
         number:   function (v) { return /^\d+$/.test(v); },
         pincode:  function (v) { return /^\d{6}$/.test(v); },
-        account:  function (v) { return /^\d{9,18}$/.test(v); },
-        ifsc:     function (v) { return IFSC_RE.test(v); },
-        upi:      function (v) { return /^[\w.\-]{2,}@[a-zA-Z]{2,}$/.test(v); },
     };
 
     const CHMESSAGES = {
         gstin: 'Invalid GSTIN — must be 15 characters (e.g. 33AGEPV1534G2ZJ).',
-        pan: 'Invalid PAN — must be 10 characters (e.g. AGEPV1534G).',
         email: 'Please enter a valid email address.',
         phone: 'Please enter a valid phone number.',
         url: 'Please enter a valid website URL.',
         number: 'Please enter a number.',
         pincode: 'Please enter a valid 6-digit pincode.',
-        account: 'Please enter a valid bank account number.',
-        ifsc: 'Invalid IFSC code (e.g. SBIN0001234).',
-        upi: 'Invalid UPI ID (format: name@bank).',
     };
 
     // Auto-uppercase identity fields as the user types (handles pasted text too).
@@ -74,6 +53,7 @@
     // ---- Nav ----
     const navItems = app.querySelectorAll('[data-gv-nav]');
     const mods = app.querySelectorAll('[data-gv-module]');
+    const actions = app.querySelector('.gv-actions');
     const savedKey = storageGet('gv_settings_active');
 
     function showModule(key) {
@@ -86,6 +66,10 @@
         navItems.forEach(function (n) {
             n.classList.toggle('is-active', n.getAttribute('data-gv-nav') === key && found);
         });
+        if (actions) {
+            // Company identity is fixed/read-only — hide the save/reset bar.
+            actions.classList.toggle('gv-actions--hidden', key === 'company');
+        }
         if (found) storageSet('gv_settings_active', key);
     }
 
@@ -294,6 +278,17 @@
             scheduleSave();
         });
     });
+
+    // Logo preview lightbox (read-only company profile)
+    var logoPreviewBtn = app.querySelector('[data-gv-logo-preview]');
+    var logoModal = app.querySelector('[data-gv-logo-modal]');
+    if (logoPreviewBtn && logoModal) {
+        logoPreviewBtn.addEventListener('click', function () { logoModal.hidden = false; });
+        logoModal.querySelectorAll('[data-gv-logo-close]').forEach(function (el) {
+            el.addEventListener('click', function () { logoModal.hidden = true; });
+        });
+        document.addEventListener('keydown', function (e) { if (e.key === 'Escape') logoModal.hidden = true; });
+    }
 
     // ---- Toast ----
     var tEl = document.createElement('div');

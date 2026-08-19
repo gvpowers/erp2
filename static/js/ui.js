@@ -29,7 +29,7 @@ const UI = (() => {
 
     // ── Indian Currency Formatting ────────────────────────────
     function formatCurrency(amount) {
-        if (amount === null || amount === undefined || isNaN(amount)) return '₹0.00';
+        if (amount === null || amount === undefined || isNaN(amount)) return 'Rs. 0.00';
         const num = parseFloat(amount);
         return num.toLocaleString('en-IN', {
             style: 'currency',
