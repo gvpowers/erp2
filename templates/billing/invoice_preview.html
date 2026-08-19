@@ -72,6 +72,98 @@
     .btn-zip { background: var(--color-info); color: #fff; }
     .btn-zip:hover { background: var(--color-primary); color: #fff; }
     .action-bottom { display: flex; gap: 8px; justify-content: flex-end; margin-top: 20px; flex-wrap: wrap; }
+
+    /* ── Payment Modal ─────────────────────────────────────────── */
+    .pm-backdrop {
+        position: fixed; inset: 0; background: rgba(15,23,42,0.55);
+        backdrop-filter: blur(4px); z-index: 2000;
+        display: flex; align-items: center; justify-content: center; padding: 16px;
+    }
+    .pm-modal {
+        background: var(--bg-white); border-radius: var(--radius-xl);
+        box-shadow: 0 20px 60px rgba(0,0,0,0.2); max-width: 560px; width: 100%;
+        max-height: 90vh; display: flex; flex-direction: column; overflow: hidden;
+    }
+    .pm-header {
+        display: flex; align-items: center; justify-content: space-between;
+        border-bottom: 1px solid var(--border-light); padding: 20px 24px;
+    }
+    .pm-title { font-weight: 700; margin: 0; font-size: 1.05rem; color: var(--text-primary); }
+    .pm-close {
+        width: 36px; height: 36px; border: none; background: none; cursor: pointer;
+        color: var(--text-muted); font-size: 1.4rem; line-height: 1;
+        border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center;
+        transition: var(--transition);
+    }
+    .pm-close:hover { background: var(--bg-gray); color: var(--text-primary); }
+    .pm-body { padding: 24px; overflow-y: auto; flex: 1; }
+    .pm-balance {
+        background: var(--color-primary-light); border-radius: var(--radius-lg);
+        padding: 16px 20px; margin-bottom: 20px;
+    }
+    .pm-balance-label {
+        font-size: 0.72rem; color: var(--text-muted); font-weight: 600;
+        text-transform: uppercase; letter-spacing: 0.04em;
+    }
+    .pm-balance-amount {
+        font-size: 1.6rem; font-weight: 800; color: var(--color-primary);
+        font-family: var(--font-mono); margin-top: 4px;
+    }
+    .pm-error {
+        display: none; background: #fef2f2; color: #b91c1c;
+        border: 1px solid #fecaca; border-radius: var(--radius-lg);
+        padding: 10px 14px; font-size: 0.82rem; margin-bottom: 16px;
+    }
+    .pm-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .pm-field { display: flex; flex-direction: column; }
+    .pm-field--full { grid-column: 1 / -1; }
+    .pm-label {
+        font-size: 0.72rem; font-weight: 600; color: var(--text-muted);
+        text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 6px;
+    }
+    .pm-input {
+        height: 48px; padding: 0 14px; font-size: 0.88rem;
+        border: 1px solid var(--border-color); border-radius: var(--radius-md);
+        background: var(--bg-white); color: var(--text-primary);
+        transition: border-color 0.15s, box-shadow 0.15s; width: 100%;
+    }
+    .pm-input:focus {
+        border-color: var(--color-primary);
+        box-shadow: 0 0 0 3px var(--color-primary-light); outline: none;
+    }
+    .pm-input--amount {
+        font-size: 1.05rem; font-weight: 700; font-family: var(--font-mono);
+    }
+    .pm-hint {
+        font-size: 0.76rem; color: var(--text-muted); margin-top: 16px;
+    }
+    .pm-footer {
+        display: flex; justify-content: flex-end; gap: 10px;
+        border-top: 1px solid var(--border-light); padding: 16px 24px;
+    }
+    .pm-btn {
+        height: 44px; padding: 0 20px; border-radius: var(--radius-md);
+        font-size: 0.85rem; font-weight: 600; cursor: pointer;
+        display: inline-flex; align-items: center; gap: 6px;
+        transition: var(--transition); border: 1px solid transparent;
+    }
+    .pm-btn-cancel {
+        background: var(--bg-white); color: var(--text-secondary);
+        border-color: var(--border-color);
+    }
+    .pm-btn-cancel:hover { background: var(--bg-gray); border-color: var(--text-muted); }
+    .pm-btn-save {
+        background: var(--color-success); color: #fff;
+        border-color: var(--color-success);
+    }
+    .pm-btn-save:hover { background: #15803d; }
+
+    @media(max-width:540px) {
+        .pm-grid { grid-template-columns: 1fr; }
+        .pm-field--full { grid-column: 1; }
+        .pm-modal { max-width: 100%; margin: 8px; }
+    }
+
     @media(max-width:900px) {
         .action-grid { grid-template-columns: 1fr; }
         .detail-grid { grid-template-columns: 1fr; }
@@ -102,7 +194,7 @@
                 <div class="company-logo">{{ company.name[:2] if company.name else 'GV' }}</div>
                 <div class="company-name">{{ company.name }}</div>
                 <div class="company-detail">
-                    GSTIN: {{ company.gstin }}<br>
+                    GSTIN: {{ company.gstin }} | Website: {{ company.website }}<br>
                     {{ company.address }}<br>
                     {{ company.state }} ({{ company.state_code }})<br>
                     Phone: {{ company.phone }}
@@ -112,7 +204,7 @@
             </div>
             <div class="invoice-title-block">
                 <div class="invoice-title">TAX INVOICE</div>
-                <div id="copyTypeLabel" style="font-size:0.75rem;font-weight:600;color:var(--color-primary);text-transform:uppercase;letter-spacing:0.05em;margin-top:4px;">OWNER COPY</div>
+                <div id="copyTypeLabel" style="font-size:0.75rem;font-weight:600;color:var(--color-primary);text-transform:uppercase;letter-spacing:0.05em;margin-top:4px;">ADMIN / OWNER COPY</div>
                 <div class="invoice-number">{{ invoice.invoice_number }}</div>
                 <div>
                     {% set status_class = 'badge-secondary' %}
@@ -144,6 +236,9 @@
                 <div class="detail-section">
                     <div class="detail-section-title"><i data-lucide="file-text"></i> Invoice Details</div>
                     <div class="detail-row"><span class="dlabel">Invoice #</span><span class="dvalue" style="font-family:var(--font-mono);">{{ invoice.invoice_number }}</span></div>
+                    {% if invoice.quotation %}
+                    <div class="detail-row"><span class="dlabel">Quotation</span><span class="dvalue"><a href="{{ url_for('view_quotation', qid=invoice.quotation.id) }}" style="color:var(--color-primary);text-decoration:none;font-weight:600;font-family:var(--font-mono);">{{ invoice.quotation.quotation_number }}</a></span></div>
+                    {% endif %}
                     <div class="detail-row"><span class="dlabel">Date</span><span class="dvalue">{{ invoice.invoice_date }}</span></div>
                     {% if invoice.due_date %}<div class="detail-row"><span class="dlabel">Due Date</span><span class="dvalue">{{ invoice.due_date }}</span></div>{% endif %}
                     <div class="detail-row"><span class="dlabel">Place of Supply</span><span class="dvalue">{{ invoice.customer_state or company.state }} ({{ invoice.customer_state_code or company.state_code }})</span></div>
@@ -177,14 +272,14 @@
                             <td style="font-weight:500;">{{ item.product_name }}</td>
                             <td style="color:var(--text-muted);font-family:var(--font-mono);">{{ item.hsn or '—' }}</td>
                             <td style="text-align:right;">{{ item.qty }} {{ item.unit }}</td>
-                            <td style="text-align:right;font-family:var(--font-mono);">₹{{ "%.2f"|format(item.price) }}</td>
+                            <td style="text-align:right;font-family:var(--font-mono);">{{ format_currency(item.price) }}</td>
                             <td style="text-align:right;">{{ item.discount }}%</td>
                             <td class="gst-col" style="text-align:right;">{{ item.gst_rate }}%</td>
-                            <td class="tax-col" style="text-align:right;font-weight:500;font-family:var(--font-mono);">₹{{ "%.2f"|format(item.taxable_value) }}</td>
-                            <td class="gst-col" style="text-align:right;color:var(--text-muted);font-family:var(--font-mono);">₹{{ "%.2f"|format(item.cgst) }}</td>
-                            <td class="gst-col" style="text-align:right;color:var(--text-muted);font-family:var(--font-mono);">₹{{ "%.2f"|format(item.sgst) }}</td>
-                            <td class="gst-col" style="text-align:right;color:var(--text-muted);font-family:var(--font-mono);">₹{{ "%.2f"|format(item.igst) }}</td>
-                            <td style="text-align:right;font-weight:600;color:var(--color-primary);font-family:var(--font-mono);">₹{{ "%.2f"|format(item.total) }}</td>
+                            <td class="tax-col" style="text-align:right;font-weight:500;font-family:var(--font-mono);">{{ format_currency(item.taxable_value) }}</td>
+                            <td class="gst-col" style="text-align:right;color:var(--text-muted);font-family:var(--font-mono);">{{ format_currency(item.cgst) }}</td>
+                            <td class="gst-col" style="text-align:right;color:var(--text-muted);font-family:var(--font-mono);">{{ format_currency(item.sgst) }}</td>
+                            <td class="gst-col" style="text-align:right;color:var(--text-muted);font-family:var(--font-mono);">{{ format_currency(item.igst) }}</td>
+                            <td style="text-align:right;font-weight:600;color:var(--color-primary);font-family:var(--font-mono);">{{ format_currency(item.total) }}</td>
                         </tr>
                         {% endfor %}
                     </tbody>
@@ -199,23 +294,23 @@
             <!-- Totals -->
             <div class="totals-section">
                 <div class="totals-box">
-                    <div class="totals-row"><span class="tlabel">Subtotal</span><span class="tvalue">₹{{ "%.2f"|format(invoice.subtotal) }}</span></div>
+                    <div class="totals-row"><span class="tlabel">Subtotal</span><span class="tvalue">{{ format_currency(invoice.subtotal) }}</span></div>
                     {% if invoice.total_discount > 0 %}
-                    <div class="totals-row"><span class="tlabel">Discount</span><span class="tvalue" style="color:var(--color-success);">-₹{{ "%.2f"|format(invoice.total_discount) }}</span></div>
+                    <div class="totals-row"><span class="tlabel">Discount</span><span class="tvalue" style="color:var(--color-success);">-{{ format_currency(invoice.total_discount) }}</span></div>
                     {% endif %}
-                    <div class="totals-row"><span class="tlabel">Taxable Amount</span><span class="tvalue">₹{{ "%.2f"|format(invoice.total_taxable) }}</span></div>
+                    <div class="totals-row"><span class="tlabel">Taxable Amount</span><span class="tvalue">{{ format_currency(invoice.total_taxable) }}</span></div>
                     <div class="tax-grid">
                         {% if invoice.total_igst > 0 %}
-                        <div class="tax-item"><div class="tax-label">IGST</div><div class="tax-val">₹{{ "%.2f"|format(invoice.total_igst) }}</div></div>
+                        <div class="tax-item"><div class="tax-label">IGST</div><div class="tax-val">{{ format_currency(invoice.total_igst) }}</div></div>
                         {% else %}
-                        <div class="tax-item"><div class="tax-label">CGST</div><div class="tax-val">₹{{ "%.2f"|format(invoice.total_cgst) }}</div></div>
-                        <div class="tax-item"><div class="tax-label">SGST</div><div class="tax-val">₹{{ "%.2f"|format(invoice.total_sgst) }}</div></div>
+                        <div class="tax-item"><div class="tax-label">CGST</div><div class="tax-val">{{ format_currency(invoice.total_cgst) }}</div></div>
+                        <div class="tax-item"><div class="tax-label">SGST</div><div class="tax-val">{{ format_currency(invoice.total_sgst) }}</div></div>
                         {% endif %}
                     </div>
                     {% if invoice.round_off != 0 %}
-                    <div class="totals-row"><span class="tlabel">Round Off</span><span class="tvalue">{{ "%.2f"|format(invoice.round_off) }}</span></div>
+                    <div class="totals-row"><span class="tlabel">Round Off</span><span class="tvalue">{{ format_currency(invoice.round_off) }}</span></div>
                     {% endif %}
-                    <div class="totals-row grand"><span class="tlabel">Grand Total</span><span class="tvalue">₹{{ "%.2f"|format(invoice.grand_total) }}</span></div>
+                    <div class="totals-row grand"><span class="tlabel">Grand Total</span><span class="tvalue">{{ format_currency(invoice.grand_total) }}</span></div>
                 </div>
             </div>
 
@@ -230,8 +325,8 @@
                 {% if last_payment and _payment_display_ref(last_payment) %}
                 <div class="detail-row"><span class="dlabel">Reference</span><span class="dvalue" id="payRefLabel" style="font-family:var(--font-mono);">{{ _payment_display_ref(last_payment) }}</span></div>
                 {% endif %}
-                <div class="detail-row"><span class="dlabel">Amount Paid</span><span class="dvalue" id="payAmountPaid" style="color:var(--color-success);font-weight:600;font-family:var(--font-mono);">₹{{ "%.2f"|format(invoice.amount_paid) }}</span></div>
-                <div class="detail-row"><span class="dlabel">Balance Due</span><span class="dvalue" id="payBalance" style="color:{% if invoice.balance_due > 0 %}var(--color-danger){% else %}var(--color-success){% endif %};font-weight:600;font-family:var(--font-mono);">₹{{ "%.2f"|format(invoice.balance_due) }}</span></div>
+                <div class="detail-row"><span class="dlabel">Amount Paid</span><span class="dvalue" id="payAmountPaid" style="color:var(--color-success);font-weight:600;font-family:var(--font-mono);">{{ format_currency(invoice.amount_paid) }}</span></div>
+                <div class="detail-row"><span class="dlabel">Balance Due</span><span class="dvalue" id="payBalance" style="color:{% if invoice.balance_due > 0 %}var(--color-danger){% else %}var(--color-success){% endif %};font-weight:600;font-family:var(--font-mono);">{{ format_currency(invoice.balance_due) }}</span></div>
             </div>
 
             <!-- Payment History -->
@@ -255,7 +350,7 @@
                             {% for p in _payments_newest(invoice) %}
                             <tr id="payRow{{ p.id }}">
                                 <td style="white-space:nowrap;">{{ p.payment_date.strftime('%d %b %Y') if p.payment_date else '-' }}</td>
-                                <td style="text-align:right;font-weight:600;font-family:var(--font-mono);color:var(--color-success);">₹{{ "%.2f"|format(p.amount) }}</td>
+                                <td style="text-align:right;font-weight:600;font-family:var(--font-mono);color:var(--color-success);">{{ format_currency(p.amount) }}</td>
                                 <td>{{ _payment_method_label(p.payment_method) }}</td>
                                 <td style="font-family:var(--font-mono);">{{ _payment_display_ref(p) or '—' }}</td>
                                 <td>{{ p.received_by or '-' }}</td>
@@ -359,57 +454,55 @@
 </div>
 
 <!-- Payment Modal (self-contained, no Bootstrap dependency) -->
-<div id="paymentModalWrap" style="display:none;position:fixed;inset:0;background:rgba(15,23,42,0.55);backdrop-filter:blur(2px);z-index:2000;align-items:center;justify-content:center;padding:16px;">
-    <div style="background:var(--card-bg);border-radius:var(--radius-xl);box-shadow:var(--shadow-lg);max-width:480px;width:100%;max-height:92vh;overflow:auto;">
-        <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border-light);padding:16px 20px;">
-            <h6 style="font-weight:600;margin:0;font-size:1rem;" id="payModalTitle">Record Payment</h6>
-            <button type="button" onclick="closePaymentModal()" style="border:none;background:none;cursor:pointer;color:var(--text-muted);font-size:1.25rem;line-height:1;">&times;</button>
+<div id="paymentModalWrap" class="pm-backdrop" style="display:none;">
+    <div class="pm-modal">
+        <div class="pm-header">
+            <h6 class="pm-title" id="payModalTitle">Record Payment</h6>
+            <button type="button" onclick="closePaymentModal()" class="pm-close">&times;</button>
         </div>
-        <div style="padding:20px;">
-            <div style="background:var(--color-primary-light);border-radius:var(--radius-lg);padding:16px;margin-bottom:20px;">
-                <div style="font-size:0.75rem;color:var(--text-muted);font-weight:500;text-transform:uppercase;letter-spacing:0.03em;">Balance Due</div>
-                <div style="font-size:1.5rem;font-weight:700;color:var(--color-primary);font-family:var(--font-mono);margin-top:4px;" id="modalBalance">₹{{ "%.2f"|format(invoice.balance_due) }}</div>
+        <div class="pm-body">
+            <div class="pm-balance">
+                <div class="pm-balance-label">Balance Due</div>
+                <div class="pm-balance-amount" id="modalBalance">{{ format_currency(invoice.balance_due) }}</div>
             </div>
-            <div style="display:none;background:#fef2f2;color:#b91c1c;border:1px solid #fecaca;border-radius:var(--radius-lg);padding:10px 14px;font-size:0.82rem;margin-bottom:16px;" id="payError"></div>
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
-                <div style="margin-bottom:12px;">
-                    <label style="font-size:0.75rem;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.04em;margin-bottom:6px;display:block;">Payment Date</label>
-                    <input type="date" class="form-control" id="payDate" style="height:44px;font-size:0.9rem;">
+            <div class="pm-error" id="payError"></div>
+            <div class="pm-grid">
+                <div class="pm-field">
+                    <label class="pm-label" for="payDate">Payment Date</label>
+                    <input type="date" class="pm-input" id="payDate">
                 </div>
-                <div style="margin-bottom:12px;">
-                    <label style="font-size:0.75rem;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.04em;margin-bottom:6px;display:block;">Payment Amount</label>
-                    <input type="number" class="form-control" id="payAmount" step="0.01" min="0" style="height:44px;font-size:0.9rem;">
+                <div class="pm-field">
+                    <label class="pm-label" for="payAmount">Payment Amount</label>
+                    <input type="number" class="pm-input pm-input--amount" id="payAmount" step="0.01" min="0">
                 </div>
-                <div style="margin-bottom:12px;">
-                    <label style="font-size:0.75rem;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.04em;margin-bottom:6px;display:block;">Payment Method</label>
-                    <select class="form-select" id="payMethod" style="height:44px;">
+                <div class="pm-field">
+                    <label class="pm-label" for="payMethod">Payment Method</label>
+                    <select class="pm-input" id="payMethod">
                         <option value="cash">Cash</option>
                         <option value="upi">UPI</option>
                         <option value="card">Card</option>
-                        <option value="bank_transfer">Bank Transfer</option>
-                        <option value="cheque">Cheque</option>
                         <option value="other">Other</option>
                     </select>
                 </div>
-                <div style="margin-bottom:12px;">
-                    <label style="font-size:0.75rem;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.04em;margin-bottom:6px;display:block;">Received By</label>
-                    <input type="text" class="form-control" id="payReceivedBy" style="height:44px;font-size:0.9rem;">
+                <div class="pm-field">
+                    <label class="pm-label" for="payReceivedBy">Received By</label>
+                    <input type="text" class="pm-input" id="payReceivedBy">
                 </div>
-                <div style="margin-bottom:12px;grid-column:1 / -1;">
-                    <label style="font-size:0.75rem;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.04em;margin-bottom:6px;display:block;">Transaction / UTR ID</label>
-                    <input type="text" class="form-control" id="payTransactionId" placeholder="e.g. UPI UTR number" style="height:44px;">
+                <div class="pm-field pm-field--full">
+                    <label class="pm-label" for="payTransactionId">Transaction / UTR ID</label>
+                    <input type="text" class="pm-input" id="payTransactionId" placeholder="e.g. UPI UTR number">
                 </div>
-                <div style="margin-bottom:12px;grid-column:1 / -1;">
-                    <label style="font-size:0.75rem;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.04em;margin-bottom:6px;display:block;">Remarks</label>
-                    <input type="text" class="form-control" id="payRemarks" placeholder="Optional note" style="height:44px;">
+                <div class="pm-field pm-field--full">
+                    <label class="pm-label" for="payRemarks">Remarks</label>
+                    <input type="text" class="pm-input" id="payRemarks" placeholder="Optional note">
                 </div>
             </div>
-            <div style="font-size:0.78rem;color:var(--text-muted);margin-top:4px;">Amount cannot exceed the outstanding balance shown above.</div>
+            <div class="pm-hint">Amount cannot exceed the outstanding balance shown above.</div>
         </div>
-        <div style="display:flex;justify-content:flex-end;gap:8px;border-top:1px solid var(--border-light);padding:14px 20px;">
-            <button type="button" class="btn btn-outline-secondary btn-sm" onclick="closePaymentModal()">Cancel</button>
-            <button type="button" class="btn btn-success btn-sm" onclick="savePayment()" style="display:flex;align-items:center;gap:6px;">
-                <i data-lucide="check-circle" style="width:14px;height:14px;"></i> Save Payment
+        <div class="pm-footer">
+            <button type="button" class="pm-btn pm-btn-cancel" onclick="closePaymentModal()">Cancel</button>
+            <button type="button" class="pm-btn pm-btn-save" onclick="savePayment()">
+                <i data-lucide="check-circle" style="width:16px;height:16px;"></i> Save Payment
             </button>
         </div>
     </div>
@@ -450,7 +543,7 @@ function switchCopy(type, btn) {
     const taxCols = document.querySelectorAll('.tax-col');
 
     if (type === 'owner') {
-        label.textContent = 'OWNER COPY';
+        label.textContent = 'ADMIN / OWNER COPY';
         gstCols.forEach(el => el.style.display = '');
         taxCols.forEach(el => el.style.display = '');
     } else if (type === 'customer') {
@@ -510,6 +603,33 @@ function emailInvoice() {
     });
 }
 
+function sendEmail() {
+    const emailInput = document.getElementById('emailInput');
+    const email = emailInput ? emailInput.value.trim() : '';
+    if (!email) { alert('Please enter an email address'); return; }
+    const btn = document.querySelector('.btn-email-send');
+    const origText = btn ? btn.innerHTML : '';
+    if (btn) { btn.innerHTML = 'Sending...'; btn.disabled = true; }
+    fetch('/invoices/{{ invoice.id }}/email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'X-CSRFToken': getCsrfToken() },
+        body: JSON.stringify({ email: email })
+    })
+    .then(r => r.json().then(d => ({ ok: r.ok, data: d })))
+    .then(({ ok, data }) => {
+        if (btn) { btn.innerHTML = origText; btn.disabled = false; }
+        const modal = bootstrap.Modal.getInstance(document.getElementById('emailModal'));
+        if (modal) modal.hide();
+        if (ok) { showSuccess(data.message || 'Invoice emailed successfully'); }
+        else { alert(data.error || 'Failed to send email'); }
+        lucide.createIcons();
+    })
+    .catch(() => {
+        if (btn) { btn.innerHTML = origText; btn.disabled = false; }
+        alert('Network error'); lucide.createIcons();
+    });
+}
+
 let paymentEditId = null;
 
 function showPaymentModal() {
@@ -522,7 +642,7 @@ function showPaymentModal() {
     document.getElementById('payTransactionId').value = '';
     document.getElementById('payRemarks').value = '';
     document.getElementById('payError').style.display = 'none';
-    document.getElementById('modalBalance').textContent = '₹' + formatCurrency({{ invoice.balance_due }});
+    document.getElementById('modalBalance').textContent = 'Rs. ' + formatCurrency({{ invoice.balance_due }});
     document.getElementById('paymentModalWrap').style.display = 'flex';
     document.getElementById('payAmount').focus();
 }
@@ -545,7 +665,7 @@ function editPayment(pid) {
         document.getElementById('payTransactionId').value = p.transaction_id || '';
         document.getElementById('payRemarks').value = p.remarks || '';
         document.getElementById('payError').style.display = 'none';
-        document.getElementById('modalBalance').textContent = '₹' + formatCurrency(p.max_amount);
+        document.getElementById('modalBalance').textContent = 'Rs. ' + formatCurrency(p.max_amount);
         document.getElementById('paymentModalWrap').style.display = 'flex';
     })
     .catch(() => alert('Network error'));
@@ -613,7 +733,7 @@ function deletePayment(pid) {
 
 function applyPaymentState(d) {
     if (!d) return;
-    const fmt = (v) => '₹' + formatCurrency(v);
+    const fmt = (v) => 'Rs. ' + formatCurrency(v);
     const upd = document.getElementById('payAmountPaid');
     if (upd) { upd.textContent = fmt(d.amount_paid); upd.style.color = 'var(--color-success)'; }
     const bal = document.getElementById('payBalance');
@@ -649,7 +769,7 @@ function fillRow(row, p) {
     if (!cells || cells.length < 6) return;
     cells[0].textContent = (p.payment_date || '').slice(0, 10);
     cells[0].style.whiteSpace = 'nowrap';
-    cells[1].textContent = '₹' + formatCurrency(p.amount);
+    cells[1].textContent = 'Rs. ' + formatCurrency(p.amount);
     cells[1].style.textAlign = 'right';
     cells[1].style.fontWeight = '600';
     cells[1].style.fontFamily = 'var(--font-mono)';
@@ -669,7 +789,7 @@ function prependPaymentRow(p) {
     row.id = 'payRow' + p.id;
     row.innerHTML =
         '<td style="white-space:nowrap;">' + (p.payment_date || '').slice(0, 10) + '</td>' +
-        '<td style="text-align:right;font-weight:600;font-family:var(--font-mono);color:var(--color-success);">₹' + formatCurrency(p.amount) + '</td>' +
+        '<td style="text-align:right;font-weight:600;font-family:var(--font-mono);color:var(--color-success);">Rs. ' + formatCurrency(p.amount) + '</td>' +
         '<td>' + escHtml(p.method_label || p.payment_method || '-') + '</td>' +
         '<td style="font-family:var(--font-mono);">' + escHtml(p.display_ref || '—') + '</td>' +
         '<td>' + escHtml(p.received_by || '-') + '</td>' +

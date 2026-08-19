@@ -2,7 +2,7 @@
 {% block page_title %}Settings{% endblock %}
 
 {% block head %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/settings.css') }}?v=4.0">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/settings.css') }}?v=5.0">
 {% endblock %}
 
 {% block back_link %}
@@ -19,7 +19,6 @@
       {% set items = [
         ('company', 'building-2', 'Company Information'),
         ('invoice', 'file-text', 'Invoice Settings'),
-        ('gst', 'percent', 'GST Settings'),
         ('users', 'users', 'Users & Roles'),
         ('reports', 'bar-chart-2', 'Reports Configuration'),
         ('backup', 'database', 'Backup & Restore'),
@@ -63,144 +62,71 @@
         {# ────────── COMPANY ────────── #}
         <div class="gv-module" data-gv-module="company">
           <div class="gv-card">
-            <h3 class="gv-card-title"><i data-lucide="building-2" class="gv-card-ico" width="20" height="20"></i> Company Information</h3>
+            <h3 class="gv-card-title"><i data-lucide="building-2" class="gv-card-ico" width="20" height="20"></i> Company Information
+              <span class="gv-fixed-badge"><span class="gv-fixed-badge-dot"></span> Fixed Company Profile</span>
+            </h3>
             <p class="gv-card-desc">Business identity shown on invoices, quotations, reports and PDFs.</p>
 
-            <div class="gv-grid">
-              <div class="gv-field">
-                <label class="gv-label">Company Logo</label>
-                <div class="gv-upload">
-                  <div class="gv-preview" id="previewLogo">
-                    {% if company.logo %}
-                    <img src="{{ company.logo }}" alt="">
-                    {% else %}
-                    <i data-lucide="image" width="28" height="28"></i>
-                    {% endif %}
-                  </div>
-                  <div class="gv-upload-ctls">
-                    <label class="gv-btn gv-btn--soft">Upload
-                      <input type="file" class="gv-file-input" name="file_logo" data-preview="#logoPreview" accept="image/*">
-                    </label>
-                    <button type="button" class="gv-btn gv-btn--ghost">Preview</button>
-                  </div>
-                </div>
+            <div class="gv-company-profile">
+              <div class="gv-logo-box">
+                <img src="{{ url_for('static', filename='img/logo/img.png') }}" alt="GV Powers logo">
               </div>
-              <div class="gv-field">
-                <label class="gv-label">Company Name <span class="req">*</span></label>
-                <input type="text" class="gv-input" name="company_name" value="{{ settings.get('company_name') or company.name or '' }}" placeholder="GV Powers">
-                <div class="gv-error">Company name is required</div>
+              <div class="gv-logo-meta">
+                <div class="gv-logo-title">Company Logo</div>
+                <div class="gv-logo-sub">GV Powers official company logo</div>
+                <button type="button" class="gv-btn gv-btn--ghost gv-btn--sm" data-gv-logo-preview>
+                  <i data-lucide="eye" class="gv-btn-ico" width="16" height="16"></i> Preview
+                </button>
               </div>
+            </div>
 
-              <div class="gv-field">
-                <label class="gv-label">GSTIN</label>
-                <input type="text" class="gv-input" name="company_gstin" value="{{ settings.get('company_gstin') or company.gstin or '' }}" maxlength="15" data-upper placeholder="29AAAAA0000A1Z5">
-                <div class="gv-error">Enter a valid 15-character GSTIN</div>
-              </div>
-              <div class="gv-field">
-                <label class="gv-label">PAN</label>
-                <input type="text" class="gv-input" name="company_pan" value="{{ settings.get('company_pan') or company.pan or '' }}" maxlength="10" data-upper placeholder="AAAAA0000A">
-                <div class="gv-error">Enter a valid 10-character PAN</div>
-              </div>
+            <div class="gv-section-head"><div class="gv-section-title">Company Details</div></div>
 
-              <div class="gv-field">
-                <label class="gv-label">Phone 1</label>
-                <input type="tel" class="gv-input" name="company_phone" value="{{ settings.get('company_phone') or company.phone or '' }}" placeholder="+91-9876543210">
+            <div class="gv-details-grid">
+              <div class="gv-detail">
+                <span class="gv-detail-key">Company Name</span>
+                <span class="gv-detail-val">GV Powers</span>
               </div>
-              <div class="gv-field">
-                <label class="gv-label">Phone 2</label>
-                <input type="tel" class="gv-input" name="company_mobile" value="{{ settings.get('company_mobile') or company.mobile or '' }}" placeholder="+91-0000000000">
+              <div class="gv-detail">
+                <span class="gv-detail-key">GSTIN</span>
+                <span class="gv-detail-val">{{ company.gstin or '33AGEPV1534G2ZJ' }}</span>
               </div>
-
-              <div class="gv-field">
-                <label class="gv-label">Email</label>
-                <input type="email" class="gv-input" name="company_email" value="{{ settings.get('company_email') or company.email or '' }}" placeholder="sales@gvpowers.in">
-                <div class="gv-error">Enter a valid email</div>
+              <div class="gv-detail">
+                <span class="gv-detail-key">Phone 1</span>
+                <span class="gv-detail-val">{{ company.phone or '+91 98940 79090' }}</span>
               </div>
-              <div class="gv-field">
-                <label class="gv-label">Website</label>
-                <input type="text" class="gv-input" name="company_website" value="{{ settings.get('company_website') or company.website or '' }}" placeholder="https://gvpowers.in">
-                <div class="gv-error">Enter a valid website URL</div>
+              <div class="gv-detail">
+                <span class="gv-detail-key">Phone 2</span>
+                <span class="gv-detail-val">{{ company.mobile or '+91 98940 79095' }}</span>
               </div>
-
-              <div class="gv-field">
-                <label class="gv-label">State</label>
-                <input type="text" class="gv-input" name="company_state" value="{{ settings.get('company_state') or company.state or '' }}" placeholder="Tamil Nadu">
+              <div class="gv-detail">
+                <span class="gv-detail-key">Email</span>
+                <span class="gv-detail-val">{{ company.email or 'gvpowerssalem@gmail.com' }}</span>
               </div>
-              <div class="gv-field">
-                <label class="gv-label">State Code</label>
-                <input type="text" class="gv-input" name="company_state_code" value="{{ settings.get('company_state_code') or company.state_code or '' }}" maxlength="2" placeholder="33">
-                <div class="gv-error">2-digit state code</div>
+              <div class="gv-detail">
+                <span class="gv-detail-key">Website</span>
+                <span class="gv-detail-val"><a href="https://gvpowers.in" target="_blank" rel="noopener" class="gv-detail-link">https://gvpowers.in</a></span>
               </div>
-
-              <div class="gv-field">
-                <label class="gv-label">City</label>
-                <input type="text" class="gv-input" name="company_city" value="{{ settings.get('company_city') or '' }}" placeholder="Salem">
+              <div class="gv-detail">
+                <span class="gv-detail-key">State</span>
+                <span class="gv-detail-val">{{ company.state or 'Tamil Nadu' }}</span>
               </div>
-              <div class="gv-field">
-                <label class="gv-label">Pincode</label>
-                <input type="text" class="gv-input" name="company_pincode" value="{{ settings.get('company_pincode') or '' }}" maxlength="6" placeholder="636001">
-                <div class="gv-error">6-digit pincode</div>
+              <div class="gv-detail">
+                <span class="gv-detail-key">State Code</span>
+                <span class="gv-detail-val">{{ company.state_code or 33 }}</span>
               </div>
-
-              <div class="gv-field">
-                <label class="gv-label">Country</label>
-                <input type="text" class="gv-input" name="company_country" value="{{ settings.get('company_country') or 'India' }}" placeholder="India">
-              </div>
-              <div class="gv-field">
-                <label class="gv-label">Business Type</label>
-                <select class="gv-select" name="business_type">
-                  {% for bt in ['Sole Proprietorship','Partnership','Private Limited','LLP','Public Limited'] %}
-                  <option value="{{ bt }}" {% if settings.get('business_type') == bt %}selected{% endif %}>{{ bt }}</option>
-                  {% endfor %}
-                </select>
-              </div>
-
-              <div class="gv-field gv-field--full">
-                <label class="gv-label">Address</label>
-                <textarea class="gv-textarea" name="company_address" rows="3" placeholder="Street, Area, Landmark">{{ settings.get('company_address') or company.address or '' }}</textarea>
+              <div class="gv-detail gv-detail--full">
+                <span class="gv-detail-key">Address</span>
+                <span class="gv-detail-val">No. 10, Kadharkhan Street,<br>Opp. Railway Junction,<br>Salem - 636005,<br>Tamil Nadu, India</span>
               </div>
             </div>
           </div>
 
-          <div class="gv-card">
-            <h3 class="gv-card-title"><i data-lucide="landmark" class="gv-card-ico" width="20" height="20"></i> Bank Details</h3>
-            <p class="gv-card-desc">Payment details printed on your invoices and quotations.</p>
-            <div class="gv-grid">
-              <div class="gv-field"><label class="gv-label">Bank Name</label><input type="text" class="gv-input" name="bank_name" value="{{ settings.get('bank_name') or company.bank_name or '' }}" placeholder="State Bank of India"></div>
-              <div class="gv-field"><label class="gv-label">Branch</label><input type="text" class="gv-input" name="bank_branch" value="{{ settings.get('bank_branch') or '' }}" placeholder="Salem Main"></div>
-              <div class="gv-field"><label class="gv-label">Account Number</label><input type="text" class="gv-input" name="bank_account" value="{{ settings.get('bank_account') or company.bank_account or '' }}" placeholder="12345678901234"><div class="gv-error">Enter a valid account number</div></div>
-              <div class="gv-field"><label class="gv-label">IFSC</label><input type="text" class="gv-input" name="bank_ifsc" value="{{ settings.get('bank_ifsc') or company.bank_ifsc or '' }}" maxlength="11" data-upper placeholder="SBIN0001234"><div class="gv-error">Enter a valid IFSC</div></div>
-              <div class="gv-field"><label class="gv-label">UPI ID</label><input type="text" class="gv-input" name="upi_id" value="{{ settings.get('upi_id') or company.upi_id or '' }}" placeholder="gvpowers@upi"><div class="gv-error">Valid UPI ID format name@bank</div></div>
-              <div class="gv-field">
-                <label class="gv-label">QR Code (UPI)</label>
-                <div class="gv-upload">
-                  <div class="gv-preview" id="qrPreview">{% if settings.get('company_qr') %}<img src="{{ settings.get('company_qr') }}" alt="">{% else %}<i data-lucide="qr-code" style="width:26px;height:26px"></i>{% endif %}</div>
-                  <div class="gv-upload-ctls"><label class="gv-btn gv-btn--soft">Upload<input type="file" class="gv-file-input" name="file_qr" data-preview="#qrPreview" accept="image/*"></label></div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="gv-card">
-            <h3 class="gv-card-title"><i data-lucide="folder-open" class="gv-card-ico" width="20" height="20"></i> Documents</h3>
-            <p class="gv-card-desc">Upload logo, signature and seal used on official paperwork.</p>
-            <div class="gv-grid">
-              <div class="gv-field gv-field--full"><div class="gv-doc gv-doc-row">
-                <div class="gv-preview" id="sigPreview">{% if settings.get("company_signature") %}<img src="{{ settings.get('company_signature') }}" alt="">{% else %}<i data-lucide="pen-line" style="width:26px;height:26px"></i>{% endif %}</div>
-                <div class="gv-upload-ctls">
-                  <span class="gv-label" style="margin-bottom:2px">Digital Signature</span>
-                  <label class="gv-btn gv-btn--soft">Upload<input type="file" class="gv-file-input" name="file_signature" data-preview="#sigPreview" accept="image/*"></label>
-                  <button type="button" class="gv-btn gv-btn--ghost">Preview</button>
-                </div>
-              </div></div>
-              <div class="gv-field gv-field--full"><div class="gv-doc gv-doc-row">
-                <div class="gv-preview" id="sealPreview"><img src="{{ settings.get('company_seal') or '' }}" alt=""></div>
-                <div class="gv-upload-ctls">
-                  <span class="gv-label" style="margin-bottom:2px">Company Seal</span>
-                  <label class="gv-btn gv-btn--soft">Upload<input type="file" class="gv-file-input" name="file_seal" data-preview="#sealPreview" accept="image/*"></label>
-                  <button type="button" class="gv-btn gv-btn--ghost">Preview</button>
-                </div>
-              </div></div>
+          <div class="gv-logo-modal" data-gv-logo-modal hidden>
+            <div class="gv-logo-modal-backdrop" data-gv-logo-close></div>
+            <div class="gv-logo-modal-body">
+              <button type="button" class="gv-logo-modal-close" data-gv-logo-close aria-label="Close">&#10005;</button>
+              <img src="{{ url_for('static', filename='img/logo/img.png') }}" alt="GV Powers logo">
             </div>
           </div>
         </div>
@@ -237,22 +163,8 @@
               </div>
               <div class="gv-field">
                 <label class="gv-label">Invoice Currency</label>
-                <select class="gv-select" name="currency"><option value="INR" {% if settings.get('currency') == 'INR' or not settings.get('currency') %}selected{% endif %}>INR - ₹ (Indian Rupee)</option></select>
+                <select class="gv-select" name="currency"><option value="INR" {% if settings.get('currency') == 'INR' or not settings.get('currency') %}selected{% endif %}>INR - Rs. (Indian Rupee)</option></select>
               </div>
-            </div>
-          </div>
-        </div>
-
-        {# ────────── GST ────────── #}
-        <div class="gv-module" data-gv-module="gst">
-          <div class="gv-card">
-            <h3 class="gv-card-title"><i data-lucide="percent" class="gv-card-ico" width="20" height="20"></i> GST Configuration</h3>
-            <p class="gv-card-desc">Tax identity and default rates.</p>
-            <div class="gv-grid">
-              <div class="gv-field"><label class="gv-label">GSTIN <span class="req">*</span></label><input type="text" class="gv-input" name="company_gstin" value="{{ settings.get('company_gstin') or company.gstin or '' }}" maxlength="15" data-upper placeholder="33AGEPV1534G2ZJ"><div class="gv-error">Enter a valid GSTIN</div></div>
-              <div class="gv-field"><label class="gv-label">PAN</label><input type="text" class="gv-input" name="company_pan" value="{{ settings.get('company_pan') or company.pan or '' }}" maxlength="10" data-upper placeholder="AGEPV1534G"></div>
-              <div class="gv-field"><label class="gv-label">State Code <span class="req">*</span></label><input type="text" class="gv-input" name="company_state_code" value="{{ settings.get('company_state_code') or company.state_code or '' }}" maxlength="2" placeholder="33"><div class="gv-error">2-digit code</div></div>
-              <div class="gv-field"><label class="gv-label">Default GST Rate</label><select class="gv-select" name="default_gst_rate">{% for r in [0,5,12,18,28] %}<option value="{{ r }}" {% if (settings.get('default_gst_rate')|int) == r or (not settings.get('default_gst_rate') and r == 18) %}selected{% endif %}>{{ r }}%{% if r==18 %} (Default){% endif %}</option>{% endfor %}</select></div>
             </div>
           </div>
         </div>
@@ -426,5 +338,5 @@
 
 {% block scripts %}
 {{ super() }}
-<script src="{{ url_for('static', filename='js/settings.js') }}?v=4.0"></script>
+<script src="{{ url_for('static', filename='js/settings.js') }}?v=5.0"></script>
 {% endblock %}

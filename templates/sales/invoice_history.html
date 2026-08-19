@@ -142,12 +142,12 @@
     </div>
     <div class="inv-stat c-green">
       <div class="inv-stat-top"><div class="inv-stat-icon green"><i data-lucide="indian-rupee"></i></div></div>
-      <div class="inv-stat-value">{{ "{:,.0f}".format(stats.revenue) }}</div>
+      <div class="inv-stat-value">{{ format_currency(stats.revenue, symbol=False) }}</div>
       <div class="inv-stat-label">Total Revenue</div>
     </div>
     <div class="inv-stat c-amber">
       <div class="inv-stat-top"><div class="inv-stat-icon amber"><i data-lucide="clock"></i></div></div>
-      <div class="inv-stat-value">{{ "{:,.0f}".format(stats.pending) }}</div>
+      <div class="inv-stat-value">{{ format_currency(stats.pending, symbol=False) }}</div>
       <div class="inv-stat-label">Pending Amount</div>
     </div>
     <div class="inv-stat c-purple">
@@ -268,9 +268,9 @@
                 <div class="inv-cust-sub">{{ inv.customer_mobile or (inv.customer.mobile if inv.customer else '') }}</div>
               </td>
               <td class="text-center"><span class="inv-badge draft">{{ inv.items|length }}</span></td>
-              <td class="text-end inv-amt pending">{{ "%.2f"|format(inv.grand_total or 0) }}</td>
-              <td class="text-end inv-amt {{ 'paid' if (inv.amount_paid or 0) > 0 else 'pending' }}">{{ "%.2f"|format(inv.amount_paid or 0) }}</td>
-              <td class="text-end inv-amt {{ 'balance-due' if balance > 0.01 else 'paid' }}">{{ "%.2f"|format(balance) }}</td>
+              <td class="text-end inv-amt pending">{{ format_currency(inv.grand_total or 0) }}</td>
+              <td class="text-end inv-amt {{ 'paid' if (inv.amount_paid or 0) > 0 else 'pending' }}">{{ format_currency(inv.amount_paid or 0, symbol=False) }}</td>
+              <td class="text-end inv-amt {{ 'balance-due' if balance > 0.01 else 'paid' }}">{{ format_currency(balance, symbol=False) }}</td>
               <td class="text-center">
                 {% if overdue %}
                   <span class="inv-badge overdue"><i data-lucide="alert-triangle"></i> Overdue</span>
@@ -354,11 +354,12 @@
 
                     {% set editable = inv.status != 'cancelled' and (inv.status == 'draft' or inv.payment_status == 'pending') %}
                     {% set owns = current_user.is_admin or (inv.created_by is not none and inv.created_by == current_user.id) %}
+                    {% set can_edit = inv.status != 'cancelled' and (current_user.is_admin or inv.status == 'draft' or inv.payment_status in ('pending', 'due')) %}
 
                     {% if inv.status != 'cancelled' and owns %}
                     <div class="erp-menu__divider"></div>
-                    {% if editable %}
-                    <a class="erp-menu__item" href="{{ url_for('edit_invoice', iid=inv.id) }}" title="Edit this draft/unpaid invoice" role="menuitem">
+                    {% if can_edit %}
+                    <a class="erp-menu__item" href="{{ url_for('edit_invoice', iid=inv.id) }}" title="Edit this invoice" role="menuitem">
                       <i data-lucide="pencil"></i><span class="erp-menu__label">Edit Invoice</span>
                     </a>
                     {% else %}
@@ -373,15 +374,9 @@
                     {% endif %}
 
                     {% if current_user.is_admin and inv.status != 'cancelled' %}
-                    {% if editable %}
                     <button class="erp-menu__item danger" onclick="event.stopPropagation(); deleteInvoice({{ inv.id }}, '{{ inv.invoice_number|e }}')" role="menuitem">
                       <i data-lucide="trash-2"></i><span class="erp-menu__label">Delete Invoice</span>
                     </button>
-                    {% else %}
-                    <button class="erp-menu__item danger is-disabled" disabled title="Finalized invoices cannot be deleted. Please cancel them instead." role="menuitem">
-                      <i data-lucide="trash-2"></i><span class="erp-menu__label">Delete Invoice</span>
-                    </button>
-                    {% endif %}
                     {% endif %}
                   </div>
                 </div>
@@ -428,7 +423,7 @@
           {% endfor %}
           {% if invoices.has_next %}
             <li class="page-item">
-              <a class="page-link" href="{{ url_for('invoice_history', page=invoices.next_num, q=search, status=status, payment_status=payment_status, date_from=date_from, date_to=date_to, sales_person=sales_person_id) }}">
+              <a class="page-link" href="{{ url_for('invoice_history', page=invoices.next_num, q=search, status=status, payment_status=payment_status, date_from=date_from, date_to=date_to, sales_person=sales_person_id, symbol=False) }}">
                 <i data-lucide="chevron-right" style="width:14px;height:14px"></i>
               </a>
             </li>
@@ -451,7 +446,7 @@
         <p>Are you sure you want to cancel <strong id="cancelInvNum"></strong>?</p>
         <p class="text-muted text-13">This will reverse stock changes and clear payments.</p>
       </div>
-<div class="modal-footer justify-content-center">
+      <div class="modal-footer justify-content-center">
           <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-dismiss="modal">No, Keep It</button>
           <div class="d-flex align-items-center gap-2">
             <input type="text" class="form-control form-control-sm" id="cancelReason" placeholder="Reason (optional)" style="width:180px">
@@ -459,7 +454,7 @@
               <i data-lucide="x-circle" class="me-1"></i>Yes, Cancel
             </button>
           </div>
-        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -473,7 +468,7 @@
       </div>
       <div class="modal-body text-center">
         <p>Are you sure you want to permanently delete <strong id="deleteInvNum"></strong>?</p>
-        <p class="text-danger text-13">Only draft invoices can be deleted. This action cannot be undone.</p>
+        <p class="text-danger text-13">This will permanently delete the invoice, reverse stock changes and remove payments. This action cannot be undone.</p>
         <div class="input-group input-group-sm mt-3 mx-auto" style="max-width:280px">
           <span class="input-group-text" style="font-size:0.72rem">Password</span>
           <input type="password" class="form-control" id="deletePassword" placeholder="Admin password" autocomplete="off">

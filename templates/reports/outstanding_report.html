@@ -38,8 +38,8 @@
 
   <div class="rpt-section-label"><i data-lucide="layout-dashboard"></i> Summary</div>
   <div class="rpt-stats">
-    <div class="rpt-stat amber"><div class="rpt-stat-row"><span class="rpt-stat-ico amber"><i data-lucide="wallet"></i></span></div><div class="rpt-stat-value">₹{{ '{:,.2f}'.format(total_outstanding) }}</div><div class="rpt-stat-label">Total Outstanding</div><div class="rpt-stat-sub">{{ invoices|length }} invoice{{ 's' if invoices|length != 1 }}</div></div>
-    <div class="rpt-stat red"><div class="rpt-stat-row"><span class="rpt-stat-ico red"><i data-lucide="alert-triangle"></i></span></div><div class="rpt-stat-value">₹{{ '{:,.2f}'.format(overdue_total) }}</div><div class="rpt-stat-label">Overdue</div><div class="rpt-stat-sub">{{ overdue|length }} invoice{{ 's' if overdue|length != 1 }}</div></div>
+    <div class="rpt-stat amber"><div class="rpt-stat-row"><span class="rpt-stat-ico amber"><i data-lucide="wallet"></i></span></div><div class="rpt-stat-value">{{ format_currency(total_outstanding) }}</div><div class="rpt-stat-label">Total Outstanding</div><div class="rpt-stat-sub">{{ invoices|length }} invoice{{ 's' if invoices|length != 1 }}</div></div>
+    <div class="rpt-stat red"><div class="rpt-stat-row"><span class="rpt-stat-ico red"><i data-lucide="alert-triangle"></i></span></div><div class="rpt-stat-value">{{ format_currency(overdue_total) }}</div><div class="rpt-stat-label">Overdue</div><div class="rpt-stat-sub">{{ overdue|length }} invoice{{ 's' if overdue|length != 1 }}</div></div>
   </div>
 
   <div class="rpt-section-label"><i data-lucide="list"></i> Outstanding Invoices</div>
@@ -54,9 +54,9 @@
         <td>{{ inv.due_date.strftime('%d %b %Y') if inv.due_date else '—' }}</td>
         <td>{{ inv.customer_name or 'Walk-in' }}</td>
         <td>{{ inv.customer_mobile or '—' }}</td>
-        <td class="tar">₹{{ '{:,.2f}'.format(inv.grand_total or 0) }}</td>
-        <td class="tar">₹{{ '{:,.2f}'.format(inv.amount_paid or 0) }}</td>
-        <td class="tar"><span class="rpt-badge amber">₹{{ '{:,.2f}'.format(inv.balance_due or 0) }}</span></td>
+        <td class="tar">{{ format_currency(inv.grand_total or 0) }}</td>
+        <td class="tar">{{ format_currency(inv.amount_paid or 0) }}</td>
+        <td class="tar"><span class="rpt-badge amber">{{ format_currency(inv.balance_due or 0) }}</span></td>
         <td>{% if inv.due_date and inv.due_date < today %}<span class="rpt-badge red">Overdue</span>{% else %}<span class="rpt-badge amber">Due</span>{% endif %}</td>
       </tr>
       {% else %}<tr class="empty-row"><td colspan="9">No outstanding invoices — everything is collected!</td></tr>{% endfor %}

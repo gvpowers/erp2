@@ -82,7 +82,7 @@
                         <td>
                             <span class="badge {{ 'badge-info' if customer.customer_type == 'B2B' else 'badge-secondary' }}">{{ customer.customer_type or 'B2C' }}</span>
                         </td>
-                        <td class="text-end" style="font-weight:600;color:var(--color-success);">&#8377;{{ "%.2f"|format(customer.total_purchases or 0) }}</td>
+                        <td class="text-end" style="font-weight:600;color:var(--color-success);">{{ format_currency(customer.total_purchases or 0) }}</td>
                         <td class="text-center"><span class="badge badge-secondary">{{ customer.invoice_count or 0 }}</span></td>
                         <td class="text-center">
                             <div class="erp-menu" data-erp-menu>

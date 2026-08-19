@@ -278,33 +278,33 @@
       <div class="totals-box-title"><i data-lucide="calculator"></i> Quotation Summary</div>
       <div class="totals-row subtotal">
         <span class="label">Subtotal</span>
-        <span class="value" id="totSubtotal">&#8377;0.00</span>
+        <span class="value" id="totSubtotal">Rs. 0.00</span>
       </div>
       <div class="totals-row">
         <span class="label">Discount</span>
-        <span class="value text-success" id="totDiscount">-&#8377;0.00</span>
+        <span class="value text-success" id="totDiscount">-Rs. 0.00</span>
       </div>
       <div class="totals-row">
         <span class="label">Taxable Amount</span>
-        <span class="value" id="totTaxable">&#8377;0.00</span>
+        <span class="value" id="totTaxable">Rs. 0.00</span>
       </div>
       <div class="tax-summary">
         <div class="tax-row">
           <span class="tlabel">CGST</span>
-          <span class="tvalue" id="totCgst">&#8377;0.00</span>
+          <span class="tvalue" id="totCgst">Rs. 0.00</span>
         </div>
         <div class="tax-row">
           <span class="tlabel">SGST</span>
-          <span class="tvalue" id="totSgst">&#8377;0.00</span>
+          <span class="tvalue" id="totSgst">Rs. 0.00</span>
         </div>
         <div class="tax-row">
           <span class="tlabel">IGST</span>
-          <span class="tvalue" id="totIgst">&#8377;0.00</span>
+          <span class="tvalue" id="totIgst">Rs. 0.00</span>
         </div>
       </div>
       <div class="totals-row grand">
         <span class="label">Grand Total</span>
-        <span class="value" id="totGrand">&#8377;0.00</span>
+        <span class="value" id="totGrand">Rs. 0.00</span>
       </div>
       <div class="totals-row">
         <span class="label" style="font-size:11px;">Amount in Words</span>
@@ -385,7 +385,7 @@ var customerSearchTimeout;
             return '<div class="autocomplete-item" onclick="addProduct(' + i + ')">' +
               '<div class="ac-avatar" style="font-size:.65rem">' + (p.name||'?')[0].toUpperCase() + '</div>' +
               '<div><div class="ac-name">' + esc(p.name) + '</div>' +
-              '<div class="ac-sub">' + esc(p.hsn||'') + (p.sku ? ' &middot; SKU: ' + esc(p.sku) : '') + (p.brand ? ' &middot; ' + esc(p.brand) : '') + ' &middot; &#8377;' + (p.selling_price||p.price||0) + '</div></div></div>';
+              '<div class="ac-sub">' + esc(p.hsn||'') + (p.sku ? ' &middot; SKU: ' + esc(p.sku) : '') + (p.brand ? ' &middot; ' + esc(p.brand) : '') + ' &middot; Rs. ' + (p.selling_price||p.price||0) + '</div></div></div>';
           }).join('');
 dd.classList.add('show');
           window._prodData = data;
@@ -443,11 +443,11 @@ dd.classList.add('show');
         '<td><select class="item-select" onchange="updateItem(' + item.id + ',\'gst_rate\',this.value)">' +
         [0,5,12,18,28].map(function(r) { return '<option value="' + r + '" ' + (r==item.gst_rate?'selected':'') + '>' + r + '%</option>'; }).join('') +
         '</select></td>' +
-        '<td class="text-right" style="font-weight:500">&#8377;' + formatNum(taxable) + '</td>' +
-        '<td class="text-right text-muted">&#8377;' + formatNum(cgst) + '</td>' +
-        '<td class="text-right text-muted">&#8377;' + formatNum(sgst) + '</td>' +
-        '<td class="text-right text-muted">&#8377;' + formatNum(igst) + '</td>' +
-        '<td class="text-right" style="font-weight:600;color:var(--color-primary)">&#8377;' + formatNum(total) + '</td>' +
+        '<td class="text-right" style="font-weight:500">Rs. ' + formatNum(taxable) + '</td>' +
+        '<td class="text-right text-muted">Rs. ' + formatNum(cgst) + '</td>' +
+        '<td class="text-right text-muted">Rs. ' + formatNum(sgst) + '</td>' +
+        '<td class="text-right text-muted">Rs. ' + formatNum(igst) + '</td>' +
+        '<td class="text-right" style="font-weight:600;color:var(--color-primary)">Rs. ' + formatNum(total) + '</td>' +
         '<td><button class="btn-delete-row" onclick="removeItem(' + item.id + ')" title="Remove"><i data-lucide="trash-2" style="width:14px;height:14px"></i></button></td></tr>';
     }).join('');
     if (typeof lucide !== 'undefined') lucide.createIcons();
@@ -484,13 +484,13 @@ dd.classList.add('show');
       totalIgst += igst;
     });
     var grandTotal = totalTaxable + totalCgst + totalSgst + totalIgst;
-    document.getElementById('totSubtotal').textContent = '\u20B9' + formatNum(subtotal);
-    document.getElementById('totDiscount').textContent = '-\u20B9' + formatNum(totalDiscount);
-    document.getElementById('totTaxable').textContent = '\u20B9' + formatNum(totalTaxable);
-    document.getElementById('totCgst').textContent = '\u20B9' + formatNum(totalCgst);
-    document.getElementById('totSgst').textContent = '\u20B9' + formatNum(totalSgst);
-    document.getElementById('totIgst').textContent = '\u20B9' + formatNum(totalIgst);
-    document.getElementById('totGrand').textContent = '\u20B9' + formatNum(grandTotal);
+    document.getElementById('totSubtotal').textContent = 'Rs. ' + formatNum(subtotal);
+    document.getElementById('totDiscount').textContent = '-Rs. ' + formatNum(totalDiscount);
+    document.getElementById('totTaxable').textContent = 'Rs. ' + formatNum(totalTaxable);
+    document.getElementById('totCgst').textContent = 'Rs. ' + formatNum(totalCgst);
+    document.getElementById('totSgst').textContent = 'Rs. ' + formatNum(totalSgst);
+    document.getElementById('totIgst').textContent = 'Rs. ' + formatNum(totalIgst);
+    document.getElementById('totGrand').textContent = 'Rs. ' + formatNum(grandTotal);
     document.getElementById('totWords').textContent = inrWords(grandTotal);
   }
 
@@ -524,7 +524,7 @@ dd.classList.add('show');
     } else {
       var rw = rupeesWords(rupees);
       if (paise === 0) {
-        out = rupees === 1 ? "Rupe One Only" : "Rupees " + rw + " Only";
+        out = rupees === 1 ? "Rupee One Only" : "Rupees " + rw + " Only";
       } else {
         var pw = rupeesWords(paise);
         out = rupees === 0 ? "Rupees " + pw + " Paise Only" : "Rupees " + rw + " and " + pw + " Paise Only";

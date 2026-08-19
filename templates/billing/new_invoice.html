@@ -1,5 +1,5 @@
 {% extends "layouts/admin_layout.html" %}
-{% block page_title %}New Invoice{% endblock %}
+{% block page_title %}{{ 'Edit Invoice' if edit_mode else 'New Invoice' }}{% endblock %}
 {% block back_link %}<a href="{{ url_for('invoice_history') }}" class="ih-back-link"><i data-lucide="arrow-left"></i> Back to Invoice History</a>{% endblock %}
 {% block content %}
 
@@ -9,17 +9,17 @@
     <!-- ══════════ PAGE HEADER ══════════ -->
     <div class="inv-header">
         <div class="inv-header__title">
-            <span class="inv-header__ico"><i data-lucide="file-plus"></i></span>
+            <span class="inv-header__ico"><i data-lucide="file-edit"></i></span>
             <div class="inv-header__text">
-                <h1>New Invoice</h1>
-                <p>Create a new tax invoice for your customer</p>
+                <h1>{{ 'Edit Invoice' if edit_mode else 'New Invoice' }}</h1>
+                <p>{{ 'Update the tax invoice and its items' if edit_mode else 'Create a new tax invoice for your customer' }}</p>
             </div>
         </div>
 
         <div class="inv-header__meta">
             <div class="inv-meta">
                 <span class="inv-meta__label">Status</span>
-                <span class="inv-meta__badge inv-meta__badge--draft">Draft</span>
+                <span class="inv-meta__badge inv-meta__badge--draft">{{ invoice.status | upper if edit_mode else 'Draft' }}</span>
             </div>
             <div class="inv-meta inv-meta--split">
                 <div class="inv-meta">
@@ -30,7 +30,7 @@
             </div>
             <div class="inv-meta inv-meta--date">
                 <span class="inv-meta__label">Invoice Date</span>
-                <input type="date" class="form-control inv-meta__date-input" id="invoiceDate" value="{{ today }}">
+                <input type="date" class="form-control inv-meta__date-input" id="invoiceDate" value="{{ invoice_data.invoice_date if edit_mode else today }}">
             </div>
             <div class="inv-meta">
                 <span class="inv-meta__label">Cashier</span>
@@ -56,11 +56,11 @@
                         </div>
                         <div class="inv-field">
                             <label class="inv-field__label">Invoice Date</label>
-                            <input type="date" class="form-control" id="invoiceDate2" value="{{ today }}">
+                            <input type="date" class="form-control" id="invoiceDate2" value="{{ invoice_data.invoice_date if edit_mode else today }}">
                         </div>
                         <div class="inv-field">
                             <label class="inv-field__label">Due Date</label>
-                            <input type="date" class="form-control" id="dueDate">
+                            <input type="date" class="form-control" id="dueDate" value="{{ invoice_data.due_date if edit_mode else '' }}">
                         </div>
                     </div>
                 </div>
@@ -160,7 +160,11 @@
                             <i data-lucide="barcode" class="inv-barcode__icon" data-tooltip="Scan barcode"></i>
                             <input type="text" class="form-control" id="productSearch" placeholder="Search product by name, barcode, SKU, HSN, brand, or serial number..." autocomplete="off">
                             <div class="autocomplete-dropdown" id="productDropdown"></div>
+                            <span class="inv-scanner-indicator" id="scannerIndicator" style="display:none;"><span class="inv-scanner-dot"></span> Scanner Ready</span>
                         </div>
+                        <button type="button" class="inv-btn inv-btn--outline" id="btnCameraScan" title="Scan with Camera" style="height:40px;padding:0 12px;gap:6px;">
+                            <i data-lucide="camera" style="width:16px;height:16px;"></i>
+                        </button>
                         <label class="d-flex align-items-center gap-2" style="white-space:nowrap;font-size:0.8rem;cursor:pointer;">
                             <input type="checkbox" id="allowOutOfStock">
                             <span>Allow Out of Stock</span>
@@ -227,38 +231,38 @@
                 <div class="inv-card__body inv-summary">
                     <div class="inv-sum__row">
                         <span>Subtotal</span>
-                        <span class="inv-sum__value" id="totSubtotal">₹0.00</span>
+                        <span class="inv-sum__value" id="totSubtotal">Rs. 0.00</span>
                     </div>
                     <div class="inv-sum__row">
                         <span>Discount</span>
-                        <span class="inv-sum__value inv-sum__value--positive" id="totDiscount">-₹0.00</span>
+                        <span class="inv-sum__value inv-sum__value--positive" id="totDiscount">-Rs. 0.00</span>
                     </div>
                     <div class="inv-sum__divider"></div>
                     <div class="inv-sum__row">
                         <span>Taxable Amount</span>
-                        <span class="inv-sum__value" id="totTaxable">₹0.00</span>
+                        <span class="inv-sum__value" id="totTaxable">Rs. 0.00</span>
                     </div>
                     <div class="inv-sum__tax" id="taxBlock">
                         <div class="inv-sum__row inv-sum__row--sm" id="cgstRow">
                             <span>CGST</span>
-                            <span class="inv-sum__value" id="totCgst">₹0.00</span>
+                            <span class="inv-sum__value" id="totCgst">Rs. 0.00</span>
                         </div>
                         <div class="inv-sum__row inv-sum__row--sm" id="sgstRow">
                             <span>SGST</span>
-                            <span class="inv-sum__value" id="totSgst">₹0.00</span>
+                            <span class="inv-sum__value" id="totSgst">Rs. 0.00</span>
                         </div>
                         <div class="inv-sum__row inv-sum__row--sm" id="igstRow" style="display:none;">
                             <span>IGST</span>
-                            <span class="inv-sum__value" id="totIgst">₹0.00</span>
+                            <span class="inv-sum__value" id="totIgst">Rs. 0.00</span>
                         </div>
                     </div>
                     <div class="inv-sum__row">
                         <span>Round Off</span>
-                        <span class="inv-sum__value" id="totRoundOff">₹0.00</span>
+                        <span class="inv-sum__value" id="totRoundOff">Rs. 0.00</span>
                     </div>
                     <div class="inv-sum__grand">
                         <span>Grand Total</span>
-                        <span class="inv-sum__grand-value" id="totGrand">₹0.00</span>
+                        <span class="inv-sum__grand-value" id="totGrand">Rs. 0.00</span>
                     </div>
                     <div class="inv-sum__row">
                         <span>Amount in Words</span>
@@ -267,11 +271,11 @@
                     <div class="inv-sum__divider"></div>
                     <div class="inv-sum__row">
                         <span>Amount Paid</span>
-                        <span class="inv-sum__value" id="totAmountPaid">₹0.00</span>
+                        <span class="inv-sum__value" id="totAmountPaid">Rs. 0.00</span>
                     </div>
                     <div class="inv-sum__row inv-sum__row--balance">
                         <span>Balance</span>
-                        <span class="inv-sum__value" id="totBalance">₹0.00</span>
+                        <span class="inv-sum__value" id="totBalance">Rs. 0.00</span>
                     </div>
                 </div>
             </section>
@@ -282,26 +286,36 @@
                 <div class="inv-card__body">
                     <label class="inv-field__label">Payment Method</label>
                     <div class="inv-pay" role="radiogroup">
-                        <input type="radio" name="payMethod" id="pmCash" value="cash" class="bw-pay-radio" checked>
-                        <label for="pmCash" class="inv-pay__chip"><i data-lucide="banknote"></i> Cash</label>
-                        <input type="radio" name="payMethod" id="pmUpi" value="upi" class="bw-pay-radio">
+                        <input type="radio" name="payMethod" id="pmCash" value="cash" class="bw-pay-radio" {% if edit_mode and invoice_data.payment_method == 'cash' %}checked{% elif not edit_mode %}checked{% endif %}>
+                        <label for="pmCash" class="inv-pay__chip"><i data-lucide="indian-rupee"></i> Cash</label>
+                        <input type="radio" name="payMethod" id="pmUpi" value="upi" class="bw-pay-radio" {% if edit_mode and invoice_data.payment_method == 'upi' %}checked{% endif %}>
                         <label for="pmUpi" class="inv-pay__chip"><i data-lucide="smartphone"></i> UPI</label>
-                        <input type="radio" name="payMethod" id="pmCard" value="card" class="bw-pay-radio">
+                        <input type="radio" name="payMethod" id="pmCard" value="card" class="bw-pay-radio" {% if edit_mode and invoice_data.payment_method == 'card' %}checked{% endif %}>
                         <label for="pmCard" class="inv-pay__chip"><i data-lucide="credit-card"></i> Card</label>
-                        <input type="radio" name="payMethod" id="pmBank" value="bank_transfer" class="bw-pay-radio">
-                        <label for="pmBank" class="inv-pay__chip"><i data-lucide="building-2"></i> Bank</label>
-                        <input type="radio" name="payMethod" id="pmSplit" value="split" class="bw-pay-radio">
+                        <input type="radio" name="payMethod" id="pmSplit" value="split" class="bw-pay-radio" {% if edit_mode and invoice_data.payment_method == 'split' %}checked{% endif %}>
                         <label for="pmSplit" class="inv-pay__chip"><i data-lucide="split"></i> Split</label>
                     </div>
 
+                    {% if edit_mode %}
+                    <div style="display:flex;gap:12px;margin-bottom:14px;flex-wrap:wrap;">
+                        <div style="flex:1;min-width:120px;padding:10px 14px;background:var(--color-success-light);border-radius:10px;">
+                            <div style="font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;color:var(--text-muted);">Currently Paid</div>
+                            <div style="font-size:1.1rem;font-weight:800;font-family:var(--font-mono);color:var(--color-success);margin-top:2px;" id="editCurrentPaid">Rs. {{ "%.2f"|format(invoice_data.amount_paid) }}</div>
+                        </div>
+                        <div style="flex:1;min-width:120px;padding:10px 14px;background:var(--color-danger-light);border-radius:10px;">
+                            <div style="font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;color:var(--text-muted);">Balance Due</div>
+                            <div style="font-size:1.1rem;font-weight:800;font-family:var(--font-mono);color:var(--color-danger);margin-top:2px;" id="editBalanceDue">Rs. 0.00</div>
+                        </div>
+                    </div>
+                    {% endif %}
                     <div class="inv-grid inv-grid--2">
                         <div class="inv-field">
                             <label class="inv-field__label">Amount Paid</label>
-                            <input type="number" class="form-control" id="amountPaid" placeholder="0.00" step="0.01" min="0" value="0" style="font-family:var(--font-mono);">
+                            <input type="number" class="form-control" id="amountPaid" placeholder="0.00" step="0.01" min="0" value="{{ invoice_data.amount_paid if edit_mode else '0' }}" style="font-family:var(--font-mono);">
                         </div>
                         <div class="inv-field">
                             <label class="inv-field__label">Payment Ref</label>
-                            <input type="text" class="form-control" id="payRef" placeholder="UTR / Cheque No">
+                            <input type="text" class="form-control" id="payRef" placeholder="UTR / Transaction No" value="{{ invoice_data.payment_reference if edit_mode else '' }}">
                         </div>
                     </div>
                 </div>
@@ -312,7 +326,7 @@
                 <header class="inv-card__head"><span class="inv-card__ico"><i data-lucide="circle-check"></i></span><span>Actions</span></header>
                 <div class="inv-card__body inv-actions">
                     <button class="inv-btn inv-btn--primary" id="btnGenerate" onclick="generateInvoice()">
-                        <i data-lucide="check-circle"></i><span>Generate Invoice</span>
+                        <i data-lucide="check-circle"></i><span>{{ 'Update Invoice' if edit_mode else 'Generate Invoice' }}</span>
                     </button>
                     <button class="inv-btn inv-btn--ghost" onclick="showToast('Save draft feature coming soon','info')">
                         <i data-lucide="save"></i><span>Save Draft</span>
@@ -331,6 +345,23 @@
                 </div>
             </section>
         </aside>
+    </div>
+</div>
+
+<!-- Camera Barcode Scanner Modal -->
+<div id="cameraScanModal" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.7);backdrop-filter:blur(4px);align-items:center;justify-content:center;">
+    <div style="background:#fff;border-radius:16px;width:90%;max-width:440px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.3);">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid #E5E7EB;">
+            <div style="font-weight:700;font-size:1rem;display:flex;align-items:center;gap:8px;">
+                <i data-lucide="camera" style="width:18px;height:18px;color:var(--color-primary);"></i>
+                <span>Scan Barcode</span>
+            </div>
+            <button type="button" id="closeCameraScan" style="background:none;border:none;cursor:pointer;padding:4px;border-radius:6px;color:var(--text-muted);font-size:1.2rem;">&times;</button>
+        </div>
+        <div style="padding:16px 20px;text-align:center;">
+            <div id="cameraScanRegion" style="width:100%;max-width:360px;margin:0 auto;border-radius:8px;overflow:hidden;background:#000;min-height:240px;"></div>
+            <p style="margin-top:10px;font-size:0.82rem;color:var(--text-muted);">Align barcode inside the scanning area</p>
+        </div>
     </div>
 </div>
 
@@ -397,6 +428,9 @@
 .inv-search__icon{position:absolute;left:16px;top:50%;transform:translateY(-50%);width:18px;height:18px;color:var(--text-muted);pointer-events:none;}
 .inv-item-search .inv-search__icon{left:16px;}
 .inv-barcode__icon{position:absolute;right:12px;top:50%;transform:translateY(-50%);width:18px;height:18px;color:var(--text-muted);pointer-events:none;opacity:.75;}
+.inv-scanner-indicator{position:absolute;right:36px;top:50%;transform:translateY(-50%);display:flex;align-items:center;gap:5px;font-size:0.68rem;font-weight:700;color:var(--color-success);white-space:nowrap;pointer-events:none;}
+.inv-scanner-dot{width:7px;height:7px;border-radius:50%;background:var(--color-success);animation:inv-pulse 1.5s infinite;}
+@keyframes inv-pulse{0%,100%{opacity:1;}50%{opacity:0.3;}}
 
 /* Autocomplete dropdowns */
 .autocomplete-dropdown{position:absolute;top:100%;left:0;right:0;background:#fff;border:1px solid #E5E7EB;border-radius:12px;box-shadow:0 20px 50px rgba(0,0,0,.18);max-height:420px;overflow-y:auto;overflow-x:hidden;z-index:99999;display:none;margin-top:6px;}
@@ -549,6 +583,8 @@
     let customerSearchTimeout;
     let productSearchTimeout;
     let prodCursor = -1;
+    const IS_EDIT = {{ 'true' if edit_mode else 'false' }};
+    const SUBMIT_URL = {% if edit_mode %}'{{ url_for("edit_invoice", iid=invoice.id) }}'{% else %}'/invoices/create'{% endif %};
 
     function showToast(msg, type) {
         const t = document.getElementById('toastMsg');
@@ -586,7 +622,7 @@
                                 <div class="inv-ac__sub">${esc(c.mobile||'')}${c.gstin ? ' &middot; ' + esc(c.gstin) : ''}</div>
                             </div>
                             <div class="inv-ac__side">
-                                ${c.outstanding > 0 ? '<div class="inv-ac__stock" style="color:var(--color-danger)">Due ₹' + fmtInr(c.outstanding) + '</div>' : '<div class="inv-ac__gst">' + (c.invoice_count || 0) + ' invoices</div>'}
+                                ${c.outstanding > 0 ? '<div class="inv-ac__stock" style="color:var(--color-danger)">Due Rs. ' + fmtInr(c.outstanding) + '</div>' : '<div class="inv-ac__gst">' + (c.invoice_count || 0) + ' invoices</div>'}
                             </div>
                         </div>
                     `).join('');
@@ -622,8 +658,8 @@
         box.innerHTML = `
             <span class="ic-badge">Existing customer · ID ${c.id}</span>
             <span class="ic-item">Invoices <b>${c.invoice_count || 0}</b></span>
-            <span class="ic-item">Purchases <b>&#8377;${fmtInr(c.total_purchases || 0)}</b></span>
-            <span class="ic-item" style="color:${(c.outstanding||0)>0?'var(--color-danger)':'var(--color-success)'}">Outstanding <b>&#8377;${fmtNum(c.outstanding||0)}</b></span>
+            <span class="ic-item">Purchases <b>Rs. ${fmtInr(c.total_purchases || 0)}</b></span>
+            <span class="ic-item" style="color:${(c.outstanding||0)>0?'var(--color-danger)':'var(--color-success)'}">Outstanding <b>Rs. ${fmtNum(c.outstanding||0)}</b></span>
             <span class="ic-item">Last Invoice ${c.last_invoice_number ? '<b>'+esc(c.last_invoice_number)+'</b>' : '<b>—</b>'}</span>
             <button type="button" class="ic-clear" onclick="clearCustomerSelection()">Clear</button>`;
     }
@@ -687,7 +723,7 @@
                                 </div>
                             </div>
                             <div class="inv-ac__side">
-                                <div class="inv-ac__price">₹${fmtInr(price)}</div>
+                                <div class="inv-ac__price">Rs. ${fmtInr(price)}</div>
                                 <div class="inv-ac__gst">${gst}% GST</div>
                                 <div class="inv-ac__stock" style="color:${stockColor}">${stockText}</div>
                             </div>
@@ -725,6 +761,193 @@
         hideDropdown('productDropdown');
         showToast('Added: ' + p.name, 'success');
     };
+
+    /* ── Barcode Scanner Support ─────────────────────── */
+    let barcodeBuffer = '';
+    let barcodeTimer = null;
+    const SCANNER_TIMEOUT = 100;
+    const SCANNER_MIN_LENGTH = 8;
+
+    /* Add product by barcode data (from exact API lookup) */
+    window.addProductByData = function(p) {
+        const custState = document.getElementById('custState').value;
+        const isInterState = custState && custState !== companyStateCode && custState !== '';
+        const allowOos = document.getElementById('allowOutOfStock')?.checked || false;
+        const stock = parseFloat(p.current_stock || p.stock || 0);
+
+        /* Check if product already in invoice — increment qty */
+        const existing = items.find(it => it.product_id === p.id);
+        if (existing) {
+            if (!allowOos && stock > 0 && existing.qty >= stock) {
+                showToast('Insufficient stock for ' + p.name + '. Available: ' + stock, 'error');
+                return;
+            }
+            existing.qty += 1;
+            renderItems();
+            recalcTotals();
+            showToast(p.name + ' — Qty updated to ' + existing.qty, 'success');
+            return;
+        }
+
+        /* Stock validation for new item */
+        if (!allowOos && stock <= 0) {
+            showToast(p.name + ' is out of stock. Enable "Allow Out of Stock" to add.', 'error');
+            return;
+        }
+
+        items.push({
+            id: ++itemIdCounter,
+            product_id: p.id || null,
+            product_name: p.name || '',
+            hsn: p.hsn || '',
+            qty: 1,
+            unit: p.unit || 'pcs',
+            price: parseFloat(p.selling_price || p.price) || 0,
+            discount: 0,
+            gst_rate: parseFloat(p.gst_rate) || 18,
+            is_inter_state: isInterState,
+            sku: p.sku || '',
+            brand: p.brand || '',
+            image: p.image || p.image_url || ''
+        });
+        renderItems();
+        recalcTotals();
+        showToast('Added: ' + p.name + ' (Qty: 1)', 'success');
+    };
+
+    /* Exact barcode lookup via API */
+    function lookupBarcode(code) {
+        const allowOos = document.getElementById('allowOutOfStock')?.checked || false;
+        fetch('/api/products/barcode/' + encodeURIComponent(code))
+            .then(r => r.json().then(d => ({ok: r.ok, data: d})))
+            .then(({ok, data}) => {
+                if (ok && data.found) {
+                    window.addProductByData(data.product);
+                } else {
+                    showToast('Product not found for barcode: ' + code, 'error');
+                }
+                ps.value = '';
+                ps.focus();
+            })
+            .catch(() => {
+                showToast('Network error during barcode lookup', 'error');
+                ps.focus();
+            });
+    }
+
+    /* Keyboard buffer: detect rapid keystroke sequences (scanner input) */
+    ps.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            const buffered = barcodeBuffer.trim();
+            barcodeBuffer = '';
+            clearTimeout(barcodeTimer);
+
+            /* If buffer looks like a barcode (8+ chars, all alphanumeric), do exact lookup */
+            if (buffered.length >= SCANNER_MIN_LENGTH && /^[A-Za-z0-9]+$/.test(buffered)) {
+                lookupBarcode(buffered);
+                return;
+            }
+
+            /* Otherwise let normal dropdown selection happen */
+            var pdd = document.getElementById('productDropdown');
+            if (pdd && pdd.style.display !== 'none') {
+                var dropdownItems = pdd.querySelectorAll('.inv-ac');
+                if (dropdownItems.length) {
+                    if (prodCursor < 0) prodCursor = 0;
+                    pasteProdCursor(dropdownItems);
+                }
+            }
+            return;
+        }
+
+        /* Buffer characters for scanner detection */
+        if (e.key.length === 1) {
+            barcodeBuffer += e.key;
+            clearTimeout(barcodeTimer);
+            barcodeTimer = setTimeout(() => { barcodeBuffer = ''; }, SCANNER_TIMEOUT);
+        }
+    });
+
+    /* Scanner status indicator: show on focus, hide on blur */
+    const scannerIndicator = document.getElementById('scannerIndicator');
+    ps.addEventListener('focus', function() {
+        if (scannerIndicator) scannerIndicator.style.display = 'flex';
+    });
+    ps.addEventListener('blur', function() {
+        setTimeout(() => { if (scannerIndicator) scannerIndicator.style.display = 'none'; }, 200);
+    });
+
+    /* ── Camera Barcode Scanning ─────────────────────── */
+    const cameraScanBtn = document.getElementById('btnCameraScan');
+    const cameraScanModal = document.getElementById('cameraScanModal');
+    const closeCameraBtn = document.getElementById('closeCameraScan');
+    const cameraScanRegion = document.getElementById('cameraScanRegion');
+    let html5QrScanner = null;
+
+    if (cameraScanBtn) {
+        cameraScanBtn.addEventListener('click', function() {
+            cameraScanModal.style.display = 'flex';
+            startCameraScanner();
+        });
+    }
+    if (closeCameraBtn) {
+        closeCameraBtn.addEventListener('click', function() {
+            stopCameraScanner();
+            cameraScanModal.style.display = 'none';
+        });
+    }
+    if (cameraScanModal) {
+        cameraScanModal.addEventListener('click', function(e) {
+            if (e.target === cameraScanModal) {
+                stopCameraScanner();
+                cameraScanModal.style.display = 'none';
+            }
+        });
+    }
+
+    function startCameraScanner() {
+        if (typeof Html5Qrcode === 'undefined') {
+            /* Dynamically load html5-qrcode library */
+            var script = document.createElement('script');
+            script.src = 'https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js';
+            script.onload = function() { initCameraScanner(); };
+            script.onerror = function() {
+                showToast('Failed to load barcode scanner library', 'error');
+                cameraScanModal.style.display = 'none';
+            };
+            document.head.appendChild(script);
+        } else {
+            initCameraScanner();
+        }
+    }
+
+    function initCameraScanner() {
+        if (html5QrScanner) { try { html5QrScanner.clear(); } catch(e) {} }
+        html5QrScanner = new Html5Qrcode('cameraScanRegion');
+        html5QrScanner.start(
+            { facingMode: 'environment' },
+            { fps: 10, qrbox: { width: 280, height: 150 }, aspectRatio: 1.5 },
+            function onScanSuccess(decodedText) {
+                stopCameraScanner();
+                cameraScanModal.style.display = 'none';
+                ps.value = decodedText;
+                lookupBarcode(decodedText);
+            },
+            function onScanFailure() {}
+        ).catch(function(err) {
+            showToast('Camera access denied or not available', 'error');
+            cameraScanModal.style.display = 'none';
+        });
+    }
+
+    function stopCameraScanner() {
+        if (html5QrScanner) {
+            try { html5QrScanner.stop(); } catch(e) {}
+            try { html5QrScanner.clear(); } catch(e) {}
+            html5QrScanner = null;
+        }
+    }
 
     /* ── Render Items ──────────────────────────────────── */
     function renderItems() {
@@ -772,7 +995,7 @@
                 </td>
                 <td>
                     <div class="inv-price">
-                        <span class="inv-price__sym">₹</span>
+                        <span class="inv-price__sym">Rs. </span>
                         <input type="number" class="inv-edit" value="${item.price}" min="0" step="0.01" onchange="updateItem(${item.id},'price',this.value)">
                     </div>
                 </td>
@@ -787,11 +1010,11 @@
                         ${[0,5,12,18,28].map(r => `<option value="${r}" ${r==item.gst_rate?'selected':''}>${r}%</option>`).join('')}
                     </select>
                 </td>
-                <td class="inv-cell-num tr">₹${fmtNum(taxable)}</td>
-                <td class="inv-cell-num tr">₹${fmtNum(cgst)}</td>
-                <td class="inv-cell-num tr">₹${fmtNum(sgst)}</td>
-                <td class="inv-cell-num tr">₹${fmtNum(igst)}</td>
-                <td class="inv-cell-total tr">₹${fmtNum(total)}</td>
+                <td class="inv-cell-num tr">Rs. ${fmtNum(taxable)}</td>
+                <td class="inv-cell-num tr">Rs. ${fmtNum(cgst)}</td>
+                <td class="inv-cell-num tr">Rs. ${fmtNum(sgst)}</td>
+                <td class="inv-cell-num tr">Rs. ${fmtNum(igst)}</td>
+                <td class="inv-cell-total tr">Rs. ${fmtNum(total)}</td>
                 <td class="text-center">
                     <button class="inv-del" onclick="removeItem(${item.id})" title="Remove item">
                         <i data-lucide="trash-2"></i>
@@ -848,20 +1071,28 @@
         const amountPaid = parseFloat(document.getElementById('amountPaid').value) || 0;
         const balance = rounded - amountPaid;
 
-        document.getElementById('totSubtotal').textContent = '₹' + fmtNum(subtotal);
-        document.getElementById('totDiscount').textContent = '-₹' + fmtNum(totalDiscount);
-        document.getElementById('totTaxable').textContent = '₹' + fmtNum(totalTaxable);
-        document.getElementById('totCgst').textContent = '₹' + fmtNum(totalCgst);
-        document.getElementById('totSgst').textContent = '₹' + fmtNum(totalSgst);
-        document.getElementById('totIgst').textContent = '₹' + fmtNum(totalIgst);
-        document.getElementById('totRoundOff').textContent = '₹' + fmtNum(roundOff);
-        document.getElementById('totGrand').textContent = '₹' + fmtNum(rounded);
-        document.getElementById('totAmountPaid').textContent = '₹' + fmtNum(amountPaid);
-        document.getElementById('totBalance').textContent = '₹' + fmtNum(balance);
+        document.getElementById('totSubtotal').textContent = 'Rs. ' + fmtNum(subtotal);
+        document.getElementById('totDiscount').textContent = '-Rs. ' + fmtNum(totalDiscount);
+        document.getElementById('totTaxable').textContent = 'Rs. ' + fmtNum(totalTaxable);
+        document.getElementById('totCgst').textContent = 'Rs. ' + fmtNum(totalCgst);
+        document.getElementById('totSgst').textContent = 'Rs. ' + fmtNum(totalSgst);
+        document.getElementById('totIgst').textContent = 'Rs. ' + fmtNum(totalIgst);
+        document.getElementById('totRoundOff').textContent = 'Rs. ' + fmtNum(roundOff);
+        document.getElementById('totGrand').textContent = 'Rs. ' + fmtNum(rounded);
+        document.getElementById('totAmountPaid').textContent = 'Rs. ' + fmtNum(amountPaid);
+        document.getElementById('totBalance').textContent = 'Rs. ' + fmtNum(balance);
         document.getElementById('totWords').textContent = inrWords(rounded);
 
         const balEl = document.getElementById('totBalance');
         balEl.style.color = balance > 0 ? 'var(--color-danger)' : balance < 0 ? 'var(--color-warning)' : 'var(--color-success)';
+
+        const editPaidEl = document.getElementById('editCurrentPaid');
+        const editBalEl = document.getElementById('editBalanceDue');
+        if (editPaidEl) editPaidEl.textContent = 'Rs. ' + fmtNum(amountPaid);
+        if (editBalEl) {
+            editBalEl.textContent = 'Rs. ' + fmtNum(balance);
+            editBalEl.style.color = balance > 0 ? 'var(--color-danger)' : 'var(--color-success)';
+        }
 
         const isInter = items.length > 0 && items[0].is_inter_state;
         document.getElementById('cgstRow').style.display = isInter ? 'none' : 'flex';
@@ -902,7 +1133,7 @@
         } else {
             const rw = rupeesWords(rupees);
             if (paise === 0) {
-                out = rupees === 1 ? "Rupe One Only" : "Rupees " + rw + " Only";
+                out = rupees === 1 ? "Rupee One Only" : "Rupees " + rw + " Only";
             } else {
                 const pw = rupeesWords(paise);
                 out = rupees === 0 ? "Rupees " + pw + " Paise Only" : "Rupees " + rw + " and " + pw + " Paise Only";
@@ -942,7 +1173,7 @@
         const btn = document.getElementById('btnGenerate');
         btn.disabled = true;
         btn.innerHTML = '<span class="bw-spinner"></span> Generating...';
-        fetch('/invoices/create', {
+        fetch(SUBMIT_URL, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', 'X-CSRFToken': getCsrfToken() },
             body: JSON.stringify(payload)
@@ -950,19 +1181,19 @@
         .then(r => r.json().then(d => ({ ok: r.ok, data: d })))
         .then(({ ok, data }) => {
             if (ok && data.redirect) {
-                showToast('Invoice created successfully!', 'success');
-                setTimeout(() => { window.location.href = data.redirect; }, 600);
+                showToast(IS_EDIT ? 'Invoice updated successfully!' : 'Invoice created successfully!', 'success');
+                window.location.href = data.redirect;
             } else {
-                showToast(data.error || 'Failed to create invoice', 'error');
+                showToast(data.error || (IS_EDIT ? 'Failed to update invoice' : 'Failed to create invoice'), 'error');
                 btn.disabled = false;
-                btn.innerHTML = '<i data-lucide="check-circle"></i><span>Generate Invoice</span>';
+                btn.innerHTML = '<i data-lucide="check-circle"></i><span>' + (IS_EDIT ? 'Update Invoice' : 'Generate Invoice') + '</span>';
                 if (typeof lucide !== 'undefined') lucide.createIcons();
             }
         })
         .catch(() => {
             showToast('Network error. Please try again.', 'error');
             btn.disabled = false;
-            btn.innerHTML = '<i data-lucide="check-circle"></i><span>Generate Invoice</span>';
+            btn.innerHTML = '<i data-lucide="check-circle"></i><span>' + (IS_EDIT ? 'Update Invoice' : 'Generate Invoice') + '</span>';
             if (typeof lucide !== 'undefined') lucide.createIcons();
         });
     };
@@ -975,10 +1206,10 @@
             const el = document.getElementById(id);
             if (el) el.value = '';
         });
-        document.getElementById('amountPaid').value = '0';
-        document.getElementById('invoiceDate').value = '';
-        document.getElementById('invoiceDate2').value = '{{ today }}';
-        document.getElementById('dueDate').value = '';
+        document.getElementById('amountPaid').value = {% if edit_mode %}{{ invoice_data.amount_paid }}{% else %}'0'{% endif %};
+        document.getElementById('invoiceDate').value = {% if edit_mode %}'{{ invoice_data.invoice_date }}'{% else %}''{% endif %};
+        document.getElementById('invoiceDate2').value = {% if edit_mode %}'{{ invoice_data.invoice_date }}'{% else %}'{{ today }}'{% endif %};
+        document.getElementById('dueDate').value = {% if edit_mode %}'{{ invoice_data.due_date }}'{% else %}''{% endif %};
         document.getElementById('pmCash').checked = true;
         renderItems(); recalcTotals();
     };
@@ -1072,6 +1303,42 @@
             renderItems();
             recalcTotals();
             showToast('Loaded ' + qd.items.length + ' items from quotation', 'success');
+        }
+    })();
+    {% endif %}
+
+    {% if edit_mode %}
+    (function() {
+        var d = {{ invoice_data|tojson }};
+        if (d.customer_id) selectedCustomerId = d.customer_id;
+        if (d.customer_name) document.getElementById('custName').value = d.customer_name;
+        if (d.customer_mobile) document.getElementById('custMobile').value = d.customer_mobile;
+        if (d.customer_email) document.getElementById('custEmail').value = d.customer_email;
+        if (d.customer_gstin) document.getElementById('custGstin').value = d.customer_gstin;
+        if (d.customer_address) document.getElementById('custAddress').value = d.customer_address;
+        if (d.customer_state_code) {
+            document.getElementById('custStateCode').value = d.customer_state_code;
+            var stateSelect = document.getElementById('custState');
+            if (stateSelect) stateSelect.value = d.customer_state_code;
+        }
+        var editIsInter = d.customer_state_code && String(d.customer_state_code) !== String(companyStateCode);
+        if (d.items && d.items.length) {
+            d.items.forEach(function(ei) {
+                items.push({
+                    id: ++itemIdCounter,
+                    product_id: ei.product_id || null,
+                    product_name: ei.product_name || '',
+                    hsn: ei.hsn || '',
+                    qty: ei.qty || 1,
+                    unit: ei.unit || 'pcs',
+                    price: parseFloat(ei.price) || 0,
+                    discount: parseFloat(ei.discount) || 0,
+                    gst_rate: parseFloat(ei.gst_rate) || 18,
+                    is_inter_state: editIsInter
+                });
+            });
+            renderItems();
+            recalcTotals();
         }
     })();
     {% endif %}

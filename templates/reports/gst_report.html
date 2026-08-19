@@ -61,11 +61,11 @@
 
   <div class="rpt-stats">
     <div class="rpt-stat blue"><div class="rpt-stat-row"><span class="rpt-stat-ico blue"><i data-lucide="receipt"></i></span></div><div class="rpt-stat-value">{{ inv_count }}</div><div class="rpt-stat-label">Invoices</div></div>
-    <div class="rpt-stat green"><div class="rpt-stat-row"><span class="rpt-stat-ico green"><i data-lucide="banknote"></i></span></div><div class="rpt-stat-value">₹{{ '{:,.2f}'.format(total_taxable) }}</div><div class="rpt-stat-label">Taxable Value</div></div>
-    <div class="rpt-stat blue"><div class="rpt-stat-row"><span class="rpt-stat-ico blue"><i data-lucide="trending-up"></i></span></div><div class="rpt-stat-value">₹{{ '{:,.2f}'.format(total_cgst) }}</div><div class="rpt-stat-label">CGST</div></div>
-    <div class="rpt-stat blue"><div class="rpt-stat-row"><span class="rpt-stat-ico blue"><i data-lucide="trending-up"></i></span></div><div class="rpt-stat-value">₹{{ '{:,.2f}'.format(total_sgst) }}</div><div class="rpt-stat-label">SGST</div></div>
-    <div class="rpt-stat amber"><div class="rpt-stat-row"><span class="rpt-stat-ico amber"><i data-lucide="globe"></i></span></div><div class="rpt-stat-value">₹{{ '{:,.2f}'.format(total_igst) }}</div><div class="rpt-stat-label">IGST</div></div>
-    <div class="rpt-stat purple"><div class="rpt-stat-row"><span class="rpt-stat-ico purple"><i data-lucide="landmark"></i></span></div><div class="rpt-stat-value">₹{{ '{:,.2f}'.format(grand_total) }}</div><div class="rpt-stat-label">Total Value</div></div>
+    <div class="rpt-stat green"><div class="rpt-stat-row"><span class="rpt-stat-ico green"><i data-lucide="indian-rupee"></i></span></div><div class="rpt-stat-value">{{ format_currency(total_taxable) }}</div><div class="rpt-stat-label">Taxable Value</div></div>
+    <div class="rpt-stat blue"><div class="rpt-stat-row"><span class="rpt-stat-ico blue"><i data-lucide="trending-up"></i></span></div><div class="rpt-stat-value">{{ format_currency(total_cgst) }}</div><div class="rpt-stat-label">CGST</div></div>
+    <div class="rpt-stat blue"><div class="rpt-stat-row"><span class="rpt-stat-ico blue"><i data-lucide="trending-up"></i></span></div><div class="rpt-stat-value">{{ format_currency(total_sgst) }}</div><div class="rpt-stat-label">SGST</div></div>
+    <div class="rpt-stat amber"><div class="rpt-stat-row"><span class="rpt-stat-ico amber"><i data-lucide="globe"></i></span></div><div class="rpt-stat-value">{{ format_currency(total_igst) }}</div><div class="rpt-stat-label">IGST</div></div>
+    <div class="rpt-stat purple"><div class="rpt-stat-row"><span class="rpt-stat-ico purple"><i data-lucide="landmark"></i></span></div><div class="rpt-stat-value">{{ format_currency(grand_total) }}</div><div class="rpt-stat-label">Total Value</div></div>
     <div class="rpt-stat green"><div class="rpt-stat-row"><span class="rpt-stat-ico green"><i data-lucide="building"></i></span></div><div class="rpt-stat-value">{{ intra_count }}</div><div class="rpt-stat-label">Intra-state</div></div>
     <div class="rpt-stat amber"><div class="rpt-stat-row"><span class="rpt-stat-ico amber"><i data-lucide="map-pin"></i></span></div><div class="rpt-stat-value">{{ inter_count }}</div><div class="rpt-stat-label">Inter-state</div></div>
   </div>
@@ -91,22 +91,22 @@
         {% for h in hsn_summary %}
         <tr>
           <td>{{ h.hsn }}</td><td class="tar">{{ h.rate }}</td><td class="tar">{{ h.qty }}</td>
-          <td class="tar">₹{{ '{:,.2f}'.format(h.taxable) }}</td>
-          <td class="tar">₹{{ '{:,.2f}'.format(h.cgst) }}</td>
-          <td class="tar">₹{{ '{:,.2f}'.format(h.sgst) }}</td>
-          <td class="tar">₹{{ '{:,.2f}'.format(h.igst) }}</td>
-          <td class="tar">₹{{ '{:,.2f}'.format(h.total) }}</td>
+          <td class="tar">{{ format_currency(h.taxable) }}</td>
+          <td class="tar">{{ format_currency(h.cgst) }}</td>
+          <td class="tar">{{ format_currency(h.sgst) }}</td>
+          <td class="tar">{{ format_currency(h.igst) }}</td>
+          <td class="tar">{{ format_currency(h.total) }}</td>
           <td class="tar">{{ h.invoices }}</td>
         </tr>
         {% else %}<tr class="empty-row"><td colspan="9">No HSN data for this period.</td></tr>{% endfor %}
         </tbody>
         {% if hsn_summary %}
         <tfoot><tr><td colspan="3">Totals</td>
-          <td class="tar">₹{{ '{:,.2f}'.format(total_taxable) }}</td>
-          <td class="tar">₹{{ '{:,.2f}'.format(total_cgst) }}</td>
-          <td class="tar">₹{{ '{:,.2f}'.format(total_sgst) }}</td>
-          <td class="tar">₹{{ '{:,.2f}'.format(total_igst) }}</td>
-          <td class="tar">₹{{ '{:,.2f}'.format(grand_total - total_taxable) }}</td>
+          <td class="tar">{{ format_currency(total_taxable) }}</td>
+          <td class="tar">{{ format_currency(total_cgst) }}</td>
+          <td class="tar">{{ format_currency(total_sgst) }}</td>
+          <td class="tar">{{ format_currency(total_igst) }}</td>
+          <td class="tar">{{ format_currency(grand_total - total_taxable) }}</td>
           <td class="tar">{{ inv_count }}</td></tr></tfoot>
         {% endif %}
       </table>
@@ -121,7 +121,7 @@
         <thead><tr><th class="tar">GST Rate %</th><th class="tar">Qty</th><th class="tar">Taxable</th><th class="tar">CGST</th><th class="tar">SGST</th><th class="tar">IGST</th><th class="tar">Total</th></tr></thead>
         <tbody>
         {% for r in rate_summary %}
-        <tr><td class="tar">{{ r.rate }}</td><td class="tar">{{ r.qty }}</td><td class="tar">₹{{ '{:,.2f}'.format(r.taxable) }}</td><td class="tar">₹{{ '{:,.2f}'.format(r.cgst) }}</td><td class="tar">₹{{ '{:,.2f}'.format(r.sgst) }}</td><td class="tar">₹{{ '{:,.2f}'.format(r.igst) }}</td><td class="tar">₹{{ '{:,.2f}'.format(r.total) }}</td></tr>
+        <tr><td class="tar">{{ r.rate }}</td><td class="tar">{{ r.qty }}</td><td class="tar">{{ format_currency(r.taxable) }}</td><td class="tar">{{ format_currency(r.cgst) }}</td><td class="tar">{{ format_currency(r.sgst) }}</td><td class="tar">{{ format_currency(r.igst) }}</td><td class="tar">{{ format_currency(r.total) }}</td></tr>
         {% else %}<tr class="empty-row"><td colspan="7">No data</td></tr>{% endfor %}
         </tbody>
       </table>
@@ -135,7 +135,7 @@
         <table class="rpt-table">
           <thead><tr><th>Code</th><th>State</th><th class="tar">Invoices</th><th class="tar">Taxable</th><th class="tar">Tax</th></tr></thead>
           <tbody>
-          {% for s in state_wise %}<tr><td>{{ s.code }}</td><td>{{ s.name }}</td><td class="tar">{{ s.count }}</td><td class="tar">₹{{ '{:,.2f}'.format(s.taxable) }}</td><td class="tar">₹{{ '{:,.2f}'.format(s.tax) }}</td></tr>
+          {% for s in state_wise %}<tr><td>{{ s.code }}</td><td>{{ s.name }}</td><td class="tar">{{ s.count }}</td><td class="tar">{{ format_currency(s.taxable) }}</td><td class="tar">{{ format_currency(s.tax) }}</td></tr>
           {% else %}<tr class="empty-row"><td colspan="5">No data</td></tr>{% endfor %}
           </tbody>
         </table></div>
@@ -147,7 +147,7 @@
         <table class="rpt-table">
           <thead><tr><th>Customer</th><th class="tar">Invoices</th><th class="tar">Taxable</th><th class="tar">Tax</th><th class="tar">Total</th></tr></thead>
           <tbody>
-          {% for c in customer_wise %}<tr><td>{{ c.name }}</td><td class="tar">{{ c.count }}</td><td class="tar">₹{{ '{:,.2f}'.format(c.taxable) }}</td><td class="tar">₹{{ '{:,.2f}'.format(c.tax) }}</td><td class="tar">₹{{ '{:,.2f}'.format(c.total) }}</td></tr>
+          {% for c in customer_wise %}<tr><td>{{ c.name }}</td><td class="tar">{{ c.count }}</td><td class="tar">{{ format_currency(c.taxable) }}</td><td class="tar">{{ format_currency(c.tax) }}</td><td class="tar">{{ format_currency(c.total) }}</td></tr>
           {% else %}<tr class="empty-row"><td colspan="5">No data</td></tr>{% endfor %}
           </tbody>
         </table></div>
@@ -162,10 +162,10 @@
       <table class="rpt-table">
         <thead><tr><th>GSTIN</th><th>Customer</th><th class="tar">Invoices</th><th class="tar">Taxable</th><th class="tar">Tax</th><th class="tar">Total</th></tr></thead>
         <tbody>
-        {% for g in gstin_wise %}<tr><td>{{ g.gstin }}</td><td>{{ g.name }}</td><td class="tar">{{ g.count }}</td><td class="tar">₹{{ '{:,.2f}'.format(g.taxable) }}</td><td class="tar">₹{{ '{:,.2f}'.format(g.tax) }}</td><td class="tar">₹{{ '{:,.2f}'.format(g.total) }}</td></tr>
+        {% for g in gstin_wise %}<tr><td>{{ g.gstin }}</td><td>{{ g.name }}</td><td class="tar">{{ g.count }}</td><td class="tar">{{ format_currency(g.taxable) }}</td><td class="tar">{{ format_currency(g.tax) }}</td><td class="tar">{{ format_currency(g.total) }}</td></tr>
         {% else %}<tr class="empty-row"><td colspan="6">No data</td></tr>{% endfor %}
         </tbody>
-        {% if gstin_wise %}<tfoot><tr><td>Total</td><td></td><td class="tar">{{ inv_count }}</td><td class="tar">₹{{ '{:,.2f}'.format(total_taxable) }}</td><td class="tar">₹{{ '{:,.2f}'.format(grand_total - total_taxable) }}</td><td class="tar">₹{{ '{:,.2f}'.format(grand_total) }}</td></tr></tfoot>{% endif %}
+        {% if gstin_wise %}<tfoot><tr><td>Total</td><td></td><td class="tar">{{ inv_count }}</td><td class="tar">{{ format_currency(total_taxable) }}</td><td class="tar">{{ format_currency(grand_total - total_taxable) }}</td><td class="tar">{{ format_currency(grand_total) }}</td></tr></tfoot>{% endif %}
       </table></div>
     <div class="rpt-pager"></div>
   </div>
@@ -178,7 +178,7 @@
         <thead><tr><th>Invoice #</th><th>Date</th><th>Customer</th><th class="tar">Taxable</th><th class="tar">CGST</th><th class="tar">SGST</th><th class="tar">IGST</th><th class="tar">Total</th></tr></thead>
         <tbody>
         {% for inv in invoices %}
-        <tr><td>{{ inv.invoice_number }}</td><td>{{ inv.invoice_date.strftime('%d %b %Y') if inv.invoice_date else '' }}</td><td>{{ inv.customer_name }}</td><td class="tar">₹{{ '{:,.2f}'.format(inv.total_taxable or 0) }}</td><td class="tar">₹{{ '{:,.2f}'.format(inv.total_cgst or 0) }}</td><td class="tar">₹{{ '{:,.2f}'.format(inv.total_sgst or 0) }}</td><td class="tar">₹{{ '{:,.2f}'.format(inv.total_igst or 0) }}</td><td class="tar">₹{{ '{:,.2f}'.format(inv.grand_total or 0) }}</td></tr>
+        <tr><td>{{ inv.invoice_number }}</td><td>{{ inv.invoice_date.strftime('%d %b %Y') if inv.invoice_date else '' }}</td><td>{{ inv.customer_name }}</td><td class="tar">{{ format_currency(inv.total_taxable or 0) }}</td><td class="tar">{{ format_currency(inv.total_cgst or 0) }}</td><td class="tar">{{ format_currency(inv.total_sgst or 0) }}</td><td class="tar">{{ format_currency(inv.total_igst or 0) }}</td><td class="tar">{{ format_currency(inv.grand_total or 0) }}</td></tr>
         {% else %}<tr class="empty-row"><td colspan="8">No invoices</td></tr>{% endfor %}
         </tbody>
       </table></div>

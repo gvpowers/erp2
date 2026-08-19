@@ -62,7 +62,7 @@
       <label class="rpt-flabel">Payment Method</label>
       <select class="rpt-select" name="payment_method">
         <option value="">All</option>
-        {% for m in ['Cash','UPI','Card','Bank Transfer','Credit'] %}
+        {% for m in ['Cash','UPI','Card','Credit'] %}
         <option value="{{ m }}" {{ 'selected' if request.args.get('payment_method')==m }}>{{ m }}</option>
         {% endfor %}
       </select>
@@ -102,13 +102,13 @@
 
   <div class="rpt-stats">
     <div class="rpt-stat blue"><div class="rpt-stat-row"><span class="rpt-stat-ico blue"><i data-lucide="receipt"></i></span></div><div class="rpt-stat-value">{{ summary.count }}</div><div class="rpt-stat-label">Total Invoices</div></div>
-    <div class="rpt-stat green"><div class="rpt-stat-row"><span class="rpt-stat-ico green"><i data-lucide="indian-rupee"></i></span></div><div class="rpt-stat-value">₹{{ '{:,.2f}'.format(summary.total) }}</div><div class="rpt-stat-label">Total Sales (Gross)</div></div>
-    <div class="rpt-stat blue"><div class="rpt-stat-row"><span class="rpt-stat-ico blue"><i data-lucide="layers"></i></span></div><div class="rpt-stat-value">₹{{ '{:,.2f}'.format(summary.taxable) }}</div><div class="rpt-stat-label">Taxable Value</div></div>
-    <div class="rpt-stat amber"><div class="rpt-stat-row"><span class="rpt-stat-ico amber"><i data-lucide="percent"></i></span></div><div class="rpt-stat-value">₹{{ '{:,.2f}'.format(summary.tax) }}</div><div class="rpt-stat-label">GST Collected</div></div>
-    <div class="rpt-stat red"><div class="rpt-stat-row"><span class="rpt-stat-ico red"><i data-lucide="badge-percent"></i></span></div><div class="rpt-stat-value">₹{{ '{:,.2f}'.format(summary.discount) }}</div><div class="rpt-stat-label">Discounts Given</div></div>
-    <div class="rpt-stat purple"><div class="rpt-stat-row"><span class="rpt-stat-ico purple"><i data-lucide="scale"></i></span></div><div class="rpt-stat-value">₹{{ '{:,.2f}'.format(summary.avg) }}</div><div class="rpt-stat-label">Average Sale</div></div>
-    <div class="rpt-stat green"><div class="rpt-stat-row"><span class="rpt-stat-ico green"><i data-lucide="hand-coins"></i></span></div><div class="rpt-stat-value">₹{{ '{:,.2f}'.format(summary.paid) }}</div><div class="rpt-stat-label">Amount Collected</div></div>
-    <div class="rpt-stat red"><div class="rpt-stat-row"><span class="rpt-stat-ico red"><i data-lucide="wallet"></i></span></div><div class="rpt-stat-value">₹{{ '{:,.2f}'.format(summary.balance) }}</div><div class="rpt-stat-label">Outstanding Balance</div></div>
+    <div class="rpt-stat green"><div class="rpt-stat-row"><span class="rpt-stat-ico green"><i data-lucide="indian-rupee"></i></span></div><div class="rpt-stat-value">{{ format_currency(summary.total) }}</div><div class="rpt-stat-label">Total Sales (Gross)</div></div>
+    <div class="rpt-stat blue"><div class="rpt-stat-row"><span class="rpt-stat-ico blue"><i data-lucide="layers"></i></span></div><div class="rpt-stat-value">{{ format_currency(summary.taxable) }}</div><div class="rpt-stat-label">Taxable Value</div></div>
+    <div class="rpt-stat amber"><div class="rpt-stat-row"><span class="rpt-stat-ico amber"><i data-lucide="percent"></i></span></div><div class="rpt-stat-value">{{ format_currency(summary.tax) }}</div><div class="rpt-stat-label">GST Collected</div></div>
+    <div class="rpt-stat red"><div class="rpt-stat-row"><span class="rpt-stat-ico red"><i data-lucide="badge-percent"></i></span></div><div class="rpt-stat-value">{{ format_currency(summary.discount) }}</div><div class="rpt-stat-label">Discounts Given</div></div>
+    <div class="rpt-stat purple"><div class="rpt-stat-row"><span class="rpt-stat-ico purple"><i data-lucide="scale"></i></span></div><div class="rpt-stat-value">{{ format_currency(summary.avg) }}</div><div class="rpt-stat-label">Average Sale</div></div>
+    <div class="rpt-stat green"><div class="rpt-stat-row"><span class="rpt-stat-ico green"><i data-lucide="hand-coins"></i></span></div><div class="rpt-stat-value">{{ format_currency(summary.paid) }}</div><div class="rpt-stat-label">Amount Collected</div></div>
+    <div class="rpt-stat red"><div class="rpt-stat-row"><span class="rpt-stat-ico red"><i data-lucide="wallet"></i></span></div><div class="rpt-stat-value">{{ format_currency(summary.balance) }}</div><div class="rpt-stat-label">Outstanding Balance</div></div>
   </div>
 
   <div class="rpt-grid">
@@ -139,7 +139,7 @@
           <tbody>
           {% if top_customers %}
             {% for name, cnt, tot in top_customers %}
-            <tr><td>{{ name or 'Walk-in' }}</td><td class="tar">{{ cnt }}</td><td class="tar">₹{{ '{:,.2f}'.format(tot) }}</td></tr>
+            <tr><td>{{ name or 'Walk-in' }}</td><td class="tar">{{ cnt }}</td><td class="tar">{{ format_currency(tot) }}</td></tr>
             {% endfor %}
           {% else %}<tr class="empty-row"><td colspan="3">No customers in range</td></tr>{% endif %}
           </tbody>
@@ -154,7 +154,7 @@
           <tbody>
           {% if top_products %}
             {% for name, qty, val in top_products %}
-            <tr><td>{{ name }}</td><td class="tar">{{ qty }}</td><td class="tar">₹{{ '{:,.2f}'.format(val) }}</td></tr>
+            <tr><td>{{ name }}</td><td class="tar">{{ qty }}</td><td class="tar">{{ format_currency(val) }}</td></tr>
             {% endfor %}
           {% else %}<tr class="empty-row"><td colspan="3">No data in range</td></tr>{% endif %}
           </tbody>
@@ -184,13 +184,13 @@
           <td>{{ inv.invoice_date.strftime('%d %b %Y') if inv.invoice_date else '' }}</td>
           <td>{{ inv.customer_name or 'Walk-in' }}</td>
           <td class="rpt-muted">{{ (inv.customer_gstin or '')[:15] }}{% if inv.customer_gstin and inv.customer_gstin|length > 15 %}…{% endif %}</td>
-          <td class="tar">₹{{ '{:,.2f}'.format(inv.subtotal or 0) }}</td>
-          <td class="tar">₹{{ '{:,.2f}'.format(inv.total_discount or 0) }}</td>
-          <td class="tar">₹{{ '{:,.2f}'.format(inv.total_taxable or 0) }}</td>
-          <td class="tar">₹{{ '{:,.2f}'.format((inv.total_cgst or 0)+(inv.total_sgst or 0)+(inv.total_igst or 0)) }}</td>
-          <td class="tar"><b>₹{{ '{:,.2f}'.format(inv.grand_total or 0) }}</b></td>
-          <td class="tar">₹{{ '{:,.2f}'.format(inv.amount_paid or 0) }}</td>
-          <td class="tar">₹{{ '{:,.2f}'.format((inv.grand_total or 0)-(inv.amount_paid or 0)) }}</td>
+          <td class="tar">{{ format_currency(inv.subtotal or 0) }}</td>
+          <td class="tar">{{ format_currency(inv.total_discount or 0) }}</td>
+          <td class="tar">{{ format_currency(inv.total_taxable or 0) }}</td>
+          <td class="tar">{{ format_currency((inv.total_cgst or 0)+(inv.total_sgst or 0)+(inv.total_igst or 0)) }}</td>
+          <td class="tar"><b>{{ format_currency(inv.grand_total or 0) }}</b></td>
+          <td class="tar">{{ format_currency(inv.amount_paid or 0) }}</td>
+          <td class="tar">{{ format_currency((inv.grand_total or 0)-(inv.amount_paid or 0)) }}</td>
           <td>{% if inv.status == 'cancelled' %}<span class="rpt-badge gray">Cancelled</span>{% elif (inv.grand_total or 0) <= (inv.amount_paid or 0) %}<span class="rpt-badge green">Paid</span>{% else %}<span class="rpt-badge amber">Partial</span>{% endif %}</td>
           <td class="rpt-muted">{{ (inv.payment_method or '—')|title }}</td>
         </tr>
@@ -200,13 +200,13 @@
         </tbody>
         {% if invoices %}
         <tfoot><tr><td colspan="4">Totals</td>
-          <td class="tar">₹{{ '{:,.2f}'.format(summary.total) }}</td>
-          <td class="tar">₹{{ '{:,.2f}'.format(summary.discount) }}</td>
-          <td class="tar">₹{{ '{:,.2f}'.format(summary.taxable) }}</td>
-          <td class="tar">₹{{ '{:,.2f}'.format(summary.tax) }}</td>
-          <td class="tar">₹{{ '{:,.2f}'.format(summary.total) }}</td>
-          <td class="tar">₹{{ '{:,.2f}'.format(summary.paid) }}</td>
-          <td class="tar">₹{{ '{:,.2f}'.format(summary.balance) }}</td>
+          <td class="tar">{{ format_currency(summary.total) }}</td>
+          <td class="tar">{{ format_currency(summary.discount) }}</td>
+          <td class="tar">{{ format_currency(summary.taxable) }}</td>
+          <td class="tar">{{ format_currency(summary.tax) }}</td>
+          <td class="tar">{{ format_currency(summary.total) }}</td>
+          <td class="tar">{{ format_currency(summary.paid) }}</td>
+          <td class="tar">{{ format_currency(summary.balance) }}</td>
           <td colspan="2"></td></tr></tfoot>
         {% endif %}
       </table>

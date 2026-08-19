@@ -13,6 +13,7 @@
         </p>
     </div>
     <div class="page-header-actions">
+        <a href="{{ url_for('customer_ledger', cid=customer.id) }}" class="btn btn-primary"><i data-lucide="book-open"></i> View Ledger</a>
         <a href="{{ url_for('customers_list') }}" class="btn btn-outline-secondary"><i data-lucide="arrow-left"></i> All Customers</a>
     </div>
 </div>
@@ -86,7 +87,7 @@
                         <div style="width:48px;height:48px;border-radius:12px;background:var(--color-success-light);color:var(--color-success);display:inline-flex;align-items:center;justify-content:center;margin-bottom:12px;">
                             <i data-lucide="indian-rupee" style="width:24px;height:24px;"></i>
                         </div>
-                        <h3 style="color:var(--color-success);font-size:1.5rem;font-weight:700;margin:0;">&#8377;{{ "%.2f"|format(total_paid or 0) }}</h3>
+                        <h3 style="color:var(--color-success);font-size:1.5rem;font-weight:700;margin:0;">{{ format_currency(total_paid or 0) }}</h3>
                         <small style="color:var(--text-muted);font-size:0.8rem;">Total Payments Received</small>
                     </div>
                 </div>
@@ -97,7 +98,7 @@
                         <div style="width:48px;height:48px;border-radius:12px;background:var(--color-danger-light);color:var(--color-danger);display:inline-flex;align-items:center;justify-content:center;margin-bottom:12px;">
                             <i data-lucide="circle-dollar-sign" style="width:24px;height:24px;"></i>
                         </div>
-                        <h3 style="color:var(--color-danger);font-size:1.5rem;font-weight:700;margin:0;">&#8377;{{ "%.2f"|format(outstanding or 0) }}</h3>
+                        <h3 style="color:var(--color-danger);font-size:1.5rem;font-weight:700;margin:0;">{{ format_currency(outstanding or 0) }}</h3>
                         <small style="color:var(--text-muted);font-size:0.8rem;">Outstanding Balance</small>
                     </div>
                 </div>
@@ -128,9 +129,9 @@
                                 <tr>
                                     <td class="font-monospace fw-semibold">{{ invoice.invoice_number }}</td>
                                     <td>{{ invoice.invoice_date.strftime('%d-%b-%Y') if invoice.invoice_date else '-' }}</td>
-                                    <td class="text-end fw-semibold">&#8377;{{ "%.2f"|format(invoice.grand_total or 0) }}</td>
-                                    <td class="text-end" style="color:var(--color-success);">&#8377;{{ "%.2f"|format(invoice.amount_paid or 0) }}</td>
-                                    <td class="text-end {{ 'text-danger' if (invoice.grand_total - invoice.amount_paid) > 0 else 'text-success' }}">&#8377;{{ "%.2f"|format(invoice.balance or 0) }}</td>
+                                    <td class="text-end fw-semibold">{{ format_currency(invoice.grand_total or 0) }}</td>
+                                    <td class="text-end" style="color:var(--color-success);">{{ format_currency(invoice.amount_paid or 0) }}</td>
+                                    <td class="text-end {{ 'text-danger' if (invoice.grand_total - invoice.amount_paid) > 0 else 'text-success' }}">{{ format_currency(invoice.balance or 0) }}</td>
                                     <td class="text-center">
                                         <span class="badge {{ 'badge-success' if invoice.status == 'paid' else 'badge-warning' if invoice.status == 'confirmed' else 'badge-secondary' if invoice.status == 'draft' else 'badge-danger' }}">{{ invoice.status|capitalize }}</span>
                                     </td>
@@ -198,8 +199,8 @@
                                     <td class="font-monospace">
                                         <a href="{{ url_for('invoice_preview', iid=p.invoice_id) }}">{{ p.invoice.invoice_number }}</a>
                                     </td>
-                                    <td class="text-end fw-semibold" style="color:var(--color-success);">&#8377;{{ "%.2f"|format(p.amount or 0) }}</td>
-                                    <td>{{ _payment_method_label(p.payment_method) }}</td>
+                                    <td class="text-end fw-semibold" style="color:var(--color-success);">{{ format_currency(p.amount or 0) }}</td>
+                                    <td>{{ _payment_method_label(p.payment_method, symbol=False) }}</td>
                                     <td class="font-monospace">{{ _payment_display_ref(p) or '—' }}</td>
                                     <td>{{ p.received_by or '-' }}</td>
                                 </tr>

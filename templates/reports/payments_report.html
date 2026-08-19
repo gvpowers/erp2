@@ -45,7 +45,7 @@
       <label class="rpt-flabel">Payment Method</label>
       <select class="rpt-select" name="payment_method">
         <option value="">All</option>
-        {% for m in ['cash','upi','card','bank_transfer','cheque','other'] %}
+        {% for m in ['cash','upi','card','other'] %}
         <option value="{{ m }}" {{ 'selected' if request.args.get('payment_method')==m }}>{{ m.replace('_',' ').title() }}</option>
         {% endfor %}
       </select>
@@ -67,9 +67,9 @@
 
   <div class="rpt-section-label"><i data-lucide="layout-dashboard"></i> Summary</div>
   <div class="rpt-stats">
-    <div class="rpt-stat green"><div class="rpt-stat-row"><span class="rpt-stat-ico green"><i data-lucide="hand-coins"></i></span></div><div class="rpt-stat-value">₹{{ '{:,.2f}'.format(total_collected) }}</div><div class="rpt-stat-label">Collected</div><div class="rpt-stat-sub">{{ payments|length }} payment{{ 's' if payments|length != 1 }}</div></div>
+    <div class="rpt-stat green"><div class="rpt-stat-row"><span class="rpt-stat-ico green"><i data-lucide="hand-coins"></i></span></div><div class="rpt-stat-value">{{ format_currency(total_collected) }}</div><div class="rpt-stat-label">Collected</div><div class="rpt-stat-sub">{{ payments|length }} payment{{ 's' if payments|length != 1 }}</div></div>
     {% for m in method_data %}
-    <div class="rpt-stat blue"><div class="rpt-stat-row"><span class="rpt-stat-ico blue"><i data-lucide="credit-card"></i></span></div><div class="rpt-stat-value">₹{{ '{:,.2f}'.format(m.total) }}</div><div class="rpt-stat-label">{{ m.method }}</div><div class="rpt-stat-sub">{{ m.count }} payment{{ 's' if m.count != 1 }}</div></div>
+    <div class="rpt-stat blue"><div class="rpt-stat-row"><span class="rpt-stat-ico blue"><i data-lucide="credit-card"></i></span></div><div class="rpt-stat-value">{{ format_currency(m.total) }}</div><div class="rpt-stat-label">{{ m.method }}</div><div class="rpt-stat-sub">{{ m.count }} payment{{ 's' if m.count != 1 }}</div></div>
     {% endfor %}
     {% if not method_data %}<div class="rpt-stat blue"><div class="rpt-stat-row"><span class="rpt-stat-ico blue"><i data-lucide="info"></i></span></div><div class="rpt-stat-value">—</div><div class="rpt-stat-label">No payments</div></div>{% endif %}
   </div>
@@ -80,7 +80,7 @@
       <thead><tr><th>Date</th><th class="tar">Amount</th><th class="tar">Payments</th></tr></thead>
       <tbody>
       {% for d in daily_data %}
-      <tr><td>{{ d.date }}</td><td class="tar">₹{{ '{:,.2f}'.format(d.total) }}</td><td class="tar">{{ d.count }}</td></tr>
+      <tr><td>{{ d.date }}</td><td class="tar">{{ format_currency(d.total) }}</td><td class="tar">{{ d.count }}</td></tr>
       {% else %}<tr class="empty-row"><td colspan="3">No collections in this period.</td></tr>{% endfor %}
       </tbody></table></div>
   </div>
@@ -95,7 +95,7 @@
         <td>{{ p.payment_date.strftime('%d %b %Y') if p.payment_date else '' }}</td>
         <td><a href="{{ url_for('view_invoice', iid=p.invoice_id) }}" class="rpt-strong" style="color:var(--erp-primary);text-decoration:none">{{ inv.invoice_number }}</a></td>
         <td>{{ inv.customer_name or 'Walk-in' }}</td>
-        <td class="tar">₹{{ '{:,.2f}'.format(p.amount or 0) }}</td>
+        <td class="tar">{{ format_currency(p.amount or 0) }}</td>
         <td>{{ _payment_method_label(p.payment_method) }}</td>
         <td>{{ _payment_display_ref(p) or '—' }}</td>
         <td>{{ p.received_by or '—' }}</td>

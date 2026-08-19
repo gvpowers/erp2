@@ -107,7 +107,7 @@
                             </div>
                         </td>
                         <td><code style="font-size:0.8rem;color:var(--text-muted);background:var(--bg-gray);padding:2px 8px;border-radius:var(--radius-sm);">{{ product.sku or '-' }}</code></td>
-                        <td class="text-end fw-600" style="color:var(--color-success);font-family:var(--font-mono);font-size:0.85rem;">₹{{ "%.2f"|format(product.selling_price or 0) }}</td>
+                        <td class="text-end fw-600" style="color:var(--color-success);font-family:var(--font-mono);font-size:0.85rem;">{{ format_currency(product.selling_price or 0) }}</td>
                         <td class="text-center">
                             <span style="font-size:1.1rem;font-weight:700;{{ 'color:var(--color-danger)' if stock == 0 else 'color:var(--color-warning)' if stock <= min else 'color:var(--color-success)' }}">{{ stock }}</span>
                         </td>
@@ -161,7 +161,12 @@
                                         <div class="settings-form-grid">
                                             <div class="form-group">
                                                 <label class="form-label">Barcode</label>
-                                                <input type="text" class="form-control" name="barcode" value="{{ product.barcode or '' }}">
+                                                <div style="display:flex;gap:6px;">
+                                                    <input type="text" class="form-control" name="barcode" value="{{ product.barcode or '' }}" id="editProductBarcode">
+                                                    <button type="button" class="btn btn-sm btn-outline-secondary" onclick="generateBarcode('editProductBarcode')" title="Generate unique barcode" style="white-space:nowrap;">
+                                                        <i data-lucide="wand-2" style="width:14px;height:14px;"></i> Generate
+                                                    </button>
+                                                </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="form-label">HSN Code</label>
@@ -345,7 +350,12 @@
                     <div class="settings-form-grid">
                         <div class="form-group">
                             <label class="form-label">Barcode</label>
-                            <input type="text" class="form-control" name="barcode" placeholder="Barcode">
+                            <div style="display:flex;gap:6px;">
+                                <input type="text" class="form-control" name="barcode" placeholder="Barcode" id="newProductBarcode">
+                                <button type="button" class="btn btn-sm btn-outline-secondary" onclick="generateBarcode('newProductBarcode')" title="Generate unique barcode" style="white-space:nowrap;">
+                                    <i data-lucide="wand-2" style="width:14px;height:14px;"></i> Generate
+                                </button>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label class="form-label">HSN Code</label>
@@ -499,4 +509,21 @@
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+function generateBarcode(targetId) {
+    fetch('/api/products/generate-barcode')
+        .then(r => r.json())
+        .then(data => {
+            if (data.barcode) {
+                document.getElementById(targetId).value = data.barcode;
+            } else {
+                alert(data.error || 'Could not generate barcode. Please try again.');
+            }
+        })
+        .catch(() => alert('Network error. Could not generate barcode.'));
+}
+</script>
 {% endblock %}

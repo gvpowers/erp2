@@ -42,13 +42,13 @@
   </form>
 
   <div class="rpt-stats">
-    <div class="rpt-stat blue"><div class="rpt-stat-row"><span class="rpt-stat-ico blue"><i data-lucide="trending-up"></i></span></div><div class="rpt-stat-value">₹{{ '{:,.2f}'.format(revenue) }}</div><div class="rpt-stat-label">Revenue</div></div>
-    <div class="rpt-stat red"><div class="rpt-stat-row"><span class="rpt-stat-ico red"><i data-lucide="receipt"></i></span></div><div class="rpt-stat-value">₹{{ '{:,.2f}'.format(purchase_cost) }}</div><div class="rpt-stat-label">Cost of Goods</div></div>
-    <div class="rpt-stat purple"><div class="rpt-stat-row"><span class="rpt-stat-ico purple"><i data-lucide="landmark"></i></span></div><div class="rpt-stat-value">₹{{ '{:,.2f}'.format(gst_liability) }}</div><div class="rpt-stat-label">GST Liability</div></div>
-    <div class="rpt-stat amber"><div class="rpt-stat-row"><span class="rpt-stat-ico amber"><i data-lucide="badge-percent"></i></span></div><div class="rpt-stat-value">₹{{ '{:,.2f}'.format(discount) }}</div><div class="rpt-stat-label">Discounts</div></div>
-    <div class="rpt-stat amber"><div class="rpt-stat-row"><span class="rpt-stat-ico amber"><i data-lucide="receipt-text"></i></span></div><div class="rpt-stat-value">₹{{ '{:,.2f}'.format(expenses) }}</div><div class="rpt-stat-label">Expenses</div></div>
-    <div class="rpt-stat green"><div class="rpt-stat-row"><span class="rpt-stat-ico green"><i data-lucide="wallet"></i></span></div><div class="rpt-stat-value">₹{{ '{:,.2f}'.format(gross_profit) }}</div><div class="rpt-stat-label">Gross Profit</div></div>
-    <div class="rpt-stat green"><div class="rpt-stat-row"><span class="rpt-stat-ico green"><i data-lucide="badge-check"></i></span></div><div class="rpt-stat-value">₹{{ '{:,.2f}'.format(net_profit) }}</div><div class="rpt-stat-label">Net Profit</div></div>
+    <div class="rpt-stat blue"><div class="rpt-stat-row"><span class="rpt-stat-ico blue"><i data-lucide="trending-up"></i></span></div><div class="rpt-stat-value">{{ format_currency(revenue) }}</div><div class="rpt-stat-label">Revenue</div></div>
+    <div class="rpt-stat red"><div class="rpt-stat-row"><span class="rpt-stat-ico red"><i data-lucide="receipt"></i></span></div><div class="rpt-stat-value">{{ format_currency(purchase_cost) }}</div><div class="rpt-stat-label">Cost of Goods</div></div>
+    <div class="rpt-stat purple"><div class="rpt-stat-row"><span class="rpt-stat-ico purple"><i data-lucide="landmark"></i></span></div><div class="rpt-stat-value">{{ format_currency(gst_liability) }}</div><div class="rpt-stat-label">GST Liability</div></div>
+    <div class="rpt-stat amber"><div class="rpt-stat-row"><span class="rpt-stat-ico amber"><i data-lucide="badge-percent"></i></span></div><div class="rpt-stat-value">{{ format_currency(discount) }}</div><div class="rpt-stat-label">Discounts</div></div>
+    <div class="rpt-stat amber"><div class="rpt-stat-row"><span class="rpt-stat-ico amber"><i data-lucide="receipt-text"></i></span></div><div class="rpt-stat-value">{{ format_currency(expenses) }}</div><div class="rpt-stat-label">Expenses</div></div>
+    <div class="rpt-stat green"><div class="rpt-stat-row"><span class="rpt-stat-ico green"><i data-lucide="wallet"></i></span></div><div class="rpt-stat-value">{{ format_currency(gross_profit) }}</div><div class="rpt-stat-label">Gross Profit</div></div>
+    <div class="rpt-stat green"><div class="rpt-stat-row"><span class="rpt-stat-ico green"><i data-lucide="badge-check"></i></span></div><div class="rpt-stat-value">{{ format_currency(net_profit) }}</div><div class="rpt-stat-label">Net Profit</div></div>
     <div class="rpt-stat purple"><div class="rpt-stat-row"><span class="rpt-stat-ico purple"><i data-lucide="percent"></i></span></div><div class="rpt-stat-value">{{ profit_pct }}%</div><div class="rpt-stat-label">Net Margin</div></div>
   </div>
 
@@ -77,7 +77,7 @@
       <div class="rpt-card-body">
         {% if highest_profit %}
         <div class="rpt-stat-value" style="margin-bottom:.4rem">{{ highest_profit.name }}</div>
-        <div class="rpt-stat-label">Profit <b class="rpt-pos">₹{{ '{:,.2f}'.format(highest_profit.profit) }}</b></div>
+        <div class="rpt-stat-label">Profit <b class="rpt-pos">{{ format_currency(highest_profit.profit) }}</b></div>
         {% else %}<p class="rpt-muted">No data.</p>{% endif %}
       </div>
     </div>
@@ -86,7 +86,7 @@
       <div class="rpt-card-body">
         {% if lowest_profit %}
         <div class="rpt-stat-value" style="margin-bottom:.4rem">{{ lowest_profit.name }}</div>
-        <div class="rpt-stat-label">Profit <b class="rpt-neg">₹{{ '{:,.2f}'.format(lowest_profit.profit) }}</b></div>
+        <div class="rpt-stat-label">Profit <b class="rpt-neg">{{ format_currency(lowest_profit.profit) }}</b></div>
         {% else %}<p class="rpt-muted">No data.</p>{% endif %}
       </div>
     </div>
@@ -103,7 +103,7 @@
         <thead><tr><th>Product</th><th class="tar">Qty</th><th class="tar">Revenue</th><th class="tar">Cost</th><th class="tar">Profit</th><th class="tar">Margin %</th></tr></thead>
         <tbody>
         {% for p in product_list %}
-        <tr><td><b>{{ p.name }}</b></td><td class="tar">{{ p.qty }}</td><td class="tar">₹{{ '{:,.2f}'.format(p.revenue) }}</td><td class="tar">₹{{ '{:,.2f}'.format(p.cost) }}</td><td class="tar {{ 'rpt-pos' if p.profit>=0 else 'rpt-neg' }}">₹{{ '{:,.2f}'.format(p.profit) }}</td><td class="tar">{{ '%.2f'|format(p.profit/p.revenue*100 if p.revenue else 0) }}%</td></tr>
+        <tr><td><b>{{ p.name }}</b></td><td class="tar">{{ p.qty }}</td><td class="tar">{{ format_currency(p.revenue) }}</td><td class="tar">{{ format_currency(p.cost) }}</td><td class="tar {{ 'rpt-pos' if p.profit>=0 else 'rpt-neg' }}">{{ format_currency(p.profit) }}</td><td class="tar">{{ '%.2f'|format(p.profit/p.revenue*100 if p.revenue else 0) }}%</td></tr>
         {% else %}<tr class="empty-row"><td colspan="6">No product sales in this period.</td></tr>{% endfor %}
         </tbody>
       </table></div>

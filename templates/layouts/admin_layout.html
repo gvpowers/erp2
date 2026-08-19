@@ -23,7 +23,7 @@
                 <i data-lucide="file-plus"></i>
                 <span class="nav-text">New Invoice</span>
             </a>
-            <a href="{{ url_for('invoice_history') }}" class="nav-link {% if request.endpoint == 'invoice_history' %}active{% endif %}" data-tooltip="Invoice History">
+            <a href="{{ url_for('invoice_history') }}" class="nav-link {% if request.endpoint in ('invoice_history', 'edit_invoice') %}active{% endif %}" data-tooltip="Invoice History">
                 <i data-lucide="file-text"></i>
                 <span class="nav-text">Invoice History</span>
             </a>
@@ -34,7 +34,7 @@
             </a>
 
             <div class="sidebar-section-title">Products &amp; Stock</div>
-            <a href="{{ url_for('customers_list') }}" class="nav-link {% if request.endpoint in ('customers_list', 'customer_profile') %}active{% endif %}" data-tooltip="Customers">
+            <a href="{{ url_for('customers_list') }}" class="nav-link {% if request.endpoint in ('customers_list', 'customer_profile', 'customer_ledger') %}active{% endif %}" data-tooltip="Customers">
                 <i data-lucide="users"></i>
                 <span class="nav-text">Customers</span>
             </a>
@@ -46,15 +46,20 @@
                 <i data-lucide="truck"></i>
                 <span class="nav-text">Suppliers</span>
             </a>
-            <a href="{{ url_for('purchases_list') }}" class="nav-link {% if request.endpoint == 'purchases_list' %}active{% endif %}" data-tooltip="Purchases">
+            <a href="{{ url_for('purchases_list') }}" class="nav-link {% if request.endpoint in ('purchases_list', 'purchase_orders') %}active{% endif %}" data-tooltip="Purchases">
                 <i data-lucide="shopping-cart"></i>
                 <span class="nav-text">Purchases</span>
             </a>
 
             <div class="sidebar-section-title">Analytics</div>
-            <a href="{{ url_for('reports_page') }}" class="nav-link {% if request.endpoint and 'report' in request.endpoint %}active{% endif %}" data-tooltip="Reports">
+            {% set report_endpoints = ('reports_page', 'sales_report', 'payments_report', 'outstanding_report', 'gst_report', 'inventory_report', 'profit_report', 'customer_report', 'report_export') %}
+            <a href="{{ url_for('reports_page') }}" class="nav-link {% if request.endpoint in report_endpoints %}active{% endif %}" data-tooltip="Reports">
                 <i data-lucide="bar-chart-3"></i>
                 <span class="nav-text">Reports</span>
+            </a>
+            <a href="{{ url_for('low_stock_report') }}" class="nav-link {% if request.endpoint == 'low_stock_report' %}active{% endif %}" data-tooltip="Low Stock">
+                <i data-lucide="alert-triangle"></i>
+                <span class="nav-text">Low Stock</span>
             </a>
 
             <div class="sidebar-section-title">System</div>

@@ -52,7 +52,7 @@
                             {% set status_classes = {'draft': 'badge-secondary', 'pending': 'badge-warning', 'confirmed': 'badge-info', 'received': 'badge-success', 'cancelled': 'badge-danger', 'partial': 'badge-secondary'} %}
                             <span class="badge {{ status_classes.get(order.status, 'badge-secondary') }}">{{ order.status|capitalize }}</span>
                         </td>
-                        <td class="text-end text-success fw-600">₹{{ "%.2f"|format(order.grand_total or 0) }}</td>
+                        <td class="text-end text-success fw-600">{{ format_currency(order.grand_total or 0) }}</td>
                         <td class="text-center">
                             <div class="erp-menu" data-erp-menu>
                                 <button class="erp-menu__trigger" data-erp-trigger aria-label="Actions" aria-haspopup="true" title="Actions">
@@ -164,7 +164,7 @@
                         </div>
                         <div class="col-md-4">
                             <label class="form-label">Order Date <span class="text-danger">*</span></label>
-                            <input type="date" class="form-control" name="order_date" required>
+                            <input type="date" class="form-control" name="order_date" required value="{{ prefill.order_date if prefill else '' }}">
                         </div>
                         <div class="col-md-3">
                             <label class="form-label">Expected Date</label>
@@ -187,16 +187,15 @@
                             </thead>
                             <tbody id="poItemsBody">
                                 <tr class="po-item-row">
-                                    <td>
-                                        <select class="form-select form-select-sm" name="product_id[]" required>
-                                            <option value="">Select Product</option>
-                                            {% for product in products %}
-                                                <option value="{{ product.id }}">{{ product.name }} ({{ product.sku or '' }})</option>
-                                            {% endfor %}
-                                        </select>
+                                    <td style="position:relative;">
+                                        <input type="hidden" name="product_id[]" class="po-product-id" value="{{ prefill.product_id if prefill else '' }}">
+                                        <div style="display:flex;gap:4px;">
+                                            <input type="text" class="form-control form-control-sm po-product-search" placeholder="Search or scan barcode..." autocomplete="off" value="{{ products|selectattr('id', 'equalto', prefill.product_id)|map(attribute='name')|first if prefill and prefill.product_id else '' }}">
+                                            <div class="po-product-dropdown" style="display:none;position:absolute;top:100%;left:0;right:0;z-index:100;background:#fff;border:1px solid #ddd;border-radius:6px;max-height:200px;overflow-y:auto;box-shadow:0 4px 12px rgba(0,0,0,0.1);"></div>
+                                        </div>
                                     </td>
-                                    <td><input type="number" class="form-control form-control-sm" name="quantity[]" min="1" value="1" required></td>
-                                    <td><input type="number" step="0.01" class="form-control form-control-sm" name="price[]" min="0" value="0" required></td>
+                                    <td><input type="number" class="form-control form-control-sm" name="quantity[]" min="1" value="{{ prefill.suggested_qty if prefill else 1 }}" required></td>
+                                    <td><input type="number" step="0.01" class="form-control form-control-sm" name="price[]" min="0" value="{{ prefill.price if prefill else 0 }}" required></td>
                                     <td class="text-center">
                                         <button type="button" class="btn btn-sm btn-outline-danger remove-item-btn" title="Remove"><i data-lucide="x"></i></button>
                                     </td>
@@ -234,10 +233,14 @@ document.addEventListener('DOMContentLoaded', function() {
             const newRow = firstRow.cloneNode(true);
             newRow.querySelectorAll('input').forEach(function(input) {
                 if (input.type === 'number') input.value = input.name.includes('quantity') ? '1' : '0';
+                if (input.classList.contains('po-product-id')) input.value = '';
+                if (input.classList.contains('po-product-search')) input.value = '';
             });
-            newRow.querySelectorAll('select').forEach(function(sel) { sel.selectedIndex = 0; });
+            const dd = newRow.querySelector('.po-product-dropdown');
+            if (dd) dd.style.display = 'none';
             poItemsBody.appendChild(newRow);
             lucide.createIcons();
+            setupPoSearch(newRow.querySelector('.po-product-search'));
         });
     }
 
@@ -250,6 +253,94 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     });
+
+    function setupPoSearch(input) {
+        if (!input) return;
+        let debounce = null;
+        let barcodeBuf = '';
+        let barcodeTmr = null;
+
+        input.addEventListener('input', function() {
+            clearTimeout(debounce);
+            const q = this.value.trim();
+            const row = this.closest('.po-item-row');
+            const dd = row.querySelector('.po-product-dropdown');
+            const idInput = row.querySelector('.po-product-id');
+            if (q.length < 1) { dd.style.display = 'none'; idInput.value = ''; return; }
+            debounce = setTimeout(() => {
+                fetch('/api/products/search?q=' + encodeURIComponent(q))
+                    .then(r => r.json())
+                    .then(data => {
+                        if (!data.length) { dd.innerHTML = '<div style="padding:8px;color:#999;font-size:0.82rem;">No products found</div>'; dd.style.display = 'block'; return; }
+                        dd.innerHTML = data.map(p => '<div class="po-dd-item" data-id="' + p.id + '" data-name="' + (p.name||'').replace(/"/g,'&quot;') + '" data-price="' + (p.selling_price||p.price||0) + '" data-gst="' + (p.gst_rate||18) + '" style="padding:8px 10px;cursor:pointer;font-size:0.82rem;border-bottom:1px solid #f3f4f6;">' + (p.name||'') + ' <span style="color:#999;font-size:0.75rem;">(' + (p.sku||'') + ') — Rs. ' + (p.selling_price||p.price||0) + ' — Stock: ' + (p.current_stock||0) + '</span></div>').join('');
+                        dd.style.display = 'block';
+                        dd.querySelectorAll('.po-dd-item').forEach(item => {
+                            item.addEventListener('click', function() {
+                                idInput.value = this.dataset.id;
+                                input.value = this.dataset.name;
+                                const priceInput = row.querySelector('input[name="price[]"]');
+                                if (priceInput) priceInput.value = this.dataset.price;
+                                dd.style.display = 'none';
+                            });
+                        });
+                    }).catch(() => {});
+            }, 200);
+        });
+
+        input.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                const buf = barcodeBuf.trim();
+                barcodeBuf = '';
+                clearTimeout(barcodeTmr);
+                if (buf.length >= 8 && /^[A-Za-z0-9]+$/.test(buf)) {
+                    fetch('/api/products/barcode/' + encodeURIComponent(buf))
+                        .then(r => r.json())
+                        .then(data => {
+                            if (data.found) {
+                                const row = input.closest('.po-item-row');
+                                row.querySelector('.po-product-id').value = data.product.id;
+                                input.value = data.product.name;
+                                const priceInput = row.querySelector('input[name="price[]"]');
+                                if (priceInput) priceInput.value = data.product.purchase_price || data.product.selling_price || 0;
+                            } else {
+                                alert('Product not found for barcode: ' + buf);
+                            }
+                        }).catch(() => alert('Network error'));
+                    return;
+                }
+                const row = input.closest('.po-item-row');
+                const dd = row.querySelector('.po-product-dropdown');
+                if (dd && dd.style.display !== 'none') {
+                    const first = dd.querySelector('.po-dd-item');
+                    if (first) first.click();
+                }
+            }
+            if (e.key.length === 1) {
+                barcodeBuf += e.key;
+                clearTimeout(barcodeTmr);
+                barcodeTmr = setTimeout(() => { barcodeBuf = ''; }, 100);
+            }
+        });
+
+        input.addEventListener('blur', function() {
+            setTimeout(() => {
+                const row = this.closest('.po-item-row');
+                const dd = row.querySelector('.po-product-dropdown');
+                if (dd) dd.style.display = 'none';
+            }, 200);
+        });
+    }
+
+    document.querySelectorAll('.po-product-search').forEach(setupPoSearch);
+
+    {% if prefill %}
+    const prefillModal = document.getElementById('createPOModal');
+    if (prefillModal) {
+        const modal = new bootstrap.Modal(prefillModal);
+        modal.show();
+    }
+    {% endif %}
 });
 </script>
 {% endblock %}

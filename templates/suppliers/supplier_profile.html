@@ -65,17 +65,6 @@
                     <code class="text-primary">{{ supplier.gstin }}</code>
                 </div>
                 {% endif %}
-
-                {% if supplier.bank_name %}
-                <div class="divider mb-16"></div>
-
-                <div class="mb-2">
-                    <span class="text-12 text-muted fw-600 d-block mb-4"><i data-lucide="landmark" style="width:13px;height:13px;" class="me-1"></i>Bank Details</span>
-                    <span class="fw-500">{{ supplier.bank_name }}</span><br>
-                    <span class="text-secondary text-13">A/C: {{ supplier.bank_account or 'N/A' }}</span><br>
-                    <span class="text-secondary text-13">IFSC: {{ supplier.bank_ifsc or 'N/A' }}</span>
-                </div>
-                {% endif %}
             </div>
         </div>
     </div>
@@ -123,7 +112,7 @@
                                 <tr>
                                     <td class="fw-600">{{ p.name }}</td>
                                     <td><code class="text-13 text-muted">{{ p.sku or '-' }}</code></td>
-                                    <td class="text-end">₹{{ "%.2f"|format(p.purchase_price) }}</td>
+                                    <td class="text-end">{{ format_currency(p.purchase_price) }}</td>
                                     <td class="text-center">
                                         {% set stock = p.current_stock or 0 %}
                                         {% if stock == 0 %}
@@ -176,7 +165,7 @@
                                         {% set po_status = {'pending': 'badge-warning', 'confirmed': 'badge-info', 'received': 'badge-success', 'cancelled': 'badge-danger', 'partial': 'badge-secondary'} %}
                                         <span class="badge {{ po_status.get(order.status, 'badge-secondary') }}">{{ order.status|capitalize }}</span>
                                     </td>
-                                    <td class="text-end fw-600 text-success">₹{{ "%.2f"|format(order.grand_total) }}</td>
+                                    <td class="text-end fw-600 text-success">{{ format_currency(order.grand_total) }}</td>
                                 </tr>
                                 {% endfor %}
                             {% else %}

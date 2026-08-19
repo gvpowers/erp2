@@ -167,7 +167,7 @@
           {% else %}<span class="badge badge-expired">{{ q.status|upper }}</span>
           {% endif %}
         </td>
-        <td class="text-right"><span class="q-amount">&#8377;{{ "%.2f"|format(q.grand_total) }}</span></td>
+        <td class="text-right"><span class="q-amount">{{ format_currency(q.grand_total) }}</span></td>
         <td class="text-right">
           <div class="erp-menu" data-erp-menu>
             <button class="erp-menu__trigger" data-erp-trigger aria-label="Actions" aria-haspopup="true" title="Actions">

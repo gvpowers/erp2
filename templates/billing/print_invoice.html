@@ -3,42 +3,38 @@
 <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: 'Inter', 'Segoe UI', system-ui, sans-serif; background: var(--bg-page); color: var(--text-primary); font-size: 13px; line-height: 1.5; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    .print-wrapper { max-width: 800px; margin: 0 auto; padding: 24px; background: #fff; }
+    .print-wrapper { max-width: 820px; margin: 0 auto; padding: 24px; background: #fff; }
 
     /* Header */
-    .print-header { display: flex; justify-content: space-between; align-items: flex-start; padding-bottom: 18px; border-bottom: 3px solid var(--color-primary); margin-bottom: 18px; }
+    .print-header { display: flex; justify-content: space-between; align-items: flex-start; padding-bottom: 16px; border-bottom: 3px solid var(--sidebar-bg); margin-bottom: 16px; }
     .print-header-left { display: flex; gap: 14px; align-items: flex-start; }
-    .company-logo { width: 50px; height: 50px; border-radius: var(--radius-lg); overflow: hidden; flex-shrink: 0; }
+    .company-logo { width: 52px; height: 52px; border-radius: var(--radius-lg); overflow: hidden; flex-shrink: 0; }
     .company-logo img { width: 100%; height: 100%; object-fit: contain; }
     .company-info .company-name { font-size: 17px; font-weight: 800; color: var(--sidebar-bg); letter-spacing: -0.02em; }
-    .company-info .company-tagline { font-size: 9px; font-weight: 500; color: var(--color-primary); font-style: italic; margin-top: 1px; }
+    .company-info .company-tagline { font-size: 9px; font-weight: 600; color: var(--color-primary); font-style: italic; margin-top: 1px; }
     .company-info .company-services { font-size: 8px; color: var(--text-muted); margin-top: 2px; }
-    .company-info .company-details { font-size: 8px; color: var(--text-muted); line-height: 1.6; margin-top: 4px; }
+    .company-info .company-details { font-size: 8px; color: var(--text-muted); line-height: 1.7; margin-top: 4px; }
+    .company-info .company-details .gstin-line { color: var(--text-primary); font-weight: 600; }
     .print-header-right { text-align: right; }
-    .print-header-right .invoice-title { font-size: 22px; font-weight: 800; color: var(--sidebar-bg); letter-spacing: -0.02em; }
+    .print-header-right .invoice-title { font-size: 20px; font-weight: 800; color: var(--sidebar-bg); letter-spacing: -0.02em; }
     .print-header-right .copy-badge { display: inline-block; font-size: 8px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--color-primary); background: var(--color-primary-light); padding: 3px 10px; border-radius: 4px; margin-top: 4px; }
-    .print-header-right .inv-meta { font-size: 8px; color: var(--text-muted); margin-top: 4px; line-height: 1.6; }
-
-    /* Status badge */
-    .status-badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 8px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; margin-top: 4px; }
-    .status-draft { background: var(--bg-gray); color: var(--text-muted); }
-    .status-sent { background: var(--color-primary-light); color: var(--color-primary); }
-    .status-paid { background: var(--color-success-light); color: var(--color-success); }
-    .status-partial { background: var(--color-warning-light); color: var(--color-warning); }
-    .status-cancelled { background: var(--color-danger-light); color: var(--color-danger); }
-    .status-confirmed { background: var(--color-primary-light); color: var(--color-primary); }
+    .print-header-right .inv-meta { font-size: 8px; color: var(--text-muted); margin-top: 4px; line-height: 1.7; }
+    .print-header-right .inv-meta strong { color: var(--text-primary); font-weight: 600; }
 
     /* Details grid */
-    .details-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+    .details-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px; }
     .detail-box { background: var(--bg-gray); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 12px; }
     .detail-box-title { font-size: 8px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-primary); margin-bottom: 6px; }
     .cust-name { font-size: 12px; font-weight: 700; color: var(--text-primary); margin-bottom: 3px; }
     .detail-line { font-size: 8px; color: var(--text-muted); line-height: 1.7; }
     .detail-line strong { color: var(--text-primary); font-weight: 600; }
+    .detail-row { display: flex; justify-content: space-between; font-size: 8px; line-height: 1.8; }
+    .detail-row .dlabel { color: var(--text-muted); }
+    .detail-row .dvalue { color: var(--text-primary); font-weight: 600; text-align: right; }
 
     /* Items table */
-    .items-table { width: 100%; border-collapse: collapse; margin-bottom: 12px; }
-    .items-table thead { background: var(--color-primary); color: #fff; }
+    .items-table { width: 100%; border-collapse: collapse; margin-bottom: 10px; }
+    .items-table thead { background: var(--sidebar-bg); color: #fff; }
     .items-table thead th { padding: 7px 5px; font-size: 7px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; text-align: left; }
     .items-table thead th:first-child { border-radius: 4px 0 0 0; }
     .items-table thead th:last-child { border-radius: 0 4px 0 0; text-align: right; }
@@ -50,9 +46,13 @@
     .tr { text-align: right; }
     .tc { text-align: center; }
 
-    /* Amount in words */
-    .amount-words { background: var(--bg-gray); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 8px 12px; font-size: 8px; color: var(--text-muted); margin-bottom: 14px; font-style: italic; }
-    .amount-words strong { color: var(--text-primary); font-style: normal; }
+    /* HSN / GST summary */
+    .gst-summary { width: 100%; border-collapse: collapse; margin-bottom: 14px; }
+    .gst-summary thead th { background: var(--bg-gray); color: var(--text-primary); padding: 6px 5px; font-size: 7px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; text-align: center; }
+    .gst-summary tbody td { padding: 5px; font-size: 7.5px; border-bottom: 1px solid var(--border-light); text-align: center; }
+    .gst-summary tbody td.tr { text-align: right; }
+    .gst-summary tfoot td { background: var(--bg-gray); font-weight: 600; padding: 6px 5px; font-size: 7.5px; text-align: center; }
+    .gst-summary tfoot td.tr { text-align: right; }
 
     /* Bottom grid */
     .bottom-grid { display: grid; grid-template-columns: 1fr 260px; gap: 14px; margin-bottom: 14px; }
@@ -67,20 +67,27 @@
     .tot-row.grand { border-top: 2px solid var(--color-primary); margin-top: 6px; padding-top: 8px; }
     .tot-row.grand .tl { font-weight: 700; color: var(--text-primary); font-size: 10px; }
     .tot-row.grand .tv { font-weight: 800; color: var(--color-primary); font-size: 14px; font-family: var(--font-mono); }
-    .tax-row { display: flex; justify-content: space-between; padding: 2px 0; font-size: 7.5px; }
-    .tax-row .tl { color: var(--text-muted); }
-    .tax-row .tv { font-weight: 500; }
+
+    /* Amount in words */
+    .amount-words { margin-top: 8px; border-top: 1px dashed var(--border-light); padding-top: 6px; font-size: 7px; color: var(--text-muted); font-style: italic; }
+    .amount-words strong { color: var(--text-primary); font-style: normal; font-weight: 600; }
 
     /* Payment */
     .pay-row { display: flex; justify-content: space-between; font-size: 8px; padding: 2px 0; }
     .pay-row .pl { color: var(--text-muted); }
     .pay-row .pv { font-weight: 500; color: var(--text-primary); }
 
-    /* Terms */
+    /* Terms & declaration */
     .terms-text { font-size: 7.5px; color: var(--text-muted); line-height: 1.7; white-space: pre-wrap; }
 
+    /* Signature area */
+    .signature-area { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin: 14px 0; }
+    .sign-box { border-top: 1px solid var(--border-color); padding-top: 6px; }
+    .sign-box .sign-label { font-size: 7.5px; color: var(--text-muted); margin-bottom: 2px; }
+    .sign-box .sign-company { font-size: 9px; font-weight: 700; color: var(--sidebar-bg); }
+
     /* Footer */
-    .print-footer { text-align: center; padding-top: 12px; border-top: 1px solid var(--border-color); font-size: 7px; color: var(--text-muted); }
+    .print-footer { text-align: center; padding-top: 12px; border-top: 1px solid var(--border-color); font-size: 7px; color: var(--text-muted); line-height: 1.6; }
 
     /* Print button */
     .btn-print-float { position: fixed; top: 20px; right: 20px; z-index: 9999; padding: 10px 20px; background: var(--color-primary); color: #fff; border: none; border-radius: var(--radius-lg); font-size: 12px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 6px; box-shadow: 0 4px 20px rgba(37,99,235,.3); transition: all .2s; }
@@ -88,7 +95,7 @@
     .btn-print-float i { width: 16px; height: 16px; }
 
     /* Watermark */
-    .watermark { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-45deg); font-size: 72px; font-weight: 800; color: rgba(0,0,0,0.03); pointer-events: none; z-index: 0; white-space: nowrap; letter-spacing: 0.1em; }
+    .watermark { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-45deg); font-size: 72px; font-weight: 800; color: rgba(15,23,42,0.035); pointer-events: none; z-index: 0; white-space: nowrap; letter-spacing: 0.1em; }
 
     @media print {
         body { background: #fff; margin: 0; padding: 0; }
@@ -96,7 +103,7 @@
         .btn-print-float { display: none !important; }
         .no-print { display: none !important; }
         @page { margin: 8mm 6mm; size: A4 portrait; }
-        .items-table thead { background: var(--color-primary) !important; color: #fff !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        .items-table thead, .gst-summary thead { background: var(--sidebar-bg) !important; color: #fff !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     }
 </style>
 
@@ -105,6 +112,9 @@
 </button>
 
 <div class="watermark">{{ copy_label|default('INVOICE') }}</div>
+{% if invoice.status == 'cancelled' %}
+<div class="watermark" style="color: rgba(220,38,38,0.06); font-size: 80px;">CANCELLED</div>
+{% endif %}
 
 <div class="print-wrapper">
     <div class="print-header">
@@ -114,12 +124,12 @@
             </div>
             <div class="company-info">
                 <div class="company-name">{{ company.name }}</div>
-                <div class="company-tagline">Powering A Better Tomorrow</div>
-                <div class="company-services">Solar Energy | UPS Systems | Inverters | RO Solutions | Electricals</div>
+                <div class="company-tagline">{{ company.tagline or 'Powering A Better Tomorrow' }}</div>
+                <div class="company-services">{{ company.services }}</div>
                 <div class="company-details">
                     {{ company.address }}<br>
-                    GSTIN: {{ company.gstin }} | PAN: {{ company.pan }}<br>
-                    Ph: {{ company.phone }}{% if company.mobile %} | Mob: {{ company.mobile }}{% endif %} | {{ company.email }} | {{ company.website }}
+                    <span class="gstin-line">GSTIN: {{ company.gstin }} | Website: {{ company.website }}</span><br>
+                    Ph: {{ company.phone }}{% if company.mobile %} | Mob: {{ company.mobile }}{% endif %} | {{ company.email }}
                 </div>
             </div>
         </div>
@@ -127,18 +137,11 @@
             <div class="invoice-title">TAX INVOICE</div>
             <div class="copy-badge">{{ copy_label|default('INVOICE') }}</div>
             <div class="inv-meta">
-                Invoice #: {{ invoice.invoice_number }}<br>
-                Date: {{ invoice.invoice_date }}<br>
-                {% if invoice.due_date %}Due Date: {{ invoice.due_date }}<br>{% endif %}
-                Place of Supply: {{ invoice.customer_state or company.state }} ({{ invoice.customer_state_code or company.state_code }})
+                Invoice #: <strong>{{ invoice.invoice_number }}</strong><br>
+                Date: <strong>{{ invoice.invoice_date.strftime('%d-%m-%Y') if invoice.invoice_date else '' }}</strong><br>
+                {% if invoice.due_date %}Due Date: <strong>{{ invoice.due_date.strftime('%d-%m-%Y') if invoice.due_date else '' }}</strong><br>{% endif %}
+                Place of Supply: <strong>{{ invoice.customer_state or company.state }} ({{ invoice.customer_state_code or company.state_code }})</strong>
             </div>
-            {% set status_class = 'draft' %}
-            {% if invoice.status == 'paid' %}{% set status_class = 'paid' %}
-            {% elif invoice.status == 'cancelled' %}{% set status_class = 'cancelled' %}
-            {% elif invoice.status == 'confirmed' %}{% set status_class = 'confirmed' %}
-            {% elif invoice.status == 'sent' %}{% set status_class = 'sent' %}
-            {% endif %}
-            <div class="status-badge status-{{ status_class }}">{{ invoice.status|upper }}</div>
         </div>
     </div>
 
@@ -155,13 +158,10 @@
         </div>
         <div class="detail-box">
             <div class="detail-box-title">Invoice Details</div>
-            <div class="detail-line">
-                Invoice #: <strong>{{ invoice.invoice_number }}</strong><br>
-                Date: <strong>{{ invoice.invoice_date }}</strong><br>
-                {% if invoice.due_date %}Due Date: <strong>{{ invoice.due_date }}</strong><br>{% endif %}
-                Place of Supply: <strong>{{ invoice.customer_state or company.state }} ({{ invoice.customer_state_code or company.state_code }})</strong><br>
-                Created by: <strong>{{ invoice.creator.full_name if invoice.creator else 'System' }}</strong>
-            </div>
+            <div class="detail-row"><span class="dlabel">Invoice #</span><span class="dvalue">{{ invoice.invoice_number }}</span></div>
+            <div class="detail-row"><span class="dlabel">Date</span><span class="dvalue">{{ invoice.invoice_date.strftime('%d-%m-%Y') if invoice.invoice_date else '' }}</span></div>
+            {% if invoice.due_date %}<div class="detail-row"><span class="dlabel">Due Date</span><span class="dvalue">{{ invoice.due_date.strftime('%d-%m-%Y') if invoice.due_date else '' }}</span></div>{% endif %}
+            <div class="detail-row"><span class="dlabel">Place of Supply</span><span class="dvalue">{{ invoice.customer_state or company.state }} ({{ invoice.customer_state_code or company.state_code }})</span></div>
         </div>
     </div>
 
@@ -169,11 +169,12 @@
         <thead>
             <tr>
                 <th class="tc">#</th>
-                <th>Product Name</th>
-                <th>HSN</th>
+                <th>Product</th>
+                <th class="tc">HSN</th>
                 <th class="tr">Qty</th>
+                <th class="tc">Unit</th>
                 <th class="tr">Rate</th>
-                <th class="tr">Disc</th>
+                <th class="tr">Disc.</th>
                 <th class="tr">GST</th>
                 <th class="tr">Taxable</th>
                 <th class="tr">CGST</th>
@@ -187,37 +188,77 @@
             <tr>
                 <td class="tc" style="color:var(--text-muted);">{{ loop.index }}</td>
                 <td style="font-weight:500;">{{ item.product_name }}</td>
-                <td style="color:var(--text-muted);">{{ item.hsn or '—' }}</td>
-                <td class="tr">{{ item.qty }} {{ item.unit }}</td>
-                <td class="tr">₹{{ "%.2f"|format(item.price) }}</td>
+                <td class="tc" style="color:var(--text-muted);">{{ item.hsn or '—' }}</td>
+                <td class="tr">{{ item.qty }}</td>
+                <td class="tc" style="color:var(--text-muted);">{{ item.unit or '—' }}</td>
+                <td class="tr">{{ format_currency(item.price) }}</td>
                 <td class="tr">{{ item.discount }}%</td>
                 <td class="tr">{{ item.gst_rate }}%</td>
-                <td class="tr" style="font-weight:500;">₹{{ "%.2f"|format(item.taxable_value) }}</td>
-                <td class="tr" style="color:var(--text-muted);">₹{{ "%.2f"|format(item.cgst) }}</td>
-                <td class="tr" style="color:var(--text-muted);">₹{{ "%.2f"|format(item.sgst) }}</td>
-                <td class="tr" style="color:var(--text-muted);">₹{{ "%.2f"|format(item.igst) }}</td>
-                <td class="tr" style="font-weight:600;color:var(--color-primary);">₹{{ "%.2f"|format(item.total) }}</td>
+                <td class="tr" style="font-weight:500;">{{ format_currency(item.taxable_value) }}</td>
+                <td class="tr" style="color:var(--text-muted);">{{ format_currency(item.cgst) }}</td>
+                <td class="tr" style="color:var(--text-muted);">{{ format_currency(item.sgst) }}</td>
+                <td class="tr" style="color:var(--text-muted);">{{ format_currency(item.igst) }}</td>
+                <td class="tr" style="font-weight:600;color:var(--color-primary);">{{ format_currency(item.total) }}</td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
 
-    <div class="amount-words">
-        Amount in words: <strong>{{ amount_words if amount_words else 'Rupees Zero Only' }}</strong>
-    </div>
+    <div class="section-title" style="margin-bottom:4px;">HSN / GST Summary</div>
+    <table class="gst-summary">
+        <thead>
+            <tr>
+                <th>HSN Code</th>
+                <th>Taxable Value</th>
+                <th>GST Rate</th>
+                <th>CGST</th>
+                <th>SGST</th>
+                <th>IGST</th>
+                <th>Total Tax</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% set ns = namespace(hsn={}) %}
+            {% for item in invoice.items %}
+                {% set h = item.hsn or 'N/A' %}
+                {% if h not in ns.hsn %}
+                    {% set _ = ns.hsn.update({h: {'taxable': 0, 'cgst': 0, 'sgst': 0, 'igst': 0}}) %}
+                {% endif %}
+                {% set _ = ns.hsn[h].update({'taxable': ns.hsn[h]['taxable'] + item.taxable_value, 'cgst': ns.hsn[h]['cgst'] + item.cgst, 'sgst': ns.hsn[h]['sgst'] + item.sgst, 'igst': ns.hsn[h]['igst'] + item.igst}) %}
+            {% endfor %}
+            {% for h, d in ns.hsn.items() %}
+            <tr>
+                <td>{{ h }}</td>
+                <td class="tr">{{ format_currency(d['taxable']) }}</td>
+                <td>{{ '%.0f'|format((d['cgst'] + d['sgst'] + d['igst']) * 100 / d['taxable'] if d['taxable'] else 0) }}%</td>
+                <td class="tr">{{ format_currency(d['cgst']) }}</td>
+                <td class="tr">{{ format_currency(d['sgst']) }}</td>
+                <td class="tr">{{ format_currency(d['igst']) }}</td>
+                <td class="tr">{{ format_currency(d['cgst'] + d['sgst'] + d['igst']) }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <td>Total</td>
+                <td class="tr">{{ format_currency(invoice.total_taxable) }}</td>
+                <td></td>
+                <td class="tr">{{ format_currency(invoice.total_cgst) }}</td>
+                <td class="tr">{{ format_currency(invoice.total_sgst) }}</td>
+                <td class="tr">{{ format_currency(invoice.total_igst) }}</td>
+                <td class="tr">{{ format_currency(invoice.total_cgst + invoice.total_sgst + invoice.total_igst) }}</td>
+            </tr>
+        </tfoot>
+    </table>
 
     <div class="bottom-grid">
         <div>
             <div class="section-box">
                 <div class="section-title">Payment Information</div>
                 {% set last_payment = _payments_newest(invoice)|first %}
-                <div class="pay-row"><span class="pl">Payment Status</span><span class="pv">{{ (_payment_status_label(invoice.payment_status))|upper }}</span></div>
-                <div class="pay-row"><span class="pl">Method</span><span class="pv">{{ _payment_method_label(last_payment.payment_method) if last_payment else 'N/A' }}</span></div>
-                {% if last_payment and _payment_display_ref(last_payment) %}
-                <div class="pay-row"><span class="pl">Reference</span><span class="pv" style="font-family:var(--font-mono);">{{ _payment_display_ref(last_payment) }}</span></div>
-                {% endif %}
-                <div class="pay-row"><span class="pl">Amount Paid</span><span class="pv" style="color:var(--color-success);font-weight:600;">₹{{ "%.2f"|format(invoice.amount_paid) }}</span></div>
-                <div class="pay-row"><span class="pl">Balance Due</span><span class="pv" style="color:{% if invoice.balance_due and invoice.balance_due > 0 %}var(--color-danger){% else %}var(--color-success){% endif %};font-weight:600;">₹{{ "%.2f"|format(invoice.balance_due or 0) }}</span></div>
+                <div class="pay-row"><span class="pl">Payment Method</span><span class="pv">{{ _payment_method_label(last_payment.payment_method) if last_payment and last_payment.payment_method else 'N/A' }}</span></div>
+                <div class="pay-row"><span class="pl">Amount Paid</span><span class="pv" style="color:var(--color-success);font-weight:600;">{{ format_currency(invoice.amount_paid) }}</span></div>
+                <div class="pay-row"><span class="pl">Balance Due</span><span class="pv" style="color:{% if invoice.balance_due and invoice.balance_due > 0 %}var(--color-danger){% else %}var(--color-success){% endif %};font-weight:600;">{{ format_currency(invoice.balance_due or 0) }}</span></div>
                 {% if invoice.payments %}
                 <div class="pay-row" style="margin-top:8px;padding-top:8px;border-top:1px dashed var(--border-light);">
                     <div style="width:100%;">
@@ -225,20 +266,12 @@
                         {% for p in _payments_newest(invoice) %}
                         <div style="display:flex;justify-content:space-between;font-size:0.75rem;margin-bottom:2px;">
                             <span>{{ p.payment_date.strftime('%d %b %Y') if p.payment_date else '-' }} · {{ _payment_method_label(p.payment_method) }}</span>
-                            <span style="font-weight:600;color:var(--color-success);font-family:var(--font-mono);">₹{{ "%.2f"|format(p.amount) }}</span>
+                            <span style="font-weight:600;color:var(--color-success);font-family:var(--font-mono);">{{ format_currency(p.amount) }}</span>
                         </div>
                         {% endfor %}
                     </div>
                 </div>
                 {% endif %}
-            </div>
-            <div class="section-box">
-                <div class="section-title">Bank Details</div>
-                <div class="detail-line">
-                    A/C Name: <strong>{{ company.name }}</strong><br>
-                    Bank: <strong>{{ company.bank_name }}</strong> | A/C: <strong>{{ company.bank_account }}</strong><br>
-                    IFSC: <strong>{{ company.bank_ifsc }}</strong> | UPI: <strong>{{ company.upi_id }}</strong>
-                </div>
             </div>
             {% if invoice.terms %}
             <div class="section-box">
@@ -246,36 +279,47 @@
                 <div class="terms-text">{{ invoice.terms }}</div>
             </div>
             {% endif %}
-            {% if invoice.notes %}
-            <div class="section-box">
-                <div class="section-title">Notes</div>
-                <div class="terms-text">{{ invoice.notes }}</div>
-            </div>
-            {% endif %}
         </div>
         <div class="totals-box">
-            <div class="tot-row"><span class="tl">Subtotal</span><span class="tv">₹{{ "%.2f"|format(invoice.subtotal) }}</span></div>
+            <div class="tot-row"><span class="tl">Subtotal</span><span class="tv">{{ format_currency(invoice.subtotal) }}</span></div>
             {% if invoice.total_discount > 0 %}
-            <div class="tot-row"><span class="tl">Discount</span><span class="tv" style="color:var(--color-danger);">-₹{{ "%.2f"|format(invoice.total_discount) }}</span></div>
+            <div class="tot-row"><span class="tl">Discount</span><span class="tv" style="color:var(--color-danger);">-{{ format_currency(invoice.total_discount) }}</span></div>
             {% endif %}
-            <div class="tot-row"><span class="tl">Taxable Amount</span><span class="tv">₹{{ "%.2f"|format(invoice.total_taxable) }}</span></div>
-            <div style="background:var(--bg-gray);border:1px solid var(--border-color);border-radius:4px;padding:6px 8px;margin:4px 0;">
-                {% if invoice.total_igst > 0 %}
-                <div class="tax-row"><span class="tl">IGST</span><span class="tv">₹{{ "%.2f"|format(invoice.total_igst) }}</span></div>
-                {% else %}
-                <div class="tax-row"><span class="tl">CGST</span><span class="tv">₹{{ "%.2f"|format(invoice.total_cgst) }}</span></div>
-                <div class="tax-row"><span class="tl">SGST</span><span class="tv">₹{{ "%.2f"|format(invoice.total_sgst) }}</span></div>
-                {% endif %}
-            </div>
+            <div class="tot-row"><span class="tl">Taxable Amount</span><span class="tv">{{ format_currency(invoice.total_taxable) }}</span></div>
+            {% if invoice.total_igst > 0 %}
+            <div class="tot-row"><span class="tl">IGST</span><span class="tv">{{ format_currency(invoice.total_igst) }}</span></div>
+            {% else %}
+            <div class="tot-row"><span class="tl">CGST</span><span class="tv">{{ format_currency(invoice.total_cgst) }}</span></div>
+            <div class="tot-row"><span class="tl">SGST</span><span class="tv">{{ format_currency(invoice.total_sgst) }}</span></div>
+            {% endif %}
             {% if invoice.round_off != 0 %}
-            <div class="tot-row" style="margin-top:4px;"><span class="tl">Round Off</span><span class="tv">{{ "%.2f"|format(invoice.round_off) }}</span></div>
+            <div class="tot-row" style="margin-top:4px;"><span class="tl">Round Off</span><span class="tv">{{ format_currency(invoice.round_off) }}</span></div>
             {% endif %}
-            <div class="tot-row grand"><span class="tl">Grand Total</span><span class="tv">₹{{ "%.2f"|format(invoice.grand_total) }}</span></div>
+            <div class="tot-row grand"><span class="tl">Grand Total</span><span class="tv">{{ format_currency(invoice.grand_total) }}</span></div>
+            <div class="amount-words">
+                Amount in words: <strong>{{ amount_words if amount_words else 'Rupees Zero Only' }}</strong>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-box">
+        <div class="section-title">Declaration</div>
+        <div class="terms-text">This is a computer-generated invoice. Subject to local jurisdiction. E&amp;OE (Errors and Omissions Excepted).</div>
+    </div>
+
+    <div class="signature-area">
+        <div class="sign-box">
+            <div class="sign-label">Authorized Signature</div>
+            <div class="sign-company">{{ company.name }}</div>
+        </div>
+        <div class="sign-box">
+            <div class="sign-label">Customer Signature</div>
+            <div class="sign-company">Date: _______________</div>
         </div>
     </div>
 
     <div class="print-footer">
-        {{ company.name }} | {{ company.gstin }} | {{ company.phone }} | {{ company.email }}<br>
+        {{ company.name }} | GSTIN: {{ company.gstin }} | {{ company.website }}<br>
         This is a computer-generated invoice. | {{ copy_label|default('INVOICE') }}
     </div>
 </div>

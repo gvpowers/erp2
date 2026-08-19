@@ -48,7 +48,7 @@
   <div class="rpt-stats">
     <div class="rpt-stat blue"><div class="rpt-stat-row"><span class="rpt-stat-ico blue"><i data-lucide="boxes"></i></span></div><div class="rpt-stat-value">{{ total_products }}</div><div class="rpt-stat-label">Active Products</div></div>
     <div class="rpt-stat green"><div class="rpt-stat-row"><span class="rpt-stat-ico green"><i data-lucide="package"></i></span></div><div class="rpt-stat-value">{{ total_stock }}</div><div class="rpt-stat-label">Total Units</div></div>
-    <div class="rpt-stat purple"><div class="rpt-stat-row"><span class="rpt-stat-ico purple"><i data-lucide="indian-rupee"></i></span></div><div class="rpt-stat-value">₹{{ '{:,.2f}'.format(total_value) }}</div><div class="rpt-stat-label">Stock Value</div></div>
+    <div class="rpt-stat purple"><div class="rpt-stat-row"><span class="rpt-stat-ico purple"><i data-lucide="indian-rupee"></i></span></div><div class="rpt-stat-value">{{ format_currency(total_value) }}</div><div class="rpt-stat-label">Stock Value</div></div>
     <div class="rpt-stat red"><div class="rpt-stat-row"><span class="rpt-stat-ico red"><i data-lucide="ban"></i></span></div><div class="rpt-stat-value">{{ out_of_stock_count }}</div><div class="rpt-stat-label">Out of Stock</div></div>
     <div class="rpt-stat amber"><div class="rpt-stat-row"><span class="rpt-stat-ico amber"><i data-lucide="alert-triangle"></i></span></div><div class="rpt-stat-value">{{ low_stock_count }}</div><div class="rpt-stat-label">Low Stock</div></div>
   </div>
@@ -70,7 +70,7 @@
       <div class="rpt-scroll no-h"><table class="rpt-table">
         <thead><tr><th>Product</th><th class="tar">Stock</th><th class="tar">Min</th><th class="tar">Value</th></tr></thead>
         <tbody>
-        {% for p in low_stock %}<tr><td>{{ p.name }}</td><td class="tar"><b>{{ p.current_stock }}</b></td><td class="tar">{{ p.min_stock }}</td><td class="tar">₹{{ '{:,.2f}'.format(p.current_stock * p.purchase_price) }}</td></tr>
+        {% for p in low_stock %}<tr><td>{{ p.name }}</td><td class="tar"><b>{{ p.current_stock }}</b></td><td class="tar">{{ p.min_stock }}</td><td class="tar">{{ format_currency(p.current_stock * p.purchase_price) }}</td></tr>
         {% else %}<tr class="empty-row"><td colspan="4">No low stock items</td></tr>{% endfor %}
         </tbody></table></div>
     </div>
@@ -93,7 +93,7 @@
     </div>
     <div class="rpt-scroll">
       <table class="rpt-table">
-        <thead><tr><th>Product</th><th>SKU</th><th>HSN</th><th>Category</th><th class="tar">Purchase ₹</th><th class="tar">Selling ₹</th><th class="tar">Current</th><th class="tar">Stock Value</th><th>Status</th></tr></thead>
+        <thead><tr><th>Product</th><th>SKU</th><th>HSN</th><th>Category</th><th class="tar">Purchase Rs.</th><th class="tar">Selling Rs.</th><th class="tar">Current</th><th class="tar">Stock Value</th><th>Status</th></tr></thead>
         <tbody>
         {% for p in products %}
         {% set stock_val = p.current_stock * p.purchase_price %}
@@ -101,9 +101,9 @@
         {% set status_txt = 'Out' if p.current_stock <= 0 else 'Low' if p.current_stock <= p.min_stock else 'OK' %}
         <tr>
           <td><b>{{ p.name }}</b></td><td class="rpt-muted">{{ p.sku or '—' }}</td><td class="rpt-muted">{{ p.hsn or '—' }}</td><td>{{ p.category.name if p.category else '—' }}</td>
-          <td class="tar">₹{{ '{:,.2f}'.format(p.purchase_price) }}</td><td class="tar">₹{{ '{:,.2f}'.format(p.selling_price) }}</td>
+          <td class="tar">{{ format_currency(p.purchase_price) }}</td><td class="tar">{{ format_currency(p.selling_price) }}</td>
           <td class="tar"><b>{{ p.current_stock }}</b></td>
-          <td class="tar">₹{{ '{:,.2f}'.format(stock_val) }}</td>
+          <td class="tar">{{ format_currency(stock_val) }}</td>
           <td><span class="rpt-badge {{ status_cls }}">{{ status_txt }}</span></td>
         </tr>
         {% else %}<tr class="empty-row"><td colspan="9">No products found.</td></tr>{% endfor %}

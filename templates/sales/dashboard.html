@@ -21,7 +21,7 @@
         </div>
         <div class="sd-stat">
             <div class="sd-stat-icon green"><i data-lucide="indian-rupee"></i></div>
-            <div class="sd-stat-value">₹{{ "{:,.2f}".format(today_amount or 0) }}</div>
+            <div class="sd-stat-value">{{ format_currency(today_amount or 0) }}</div>
             <div class="sd-stat-label">Billed Today</div>
         </div>
         <div class="sd-stat">
@@ -55,7 +55,7 @@
                                 <td class="ps-3"><a href="{{ url_for('view_invoice', iid=inv.id) }}" class="sd-inv-num">{{ inv.invoice_number }}</a></td>
                                 <td class="sd-cust">{{ inv.customer_name or 'Walk-in' }}</td>
                                 <td class="text-secondary">{{ inv.invoice_date.strftime('%d %b %Y') if inv.invoice_date else '' }}</td>
-                                <td class="text-end fw-600">{{ "{:,.2f}".format(inv.grand_total or 0) }}</td>
+                                <td class="text-end fw-600">{{ format_currency(inv.grand_total or 0, symbol=False) }}</td>
                                 <td class="text-end pe-3">
                                     {% set status = inv.status or 'draft' %}
                                     <span class="badge {% if status in ('paid','confirmed') %}badge-success{% elif status == 'cancelled' %}badge-danger{% else %}badge-secondary{% endif %}">

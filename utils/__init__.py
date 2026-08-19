@@ -310,7 +310,7 @@ def amount_to_words(amount: Union[int, float, Decimal, str]) -> str:
     rupee_words = _rupees_words(rupees)
     if paise == 0:
         if rupees == 1:
-            return "Rupe One Only"
+            return "Rupee One Only"
         return f"Rupees {rupee_words} Only"
     paise_words = _rupees_words(paise)
     if rupees == 0:
@@ -515,7 +515,7 @@ def format_indian_currency(
 ) -> str:
     """
     Format amount in Indian numbering system (lakhs/crores).
-    Example: format_indian_currency(1234567.50) -> "₹ 12,34,567.50"
+    Example: format_indian_currency(1234567.50) -> "Rs. 12,34,567.50"
     """
     if isinstance(amount, str):
         try:
@@ -561,7 +561,7 @@ def format_indian_currency(
         result = "-" + result
 
     if symbol:
-        result = f"\u20b9 {result}"
+        result = f"Rs. {result}"
 
     return result
 

@@ -16,8 +16,14 @@
         {% endif %}
         <div>
             <h1>{{ product.name }}</h1>
-            <div class="d-flex align-items-center gap-2 mt-4">
+                <div class="d-flex align-items-center gap-2 mt-4">
                 <span class="badge badge-secondary">{{ product.sku or 'No SKU' }}</span>
+                {% if product.barcode %}
+                <span class="badge badge-secondary" style="font-family:var(--font-mono);">{{ product.barcode }}</span>
+                <a href="{{ url_for('product_barcode_label', pid=product.id) }}" target="_blank" class="btn btn-sm btn-outline-primary" style="padding:2px 8px;font-size:0.72rem;">
+                    <i data-lucide="barcode" style="width:11px;height:11px;"></i> Print Label
+                </a>
+                {% endif %}
                 {% set stock = product.current_stock or 0 %}
                 {% set min = product.min_stock or 0 %}
                 {% if stock == 0 %}
@@ -81,7 +87,7 @@
         <div class="d-flex align-items-center justify-content-between">
             <div>
                 <div class="kpi-label">Available Stock Value</div>
-                <div class="kpi-value" style="color:var(--color-success);">₹{{ "%.2f"|format(product.available_stock_value) }}</div>
+                <div class="kpi-value" style="color:var(--color-success);">{{ format_currency(product.available_stock_value) }}</div>
             </div>
             <div class="kpi-icon green">
                 <i data-lucide="indian-rupee"></i>
@@ -136,6 +142,29 @@
         </div>
     </div>
 </div>
+
+{% if product.barcode %}
+<div class="card mb-4">
+    <div class="card-header">
+        <i data-lucide="barcode" style="width:16px;height:16px;color:var(--color-primary);"></i>
+        <span>Barcode</span>
+    </div>
+    <div class="card-body" style="display:flex;align-items:center;gap:20px;flex-wrap:wrap;">
+        <div style="flex-shrink:0;">
+            <img src="{{ url_for('product_barcode_image', pid=product.id) }}" alt="Barcode" style="height:60px;">
+        </div>
+        <div>
+            <div style="font-family:var(--font-mono);font-size:1rem;font-weight:700;color:var(--text-primary);">{{ product.barcode }}</div>
+            <div style="font-size:0.78rem;color:var(--text-muted);margin-top:2px;">{{ product.hsn or '' }}</div>
+        </div>
+        <div style="margin-left:auto;display:flex;gap:8px;">
+            <a href="{{ url_for('product_barcode_label', pid=product.id) }}" target="_blank" class="btn btn-sm btn-primary">
+                <i data-lucide="printer" style="width:14px;height:14px;"></i> Print Label
+            </a>
+        </div>
+    </div>
+</div>
+{% endif %}
 
 <div class="row g-4">
     <div class="col-lg-6">
