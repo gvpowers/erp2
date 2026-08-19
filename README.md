@@ -8,7 +8,7 @@ Enterprise Resource Planning System for **GV Powers** - Solar Panels, Inverters,
 - **Quotations** - Create, convert to invoice
 - **Customers** - Full CRM with GSTIN/PAN validation
 - **Products** - Inventory with SKU, barcode, HSN, stock tracking
-- **Suppliers** - Supplier management with bank details
+- **Suppliers** - Supplier management
 - **Purchase Orders** - PO creation, status tracking, stock auto-update
 - **Reports** - Sales, GST, Inventory, Profit, Customer reports
 - **Exports** - Excel (.xlsx) and CSV exports

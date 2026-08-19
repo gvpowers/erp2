@@ -12,7 +12,7 @@ import os
 import io
 import re
 import sys
-import qrcode
+import time
 import logging
 import logging.handlers
 import subprocess
@@ -31,13 +31,14 @@ from typing import Dict, List, Optional, Tuple, Union
 
 from flask import (
     Flask, render_template, request, redirect, url_for,
-    flash, session, jsonify, send_file, abort, current_app
+    flash, session, jsonify, send_file, abort, current_app,
+    after_this_request,
 )
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf.csrf import CSRFProtect
 from flask_login import LoginManager, UserMixin, login_user, logout_user, current_user
 from sqlalchemy import func, desc, and_, or_, extract, text
-from sqlalchemy.exc import IntegrityError
+from sqlalchemy.exc import IntegrityError, OperationalError
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
 from dotenv import load_dotenv
@@ -46,14 +47,68 @@ from reportlab.lib import colors as rl_colors
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.enums import TA_RIGHT
-from reportlab.platypus import (
-    SimpleDocTemplate, Table, TableStyle, Paragraph, Spacer,
-    HRFlowable, Image, KeepTogether, PageBreak, Frame, PageTemplate
-)
+from reportlab.platypus import Table, TableStyle, Paragraph
 from reportlab.pdfgen import canvas
+from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase.ttfonts import TTFont
+import barcode
+from barcode.writer import SVGWriter
 
 load_dotenv()
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+
+############################################################
+# PDF FONTS (Unicode TTF - supports the Indian Rupee symbol)
+############################################################
+
+_PDF_FONT = 'DejaVuSansCondensed'
+_PDF_FONT_BOLD = 'DejaVuSansCondensed-Bold'
+_PDF_FONT_OBLIQUE = 'DejaVuSansCondensed-Oblique'
+
+
+# Fixed GV POWERS business identity. These values are NOT configurable from the
+# admin Settings page — they are the canonical identity for this installation and
+# are used across invoices, quotations, reports, PDFs and emails.
+_FIXED_COMPANY = {
+    'name': 'GV Powers',
+    'gstin': '33AGEPV1534G2ZJ',
+    'phone': '+91 98940 79090',
+    'mobile': '+91 98940 79095',
+    'website': 'https://gvpowers.in',
+    'email': 'gvpowerssalem@gmail.com',
+    'state': 'Tamil Nadu',
+    'state_code': 33,
+    'address': 'No. 10, Kadharkhan Street, Opp. Railway Junction, Salem - 636005, Tamil Nadu, India',
+    'city': 'Salem',
+    'pincode': '636005',
+    'country': 'India',
+    'tagline': 'Powering A Better Tomorrow',
+    'services': 'Solar Energy | UPS Systems | Inverters | RO Solutions | Electricals',
+}
+
+
+def _register_pdf_fonts():
+    """Register embedded Unicode fonts for reliable PDF text rendering.
+
+    Uses the condensed DejaVu Sans family so glyph widths closely match the previous
+    Helvetica layout while providing full Unicode support. Currency is displayed as
+    "Rs." (ASCII) in generated PDFs so it can never render as a black square.
+    """
+    font_dir = os.path.join(BASE_DIR, 'fonts')
+    pdfmetrics.registerFont(TTFont(_PDF_FONT, os.path.join(font_dir, 'DejaVuSansCondensed.ttf')))
+    pdfmetrics.registerFont(TTFont(_PDF_FONT_BOLD, os.path.join(font_dir, 'DejaVuSansCondensed-Bold.ttf')))
+    pdfmetrics.registerFont(TTFont(_PDF_FONT_OBLIQUE, os.path.join(font_dir, 'DejaVuSansCondensed-Oblique.ttf')))
+    pdfmetrics.registerFontFamily(
+        _PDF_FONT,
+        normal=_PDF_FONT,
+        bold=_PDF_FONT_BOLD,
+        italic=_PDF_FONT_OBLIQUE,
+        boldItalic=_PDF_FONT_BOLD,
+    )
+
+
+_register_pdf_fonts()
 
 
 ############################################################
@@ -78,7 +133,6 @@ class Config:
     COMPANY_TAGLINE = os.getenv("COMPANY_TAGLINE", "Powering A Better Tomorrow")
     COMPANY_SERVICES = os.getenv("COMPANY_SERVICES", "Solar Energy | UPS Systems | Inverters | RO Solutions | Electricals")
     COMPANY_GSTIN = os.getenv("COMPANY_GSTIN", "33AGEPV1534G2ZJ")
-    COMPANY_PAN = os.getenv("COMPANY_PAN", "AGEPV1534G")
     COMPANY_STATE = os.getenv("COMPANY_STATE", "Tamil Nadu")
     COMPANY_STATE_CODE = int(os.getenv("COMPANY_STATE_CODE", "33"))
     COMPANY_ADDRESS = os.getenv("COMPANY_ADDRESS", "No. 10, Kadharkhan Street, Opp. Railway Junction, Salem - 636005, Tamil Nadu")
@@ -86,10 +140,6 @@ class Config:
     COMPANY_MOBILE = os.getenv("COMPANY_MOBILE", "+91 98940 79095")
     COMPANY_EMAIL = os.getenv("COMPANY_EMAIL", "gvpowerssalem@gmail.com")
     COMPANY_WEBSITE = os.getenv("COMPANY_WEBSITE", "https://gvpowers.in")
-    BANK_NAME = os.getenv("BANK_NAME", "State Bank of India")
-    BANK_ACCOUNT = os.getenv("BANK_ACCOUNT", "12345678901234")
-    BANK_IFSC = os.getenv("BANK_IFSC", "SBIN0001234")
-    UPI_ID = os.getenv("UPI_ID", "gvpowers@upi")
     ADMIN_USERNAME = os.getenv("ADMIN_USERNAME", "admin")
     ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD", "Admin@123")
     ADMIN_EMAIL = os.getenv("ADMIN_EMAIL", "admin@gvpowers.in")
@@ -269,7 +319,7 @@ def amount_to_words(amount: Union[int, float, Decimal, str]) -> str:
     rupee_words = _rupees_in_words(rupees)
     if paise == 0:
         if rupees == 1:
-            return "Rupe One Only"
+            return "Rupee One Only"
         return f"Rupees {rupee_words} Only"
     paise_words = _rupees_in_words(paise)
     if rupees == 0:
@@ -296,19 +346,48 @@ def get_financial_year_prefix(dt: Optional[date] = None) -> str:
     return f"{(dt.year - 1) % 100:02d}{dt.year % 100:02d}"
 
 
-def generate_invoice_number(existing_numbers: Optional[List[str]] = None, dt: Optional[date] = None) -> str:
+def generate_invoice_number(existing_numbers: Optional[List[str]] = None, dt: Optional[date] = None,
+                            commit: bool = True) -> str:
+    """Allocate and permanently consume the next invoice number.
+
+    The number is only permanent once the caller's transaction is committed.
+    ``commit=True`` (default) commits the sequence bump immediately; pass
+    ``commit=False`` from invoice-creation code so the allocation is part of the
+    same transaction as the invoice and rolls back with it on failure.
+    """
     if dt is None: dt = date.today()
     day = dt.strftime('%d%m%Y')
     prefix = f"INV-{day}-"
-    seq = _next_sequence(existing_numbers or [], prefix) + 1
+    seq = _allocate_sequence(prefix, existing_numbers, 'invoices', 'invoice_number', commit)
     return f"{prefix}{seq:03d}"
+
+
+def peek_next_invoice_number(dt: Optional[date] = None) -> str:
+    """Return the next invoice number WITHOUT consuming it (read-only preview).
+
+    Opening the New Invoice form must never reserve a number; the number shown is
+    provisional and the real one is allocated and committed only when the invoice
+    is actually saved.
+    """
+    if dt is None: dt = date.today()
+    day = dt.strftime('%d%m%Y')
+    prefix = f"INV-{day}-"
+    try:
+        seq = int(db.session.execute(
+            text("SELECT last_value FROM invoice_sequences WHERE seq_key = :key"),
+            {'key': prefix},
+        ).scalar() or 0)
+    except Exception:
+        seq = 0
+    legacy = _sequence_seed_from_table('invoices', 'invoice_number', prefix)
+    return f"{prefix}{max(seq, legacy) + 1:03d}"
 
 
 def generate_quotation_number(existing_numbers: Optional[List[str]] = None, dt: Optional[date] = None) -> str:
     if dt is None: dt = date.today()
     day = dt.strftime('%d%m%Y')
     prefix = f"QTN-{day}-"
-    seq = _next_sequence(existing_numbers or [], prefix) + 1
+    seq = _allocate_sequence(prefix, existing_numbers, 'quotations', 'quotation_number')
     return f"{prefix}{seq:03d}"
 
 
@@ -316,8 +395,77 @@ def generate_purchase_order_number(existing_numbers: Optional[List[str]] = None,
     if dt is None: dt = date.today()
     day = dt.strftime('%d%m%Y')
     prefix = f"PO-{day}-"
-    seq = _next_sequence(existing_numbers or [], prefix) + 1
+    seq = _allocate_sequence(prefix, existing_numbers, 'purchase_orders', 'po_number')
     return f"{prefix}{seq:03d}"
+
+
+def _sequence_seed_from_table(table: str, column: str, prefix: str) -> int:
+    """Compute the current max sequence for a numbered column (legacy seed)."""
+    try:
+        row = db.session.execute(text(
+            "SELECT COALESCE(MAX(CAST(SUBSTR(%s, LENGTH(:p) + 1) AS INTEGER)), 0) "
+            "FROM %s WHERE %s LIKE :like" % (column, table, column)
+        ), {'p': prefix, 'like': prefix + '%'}).scalar()
+        return int(row or 0)
+    except Exception:
+        return 0
+
+
+def _allocate_sequence(prefix: str, existing_numbers: Optional[List[str]],
+                       table: str, column: str, commit: bool = True) -> int:
+    """Atomically allocate the next sequence number for a numbering group.
+
+    Serialization is done at the database level through the invoice_sequences
+    table: the counter is bumped with a single atomic ``UPDATE ... SET
+    last_value = last_value + 1`` so two concurrent requests can never observe
+    the same value (works on both PostgreSQL and SQLite). The first allocation
+    for a given prefix seeds the counter from any legacy numbers so numbering
+    never collides with or recycles existing document numbers.
+
+    When ``commit`` is True (default) the bump is committed immediately, which is
+    what standalone number-generator callers want. When ``commit`` is False the
+    bump is only flushed, so it stays inside the caller's transaction and is
+    rolled back together with it if the caller's save fails — the number is then
+    never consumed by a failed invoice creation.
+
+    Falls back to the legacy scan when the table is unavailable, so the app can
+    never break on an unusual database state.
+    """
+    _ts = datetime.utcnow()
+    for _ in range(10):
+        try:
+            upd = db.session.execute(
+                text("UPDATE invoice_sequences SET last_value = last_value + 1, "
+                     "updated_at = :ts WHERE seq_key = :key"),
+                {'ts': _ts, 'key': prefix},
+            )
+            if upd.rowcount == 1:
+                new_val = db.session.execute(
+                    text("SELECT last_value FROM invoice_sequences WHERE seq_key = :key"),
+                    {'key': prefix},
+                ).scalar()
+                if commit:
+                    db.session.commit()
+                return int(new_val)
+            seed = _next_sequence(existing_numbers or [], prefix)
+            if not existing_numbers:
+                seed = _sequence_seed_from_table(table, column, prefix)
+            db.session.execute(
+                text("INSERT INTO invoice_sequences (seq_key, prefix, period, last_value, updated_at) "
+                     "VALUES (:key, :key, :key, :seed, :ts)"),
+                {'key': prefix, 'seed': seed, 'ts': _ts},
+            )
+            if commit:
+                db.session.commit()
+        except IntegrityError:
+            db.session.rollback()
+        except OperationalError:
+            db.session.rollback()
+            time.sleep(0.02)
+    db.session.rollback()
+    if existing_numbers:
+        return _next_sequence(existing_numbers, prefix) + 1
+    return _sequence_seed_from_table(table, column, prefix) + 1
 
 
 def _next_sequence(existing_numbers: List[str], prefix: str) -> int:
@@ -358,11 +506,22 @@ def contains_sql_injection(value: str) -> bool:
     return False
 
 
-def format_indian_currency(amount: Union[int, float, Decimal, str], symbol: bool = True, decimal_places: int = 2) -> str:
+def format_currency(amount, symbol=True, decimal_places=2) -> str:
+    """Centralized Indian currency formatter.
+
+    Indian thousands grouping, "Rs." prefix (PDF-safe ASCII symbol):
+        format_currency(5900)          -> "Rs. 5,900.00"
+        format_currency(100000)        -> "Rs. 1,00,000.00"
+        format_currency(5900, False)   -> "5,900.00"
+    Uses Decimal everywhere (no float arithmetic); rounds to 2 decimals.
+    """
     if isinstance(amount, str):
-        try: amount = Decimal(amount)
-        except InvalidOperation: return "0.00"
-    if isinstance(amount, (int, float)): amount = Decimal(str(amount))
+        try:
+            amount = Decimal(amount)
+        except InvalidOperation:
+            return "Rs. 0.00" if symbol else "0.00"
+    if isinstance(amount, (int, float)):
+        amount = Decimal(str(amount))
     places = Decimal(10) ** -decimal_places if decimal_places > 0 else Decimal("1")
     amount = amount.quantize(places, rounding=ROUND_HALF_UP)
     negative = amount < 0
@@ -370,17 +529,27 @@ def format_indian_currency(amount: Union[int, float, Decimal, str], symbol: bool
     int_part = int(amount)
     frac_str = str(amount - int_part)[1:] if decimal_places > 0 else ""
     int_str = str(int_part)
-    if len(int_str) <= 3: formatted_int = int_str
+    if len(int_str) <= 3:
+        formatted_int = int_str
     else:
         last_three = int_str[-3:]
         remaining = int_str[:-3]
         groups = []
-        while remaining: groups.append(remaining[-2:]); remaining = remaining[:-2]
+        while remaining:
+            groups.append(remaining[-2:])
+            remaining = remaining[:-2]
         formatted_int = ",".join(reversed(groups)) + "," + last_three
     result = formatted_int + frac_str
-    if negative: result = "-" + result
-    if symbol: result = f"\u20b9 {result}"
+    if symbol:
+        result = "Rs. " + result
+    if negative:
+        result = "-" + result
     return result
+
+
+def format_indian_currency(amount, symbol=True, decimal_places=2) -> str:
+    """Backwards-compatible alias for :func:`format_currency`."""
+    return format_currency(amount, symbol=symbol, decimal_places=decimal_places)
 
 
 def get_csrf_token() -> str:
@@ -478,6 +647,8 @@ def _ensure_product_columns():
             'status': "VARCHAR(20) DEFAULT 'active'",
             'last_purchase': "DATETIME",
             'last_sale': "DATETIME",
+            'last_low_stock_notification_at': "DATETIME",
+            'low_stock_alert_active': "BOOLEAN DEFAULT 0",
         }
         for col, ddl in additions.items():
             if col not in cols:
@@ -508,8 +679,6 @@ def _ensure_payment_columns():
             'customer_id': "INTEGER",
             'transaction_id': "VARCHAR(80)",
             'utr': "VARCHAR(50)",
-            'cheque_number': "VARCHAR(50)",
-            'bank_name': "VARCHAR(80)",
             'remarks': "TEXT",
             'received_by': "VARCHAR(80)",
             'updated_at': "DATETIME",
@@ -524,6 +693,69 @@ def _ensure_payment_columns():
         conn.commit()
 
 
+def _ensure_invoice_sequence_columns():
+    """Add columns introduced for quotation→invoice conversion and safe
+    numbering without dropping the existing database (SQLite/Postgres safe)."""
+    if not hasattr(db, 'engine'):
+        return
+    dialect = db.engine.dialect.name
+    with db.engine.connect() as conn:
+        def _cols(table):
+            if dialect == 'sqlite':
+                return [r[1] for r in conn.execute(text("PRAGMA table_info(%s)" % table))]
+            rows = conn.execute(text(
+                "SELECT column_name FROM information_schema.columns WHERE table_name = '%s'" % table))
+            return [r[0] for r in rows]
+
+        if 'quotation_id' not in _cols('invoices'):
+            conn.execute(text(
+                "ALTER TABLE invoices ADD COLUMN quotation_id INTEGER REFERENCES quotations(id)"))
+        conn.execute(text(
+            "CREATE UNIQUE INDEX IF NOT EXISTS ix_invoices_quotation_id "
+            "ON invoices (quotation_id)"))
+        conn.commit()
+
+
+def _drop_bank_columns():
+    """Safely remove bank-related columns (SQLite/Postgres safe, idempotent).
+
+    Bank features have been removed from the application. The columns are
+    dropped defensively so stale schema can never leak bank data. Failures are
+    logged and swallowed: the application models no longer reference them.
+    """
+    if not hasattr(db, 'engine'):
+        return
+    dialect = db.engine.dialect.name
+    drops = {
+        'payments': ['bank_name', 'cheque_number'],
+        'suppliers': ['bank_name', 'bank_account', 'bank_ifsc', 'upi_id'],
+    }
+    try:
+        with db.engine.connect() as conn:
+            for table, cols in drops.items():
+                if dialect == 'sqlite':
+                    existing = [r[1] for r in conn.execute(text("PRAGMA table_info(%s)" % table))]
+                else:
+                    rows = conn.execute(text(
+                        "SELECT column_name FROM information_schema.columns WHERE table_name = '%s'" % table))
+                    existing = [r[0] for r in rows]
+                for col in cols:
+                    if col not in existing:
+                        continue
+                    try:
+                        conn.execute(text("ALTER TABLE %s DROP COLUMN %s" % (table, col)))
+                        conn.commit()
+                    except Exception:
+                        conn.rollback()
+                        current_app.logger.warning('Could not drop column %s.%s (non-fatal)', table, col)
+            conn.commit()
+    except Exception:
+        try:
+            current_app.logger.warning('Bank column cleanup skipped (non-fatal).')
+        except Exception:
+            pass
+
+
 def create_app(config_class=None):
     global _app_initialized
     if _app_initialized:
@@ -531,24 +763,7 @@ def create_app(config_class=None):
     _app_initialized = True
     if config_class is None: config_class = get_config()
     app.config.from_object(config_class)
-    app.config['COMPANY'] = {
-        "name": app.config.get('COMPANY_NAME', 'GV Powers'),
-        "tagline": app.config.get('COMPANY_TAGLINE', 'Powering A Better Tomorrow'),
-        "services": app.config.get('COMPANY_SERVICES', 'Solar Energy | UPS Systems | Inverters | RO Solutions | Electricals'),
-        "gstin": app.config.get('COMPANY_GSTIN', '33AGEPV1534G2ZJ'),
-        "pan": app.config.get('COMPANY_PAN', 'AGEPV1534G'),
-        "state": app.config.get('COMPANY_STATE', 'Tamil Nadu'),
-        "state_code": app.config.get('COMPANY_STATE_CODE', 33),
-        "address": app.config.get('COMPANY_ADDRESS', 'No. 10, Kadharkhan Street, Opp. Railway Junction, Salem - 636005, Tamil Nadu'),
-        "phone": app.config.get('COMPANY_PHONE', '+91 98940 79090'),
-        "mobile": app.config.get('COMPANY_MOBILE', '+91 98940 79095'),
-        "email": app.config.get('COMPANY_EMAIL', 'gvpowerssalem@gmail.com'),
-        "website": app.config.get('COMPANY_WEBSITE', 'https://gvpowers.in'),
-        "bank_name": app.config.get('BANK_NAME', 'State Bank of India'),
-        "bank_account": app.config.get('BANK_ACCOUNT', '12345678901234'),
-        "bank_ifsc": app.config.get('BANK_IFSC', 'SBIN0001234'),
-        "upi_id": app.config.get('UPI_ID', 'gvpowers@upi'),
-    }
+    app.config['COMPANY'] = dict(_FIXED_COMPANY)
     app.config['SESSION_TYPE'] = 'cookie'
     for d in ['UPLOAD_FOLDER', 'BACKUP_FOLDER', 'PDF_FOLDER', 'EXPORT_FOLDER', 'LOG_FOLDER']:
         os.makedirs(app.config.get(d, d.lower()), exist_ok=True)
@@ -560,6 +775,7 @@ def create_app(config_class=None):
     def load_user(user_id):
         return db.session.get(User, int(user_id))
     app.jinja_env.globals['format_indian_currency'] = format_indian_currency
+    app.jinja_env.globals['format_currency'] = format_currency
     app.jinja_env.globals['get_csrf_token'] = get_csrf_token
     app.jinja_env.globals['GST_STATE_CODES'] = GST_STATE_CODES
     app.jinja_env.globals['_payment_status_label'] = _payment_status_label
@@ -571,6 +787,8 @@ def create_app(config_class=None):
         db.create_all()
         _ensure_product_columns()
         _ensure_payment_columns()
+        _ensure_invoice_sequence_columns()
+        _drop_bank_columns()
         _seed_database()
         _ensure_default_settings()
         _load_company_settings(app)
@@ -648,6 +866,8 @@ class Product(db.Model):
     stock_quantity = db.Column(db.Integer, default=0)
     min_stock = db.Column(db.Integer, default=0)
     max_stock = db.Column(db.Integer, default=500)
+    last_low_stock_notification_at = db.Column(db.DateTime, nullable=True)
+    low_stock_alert_active = db.Column(db.Boolean, default=False)
     location = db.Column(db.String(100), nullable=True)
     status = db.Column(db.String(20), default='active')
     last_purchase = db.Column(db.DateTime, nullable=True)
@@ -710,10 +930,6 @@ class Supplier(db.Model):
     gstin = db.Column(db.String(15))
     state = db.Column(db.String(50))
     state_code = db.Column(db.Integer, default=29)
-    bank_name = db.Column(db.String(100))
-    bank_account = db.Column(db.String(20))
-    bank_ifsc = db.Column(db.String(11))
-    upi_id = db.Column(db.String(100))
     is_active = db.Column(db.Boolean, default=True)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
@@ -756,6 +972,9 @@ class Invoice(db.Model):
     items = db.relationship('InvoiceItem', backref='invoice', lazy=True, cascade='all, delete-orphan')
     payments = db.relationship('Payment', backref='invoice', lazy=True, cascade='all, delete-orphan')
     creator = db.relationship('User', backref='created_invoices')
+    quotation_id = db.Column(db.Integer, db.ForeignKey('quotations.id'), unique=True, nullable=True)
+    quotation = db.relationship('Quotation', foreign_keys=[quotation_id],
+                                backref=db.backref('converted_invoices', lazy=True))
 
     @property
     def balance(self):
@@ -793,8 +1012,6 @@ class Payment(db.Model):
     reference_number = db.Column(db.String(50))
     transaction_id = db.Column(db.String(80))
     utr = db.Column(db.String(50))
-    cheque_number = db.Column(db.String(50))
-    bank_name = db.Column(db.String(80))
     remarks = db.Column(db.Text)
     notes = db.Column(db.Text)
     received_by = db.Column(db.String(80))
@@ -934,6 +1151,23 @@ class Notification(db.Model):
     user = db.relationship('User', backref='notifications')
 
 
+class InvoiceSequence(db.Model):
+    """Database-backed counters for atomic, never-recycled document numbering.
+
+    One row per numbering group (e.g. ``INV-16082026-``). Values are bumped
+    with an atomic UPDATE so concurrent requests always receive unique numbers,
+    and a row's counter never decreases — cancelled documents keep their number
+    forever.
+    """
+    __tablename__ = 'invoice_sequences'
+    id = db.Column(db.Integer, primary_key=True)
+    seq_key = db.Column(db.String(40), unique=True, nullable=False, index=True)
+    prefix = db.Column(db.String(30), nullable=False)
+    period = db.Column(db.String(20), nullable=False)
+    last_value = db.Column(db.Integer, nullable=False, default=0)
+    updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+
+
 ############################################################
 # HELPER FUNCTIONS
 ############################################################
@@ -954,13 +1188,12 @@ def set_setting(key, value):
     db.session.commit()
 
 
-PAYMENT_METHODS = ['cash', 'upi', 'card', 'bank_transfer', 'cheque', 'split']
+PAYMENT_METHODS = ['cash', 'upi', 'card', 'split']
 
 
 def _payment_method_label(method):
     return {
         'cash': 'Cash', 'upi': 'UPI', 'card': 'Card',
-        'bank_transfer': 'Bank Transfer', 'cheque': 'Cheque',
         'split': 'Split Payment',
     }.get((method or '').lower(), (method or 'Cash').replace('_', ' ').title())
 
@@ -996,7 +1229,7 @@ def _set_payment_state(inv, amount_paid):
 
 def _payment_display_ref(p):
     """Single human-readable reference for a payment."""
-    for f in ('reference_number', 'utr', 'transaction_id', 'cheque_number'):
+    for f in ('reference_number', 'utr', 'transaction_id'):
         v = getattr(p, f, None)
         if v and str(v).strip():
             return str(v).strip()
@@ -1014,7 +1247,8 @@ def _payments_newest(inv):
 
 def _public_settings():
     _hidden = {'smtp_server', 'smtp_port', 'smtp_email', 'smtp_password',
-               'mail_server', 'mail_port', 'mail_username', 'mail_password'}
+               'mail_server', 'mail_port', 'mail_username', 'mail_password',
+               'company_pan', 'company_qr'}
     return {s.key: s.value for s in Settings.query.all() if s.key not in _hidden}
 
 
@@ -1046,125 +1280,35 @@ class BackupService:
 
 
 def _load_company_settings(app):
-    """Refresh in-memory COMPANY config from the settings table.
+    """Refresh in-memory COMPANY config from the fixed GV POWERS identity.
 
-    The config dict is rebuilt from the application defaults on every call so
-    stale/removed values (for example an invalid PAN saved earlier) can never
-    leak back into the admin panel or PDFs and block the settings save.
+    Company information is FIXED for this installation and is never editable from
+    the admin panel. The config dict is always rebuilt from the fixed defaults so
+    stale/removed database values can never leak back into the admin panel, PDFs
+    or reports.
     """
     try:
-        settings = {s.key: s.value for s in Settings.query.all()}
-        co = app.config.setdefault('COMPANY', {})
-        co.update({
-            'name': app.config.get('COMPANY_NAME', 'GV Powers'),
-            'tagline': app.config.get('COMPANY_TAGLINE', 'Powering A Better Tomorrow'),
-            'services': app.config.get('COMPANY_SERVICES', 'Solar Energy | UPS Systems | Inverters | RO Solutions | Electricals'),
-            'gstin': app.config.get('COMPANY_GSTIN', '33AGEPV1534G2ZJ'),
-            'pan': app.config.get('COMPANY_PAN', 'AGEPV1534G'),
-            'state': app.config.get('COMPANY_STATE', 'Tamil Nadu'),
-            'state_code': app.config.get('COMPANY_STATE_CODE', 33),
-            'address': app.config.get('COMPANY_ADDRESS', 'No. 10, Kadharkhan Street, Opp. Railway Junction, Salem - 636005, Tamil Nadu'),
-            'phone': app.config.get('COMPANY_PHONE', '+91 98940 79090'),
-            'mobile': app.config.get('COMPANY_MOBILE', '+91 98940 79095'),
-            'email': app.config.get('COMPANY_EMAIL', 'gvpowerssalem@gmail.com'),
-            'website': app.config.get('COMPANY_WEBSITE', 'https://gvpowers.in'),
-            'bank_name': app.config.get('BANK_NAME', 'State Bank of India'),
-            'bank_account': app.config.get('BANK_ACCOUNT', '12345678901234'),
-            'bank_ifsc': app.config.get('BANK_IFSC', 'SBIN0001234'),
-            'upi_id': app.config.get('UPI_ID', 'gvpowers@upi'),
-            'city': '', 'pincode': '', 'country': 'India', 'bank_branch': '',
-        })
-        field_map = {
-            'company_name': 'name', 'company_gstin': 'gstin', 'company_pan': 'pan',
-            'company_state': 'state', 'company_address': 'address',
-            'company_phone': 'phone', 'company_mobile': 'mobile',
-            'company_email': 'email', 'company_website': 'website',
-            'company_city': 'city', 'company_pincode': 'pincode', 'company_country': 'country',
-            'bank_name': 'bank_name', 'bank_branch': 'bank_branch',
-            'bank_account': 'bank_account',
-            'bank_ifsc': 'bank_ifsc', 'upi_id': 'upi_id',
-        }
-        for skey, ckey in field_map.items():
-            if settings.get(skey):
-                co[ckey] = settings[skey]
-        sc = settings.get('company_state_code')
-        if sc:
-            try: co['state_code'] = int(sc)
-            except (TypeError, ValueError): pass
-        app.config['COMPANY'] = co
+        app.config['COMPANY'] = dict(_FIXED_COMPANY)
     except Exception:
         pass
 
 
 def _ensure_default_settings():
-    """Idempotently seed required company settings so the admin panel always
-    has valid defaults: GSTIN, optional PAN and the billing email address.
-    Invalid identity values stored earlier are healed so they can never block
-    the Settings > Save Changes validation.
-    """
-    defaults = {
-        'company_name': app.config.get('COMPANY_NAME', 'GV Powers'),
-        'company_gstin': app.config.get('COMPANY_GSTIN', '33AGEPV1534G2ZJ'),
-        'company_pan': app.config.get('COMPANY_PAN', 'AGEPV1534G'),
-        'company_state': app.config.get('COMPANY_STATE', 'Tamil Nadu'),
-        'company_state_code': str(app.config.get('COMPANY_STATE_CODE', 33)),
-        'company_address': app.config.get('COMPANY_ADDRESS', ''),
-        'company_phone': app.config.get('COMPANY_PHONE', ''),
-        'company_mobile': app.config.get('COMPANY_MOBILE', ''),
-        'company_email': app.config.get('COMPANY_EMAIL', 'gvpowerssalem@gmail.com'),
-        'company_website': app.config.get('COMPANY_WEBSITE', ''),
-        'company_city': 'Salem',
-        'company_pincode': '636005',
-        'company_country': 'India',
-        'bank_name': app.config.get('BANK_NAME', ''),
-        'bank_account': app.config.get('BANK_ACCOUNT', ''),
-        'bank_ifsc': app.config.get('BANK_IFSC', ''),
-        'upi_id': app.config.get('UPI_ID', ''),
-    }
+    """Clean up stale bank-related settings if they exist."""
     changed = False
-    for key, default_val in defaults.items():
-        existing = Settings.query.filter_by(key=key).first()
-        if existing is not None:
-            cur = (existing.value or '').strip()
-            if key == 'company_gstin' and cur and not _GSTIN_RE.match(cur.upper()):
-                existing.value = default_val
-                changed = True
-            elif key == 'company_pan' and cur and not _PAN_RE.match(cur.upper()):
-                existing.value = default_val
-                changed = True
-            elif key == 'company_email' and cur and not _EMAIL_RE.match(cur):
-                existing.value = default_val
-                changed = True
-            continue
-        db.session.add(Settings(key=key, value=default_val))
+    removed = Settings.query.filter(Settings.key.in_([
+        'company_pan', 'bank_name', 'bank_branch', 'bank_account',
+        'bank_ifsc', 'upi_id', 'company_qr',
+    ])).all()
+    for row in removed:
+        db.session.delete(row)
         changed = True
     if changed:
         db.session.commit()
 
 
 def _seed_database():
-    admin = User(username='admin', email='admin@gvpowers.in', full_name='Admin', role='admin', is_active=True)
-    admin.set_password('Admin@123')
-    if not User.query.filter_by(username='admin').first():
-        db.session.add(admin)
-    erp_admin = User(username='gvpowers@admin', email='gvpowers@admin.com', full_name='GV Powers Admin', role='admin', is_active=True)
-    erp_admin.set_password('admin@gvpowerssalem')
-    if not User.query.filter_by(username='gvpowers@admin').first():
-        db.session.add(erp_admin)
-    erp_sales = User(username='gvpowers@sales', email='gvpowers@sales.com', full_name='GV Powers Sales', role='sales', is_active=True)
-    erp_sales.set_password('sales@gvpowerssalem')
-    if not User.query.filter_by(username='gvpowers@sales').first():
-        db.session.add(erp_sales)
-    db.session.commit()
-    for cat_name in ['Solar Panels', 'UPS Systems', 'Inverters', 'RO Solutions', 'Electricals', 'Batteries', 'Accessories']:
-        if not Category.query.filter_by(name=cat_name).first():
-            db.session.add(Category(name=cat_name))
-    db.session.commit()
-    for s, c in [('Karnataka', 29), ('Maharashtra', 27), ('Tamil Nadu', 33), ('Delhi', 7), ('Gujarat', 24), ('Rajasthan', 8), ('Uttar Pradesh', 9), ('West Bengal', 19)]:
-        key = f'default_state_{c}'
-        if not Settings.query.filter_by(key=key).first():
-            db.session.add(Settings(key=key, value=s))
-    db.session.commit()
+    """No default data seeded. Start with a clean database."""
 
 
 ############################################################
@@ -1202,255 +1346,664 @@ class GSTService:
 
 
 ############################################################
-# PDF GENERATOR
+# PDF GENERATOR — PROFESSIONAL COMMERCIAL INVOICE
 ############################################################
 
-_PDF_NAVY = rl_colors.HexColor("#081C3A")
-_PDF_BLUE = rl_colors.HexColor("#2563EB")
-_PDF_LIGHT = rl_colors.HexColor("#F8FAFC")
-_PDF_BORDER = rl_colors.HexColor("#E5E7EB")
-_PDF_DARK = rl_colors.HexColor("#111827")
-_PDF_MUTED = rl_colors.HexColor("#6B7280")
-_PDF_WHITE = rl_colors.white
-_PDF_GREEN = rl_colors.HexColor("#16A34A")
-_PDF_RED = rl_colors.HexColor("#DC2626")
+# --- Color Palette ---
+_PDF_NAVY       = rl_colors.HexColor("#0D1B2A")
+_PDF_BLUE       = rl_colors.HexColor("#1B4F8A")
+_PDF_LIGHT      = rl_colors.HexColor("#F4F6F9")
+_PDF_BORDER     = rl_colors.HexColor("#D0D5DD")
+_PDF_DARK       = rl_colors.HexColor("#1A1A2E")
+_PDF_MUTED      = rl_colors.HexColor("#5A6577")
+_PDF_WATERMARK  = rl_colors.HexColor("#E8EBF0")
+_PDF_WHITE      = rl_colors.white
+_PDF_GREEN      = rl_colors.HexColor("#1A7F4B")
+_PDF_RED        = rl_colors.HexColor("#B42318")
+
+# --- Layout ---
+_PDF_M          = 36
+_PDF_TOP        = 36
+_PDF_BOTTOM     = 44
+_PDF_PAGE_W, _PDF_PAGE_H = A4
+_PDF_USABLE_W   = _PDF_PAGE_W - 2 * _PDF_M
+
+# --- Body font sizes (compact, professional) ---
+_INV_BODY       = 8.5
+_INV_BODY_LEAD  = 10.5
+_INV_SMALL      = 8
+_INV_SMALL_LEAD = 10
+_INV_TINY       = 7
+_INV_TINY_LEAD  = 9
+
+
+def _pdf_inr(value, signed=False):
+    """Rs. + Indian thousands separator (e.g. Rs. 59,000.00)."""
+    if value is None:
+        value = Decimal('0')
+    amt = format_indian_currency(value, symbol=False)
+    if signed and Decimal(str(value)) > 0:
+        amt = "+" + amt
+    return "Rs. " + amt
+
+
+def _pdf_date(v):
+    if not v:
+        return ''
+    return v.strftime('%d-%m-%Y')
 
 
 def _pdf_styles():
     s = getSampleStyleSheet()
-    for name, kw in [('CompanyName', dict(fontSize=14, fontName='Helvetica-Bold', textColor=_PDF_DARK, leading=16)), ('CopyBadge', dict(fontSize=8, fontName='Helvetica-Bold', textColor=_PDF_BLUE, alignment=TA_RIGHT, leading=10)), ('SectionTitle', dict(fontSize=7, fontName='Helvetica-Bold', textColor=_PDF_BLUE, leading=9)), ('TableCell', dict(fontSize=6.5, fontName='Helvetica', textColor=_PDF_DARK, leading=8)), ('TableCellBold', dict(fontSize=6.5, fontName='Helvetica-Bold', textColor=_PDF_DARK, leading=8)), ('TableHeader', dict(fontSize=6, fontName='Helvetica-Bold', textColor=_PDF_WHITE, leading=8)), ('AmountWords', dict(fontSize=7, fontName='Helvetica-Oblique', textColor=_PDF_MUTED, leading=9)), ('Declaration', dict(fontSize=6.5, fontName='Helvetica', textColor=_PDF_MUTED, leading=9, spaceBefore=4)), ('FooterText', dict(fontSize=6.5, fontName='Helvetica', textColor=_PDF_MUTED, leading=8))]:
+    styles_kw = {
+        'SectionTitle': dict(fontSize=10, fontName=_PDF_FONT_BOLD, textColor=_PDF_BLUE, leading=13),
+        'TableCell':    dict(fontSize=_INV_BODY, fontName=_PDF_FONT, textColor=_PDF_DARK, leading=_INV_BODY_LEAD),
+        'TableCellBold':dict(fontSize=_INV_BODY, fontName=_PDF_FONT_BOLD, textColor=_PDF_DARK, leading=_INV_BODY_LEAD),
+        'TableHeader':  dict(fontSize=_INV_SMALL, fontName=_PDF_FONT_BOLD, textColor=_PDF_WHITE, leading=_INV_SMALL_LEAD),
+        'FinePrint':    dict(fontSize=_INV_TINY, fontName=_PDF_FONT, textColor=_PDF_MUTED, leading=_INV_TINY_LEAD),
+    }
+    for name, kw in styles_kw.items():
         s.add(ParagraphStyle(name, parent=s['Normal'], **kw))
     return s
 
 
-def _pdf_qr(data_str):
-    qr = qrcode.QRCode(version=1, error_correction=qrcode.constants.ERROR_CORRECT_L, box_size=2, border=0)
-    qr.add_data(data_str); qr.make(fit=True)
-    img = qr.make_image(fill_color="black", back_color="white")
-    buf = io.BytesIO(); img.save(buf, format='PNG'); buf.seek(0)
-    return buf
+class _InvCanvas(canvas.Canvas):
+    """A4 canvas that draws the invoice footer (with Page X of Y) on save."""
+
+    def __init__(self, *a, **k):
+        canvas.Canvas.__init__(self, *a, **k)
+        self._saved = []
+        self._invoice_footer = None
+
+    def showPage(self):
+        self._saved.append(dict(self.__dict__))
+        self._startPage()
+
+    def save(self):
+        footer = self._invoice_footer
+        if len(self._code):
+            self._saved.append(dict(self.__dict__))
+        n = len(self._saved)
+        for pst in self._saved:
+            count = getattr(self, '_annotationCount', 0)
+            self.__dict__.update(pst)
+            self._annotationCount = count
+            if footer:
+                footer(self, self._pageNumber, n)
+            canvas.Canvas.showPage(self)
+        canvas.Canvas.save(self)
 
 
 def _pdf_watermark(c, text, pw, ph):
-    c.saveState(); c.setFillColor(rl_colors.HexColor("#E5E7EB")); c.setFont("Helvetica-Bold", 55)
-    c.translate(pw/2, ph/2); c.rotate(45); c.drawCentredString(0, 0, text); c.restoreState()
+    c.saveState()
+    c.setFillColor(_PDF_WATERMARK)
+    c.setFont(_PDF_FONT_BOLD, 40)
+    c.translate(pw / 2, ph / 2)
+    c.rotate(45)
+    c.drawCentredString(0, 0, text)
+    c.restoreState()
 
 
-def _pdf_footer(c, co, pg, pw):
-    c.saveState(); c.setFont("Helvetica", 5.5); c.setFillColor(_PDF_MUTED)
-    c.drawCentredString(pw/2, 28, f"{co['name']} | GSTIN: {co['gstin']} | {co['phone']} | {co['email']}")
-    c.drawCentredString(pw/2, 20, f"This is a computer-generated invoice. | Page {pg}")
-    c.setStrokeColor(_PDF_BORDER); c.setLineWidth(0.3); c.line(30, 36, pw-30, 36); c.restoreState()
+def _pdf_footer(c, co, pg, total, pw):
+    c.saveState()
+    c.setStrokeColor(_PDF_BORDER)
+    c.setLineWidth(0.4)
+    c.line(_PDF_M, _PDF_BOTTOM + 4, pw - _PDF_M, _PDF_BOTTOM + 4)
+    name = (co.get('name') or 'GV Powers').upper()
+    line = f"{name} | GSTIN: {co.get('gstin', '')} | {co.get('website', '')}"
+    c.setFont(_PDF_FONT_BOLD, 7)
+    c.setFillColor(_PDF_MUTED)
+    c.drawCentredString(pw / 2, _PDF_BOTTOM - 6, line)
+    c.setFont(_PDF_FONT, _INV_TINY)
+    c.drawCentredString(pw / 2, _PDF_BOTTOM - 17, f"This is a computer-generated invoice. | Page {pg} of {total}")
+    c.restoreState()
 
 
 def _pdf_header(c, co, label, inv, pw):
-    xs = 30; yt = A4[1]-25
-    logo = os.path.join(BASE_DIR, "static", "img", "logo", "img.png")
-    ly = yt-40
-    if os.path.exists(logo):
-        try: c.drawImage(logo, xs, ly, width=40, height=40, preserveAspectRatio=True, mask='auto')
-        except: c.setFillColor(_PDF_BLUE); c.roundRect(xs, ly, 40, 40, 6, fill=1, stroke=0); c.setFillColor(_PDF_WHITE); c.setFont("Helvetica-Bold", 14); c.drawCentredString(xs+20, ly+14, "GV")
-    else: c.setFillColor(_PDF_BLUE); c.roundRect(xs, ly, 40, 40, 6, fill=1, stroke=0); c.setFillColor(_PDF_WHITE); c.setFont("Helvetica-Bold", 14); c.drawCentredString(xs+20, ly+14, "GV")
-    tx = xs+48; ty = yt-10
-    c.setFont("Helvetica-Bold", 14); c.setFillColor(_PDF_NAVY); c.drawString(tx, ty, co["name"])
-    c.setFont("Helvetica-Oblique", 7); c.setFillColor(_PDF_BLUE); c.drawString(tx, ty-10, co.get("tagline", ""))
-    c.setFont("Helvetica", 6); c.setFillColor(_PDF_MUTED); c.drawString(tx, ty-19, co.get("services", ""))
-    c.setFont("Helvetica", 6.5); c.setFillColor(_PDF_MUTED)
-    for i, txt in enumerate([f"Address: {co['address']}", f"GSTIN: {co['gstin']}  |  PAN: {co['pan']}", f"Phone: {co['phone']}  |  Mobile: {co.get('mobile', '')}  |  Email: {co['email']}", f"Website: {co['website']}"]):
-        c.drawString(tx, ty-29-i*9, txt)
-    rx = pw-30
-    c.setFont("Helvetica-Bold", 18); c.setFillColor(_PDF_NAVY); c.drawRightString(rx, yt-10, "TAX INVOICE")
-    c.setFont("Helvetica-Bold", 8); c.setFillColor(_PDF_BLUE); c.drawRightString(rx, yt-22, label)
-    c.setFont("Helvetica", 7); c.setFillColor(_PDF_MUTED)
-    c.drawRightString(rx, yt-34, f"Invoice #: {inv.invoice_number}")
-    c.drawRightString(rx, yt-43, f"Date: {inv.invoice_date}")
-    if inv.due_date: c.drawRightString(rx, yt-52, f"Due Date: {inv.due_date}")
-    c.setStrokeColor(_PDF_BLUE); c.setLineWidth(1.2); c.line(xs, yt-62, pw-30, yt-62)
-    return yt-72
+    """Professional three-zone header: LEFT logo+details | CENTER tagline | RIGHT invoice meta."""
+    xs = _PDF_M
+    rx = pw - _PDF_M
+    yt = A4[1] - _PDF_TOP
+
+    # --- LEFT ZONE: Logo + Company Info ---
+    logo_path = os.path.join(BASE_DIR, "static", "img", "logo", "img.png")
+    logo_sz = 58
+    logo_y = yt - logo_sz
+    if os.path.exists(logo_path):
+        try:
+            c.drawImage(logo_path, xs, logo_y, width=logo_sz, height=logo_sz,
+                        preserveAspectRatio=True, mask='auto')
+        except Exception:
+            logo_path = None
+    if not logo_path or not os.path.exists(logo_path):
+        c.setFillColor(_PDF_NAVY)
+        c.roundRect(xs, logo_y, logo_sz, logo_sz, 6, fill=1, stroke=0)
+        c.setFillColor(_PDF_WHITE)
+        c.setFont(_PDF_FONT_BOLD, 20)
+        c.drawCentredString(xs + logo_sz / 2, logo_y + logo_sz / 2 - 6, "GV")
+
+    lx = xs + logo_sz + 12
+    ty = yt - 1
+    c.setFont(_PDF_FONT_BOLD, 16)
+    c.setFillColor(_PDF_NAVY)
+    c.drawString(lx, ty, co.get("name", "GV Powers"))
+    ty -= 14
+    c.setFont(_PDF_FONT_OBLIQUE, 8.5)
+    c.setFillColor(_PDF_BLUE)
+    c.drawString(lx, ty, co.get("tagline", ""))
+    ty -= 12
+    c.setFont(_PDF_FONT, _INV_SMALL)
+    c.setFillColor(_PDF_MUTED)
+    c.drawString(lx, ty, co.get("services", ""))
+    ty -= 12
+    addr_lines = _pdf_wrap(co.get("address", ""), 52)[:2]
+    for al in addr_lines:
+        c.setFont(_PDF_FONT, _INV_SMALL)
+        c.setFillColor(_PDF_MUTED)
+        c.drawString(lx, ty, al)
+        ty -= 11
+    c.setFont(_PDF_FONT, _INV_SMALL)
+    c.setFillColor(_PDF_MUTED)
+    c.drawString(lx, ty, f"Phone: {co.get('phone', '')}  |  Mobile: {co.get('mobile', '')}  |  Email: {co.get('email', '')}")
+    ty -= 11
+    c.setFont(_PDF_FONT_BOLD, _INV_SMALL)
+    c.setFillColor(_PDF_DARK)
+    c.drawString(lx, ty, f"GSTIN: {co.get('gstin', '')}  |  Website: {co.get('website', '')}")
+
+    # --- RIGHT ZONE: TAX INVOICE + Copy + Meta ---
+    c.setFont(_PDF_FONT_BOLD, 20)
+    c.setFillColor(_PDF_NAVY)
+    c.drawRightString(rx, yt - 1, "TAX INVOICE")
+    c.setFont(_PDF_FONT_BOLD, 8.5)
+    c.setFillColor(_PDF_BLUE)
+    c.drawRightString(rx, yt - 15, label)
+    meta_y = yt - 30
+    c.setFont(_PDF_FONT, _INV_BODY)
+    c.setFillColor(_PDF_DARK)
+    c.drawRightString(rx, meta_y, f"Invoice #:  {inv.invoice_number}")
+    meta_y -= 13
+    c.drawRightString(rx, meta_y, f"Date:  {_pdf_date(inv.invoice_date)}")
+    if inv.due_date:
+        meta_y -= 13
+        c.drawRightString(rx, meta_y, f"Due Date:  {_pdf_date(inv.due_date)}")
+
+    # --- Separator lines ---
+    sep_y = yt - 82
+    c.setStrokeColor(_PDF_NAVY)
+    c.setLineWidth(1.0)
+    c.line(xs, sep_y, rx, sep_y)
+    c.setStrokeColor(_PDF_BORDER)
+    c.setLineWidth(0.4)
+    c.line(xs, sep_y - 3, rx, sep_y - 3)
+
+    return sep_y - 10
 
 
 def _pdf_cust_info(c, inv, y, pw):
-    xl = 30; xm = pw/2+5; bw = pw/2-35; bh = 60
-    for x, title, lines in [(xl, "BILL TO", [(inv.customer_name or "N/A", True), (f"Mobile: {inv.customer_mobile}", False) if inv.customer_mobile else None, (f"State: {inv.customer_state} ({inv.customer_state_code})", False) if inv.customer_state else None, (f"GSTIN: {inv.customer_gstin}", False) if inv.customer_gstin else None]), (xm, "INVOICE DETAILS", [(f"Invoice #: {inv.invoice_number}", False), (f"Date: {inv.invoice_date}", False), (f"Due Date: {inv.due_date}", False) if inv.due_date else None, (f"Place of Supply: {inv.customer_state or 'N/A'} ({inv.customer_state_code})", False)])]:
-        c.setStrokeColor(_PDF_BORDER); c.setLineWidth(0.3); c.setFillColor(_PDF_LIGHT); c.roundRect(x, y-bh, bw, bh, 3, fill=1, stroke=1)
-        c.setFont("Helvetica-Bold", 6.5); c.setFillColor(_PDF_BLUE); c.drawString(x+6, y-10, title)
-        dy = y-22
-        for item in lines:
-            if item is None: continue
-            txt, bold = item
-            if bold: c.setFont("Helvetica-Bold", 9); c.setFillColor(_PDF_DARK)
-            else: c.setFont("Helvetica", 6.5); c.setFillColor(_PDF_MUTED)
-            c.drawString(x+6 if bold else x+6, dy, txt[:50] if bold else txt[:50])
-            if bold: dy -= 11
-            else: dy -= 8
-    return y-bh-8
+    """Two-column customer info: BILL TO (left) + INVOICE DETAILS (right)."""
+    xs = _PDF_M
+    avail = pw - 2 * _PDF_M
+    gap = 14
+    bw = (avail - gap) / 2
+    bh = 88
+
+    csc = inv.customer_state_code
+    state_str = (inv.customer_state or 'N/A') + (f" ({csc})" if csc else "")
+
+    # --- BILL TO (left) ---
+    bx = xs
+    c.setStrokeColor(_PDF_BORDER)
+    c.setLineWidth(0.4)
+    c.setFillColor(_PDF_LIGHT)
+    c.roundRect(bx, y - bh, bw, bh, 3, fill=1, stroke=1)
+    c.setFont(_PDF_FONT_BOLD, 8.5)
+    c.setFillColor(_PDF_BLUE)
+    c.drawString(bx + 10, y - 13, "BILL TO")
+    dy = y - 26
+    c.setFont(_PDF_FONT_BOLD, 11)
+    c.setFillColor(_PDF_DARK)
+    c.drawString(bx + 10, dy, (inv.customer_name or 'N/A')[:42])
+    dy -= 14
+    c.setFont(_PDF_FONT, _INV_BODY)
+    c.setFillColor(_PDF_MUTED)
+    for ln in _pdf_wrap(inv.customer_address or '', 42)[:2]:
+        c.drawString(bx + 10, dy, ln)
+        dy -= 11
+    if inv.customer_mobile:
+        c.drawString(bx + 10, dy, f"Mobile: {inv.customer_mobile}")
+        dy -= 11
+    if inv.customer_email:
+        c.drawString(bx + 10, dy, f"Email: {inv.customer_email}")
+        dy -= 11
+    if inv.customer_gstin:
+        c.drawString(bx + 10, dy, f"GSTIN: {inv.customer_gstin}")
+        dy -= 11
+    c.drawString(bx + 10, dy, f"State: {state_str}")
+
+    # --- INVOICE DETAILS (right) ---
+    ix = xs + bw + gap
+    c.setStrokeColor(_PDF_BORDER)
+    c.setLineWidth(0.4)
+    c.setFillColor(_PDF_LIGHT)
+    c.roundRect(ix, y - bh, bw, bh, 3, fill=1, stroke=1)
+    c.setFont(_PDF_FONT_BOLD, 8.5)
+    c.setFillColor(_PDF_BLUE)
+    c.drawString(ix + 10, y - 13, "INVOICE DETAILS")
+    rows = [('Invoice #', inv.invoice_number),
+            ('Date', _pdf_date(inv.invoice_date))]
+    if inv.due_date:
+        rows.append(('Due Date', _pdf_date(inv.due_date)))
+    rows.append(('Place of Supply', state_str))
+    dy = y - 28
+    for lbl, val in rows:
+        c.setFont(_PDF_FONT, _INV_BODY)
+        c.setFillColor(_PDF_MUTED)
+        c.drawString(ix + 10, dy, lbl)
+        c.setFont(_PDF_FONT_BOLD, _INV_BODY)
+        c.setFillColor(_PDF_DARK)
+        c.drawRightString(ix + bw - 10, dy, str(val)[:36])
+        dy -= 14
+    return y - bh - 10
 
 
-def _pdf_product_table(c, inv, styles, y, pw, internal=False):
-    xs = 30
-    cw = [16, 65, 30, 20, 20, 20, 20, 20, 20, 20, 20, 26, 24, 24] if internal else [16, 75, 35, 22, 22, 22, 22, 22, 22, 22, 22, 28]
-    hdrs = ["#", "Product Name", "HSN", "Qty", "Rate", "Disc%", "GST%", "Taxable", "CGST", "SGST", "IGST", "Amount"]
-    if internal: hdrs.extend(["Purchase", "Profit"])
-    scale = (pw-60)/sum(cw)
-    cw = [w*scale for w in cw]
+def _pdf_product_table(c, inv, styles, y, pw, new_page):
+    """13-column product table with navy header, alternating rows, proper splits."""
+    xs = _PDF_M
+    avail = pw - 2 * _PDF_M
+
+    # Column widths: IDX PROD HSN QTY UNIT RATE DISC GST TAX CGST SGST IGST AMT
+    cw_raw = [14, 80, 32, 22, 26, 52, 26, 24, 52, 44, 44, 44, 56]
+    scale = avail / sum(cw_raw)
+    cw = [w * scale for w in cw_raw]
+
+    hdrs = ["#", "PRODUCT", "HSN", "QTY", "UNIT", "RATE", "DISC.", "GST", "TAXABLE",
+            "CGST", "SGST", "IGST", "AMOUNT"]
     data = [[Paragraph(h, styles['TableHeader']) for h in hdrs]]
+
     for idx, it in enumerate(inv.items, 1):
-        row = [Paragraph(str(idx), styles['TableCell']), Paragraph(str(it.product_name)[:25], styles['TableCell']), Paragraph(str(it.hsn or "-"), styles['TableCell']), Paragraph(f"{it.qty} {it.unit}", styles['TableCell']), Paragraph(f"{it.price:.2f}", styles['TableCell']), Paragraph(f"{it.discount}%", styles['TableCell']), Paragraph(f"{it.gst_rate}%", styles['TableCell']), Paragraph(f"{it.taxable_value:.2f}", styles['TableCell']), Paragraph(f"{it.cgst:.2f}", styles['TableCell']), Paragraph(f"{it.sgst:.2f}", styles['TableCell']), Paragraph(f"{it.igst:.2f}", styles['TableCell']), Paragraph(f"<b>{it.total:.2f}</b>", styles['TableCellBold'])]
-        if internal:
-            p, pr = 0, 0
-            if it.product_id:
-                prod = db.session.get(Product, it.product_id)
-                if prod: p = prod.purchase_price * it.qty; pr = it.total - p
-            row.append(Paragraph(f"{p:.2f}", styles['TableCell']))
-            row.append(Paragraph(f"{pr:.2f}", ParagraphStyle('PC', parent=styles['TableCell'], textColor=_PDF_GREEN if pr > 0 else _PDF_RED)))
-        data.append(row)
+        data.append([
+            Paragraph(str(idx), styles['TableCell']),
+            Paragraph(str(it.product_name)[:50], styles['TableCell']),
+            Paragraph(str(it.hsn or "-"), styles['TableCell']),
+            Paragraph(str(it.qty), styles['TableCell']),
+            Paragraph(str(it.unit or ''), styles['TableCell']),
+            Paragraph(_pdf_inr(it.price), styles['TableCell']),
+            Paragraph(f"{it.discount}%", styles['TableCell']),
+            Paragraph(f"{it.gst_rate}%", styles['TableCell']),
+            Paragraph(_pdf_inr(it.taxable_value), styles['TableCell']),
+            Paragraph(_pdf_inr(it.cgst), styles['TableCell']),
+            Paragraph(_pdf_inr(it.sgst), styles['TableCell']),
+            Paragraph(_pdf_inr(it.igst), styles['TableCell']),
+            Paragraph(f"<b>{_pdf_inr(it.total)}</b>", styles['TableCellBold']),
+        ])
+
     t = Table(data, colWidths=cw, repeatRows=1)
-    cmds = [('BACKGROUND', (0,0), (-1,0), _PDF_BLUE), ('TEXTCOLOR', (0,0), (-1,0), _PDF_WHITE), ('FONTNAME', (0,0), (-1,0), 'Helvetica-Bold'), ('FONTSIZE', (0,0), (-1,0), 6), ('ALIGN', (0,0), (-1,0), 'CENTER'), ('VALIGN', (0,0), (-1,-1), 'MIDDLE'), ('FONTSIZE', (0,1), (-1,-1), 6.5), ('BOTTOMPADDING', (0,0), (-1,-1), 3), ('TOPPADDING', (0,0), (-1,-1), 3), ('GRID', (0,0), (-1,-1), 0.3, _PDF_BORDER), ('LINEBELOW', (0,0), (-1,0), 1, _PDF_BLUE)]
+
+    cmds = [
+        ('BACKGROUND', (0, 0), (-1, 0), _PDF_NAVY),
+        ('TEXTCOLOR',  (0, 0), (-1, 0), _PDF_WHITE),
+        ('VALIGN',     (0, 0), (-1, -1), 'MIDDLE'),
+        ('TOPPADDING',    (0, 0), (-1, -1), 4),
+        ('BOTTOMPADDING', (0, 0), (-1, -1), 4),
+        ('LEFTPADDING',   (0, 0), (-1, -1), 3),
+        ('RIGHTPADDING',  (0, 0), (-1, -1), 3),
+        ('GRID',       (0, 0), (-1, -1), 0.3, _PDF_BORDER),
+        ('LINEBELOW',  (0, 0), (-1, 0), 0.8, _PDF_NAVY),
+        ('ALIGN', (0, 0), (0, -1), 'CENTER'),
+        ('ALIGN', (1, 0), (1, -1), 'LEFT'),
+        ('ALIGN', (2, 0), (4, -1), 'CENTER'),
+        ('ALIGN', (5, 0), (-1, -1), 'RIGHT'),
+    ]
     for i in range(1, len(data)):
-        if i % 2 == 0: cmds.append(('BACKGROUND', (0,i), (-1,i), _PDF_LIGHT))
+        if i % 2 == 0:
+            cmds.append(('BACKGROUND', (0, i), (-1, i), _PDF_ROW_ALT))
     t.setStyle(TableStyle(cmds))
-    tw, th = t.wrap(pw-60, 0)
-    if y-th < 60: c.showPage(); y = A4[1]-30
-    t.drawOn(c, xs, y-th)
-    return y-th
+
+    # Paginate
+    remain = t
+    while remain is not None:
+        if y - (_PDF_BOTTOM + 8) > 0:
+            parts = remain.split(avail, y - (_PDF_BOTTOM + 8))
+        else:
+            parts = []
+        head = parts[0] if parts else None
+        tail = parts[1] if len(parts) > 1 else None
+        if head is None:
+            y = new_page()
+            continue
+        tw, th = head.wrap(avail, 0)
+        if y - th < _PDF_BOTTOM + 8:
+            y = new_page()
+            remain = head
+            continue
+        head.drawOn(c, xs, y - th)
+        y -= th
+        remain = tail
+    return y
 
 
-def _pdf_summary(c, inv, styles, y, pw):
-    bx = pw-30-220; bw = 220
-    lines = [("Subtotal", f"{inv.subtotal:.2f}")]
-    if inv.total_discount > 0: lines.append(("Discount", f"-{inv.total_discount:.2f}"))
-    lines.append(("Taxable Amount", f"{inv.total_taxable:.2f}"))
-    if inv.is_intra_state: lines.extend([("CGST", f"{inv.total_cgst:.2f}"), ("SGST", f"{inv.total_sgst:.2f}")])
-    else: lines.append(("IGST", f"{inv.total_igst:.2f}"))
-    if inv.round_off != 0: lines.append(("Round Off", f"{inv.round_off:.2f}"))
-    th = len(lines)*11+37
-    c.setStrokeColor(_PDF_BORDER); c.setLineWidth(0.3); c.setFillColor(_PDF_LIGHT); c.roundRect(bx, y-th, bw, th, 3, fill=1, stroke=1)
-    ty = y-12
-    for lbl, val in lines:
-        c.setFont("Helvetica", 7); c.setFillColor(_PDF_MUTED); c.drawString(bx+8, ty, lbl)
-        c.setFillColor(_PDF_DARK); c.drawRightString(bx+bw-8, ty, f"Rs. {val}"); ty -= 11
-    c.setStrokeColor(_PDF_BLUE); c.setLineWidth(0.8); c.line(bx+8, ty+2, bx+bw-8, ty+2); ty -= 6
-    c.setFont("Helvetica-Bold", 10); c.setFillColor(_PDF_BLUE); c.drawString(bx+8, ty, "Grand Total"); c.drawRightString(bx+bw-8, ty, f"Rs. {inv.grand_total:.2f}")
-    aw = amount_to_words(inv.grand_total); ty -= 18
-    c.setFont("Helvetica-Oblique", 6.5); c.setFillColor(_PDF_MUTED); c.drawString(bx+8, ty, "Amount in words:"); ty -= 10
-    c.setFont("Helvetica-Bold", 7); c.setFillColor(_PDF_DARK); c.drawString(bx+8, ty, aw[:65])
-    if len(aw) > 65: ty -= 9; c.drawString(bx+8, ty, aw[65:])
-    return y-th-25
-
-
-def _pdf_payment(c, inv, styles, y, pw, qr=False):
-    xs = 30; bw = 200; bh = 42
-    c.setFillColor(_PDF_LIGHT); c.setStrokeColor(_PDF_BORDER); c.setLineWidth(0.3); c.roundRect(xs, y-bh, bw, bh, 3, fill=1, stroke=1)
-    c.setFont("Helvetica-Bold", 6.5); c.setFillColor(_PDF_BLUE); c.drawString(xs+6, y-10, "PAYMENT INFORMATION")
-    c.setFont("Helvetica", 6.5); c.setFillColor(_PDF_DARK)
-    c.drawString(xs+6, y-22, f"Method: {(inv.payment_method or 'N/A').replace('_', ' ').title()}")
-    c.drawString(xs+6, y-33, f"Paid: Rs. {inv.amount_paid:.2f}  |  Balance: Rs. {(inv.grand_total-inv.amount_paid):.2f}")
-    if qr:
-        try:
-            qi = Image(_pdf_qr(f"Inv:{inv.invoice_number}|Amt:{inv.grand_total}|Cust:{inv.customer_name}"), width=38, height=38)
-            qi.drawOn(c, xs+bw+10, y-42)
-        except: pass
-    return y-bh-8
-
-
-def _pdf_bank(c, co, styles, y, pw):
-    xs = 30; bw = 220
-    c.setFillColor(_PDF_LIGHT); c.setStrokeColor(_PDF_BORDER); c.setLineWidth(0.3); c.roundRect(xs, y-48, bw, 48, 3, fill=1, stroke=1)
-    c.setFont("Helvetica-Bold", 6.5); c.setFillColor(_PDF_BLUE); c.drawString(xs+6, y-10, "BANK DETAILS")
-    c.setFont("Helvetica", 6.5); c.setFillColor(_PDF_DARK)
-    c.drawString(xs+6, y-22, f"A/C Name: {co.get('name', '')}")
-    c.drawString(xs+6, y-32, f"Bank: {co.get('bank_name', '')}  |  A/C: {co.get('bank_account', '')}")
-    c.drawString(xs+6, y-42, f"IFSC: {co.get('bank_ifsc', '')}  |  UPI: {co.get('upi_id', '')}")
-    return y-56
-
-
-def _pdf_decl(c, inv, styles, y, pw, cust_sig=True, co=None):
-    co = co or {}; xs = 30; cw = (pw-60)/2
-    c.setFont("Helvetica-Bold", 6.5); c.setFillColor(_PDF_BLUE); c.drawString(xs, y-8, "DECLARATION")
-    c.setFont("Helvetica", 6); c.setFillColor(_PDF_DARK)
-    for i, line in enumerate(["1. Goods once sold will not be returned or exchanged.", "2. Subject to local jurisdiction.", "3. E&OE (Errors and Omissions Excepted).", "4. Payment to be made within due date."]):
-        c.drawString(xs, y-18-i*8, line)
-    sy = y-50
-    c.setStrokeColor(_PDF_BORDER); c.setLineWidth(0.3)
-    c.line(xs, sy, xs+cw-10, sy); c.setFont("Helvetica", 6.5); c.setFillColor(_PDF_MUTED)
-    c.drawString(xs, sy-10, "Authorized Signature"); c.drawString(xs, sy-19, co.get("name", ""))
-    if cust_sig:
-        sx2 = xs+cw+20
-        c.line(sx2, sy, sx2+cw-10, sy); c.drawString(sx2, sy-10, "Customer Signature"); c.drawString(sx2, sy-19, "Date: _______________")
-    return sy-30
+def _pdf_wrap(text, width_chars):
+    words = text.split()
+    out, line = [], ""
+    for w in words:
+        if len(line) + len(w) + 1 <= width_chars:
+            line = (line + " " + w).strip()
+        else:
+            if line:
+                out.append(line)
+            line = w
+    if line:
+        out.append(line)
+    return out or [""]
 
 
 def _pdf_gst_table(c, inv, styles, y, pw):
-    xs = 30; hdrs = ["HSN Code", "Taxable Value", "Rate", "CGST", "SGST", "IGST", "Total Tax"]
+    """Compact HSN / GST SUMMARY table."""
+    xs = _PDF_M
+    avail = pw - 2 * _PDF_M
+
+    hdrs = ["HSN Code", "Taxable Value", "GST Rate", "CGST", "SGST", "IGST", "Total Tax"]
     data = [[Paragraph(h, styles['TableHeader']) for h in hdrs]]
+
     hsn = {}
     for it in inv.items:
         h = it.hsn or "N/A"
-        if h not in hsn: hsn[h] = {"taxable": 0, "rate": it.gst_rate, "cgst": 0, "sgst": 0, "igst": 0}
-        hsn[h]["taxable"] += it.taxable_value; hsn[h]["cgst"] += it.cgst; hsn[h]["sgst"] += it.sgst; hsn[h]["igst"] += it.igst
+        if h not in hsn:
+            hsn[h] = {"taxable": 0, "rate": it.gst_rate, "cgst": 0, "sgst": 0, "igst": 0}
+        hsn[h]["taxable"] += it.taxable_value
+        hsn[h]["cgst"] += it.cgst
+        hsn[h]["sgst"] += it.sgst
+        hsn[h]["igst"] += it.igst
+
     for h, d in hsn.items():
-        data.append([Paragraph(h, styles['TableCell']), Paragraph(f"{d['taxable']:.2f}", styles['TableCell']), Paragraph(f"{d['rate']:.0f}%", styles['TableCell']), Paragraph(f"{d['cgst']:.2f}", styles['TableCell']), Paragraph(f"{d['sgst']:.2f}", styles['TableCell']), Paragraph(f"{d['igst']:.2f}", styles['TableCell']), Paragraph(f"{d['cgst']+d['sgst']+d['igst']:.2f}", styles['TableCellBold'])])
-    tt = inv.total_cgst+inv.total_sgst+inv.total_igst
-    data.append([Paragraph("<b>Total</b>", styles['TableCellBold']), Paragraph(f"<b>{inv.total_taxable:.2f}</b>", styles['TableCellBold']), Paragraph("", styles['TableCell']), Paragraph(f"<b>{inv.total_cgst:.2f}</b>", styles['TableCellBold']), Paragraph(f"<b>{inv.total_sgst:.2f}</b>", styles['TableCellBold']), Paragraph(f"<b>{inv.total_igst:.2f}</b>", styles['TableCellBold']), Paragraph(f"<b>{tt:.2f}</b>", styles['TableCellBold'])])
-    cw = [(pw-60)/7]*7
+        data.append([
+            Paragraph(h, styles['TableCell']),
+            Paragraph(_pdf_inr(d['taxable']), styles['TableCell']),
+            Paragraph(f"{d['rate']:.0f}%", styles['TableCell']),
+            Paragraph(_pdf_inr(d['cgst']), styles['TableCell']),
+            Paragraph(_pdf_inr(d['sgst']), styles['TableCell']),
+            Paragraph(_pdf_inr(d['igst']), styles['TableCell']),
+            Paragraph(f"<b>{_pdf_inr(d['cgst'] + d['sgst'] + d['igst'])}</b>", styles['TableCellBold']),
+        ])
+
+    tt = Decimal(str(inv.total_cgst)) + Decimal(str(inv.total_sgst)) + Decimal(str(inv.total_igst))
+    data.append([
+        Paragraph("<b>Total</b>", styles['TableCellBold']),
+        Paragraph(f"<b>{_pdf_inr(inv.total_taxable)}</b>", styles['TableCellBold']),
+        Paragraph("", styles['TableCell']),
+        Paragraph(f"<b>{_pdf_inr(inv.total_cgst)}</b>", styles['TableCellBold']),
+        Paragraph(f"<b>{_pdf_inr(inv.total_sgst)}</b>", styles['TableCellBold']),
+        Paragraph(f"<b>{_pdf_inr(inv.total_igst)}</b>", styles['TableCellBold']),
+        Paragraph(f"<b>{_pdf_inr(tt)}</b>", styles['TableCellBold']),
+    ])
+
+    cw = [avail * 0.16, avail * 0.16, avail * 0.12, avail * 0.14, avail * 0.14, avail * 0.14, avail * 0.14]
     t = Table(data, colWidths=cw, repeatRows=1)
-    t.setStyle(TableStyle([('BACKGROUND', (0,0), (-1,0), _PDF_BLUE), ('TEXTCOLOR', (0,0), (-1,0), _PDF_WHITE), ('ALIGN', (0,0), (-1,-1), 'CENTER'), ('VALIGN', (0,0), (-1,-1), 'MIDDLE'), ('FONTSIZE', (0,0), (-1,-1), 6.5), ('BOTTOMPADDING', (0,0), (-1,-1), 4), ('TOPPADDING', (0,0), (-1,-1), 4), ('GRID', (0,0), (-1,-1), 0.3, _PDF_BORDER), ('LINEBELOW', (0,-1), (-1,-1), 1, _PDF_BLUE), ('BACKGROUND', (0,-1), (-1,-1), _PDF_LIGHT)]))
-    tw, th = t.wrap(pw-60, 0); t.drawOn(c, xs, y-th)
-    return y-th
+    t.setStyle(TableStyle([
+        ('BACKGROUND', (0, 0), (-1, 0), _PDF_LIGHT),
+        ('TEXTCOLOR',  (0, 0), (-1, 0), _PDF_NAVY),
+        ('ALIGN', (0, 0), (0, -1), 'CENTER'),
+        ('ALIGN', (1, 0), (1, -1), 'RIGHT'),
+        ('ALIGN', (2, 0), (2, -1), 'CENTER'),
+        ('ALIGN', (3, 0), (-1, -1), 'RIGHT'),
+        ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
+        ('FONTSIZE', (0, 0), (-1, -1), 8.5),
+        ('TOPPADDING',    (0, 0), (-1, -1), 4),
+        ('BOTTOMPADDING', (0, 0), (-1, -1), 4),
+        ('LEFTPADDING',   (0, 0), (-1, -1), 3),
+        ('RIGHTPADDING',  (0, 0), (-1, -1), 3),
+        ('GRID',       (0, 0), (-1, -1), 0.3, _PDF_BORDER),
+        ('LINEBELOW',  (0, -1), (-1, -1), 0.6, _PDF_BLUE),
+        ('BACKGROUND', (0, -1), (-1, -1), _PDF_LIGHT),
+    ]))
+
+    c.setFont(_PDF_FONT_BOLD, 9)
+    c.setFillColor(_PDF_BLUE)
+    c.drawString(xs, y - 11, "HSN / GST SUMMARY")
+    y -= 16
+    tw, th = t.wrap(avail, 0)
+    t.drawOn(c, xs, y - th)
+    return y - th - 8
+
+
+def _pdf_terms(c, inv, co, styles, y, pw):
+    xs = _PDF_M
+    terms = (inv.terms or '').strip()
+    if not terms:
+        try:
+            row = Settings.query.filter_by(key='invoice_terms').first()
+            terms = (row.value or '').strip() if row else ''
+        except Exception:
+            terms = ''
+    if not terms:
+        terms = ("Payment within 15 days.  Goods once sold will not be returned or exchanged.  "
+                 "E&OE (Errors and Omissions Excepted).")
+    c.setFont(_PDF_FONT_BOLD, 9)
+    c.setFillColor(_PDF_BLUE)
+    c.drawString(xs, y - 10, "TERMS & CONDITIONS")
+    c.setFont(_PDF_FONT, _INV_BODY)
+    c.setFillColor(_PDF_MUTED)
+    ty = y - 21
+    for ln in _pdf_wrap(terms, 118)[:4]:
+        c.drawString(xs, ty, ln)
+        ty -= 11
+    return ty - 4
+
+
+def _pdf_summary(c, inv, styles, y, pw):
+    """Right-aligned totals summary with grand total and amount in words."""
+    xs = pw - _PDF_M - 250
+    bw = 250
+
+    lines = [("Subtotal", _pdf_inr(inv.subtotal))]
+    if inv.total_discount > 0:
+        lines.append(("Discount", "-" + _pdf_inr(inv.total_discount)))
+    lines.append(("Taxable Amount", _pdf_inr(inv.total_taxable)))
+    if inv.is_intra_state:
+        lines.extend([("CGST", _pdf_inr(inv.total_cgst)), ("SGST", _pdf_inr(inv.total_sgst))])
+    else:
+        lines.append(("IGST", _pdf_inr(inv.total_igst)))
+    if inv.round_off != 0:
+        ro = Decimal(str(inv.round_off))
+        ro_txt = _pdf_inr(abs(ro)) if ro > 0 else "-" + _pdf_inr(abs(ro))
+        lines.append(("Round Off", ro_txt))
+
+    aw = amount_to_words(inv.grand_total)
+    aw_lines = _pdf_wrap(aw, 34)
+    th = 48 + len(lines) * 14 + len(aw_lines) * 11
+
+    c.setStrokeColor(_PDF_BORDER)
+    c.setLineWidth(0.4)
+    c.setFillColor(_PDF_LIGHT)
+    c.roundRect(xs, y - th, bw, th, 3, fill=1, stroke=1)
+
+    ty = y - 13
+    for lbl, val in lines:
+        c.setFont(_PDF_FONT, _INV_BODY)
+        c.setFillColor(_PDF_MUTED)
+        c.drawString(xs + 10, ty, lbl)
+        c.setFont(_PDF_FONT, _INV_BODY)
+        c.setFillColor(_PDF_DARK)
+        c.drawRightString(xs + bw - 10, ty, str(val))
+        ty -= 14
+
+    c.setStrokeColor(_PDF_BLUE)
+    c.setLineWidth(0.8)
+    c.line(xs + 10, ty + 2, xs + bw - 10, ty + 2)
+    ty -= 7
+
+    c.setFont(_PDF_FONT_BOLD, 12)
+    c.setFillColor(_PDF_NAVY)
+    c.drawString(xs + 10, ty, "GRAND TOTAL")
+    c.setFont(_PDF_FONT_BOLD, 13)
+    c.setFillColor(_PDF_NAVY)
+    c.drawRightString(xs + bw - 10, ty, _pdf_inr(inv.grand_total))
+    ty -= 17
+
+    c.setFont(_PDF_FONT_OBLIQUE, 7.5)
+    c.setFillColor(_PDF_MUTED)
+    c.drawString(xs + 10, ty, "Amount in Words")
+    ty -= 10
+    c.setFont(_PDF_FONT_BOLD, _INV_BODY)
+    c.setFillColor(_PDF_DARK)
+    for seg in aw_lines:
+        c.drawString(xs + 10, ty, seg)
+        ty -= 11
+    return y - th - 10
+
+
+def _pdf_payment(c, inv, styles, y, pw):
+    """Left-aligned payment information box."""
+    xs = _PDF_M
+    avail = pw - 2 * _PDF_M
+    totals_w = 250
+    gap = 14
+    bw = avail - totals_w - gap
+    bh = 88
+
+    bal = inv.balance_due if inv.balance_due is not None else (
+        Decimal(str(inv.grand_total)) - Decimal(str(inv.amount_paid)))
+
+    c.setStrokeColor(_PDF_BORDER)
+    c.setLineWidth(0.4)
+    c.setFillColor(_PDF_LIGHT)
+    c.roundRect(xs, y - bh, bw, bh, 3, fill=1, stroke=1)
+
+    c.setFont(_PDF_FONT_BOLD, 8.5)
+    c.setFillColor(_PDF_BLUE)
+    c.drawString(xs + 10, y - 13, "PAYMENT INFORMATION")
+
+    rows = [
+        ("Payment Method", _payment_method_label(inv.payment_method) if inv.payment_method else 'N/A'),
+        ("Amount Paid", _pdf_inr(inv.amount_paid)),
+        ("Balance Due", _pdf_inr(bal)),
+    ]
+    dy = y - 28
+    for lbl, val in rows:
+        c.setFont(_PDF_FONT, _INV_BODY)
+        c.setFillColor(_PDF_MUTED)
+        c.drawString(xs + 10, dy, lbl)
+        if lbl == "Balance Due":
+            col = _PDF_GREEN if not bal else _PDF_RED
+        else:
+            col = _PDF_DARK
+        c.setFont(_PDF_FONT_BOLD, _INV_BODY)
+        c.setFillColor(col)
+        c.drawRightString(xs + bw - 10, dy, str(val))
+        dy -= 17
+    return y - bh - 10
+
+
+def _pdf_decl(c, inv, styles, y, pw, co=None):
+    """Declaration + compact two-column signature area."""
+    co = co or {}
+    xs = _PDF_M
+    avail = pw - 2 * _PDF_M
+
+    # Declaration
+    c.setFont(_PDF_FONT_BOLD, 9)
+    c.setFillColor(_PDF_BLUE)
+    c.drawString(xs, y - 10, "DECLARATION")
+    c.setFont(_PDF_FONT, _INV_BODY)
+    c.setFillColor(_PDF_MUTED)
+    for i, line in enumerate(["This is a computer-generated invoice.",
+                              "Subject to local jurisdiction.",
+                              "E&OE (Errors and Omissions Excepted)."]):
+        c.drawString(xs, y - 21 - i * 11, line)
+
+    # Signature area
+    sy = y - 55
+    sig_h = 60
+    cw2 = (avail - 24) / 2
+
+    # Left: Authorized Signature
+    lx = xs + 8
+    sig_line_y = sy - sig_h + 16
+    c.setStrokeColor(_PDF_MUTED)
+    c.setLineWidth(0.4)
+    c.line(lx, sig_line_y, lx + cw2, sig_line_y)
+    c.setFont(_PDF_FONT, _INV_SMALL)
+    c.setFillColor(_PDF_MUTED)
+    c.drawString(lx, sig_line_y - 10, "Authorized Signature")
+    c.setFont(_PDF_FONT_BOLD, _INV_BODY)
+    c.setFillColor(_PDF_NAVY)
+    c.drawString(lx, sig_line_y - 22, co.get("name", "GV Powers"))
+    c.setFont(_PDF_FONT, _INV_SMALL)
+    c.setFillColor(_PDF_MUTED)
+    c.drawString(lx, sig_line_y - 34, "Date: _______________")
+
+    # Right: Customer Signature
+    sx2 = xs + cw2 + 24
+    c.setStrokeColor(_PDF_MUTED)
+    c.setLineWidth(0.4)
+    c.line(sx2, sig_line_y, sx2 + cw2, sig_line_y)
+    c.setFont(_PDF_FONT, _INV_SMALL)
+    c.setFillColor(_PDF_MUTED)
+    c.drawString(sx2, sig_line_y - 10, "Customer Signature")
+    c.setFont(_PDF_FONT, _INV_SMALL)
+    c.setFillColor(_PDF_MUTED)
+    c.drawString(sx2, sig_line_y - 34, "Date: _______________")
+
+    return sy - sig_h - 6
+
+
+def _pdf_render(inv, co, label):
+    buf = io.BytesIO()
+    pw, ph = A4
+    styles = _pdf_styles()
+    c = _InvCanvas(buf, pagesize=A4)
+    c._invoice_footer = lambda cv, pg, total: _pdf_footer(cv, co, pg, total, pw)
+    y = 0
+
+    def new_page(first=False):
+        nonlocal y
+        if not first:
+            c.showPage()
+        _pdf_watermark(c, label, pw, ph)
+        if inv.status == 'cancelled':
+            _pdf_watermark(c, 'CANCELLED', pw, ph)
+        y = _pdf_header(c, co, label, inv, pw)
+        return y
+
+    y = new_page(first=True)
+    y = _pdf_cust_info(c, inv, y, pw)
+    y = _pdf_product_table(c, inv, styles, y, pw, new_page)
+    if y - 120 < _PDF_BOTTOM + 8:
+        y = new_page()
+    y = _pdf_gst_table(c, inv, styles, y, pw)
+    if y - 140 < _PDF_BOTTOM + 8:
+        y = new_page()
+    y_pay = _pdf_payment(c, inv, styles, y, pw)
+    y_sum = _pdf_summary(c, inv, styles, y, pw)
+    y = min(y_pay, y_sum)
+    if y - 70 < _PDF_BOTTOM + 8:
+        y = new_page()
+    y = _pdf_terms(c, inv, co, styles, y, pw)
+    if y - 160 < _PDF_BOTTOM + 8:
+        y = new_page()
+    y = _pdf_decl(c, inv, styles, y, pw, co)
+    c.save()
+    buf.seek(0)
+    return buf
+
+
+_COPY_LABELS = {"owner": "ADMIN / OWNER COPY", "customer": "CUSTOMER COPY", "gst": "GST TAX COPY"}
 
 
 def generate_owner_copy(inv, co=None):
-    co = co or {}; buf = io.BytesIO(); c = canvas.Canvas(buf, pagesize=A4); s = _pdf_styles(); pw = A4[0]
-    _pdf_watermark(c, "OWNER COPY", pw, A4[1])
-    y = _pdf_header(c, co, "OWNER COPY", inv, pw)
-    y = _pdf_cust_info(c, inv, y, pw)
-    y = _pdf_product_table(c, inv, s, y, pw, True)
-    y = _pdf_summary(c, inv, s, y, pw)
-    y = _pdf_payment(c, inv, s, y, pw, True)
-    y = _pdf_bank(c, co, s, y, pw)
-    y = _pdf_decl(c, inv, s, y, pw, False, co)
-    _pdf_footer(c, co, 1, pw); c.save(); buf.seek(0)
-    return buf
+    return _pdf_render(inv, co or {}, "ADMIN / OWNER COPY")
 
 
 def generate_customer_copy(inv, co=None):
-    co = co or {}; buf = io.BytesIO(); c = canvas.Canvas(buf, pagesize=A4); s = _pdf_styles(); pw = A4[0]
-    _pdf_watermark(c, "CUSTOMER COPY", pw, A4[1])
-    y = _pdf_header(c, co, "CUSTOMER COPY", inv, pw)
-    y = _pdf_cust_info(c, inv, y, pw)
-    y = _pdf_product_table(c, inv, s, y, pw, False)
-    y = _pdf_summary(c, inv, s, y, pw)
-    y = _pdf_payment(c, inv, s, y, pw, True)
-    y = _pdf_bank(c, co, s, y, pw)
-    y = _pdf_decl(c, inv, s, y, pw, True, co)
-    _pdf_footer(c, co, 1, pw); c.save(); buf.seek(0)
-    return buf
+    return _pdf_render(inv, co or {}, "CUSTOMER COPY")
 
 
 def generate_gst_copy(inv, co=None):
-    co = co or {}; buf = io.BytesIO(); c = canvas.Canvas(buf, pagesize=A4); s = _pdf_styles(); pw = A4[0]
-    _pdf_watermark(c, "GST TAX COPY", pw, A4[1])
-    y = _pdf_header(c, co, "GST TAX COPY", inv, pw)
-    xs = 30; bw = pw-60; ih = 28
-    c.setFillColor(_PDF_LIGHT); c.setStrokeColor(_PDF_BORDER); c.setLineWidth(0.3); c.roundRect(xs, y-ih, bw, ih, 3, fill=1, stroke=1)
-    c.setFont("Helvetica", 6.5); c.setFillColor(_PDF_DARK)
-    for x, lines in [(xs+6, [f"Supplier GSTIN: {co['gstin']}", f"Supplier State: {co['state']} ({co['state_code']})"]), (xs+bw/3, [f"Customer GSTIN: {inv.customer_gstin or 'N/A'}", f"Customer State: {inv.customer_state or 'N/A'} ({inv.customer_state_code})"]), (xs+2*bw/3, [f"Place of Supply: {inv.customer_state or 'N/A'} ({inv.customer_state_code})", "Reverse Charge: No"])]:
-        for i, l in enumerate(lines): c.drawString(x, y-10-i*10, l)
-    y -= ih+8; y = _pdf_product_table(c, inv, s, y, pw, False); y -= 6; y = _pdf_gst_table(c, inv, s, y, pw); y -= 10; y = _pdf_summary(c, inv, s, y, pw)
-    aw = amount_to_words(inv.grand_total)
-    c.setFont("Helvetica-Bold", 7); c.setFillColor(_PDF_DARK); c.drawString(xs, y, f"Amount in Words: {aw}"); y -= 14
-    c.setStrokeColor(_PDF_BORDER); c.setLineWidth(0.3); c.line(xs, y, xs+150, y)
-    c.setFont("Helvetica", 6.5); c.setFillColor(_PDF_MUTED); c.drawString(xs, y-10, "Digital Signature / Authorized Signatory"); c.drawString(xs, y-19, co.get("name", ""))
-    sx2 = pw-30-150; c.line(sx2, y, sx2+150, y); c.drawString(sx2, y-10, "Customer Signature & Stamp"); c.drawString(sx2, y-19, "Date: _______________")
-    c.setFont("Helvetica", 6); c.drawString(xs, y-35, "Declaration: This invoice is issued for GST return filing purposes.")
-    _pdf_footer(c, co, 1, pw); c.save(); buf.seek(0)
-    return buf
+    return _pdf_render(inv, co or {}, "GST TAX COPY")
 
 
 def generate_invoice_pdf(inv, copy_type="customer", co=None):
-    if copy_type == "owner": return generate_owner_copy(inv, co)
-    elif copy_type == "gst": return generate_gst_copy(inv, co)
-    return generate_customer_copy(inv, co)
+    return _pdf_render(inv, co or {}, _COPY_LABELS.get(copy_type, "CUSTOMER COPY"))
 
 
 ############################################################
@@ -1478,8 +2031,8 @@ def build_invoice_email(inv, co, pdf_buf, recipient=None):
             <tr>
                 <td style="padding:8px 10px;border-bottom:1px solid #eee;font-size:13px;">{item.product_name}</td>
                 <td style="padding:8px 10px;border-bottom:1px solid #eee;font-size:13px;text-align:center;">{item.qty}</td>
-                <td style="padding:8px 10px;border-bottom:1px solid #eee;font-size:13px;text-align:right;">₹{item.price:,.2f}</td>
-                <td style="padding:8px 10px;border-bottom:1px solid #eee;font-size:13px;text-align:right;">₹{item.total:,.2f}</td>
+                <td style="padding:8px 10px;border-bottom:1px solid #eee;font-size:13px;text-align:right;">Rs. {item.price:,.2f}</td>
+                <td style="padding:8px 10px;border-bottom:1px solid #eee;font-size:13px;text-align:right;">Rs. {item.total:,.2f}</td>
             </tr>'''
 
     payment_status_badge = {
@@ -1524,9 +2077,9 @@ def build_invoice_email(inv, co, pdf_buf, recipient=None):
                 <tr><td style="font-size:13px;color:#888;padding-bottom:4px;">Due Date</td>
                 <td style="font-size:13px;color:#333;font-weight:600;text-align:right;padding-bottom:4px;">{inv.due_date.strftime('%d-%b-%Y') if inv.due_date else 'N/A'}</td></tr>
                 <tr><td style="font-size:13px;color:#888;padding-bottom:4px;">Amount Paid</td>
-                <td style="font-size:13px;color:#333;text-align:right;padding-bottom:4px;">₹{inv.amount_paid:,.2f}</td></tr>
+                <td style="font-size:13px;color:#333;text-align:right;padding-bottom:4px;">Rs. {inv.amount_paid:,.2f}</td></tr>
                 <tr><td style="font-size:13px;color:#888;">Balance Due</td>
-                <td style="font-size:13px;color:#d32f2f;font-weight:700;text-align:right;">₹{(inv.grand_total - inv.amount_paid):,.2f}</td></tr>
+                <td style="font-size:13px;color:#d32f2f;font-weight:700;text-align:right;">Rs. {(inv.grand_total - inv.amount_paid):,.2f}</td></tr>
             </table>
         </td></tr>
         <tr><td style="padding:0 40px;">
@@ -1545,7 +2098,7 @@ def build_invoice_email(inv, co, pdf_buf, recipient=None):
         <tr><td style="padding:0 40px 20px 40px;">
             <table width="100%" cellpadding="0" cellspacing="0" style="border-top:2px solid #1a3a5c;padding-top:12px;">
                 <tr><td style="font-size:15px;color:#333;font-weight:700;">Total Amount</td>
-                <td style="font-size:20px;color:#1a3a5c;font-weight:800;text-align:right;">₹{inv.grand_total:,.2f}</td></tr>
+                <td style="font-size:20px;color:#1a3a5c;font-weight:800;text-align:right;">Rs. {inv.grand_total:,.2f}</td></tr>
             </table>
         </td></tr>
         <tr><td style="padding:0 40px 8px 40px;">
@@ -1561,7 +2114,7 @@ def build_invoice_email(inv, co, pdf_buf, recipient=None):
                     <td style="font-size:12px;color:#888;text-align:right;padding-bottom:4px;">✉️ {company_email}</td>
                 </tr>
                 <tr><td colspan="2" style="font-size:11px;color:#aaa;padding-top:4px;">{company_address}</td></tr>
-                <tr><td colspan="2" style="font-size:11px;color:#aaa;padding-top:12px;border-top:1px solid #ddd;margin-top:8px;padding-top:8px;">GST: {co.get('gstin', 'N/A')} | {co.get('website', '')}</td></tr>
+                <tr><td colspan="2" style="font-size:11px;color:#aaa;padding-top:12px;border-top:1px solid #ddd;margin-top:8px;padding-top:8px;">GSTIN: {co.get('gstin', 'N/A')} | Website: {co.get('website', '')}</td></tr>
             </table>
         </td></tr>
     </table>
@@ -1734,14 +2287,41 @@ def logout():
 def dashboard():
     if current_user.role == 'sales':
         return _sales_dashboard()
-    today_start = date.today()
-    today_sales = db.session.query(func.coalesce(func.sum(Invoice.grand_total), 0)).filter(
-        func.date(Invoice.invoice_date) == today_start
-    ).scalar() or 0
+    _run_low_stock_check()
+    today = date.today()
 
-    today_collections = db.session.query(func.coalesce(func.sum(Payment.amount), 0)).join(
+    rng = request.args.get('range', 'month')
+    if rng == '7d':
+        from_dt, to_dt, range_label = today - timedelta(days=6), today, 'Last 7 Days'
+    elif rng == '30d':
+        from_dt, to_dt, range_label = today - timedelta(days=29), today, 'Last 30 Days'
+    elif rng == 'month':
+        from_dt, to_dt, range_label = today.replace(day=1), today, 'This Month'
+    else:
+        fy_start = date(today.year - 1, 4, 1) if today.month < 4 else date(today.year, 4, 1)
+        from_dt, to_dt, range_label = fy_start, today, 'Financial Year'
+
+    range_sales = db.session.query(func.coalesce(func.sum(Invoice.grand_total), 0)).filter(
+        Invoice.invoice_date >= from_dt, Invoice.invoice_date <= to_dt,
+        Invoice.status != 'cancelled').scalar() or 0
+
+    range_collections = db.session.query(func.coalesce(func.sum(Payment.amount), 0)).join(
         Invoice, Invoice.id == Payment.invoice_id
-    ).filter(func.date(Payment.payment_date) == today_start, Invoice.status != 'cancelled').scalar() or 0
+    ).filter(Payment.payment_date >= from_dt, Payment.payment_date <= to_dt,
+             Invoice.status != 'cancelled').scalar() or 0
+
+    range_invoices_count = Invoice.query.filter(
+        Invoice.invoice_date >= from_dt, Invoice.invoice_date <= to_dt,
+        Invoice.status != 'cancelled').count()
+
+    opening_balance = 0.0
+    if from_dt > date.min:
+        before_inv = db.session.query(func.coalesce(func.sum(Invoice.grand_total), 0)).filter(
+            Invoice.invoice_date < from_dt, Invoice.status != 'cancelled').scalar() or 0
+        before_paid = db.session.query(func.coalesce(func.sum(Payment.amount), 0)).join(
+            Invoice, Invoice.id == Payment.invoice_id
+        ).filter(Invoice.invoice_date < from_dt, Invoice.status != 'cancelled').scalar() or 0
+        opening_balance = float(before_inv) - float(before_paid)
 
     outstanding_amount = db.session.query(func.coalesce(func.sum(Invoice.balance_due), 0)).filter(
         Invoice.status != 'cancelled', Invoice.balance_due > 0
@@ -1754,11 +2334,6 @@ def dashboard():
         Invoice.status != 'cancelled', Invoice.amount_paid >= Invoice.grand_total
     ).count()
 
-    monthly_start = today_start.replace(day=1)
-    monthly_sales = db.session.query(func.coalesce(func.sum(Invoice.grand_total), 0)).filter(
-        func.date(Invoice.invoice_date) >= monthly_start
-    ).scalar() or 0
-
     top_products = (
         db.session.query(InvoiceItem.product_name, func.sum(InvoiceItem.qty).label('total_qty'))
         .group_by(InvoiceItem.product_name)
@@ -1767,18 +2342,48 @@ def dashboard():
         .all()
     )
 
-    monthly_data = (
-        db.session.query(
-            extract('year', Invoice.invoice_date).label('year'),
-            extract('month', Invoice.invoice_date).label('month'),
-            func.coalesce(func.sum(Invoice.grand_total), 0).label('total')
-        )
-        .filter(Invoice.invoice_date >= today_start.replace(day=1) - timedelta(days=365))
-        .group_by(text('year'), text('month'))
-        .order_by(text('year, month'))
-        .all()
+    if (to_dt - from_dt).days <= 62:
+        daily_rows = (db.session.query(func.date(Invoice.invoice_date).label('d'),
+                                       func.coalesce(func.sum(Invoice.grand_total), 0).label('t'))
+                      .filter(Invoice.invoice_date >= from_dt, Invoice.invoice_date <= to_dt,
+                              Invoice.status != 'cancelled')
+                      .group_by(text('d')).order_by(text('d')).all())
+        row_map = {r[0]: float(r[1]) for r in daily_rows}
+        chart_data = [{'label': d.strftime('%d %b'), 'value': row_map.get(d.isoformat(), 0.0)}
+                      for d in (from_dt + timedelta(days=i) for i in range((to_dt - from_dt).days + 1))]
+    else:
+        monthly_rows = (db.session.query(extract('year', Invoice.invoice_date).label('y'),
+                                         extract('month', Invoice.invoice_date).label('m'),
+                                         func.coalesce(func.sum(Invoice.grand_total), 0).label('t'))
+                        .filter(Invoice.invoice_date >= from_dt, Invoice.invoice_date <= to_dt,
+                                Invoice.status != 'cancelled')
+                        .group_by(text('y'), text('m')).order_by(text('y, m')).all())
+        chart_data = [{'label': '%s-%02d' % (int(r[0]), int(r[1])), 'value': float(r[2])} for r in monthly_rows]
+
+    outstanding_customers = (
+        db.session.query(Customer.id, Customer.name,
+                         func.coalesce(func.sum(Invoice.balance_due), 0).label('due'))
+        .join(Invoice, Invoice.customer_id == Customer.id)
+        .filter(Invoice.status != 'cancelled', Invoice.balance_due > 0)
+        .group_by(Customer.id, Customer.name)
+        .order_by(desc('due')).limit(10).all()
     )
-    monthly_data = [{'month': f'{int(row.year)}-{int(row.month):02d}', 'total': float(row.total)} for row in monthly_data]
+
+    activity = []
+    for inv in Invoice.query.order_by(desc(Invoice.created_at)).limit(5).all():
+        activity.append({'type': 'invoice', 'title': 'Invoice created', 'ref': inv.invoice_number,
+                         'amount': inv.grand_total, 'date': inv.created_at or datetime.utcnow(),
+                         'link': url_for('invoice_preview', iid=inv.id)})
+    for q in Quotation.query.order_by(desc(Quotation.created_at)).limit(5).all():
+        activity.append({'type': 'quotation', 'title': 'Quotation %s' % q.status, 'ref': q.quotation_number,
+                         'amount': q.grand_total, 'date': q.created_at or datetime.utcnow(),
+                         'link': url_for('view_quotation', qid=q.id)})
+    for p in Payment.query.order_by(desc(Payment.created_at)).limit(5).all():
+        activity.append({'type': 'payment', 'title': 'Payment received', 'ref': _payment_display_ref(p) or ('#%s' % p.id),
+                         'amount': p.amount, 'date': p.created_at or datetime.utcnow(),
+                         'link': url_for('invoice_preview', iid=p.invoice_id)})
+    activity.sort(key=lambda a: a['date'], reverse=True)
+    activity = activity[:8]
 
     return render_template('admin/dashboard.html',
         total_invoices=Invoice.query.count(), total_customers=Customer.query.count(),
@@ -1786,13 +2391,15 @@ def dashboard():
         pending_invoices=pending_invoices_count,
         paid_invoices=paid_invoices_count,
         outstanding_amount=outstanding_amount,
-        today_collections=today_collections,
+        range_sales=range_sales, range_collections=range_collections,
+        range_invoices_count=range_invoices_count, opening_balance=opening_balance,
+        from_date=from_dt, to_date=to_dt, range_label=range_label, selected_range=rng,
         low_stock_alerts=Product.query.filter(Product.stock_quantity <= Product.min_stock).count(),
         low_stock_products=Product.query.filter(Product.stock_quantity <= Product.min_stock).order_by(Product.stock_quantity.asc()).limit(10).all(),
         recent_invoices=Invoice.query.order_by(desc(Invoice.created_at)).limit(5).all(),
-        today_sales=today_sales, monthly_sales=monthly_sales,
-        now_date=today_start.strftime('%d %B %Y'),
-        top_products=top_products, monthly_data=monthly_data)
+        top_products=top_products, chart_data=chart_data,
+        outstanding_customers=outstanding_customers, activity=activity,
+        now_date=today.strftime('%d %B %Y'))
 
 
 def _sales_dashboard():
@@ -1897,47 +2504,25 @@ def settings_page():
         try:
             # SMTP / email credentials are backend-only (from .env) and must never
             # be writable via the Settings endpoint. Ignore any such keys defensively.
+            # Company identity is FIXED for this installation and is never editable
+            # from the admin panel, so those keys are ignored as well.
             _forbidden = {'smtp_server', 'smtp_port', 'smtp_email', 'smtp_password', 'mail_server', 'mail_port', 'mail_username', 'mail_password'}
+            _fixed_company_keys = {'company_name', 'company_gstin', 'company_phone', 'company_mobile',
+                                   'company_website', 'company_email', 'company_state', 'company_state_code',
+                                   'company_address', 'company_city', 'company_pincode', 'company_country'}
             for key, val in request.form.items():
                 if key.startswith('file_'):
                     continue
-                if key in _forbidden:
+                if key in _forbidden or key in _fixed_company_keys:
                     continue
                 if key == 'theme':
                     current_user.theme = val.strip() if isinstance(val, str) else val
                     set_setting('theme', val)
                     continue  # theme also drives /settings/theme
-                if key == 'company_gstin':
-                    val = val.strip().upper()
-                if key == 'company_pan':
-                    val = (val or '').strip().upper()
-                if key == 'bank_ifsc':
-                    val = (val or '').strip().upper()
                 set_setting(key, val or '')
             db.session.commit()
             log_audit(current_user.id, 'settings_updated', 'settings', details='Company settings updated')
-            settings = {s.key: s.value for s in Settings.query.all()}
-            co = current_app.config['COMPANY']
-            co['name'] = settings.get('company_name', '')
-            co['gstin'] = settings.get('company_gstin', '')
-            co['pan'] = settings.get('company_pan', '')
-            co['state'] = settings.get('company_state', '')
-            try: co['state_code'] = int(settings.get('company_state_code', 29))
-            except (TypeError, ValueError): co['state_code'] = 29
-            co['address'] = settings.get('company_address', '')
-            co['phone'] = settings.get('company_phone', '')
-            co['mobile'] = settings.get('company_mobile', '')
-            co['email'] = settings.get('company_email', '')
-            co['website'] = settings.get('company_website', '')
-            co['city'] = settings.get('company_city', '')
-            co['pincode'] = settings.get('company_pincode', '')
-            co['country'] = settings.get('company_country', '')
-            co['bank_name'] = settings.get('bank_name', '')
-            co['bank_branch'] = settings.get('bank_branch', '')
-            co['bank_account'] = settings.get('bank_account', '')
-            co['bank_ifsc'] = settings.get('bank_ifsc', '')
-            co['upi_id'] = settings.get('upi_id', '')
-            current_app.config['COMPANY'] = co
+            _load_company_settings(current_app)
             current_app.logger.info('Settings saved successfully by user %s', current_user.username)
             if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
                 return jsonify({'success': True, 'message': 'Settings saved successfully.', 'settings': _public_settings()})
@@ -2058,6 +2643,162 @@ def customer_profile(cid):
                            total_paid=total_paid, outstanding=outstanding, payments=payments)
 
 
+def _customer_ledger_data(cid, from_date=None, to_date=None):
+    """Build the account statement for a customer from real records.
+
+    Ledger entries are computed strictly from Invoice (debit) and Payment
+    (credit) records and are never editable. ``opening`` carries the balance
+    from before ``from_date`` (zero when no start date is given). Cancelled
+    invoices are excluded.
+    """
+    from_dt = from_date or date.min
+    to_dt = to_date or date.today()
+    opening = Decimal('0')
+    if from_date is not None:
+        inv_before = db.session.query(func.coalesce(func.sum(Invoice.grand_total), 0)).filter(
+            Invoice.customer_id == cid, Invoice.status != 'cancelled',
+            Invoice.invoice_date < from_dt).scalar() or 0
+        paid_before = db.session.query(func.coalesce(func.sum(Payment.amount), 0)).join(
+            Invoice, Invoice.id == Payment.invoice_id).filter(
+            Invoice.customer_id == cid, Invoice.status != 'cancelled',
+            Payment.payment_date < from_dt).scalar() or 0
+        opening = (Decimal(inv_before) - Decimal(paid_before)).quantize(Decimal('0.01'))
+
+    invoices = (Invoice.query.filter(Invoice.customer_id == cid,
+                                     Invoice.status != 'cancelled',
+                                     Invoice.invoice_date >= from_dt,
+                                     Invoice.invoice_date <= to_dt)
+                .order_by(Invoice.invoice_date, Invoice.id).all())
+    payments = (db.session.query(Payment).join(Invoice, Invoice.id == Payment.invoice_id)
+                .filter(Invoice.customer_id == cid, Invoice.status != 'cancelled',
+                        Payment.payment_date >= from_dt, Payment.payment_date <= to_dt)
+                .order_by(Payment.payment_date, Payment.id).all())
+
+    entries = []
+    _q2 = Decimal('0.01')
+    for inv in invoices:
+        entries.append({
+            'date': inv.invoice_date, 'sort': (inv.invoice_date, 0, inv.id),
+            'type': 'invoice', 'reference': inv.invoice_number,
+            'description': 'Invoice %s' % inv.invoice_number,
+            'debit': Decimal(inv.grand_total or 0).quantize(_q2), 'credit': Decimal('0'),
+            'link': url_for('view_invoice', iid=inv.id),
+        })
+    for p in payments:
+        entries.append({
+            'date': p.payment_date, 'sort': (p.payment_date, 1, p.id),
+            'type': 'payment',
+            'reference': _payment_display_ref(p) or ('#%s' % p.id),
+            'description': 'Payment received%s' % (' on %s' % p.invoice.invoice_number if p.invoice else ''),
+            'debit': Decimal('0'), 'credit': Decimal(p.amount or 0).quantize(_q2),
+            'link': url_for('view_invoice', iid=p.invoice_id),
+        })
+    entries.sort(key=lambda e: e['sort'])
+
+    balance = opening
+    for e in entries:
+        balance += e['debit'] - e['credit']
+        e['balance'] = balance.quantize(_q2)
+
+    total_debit = sum((e['debit'] for e in entries), Decimal('0')).quantize(_q2)
+    total_credit = sum((e['credit'] for e in entries), Decimal('0')).quantize(_q2)
+    return {
+        'opening': opening, 'entries': entries,
+        'total_debit': total_debit, 'total_credit': total_credit,
+        'closing': (opening + total_debit - total_credit).quantize(_q2),
+        'from_date': from_dt, 'to_date': to_dt,
+    }
+
+
+def _parse_ledger_dates():
+    from_str = request.args.get('from', '').strip()
+    to_str = request.args.get('to', '').strip()
+    from_dt = datetime.strptime(from_str, '%Y-%m-%d').date() if from_str else None
+    to_dt = datetime.strptime(to_str, '%Y-%m-%d').date() if to_str else date.today()
+    return from_dt, to_dt
+
+
+@app.route('/customers/<int:cid>/ledger')
+@login_required
+def customer_ledger(cid):
+    c = db.session.get(Customer, cid)
+    if not c:
+        abort(404)
+    from_dt, to_dt = _parse_ledger_dates()
+    if from_dt and to_dt and from_dt > to_dt:
+        flash('From date cannot be after the To date.', 'danger')
+        from_dt, to_dt = None, date.today()
+    data = _customer_ledger_data(cid, from_dt, to_dt)
+    return render_template('customers/customer_ledger.html', customer=c, data=data,
+                           from_date=from_dt, to_date=to_dt, today=date.today())
+
+
+@app.route('/customers/<int:cid>/ledger/export/<fmt>')
+@login_required
+def customer_ledger_export(cid, fmt):
+    c = db.session.get(Customer, cid)
+    if not c or fmt not in ('pdf', 'excel', 'csv'):
+        abort(404)
+    from_dt, to_dt = _parse_ledger_dates()
+    data = _customer_ledger_data(cid, from_dt, to_dt)
+    fname = 'ledger_%s_%s' % (c.name.replace(' ', '_').lower(), date.today().strftime('%Y%m%d'))
+    headers = ['Date', 'Type', 'Reference', 'Description', 'Debit', 'Credit', 'Balance']
+    rows = []
+    for e in data['entries']:
+        rows.append([e['date'].isoformat(), e['type'].title(), e['reference'], e['description'],
+                     float(e['debit']), float(e['credit']), float(e['balance'])])
+    rows.append(['', 'Opening balance', '', '', float(data['opening']), '', ''])
+    rows.sort(key=lambda r: r[0])
+    rows.append(['', 'Total', '', '', float(data['total_debit']), float(data['total_credit']), ''])
+    rows.append(['', 'Closing balance', '', '', '', '', float(data['closing'])])
+
+    if fmt == 'csv':
+        out = io.StringIO()
+        w = csv.writer(out)
+        w.writerow(headers)
+        w.writerows(rows)
+        buf = io.BytesIO(out.getvalue().encode('utf-8-sig'))
+        return send_file(buf, mimetype='text/csv', as_attachment=True, download_name=fname + '.csv')
+
+    if fmt == 'excel':
+        import openpyxl
+        wb = openpyxl.Workbook()
+        ws = wb.active
+        ws.title = 'Ledger'
+        ws.append(['Customer Ledger', c.name])
+        ws.append(headers)
+        for r in rows:
+            ws.append(r)
+        _style_excel(ws)
+        buf = io.BytesIO()
+        wb.save(buf)
+        buf.seek(0)
+        return send_file(buf, mimetype='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+                         as_attachment=True, download_name=fname + '.xlsx')
+
+    pdf_buf = _build_report_pdf('Ledger - %s' % c.name, 'Account statement', headers, rows, {})
+    return send_file(pdf_buf, mimetype='application/pdf', as_attachment=True, download_name=fname + '.pdf')
+
+
+@app.route('/api/v1/customers/<int:cid>/ledger')
+@login_required
+def api_customer_ledger(cid):
+    c = db.session.get(Customer, cid)
+    if not c:
+        return jsonify({'success': False, 'error': 'Customer not found'}), 404
+    from_dt, to_dt = _parse_ledger_dates()
+    data = _customer_ledger_data(cid, from_dt, to_dt)
+    return jsonify({
+        'success': True,
+        'customer': {'id': c.id, 'name': c.name},
+        'opening': str(data['opening']), 'closing': str(data['closing']),
+        'total_debit': str(data['total_debit']), 'total_credit': str(data['total_credit']),
+        'entries': [{'date': e['date'].isoformat(), 'type': e['type'], 'reference': e['reference'],
+                     'description': e['description'], 'debit': str(e['debit']),
+                     'credit': str(e['credit']), 'balance': str(e['balance'])} for e in data['entries']],
+    })
+
+
 @app.route('/customers/<int:cid>/edit', methods=['POST'])
 @login_required
 def edit_customer(cid):
@@ -2105,6 +2846,58 @@ def _record_movement(pid, movement_type, quantity, reference_type=None, referenc
     db.session.add(StockMovement(product_id=pid, movement_type=movement_type, quantity=quantity,
                                  reference_type=reference_type, reference_id=reference_id, notes=notes,
                                  user_id=current_user.id))
+
+
+def _low_stock_suggested_qty(p):
+    """Suggested purchase quantity for a low-stock product."""
+    if not p or not (p.min_stock or 0):
+        return 1
+    return max(int(p.min_stock) * 2 - int(p.stock_quantity or 0), 1)
+
+
+def _run_low_stock_check():
+    """Scan products at/below minimum stock and notify admins/managers.
+
+    Notifications are emitted once per low-stock episode (deduplicated through
+    ``low_stock_alert_active`` + ``last_low_stock_notification_at``) and are
+    auto-resolved when stock recovers above the minimum. Call this after any
+    stock-affecting operation (invoice, conversion, PO receive) and on
+    dashboard/report views so alerts stay current.
+    """
+    try:
+        low = Product.query.filter(Product.is_active == True,
+                                   Product.min_stock > 0,
+                                   Product.stock_quantity <= Product.min_stock,
+                                   Product.stock_quantity > 0).all()
+        changed = False
+        for p in low:
+            if p.low_stock_alert_active:
+                continue
+            if p.last_low_stock_notification_at and \
+                    (datetime.utcnow() - p.last_low_stock_notification_at) < timedelta(hours=24):
+                continue
+            p.low_stock_alert_active = True
+            p.last_low_stock_notification_at = datetime.utcnow()
+            suggested = _low_stock_suggested_qty(p)
+            msg = f'{p.name} has only {p.stock_quantity} unit(s) left (min: {p.min_stock}). Suggested purchase: {suggested}.'
+            for u in User.query.filter(User.role.in_(['admin', 'manager'])).all():
+                db.session.add(Notification(user_id=u.id, title='Low stock alert', message=msg,
+                                            notification_type='warning'))
+            log_audit(current_user.id if hasattr(current_user, 'id') else None,
+                      'low_stock_generated', 'product', p.id, msg)
+            changed = True
+        resolved = Product.query.filter(Product.low_stock_alert_active == True,
+                                        Product.stock_quantity > Product.min_stock).all()
+        for p in resolved:
+            p.low_stock_alert_active = False
+            log_audit(current_user.id if hasattr(current_user, 'id') else None,
+                      'low_stock_resolved', 'product', p.id,
+                      f'Stock recovered to {p.stock_quantity} (> min {p.min_stock})')
+            changed = True
+        if changed:
+            db.session.commit()
+    except Exception:
+        db.session.rollback()
 
 
 @app.route('/products')
@@ -2155,6 +2948,18 @@ def create_product():
         db.session.commit()
     except IntegrityError:
         db.session.rollback()
+        bc = request.form.get('barcode', '').strip()
+        sku = request.form.get('sku', '').strip()
+        if bc:
+            dup = Product.query.filter_by(barcode=bc).first()
+            if dup:
+                flash(f'Barcode "{bc}" already exists on product "{dup.name}".', 'danger')
+                return redirect(url_for('products_list'))
+        if sku:
+            dup = Product.query.filter_by(sku=sku).first()
+            if dup:
+                flash(f'SKU "{sku}" already exists on product "{dup.name}".', 'danger')
+                return redirect(url_for('products_list'))
         flash('A product with that SKU or barcode already exists.', 'danger')
         return redirect(url_for('products_list'))
     if stock > 0:
@@ -2184,6 +2989,18 @@ def edit_product(pid):
         db.session.commit()
     except IntegrityError:
         db.session.rollback()
+        bc = request.form.get('barcode', '').strip()
+        sku = request.form.get('sku', '').strip()
+        if bc:
+            dup = Product.query.filter(Product.barcode == bc, Product.id != pid).first()
+            if dup:
+                flash(f'Barcode "{bc}" already exists on product "{dup.name}".', 'danger')
+                return redirect(url_for('product_profile', pid=p.id))
+        if sku:
+            dup = Product.query.filter(Product.sku == sku, Product.id != pid).first()
+            if dup:
+                flash(f'SKU "{sku}" already exists on product "{dup.name}".', 'danger')
+                return redirect(url_for('product_profile', pid=p.id))
         flash('A product with that SKU or barcode already exists.', 'danger')
         return redirect(url_for('product_profile', pid=p.id))
     log_audit(current_user.id, 'product_updated', 'product', p.id); flash('Product updated.', 'success')
@@ -2309,7 +3126,7 @@ def suppliers_list():
 @app.route('/suppliers/add', methods=['POST'])
 @login_required
 def create_supplier():
-    s = Supplier(name=request.form['name'].strip(), contact_person=request.form.get('contact_person', '').strip(), mobile=request.form.get('mobile', '').strip(), email=request.form.get('email', '').strip(), address=request.form.get('address', '').strip(), gstin=request.form.get('gstin', '').strip(), state=request.form.get('state', ''), state_code=int(request.form.get('state_code', 29)), bank_name=request.form.get('bank_name', '').strip(), bank_account=request.form.get('bank_account', '').strip(), bank_ifsc=request.form.get('bank_ifsc', '').strip(), upi_id=request.form.get('upi_id', '').strip())
+    s = Supplier(name=request.form['name'].strip(), contact_person=request.form.get('contact_person', '').strip(), mobile=request.form.get('mobile', '').strip(), email=request.form.get('email', '').strip(), address=request.form.get('address', '').strip(), gstin=request.form.get('gstin', '').strip(), state=request.form.get('state', ''), state_code=int(request.form.get('state_code', 29)))
     db.session.add(s); db.session.commit(); log_audit(current_user.id, 'supplier_created', 'supplier', s.id)
     flash('Supplier added.', 'success'); return redirect(url_for('suppliers_list'))
 
@@ -2331,8 +3148,6 @@ def edit_supplier(sid):
     s.name = request.form['name'].strip(); s.contact_person = request.form.get('contact_person', '').strip(); s.mobile = request.form.get('mobile', '').strip()
     s.email = request.form.get('email', '').strip(); s.address = request.form.get('address', '').strip(); s.gstin = request.form.get('gstin', '').strip()
     s.state = request.form.get('state', ''); s.state_code = int(request.form.get('state_code', 29))
-    s.bank_name = request.form.get('bank_name', '').strip(); s.bank_account = request.form.get('bank_account', '').strip()
-    s.bank_ifsc = request.form.get('bank_ifsc', '').strip(); s.upi_id = request.form.get('upi_id', '').strip()
     db.session.commit(); log_audit(current_user.id, 'supplier_updated', 'supplier', s.id)
     flash('Supplier updated.', 'success'); return redirect(url_for('supplier_profile', sid=s.id))
 
@@ -2355,8 +3170,7 @@ def purchase_orders():
 @login_required
 def create_purchase_order():
     if request.method == 'POST':
-        existing = [p[0] for p in PurchaseOrder.query.with_entities(PurchaseOrder.po_number).all()]
-        po = PurchaseOrder(po_number=generate_purchase_order_number(existing), supplier_id=int(request.form['supplier_id']), supplier_name=request.form.get('supplier_name', ''), order_date=datetime.strptime(request.form['order_date'], '%Y-%m-%d').date(), expected_date=datetime.strptime(request.form['expected_date'], '%Y-%m-%d').date() if request.form.get('expected_date') else None, notes=request.form.get('notes', ''), status='draft', created_by=current_user.id)
+        po = PurchaseOrder(po_number=generate_purchase_order_number(), supplier_id=int(request.form['supplier_id']), supplier_name=request.form.get('supplier_name', ''), order_date=datetime.strptime(request.form['order_date'], '%Y-%m-%d').date(), expected_date=datetime.strptime(request.form['expected_date'], '%Y-%m-%d').date() if request.form.get('expected_date') else None, notes=request.form.get('notes', ''), status='draft', created_by=current_user.id)
         db.session.add(po); db.session.flush()
         pids = request.form.getlist('product_id[]'); qtys = request.form.getlist('quantity[]'); prices = request.form.getlist('price[]')
         sub = Decimal('0')
@@ -2372,9 +3186,19 @@ def create_purchase_order():
                 qty=qty, unit=prod.unit if prod else 'pcs', price=price, gst_rate=prod.gst_rate if prod else Decimal('18'), total=total))
             sub += total
         po.subtotal = sub; po.total_tax = Decimal('0'); po.grand_total = sub
-        db.session.commit(); log_audit(current_user.id, 'purchase_order_created', 'purchase_order', po.id)
+        db.session.commit(); _run_low_stock_check(); log_audit(current_user.id, 'purchase_order_created', 'purchase_order', po.id)
         flash(f'PO {po.po_number} created.', 'success'); return redirect(url_for('view_purchase_order', oid=po.id))
-    return render_template('suppliers/purchase_orders.html', orders=PurchaseOrder.query.order_by(desc(PurchaseOrder.created_at)).all(), suppliers=Supplier.query.filter_by(is_active=True).order_by(Supplier.name).all(), products=Product.query.filter_by(is_active=True).order_by(Product.name).all(), show_add=True)
+    prefill = None
+    pid = to_int(request.args.get('product_id'))
+    if pid:
+        prod = db.session.get(Product, pid)
+        prefill = {
+            'product_id': pid,
+            'suggested_qty': max(to_int(request.args.get('suggested_qty')) or 1, 1),
+            'price': str(prod.purchase_price) if prod and prod.purchase_price else '0',
+            'order_date': date.today().isoformat(),
+        }
+    return render_template('suppliers/purchase_orders.html', orders=PurchaseOrder.query.order_by(desc(PurchaseOrder.created_at)).all(), suppliers=Supplier.query.filter_by(is_active=True).order_by(Supplier.name).all(), products=Product.query.filter_by(is_active=True).order_by(Product.name).all(), show_add=True, prefill=prefill)
 
 
 @app.route('/purchase-orders/<int:oid>')
@@ -2389,7 +3213,23 @@ def view_purchase_order(oid):
 @login_required
 def delete_purchase_order(oid):
     o = db.session.get(PurchaseOrder, oid)
-    if o: db.session.delete(o); db.session.commit(); log_audit(current_user.id, 'purchase_order_deleted', 'purchase_order', oid); flash('Purchase order deleted.', 'success')
+    if not o:
+        flash('Purchase order not found.', 'danger')
+        return redirect(url_for('purchase_orders'))
+    if o.status == 'received':
+        for item in o.items:
+            if item.product_id:
+                prod = db.session.get(Product, item.product_id)
+                if prod:
+                    prod.stock_quantity = max(0, (prod.stock_quantity or 0) - item.qty)
+                    _record_movement(item.product_id, 'return', -item.qty,
+                                     reference_type='purchase_order', reference_id=o.id,
+                                     notes=f'Stock reverted on PO deletion: {o.order_number}')
+    num = o.order_number
+    db.session.delete(o)
+    db.session.commit()
+    log_audit(current_user.id, 'purchase_order_deleted', 'purchase_order', oid, f'Deleted {num}')
+    flash(f'Purchase order {num} deleted.', 'success')
     return redirect(url_for('purchase_orders'))
 
 
@@ -2410,6 +3250,7 @@ def update_po_status(oid):
                 prod.last_purchase = datetime.utcnow()
                 _record_movement(prod.id, 'purchase', it.qty, reference_type='purchase_order', reference_id=o.id, notes=f'Received PO {o.po_number}')
             db.session.commit()
+            _run_low_stock_check()
             log_audit(current_user.id, 'po_received_stock', 'purchase_order', oid, f'Stock added for {o.po_number}')
         db.session.commit()
         log_audit(current_user.id, 'po_status_updated', 'purchase_order', oid, f'Status: {o.status}')
@@ -2612,61 +3453,75 @@ def new_invoice():
                 return jsonify({'success': False, 'error': msg}), 400
             flash(msg, 'danger')
             return redirect(url_for('new_invoice'))
-        existing = [i[0] for i in Invoice.query.with_entities(Invoice.invoice_number).all()]
-        inv_num = generate_invoice_number(existing)
-        cust = _resolve_customer(data)
-        inv_date_str = data.get('invoice_date', '') if isinstance(data, dict) else data.get('invoice_date', '')
-        inv_date = datetime.strptime(inv_date_str, '%Y-%m-%d').date() if inv_date_str else date.today()
-        due_date_str = data.get('due_date', '')
-        due_date = datetime.strptime(due_date_str, '%Y-%m-%d').date() if due_date_str else None
-        comp_sc = current_app.config.get('COMPANY_STATE_CODE', 29)
-        cust_sc = int(data.get('customer_state_code', comp_sc))
-        intra = comp_sc == cust_sc
-        inv = Invoice(invoice_number=inv_num, customer_id=cust.id, customer_name=cust.name, customer_mobile=cust.mobile or '', customer_email=cust.email or '', customer_address=cust.address or '', customer_gstin=cust.gstin or '', customer_state=cust.state or '', customer_state_code=cust.state_code or cust_sc, invoice_date=inv_date, due_date=due_date, payment_method=data.get('payment_method', ''), is_intra_state=intra, notes=data.get('notes', ''), terms=data.get('terms', ''), created_by=current_user.id)
-        db.session.add(inv); db.session.flush()
-        sub = Decimal('0'); td = Decimal('0'); tt = Decimal('0'); tc = Decimal('0'); ts = Decimal('0'); ti = Decimal('0')
-        for item in items_data:
-            if not item.get('product_name', '').strip(): continue
-            qty = int(item.get('qty', 1)); rate = Decimal(str(item.get('price', '0'))); dp = Decimal(str(item.get('discount', '0'))); gr = Decimal(str(item.get('gst_rate', '18'))); pid = to_int(item.get('product_id'))
-            ls = rate*qty; da = (ls*dp/Decimal('100')).quantize(Decimal('0.01'), rounding=ROUND_HALF_UP); tax = ls-da
-            gst = GSTService.calculate_gst(tax, gr, intra); lt = tax + gst['total_tax']
-            db.session.add(InvoiceItem(invoice_id=inv.id, product_id=pid, product_name=item['product_name'].strip(), hsn=item.get('hsn', ''), qty=qty, price=rate, discount=dp, gst_rate=gr, taxable_value=tax, cgst=gst['cgst'], sgst=gst['sgst'], igst=gst['igst'], total=lt))
-            sub += ls; td += da; tt += tax; tc += gst['cgst']; ts += gst['sgst']; ti += gst['igst']
-            if pid:
-                prod = db.session.get(Product, pid)
-                if prod:
-                    prod.stock_quantity = (prod.stock_quantity or 0) - qty
-                    prod.last_sale = datetime.utcnow()
-                    _record_movement(pid, 'sale', -qty, reference_type='invoice', reference_id=inv.id, notes=f'Invoice {inv_num}')
-        gt = tt+tc+ts+ti; rg = gt.quantize(Decimal('1'), rounding=ROUND_HALF_UP); ro = rg-gt
-        inv.subtotal=sub; inv.total_discount=td; inv.total_taxable=tt; inv.total_cgst=tc; inv.total_sgst=ts; inv.total_igst=ti; inv.round_off=ro; inv.grand_total=rg
-        ap = Decimal(str(data.get('amount_paid', '0') or '0'))
-        inv.amount_paid = ap
-        inv.balance_due = rg - ap
-        inv.payment_status = 'paid' if ap >= rg else 'partial' if ap > 0 else 'due'
-        if request.is_json:
+        inv_num = None
+        try:
+            # Allocate the number inside the save transaction: it is only
+            # consumed when the invoice commits successfully. On any failure the
+            # whole transaction (counter bump + invoice) rolls back together.
+            inv_num = generate_invoice_number(commit=False)
+            cust = _resolve_customer(data)
+            inv_date_str = data.get('invoice_date', '') if isinstance(data, dict) else data.get('invoice_date', '')
+            inv_date = datetime.strptime(inv_date_str, '%Y-%m-%d').date() if inv_date_str else date.today()
+            due_date_str = data.get('due_date', '')
+            due_date = datetime.strptime(due_date_str, '%Y-%m-%d').date() if due_date_str else None
+            comp_sc = current_app.config.get('COMPANY_STATE_CODE', 29)
+            cust_sc = int(data.get('customer_state_code', comp_sc))
+            intra = comp_sc == cust_sc
+            inv = Invoice(invoice_number=inv_num, customer_id=cust.id, customer_name=cust.name, customer_mobile=cust.mobile or '', customer_email=cust.email or '', customer_address=cust.address or '', customer_gstin=cust.gstin or '', customer_state=cust.state or '', customer_state_code=cust.state_code or cust_sc, invoice_date=inv_date, due_date=due_date, payment_method=data.get('payment_method', ''), is_intra_state=intra, notes=data.get('notes', ''), terms=data.get('terms', ''), created_by=current_user.id)
+            db.session.add(inv); db.session.flush()
+            sub = Decimal('0'); td = Decimal('0'); tt = Decimal('0'); tc = Decimal('0'); ts = Decimal('0'); ti = Decimal('0')
+            for item in items_data:
+                if not item.get('product_name', '').strip(): continue
+                qty = int(item.get('qty', 1)); rate = Decimal(str(item.get('price', '0'))); dp = Decimal(str(item.get('discount', '0'))); gr = Decimal(str(item.get('gst_rate', '18'))); pid = to_int(item.get('product_id'))
+                ls = rate*qty; da = (ls*dp/Decimal('100')).quantize(Decimal('0.01'), rounding=ROUND_HALF_UP); tax = ls-da
+                gst = GSTService.calculate_gst(tax, gr, intra); lt = tax + gst['total_tax']
+                db.session.add(InvoiceItem(invoice_id=inv.id, product_id=pid, product_name=item['product_name'].strip(), hsn=item.get('hsn', ''), qty=qty, price=rate, discount=dp, gst_rate=gr, taxable_value=tax, cgst=gst['cgst'], sgst=gst['sgst'], igst=gst['igst'], total=lt))
+                sub += ls; td += da; tt += tax; tc += gst['cgst']; ts += gst['sgst']; ti += gst['igst']
+                if pid:
+                    prod = db.session.get(Product, pid)
+                    if prod:
+                        prod.stock_quantity = (prod.stock_quantity or 0) - qty
+                        prod.last_sale = datetime.utcnow()
+                        _record_movement(pid, 'sale', -qty, reference_type='invoice', reference_id=inv.id, notes=f'Invoice {inv_num}')
+            gt = tt+tc+ts+ti; rg = gt.quantize(Decimal('1'), rounding=ROUND_HALF_UP); ro = rg-gt
+            inv.subtotal=sub; inv.total_discount=td; inv.total_taxable=tt; inv.total_cgst=tc; inv.total_sgst=ts; inv.total_igst=ti; inv.round_off=ro; inv.grand_total=rg
+            ap = Decimal(str(data.get('amount_paid', '0') or '0'))
+            inv.amount_paid = ap
+            inv.balance_due = rg - ap
+            inv.payment_status = 'paid' if ap >= rg else 'partial' if ap > 0 else 'due'
             inv.status = 'completed'
-        if inv.customer_id:
-            c = db.session.get(Customer, inv.customer_id)
-            if c: c.total_purchases = (c.total_purchases or Decimal('0'))+rg; c.invoice_count = (c.invoice_count or 0)+1
-        db.session.commit(); log_audit(current_user.id, 'invoice_created', 'invoice', inv.id, f'{inv_num}, Total: {rg}')
-
-        if inv.customer_email:
-            try:
-                co = current_app.config.get('COMPANY', {})
-                ok, emsg = send_invoice_email(inv, co)
-                if ok:
-                    log_audit(current_user.id, 'email_invoice', 'invoice', inv.id, f'Auto-sent to {inv.customer_email}')
-                else:
-                    log_audit(current_user.id, 'email_failed', 'invoice', inv.id, emsg)
-            except Exception as e:
-                log_audit(current_user.id, 'email_failed', 'invoice', inv.id, str(e))
+            if inv.customer_id:
+                c = db.session.get(Customer, inv.customer_id)
+                if c: c.total_purchases = (c.total_purchases or Decimal('0'))+rg; c.invoice_count = (c.invoice_count or 0)+1
+            db.session.commit()
+        except Exception:
+            db.session.rollback()
+            if request.is_json:
+                return jsonify({'success': False, 'error': 'Invoice could not be saved. No changes were made.'}), 400
+            flash('Invoice could not be saved. No changes were made.', 'danger')
+            return redirect(url_for('new_invoice'))
+        log_audit(current_user.id, 'invoice_created', 'invoice', inv.id, f'{inv_num}, Total: {rg}')
 
         flash(f'Invoice {inv_num} created.', 'success')
-        if request.is_json: return jsonify({'success': True, 'redirect': url_for('view_invoice', iid=inv.id)})
-        return redirect(url_for('view_invoice', iid=inv.id))
-    existing = [i[0] for i in Invoice.query.with_entities(Invoice.invoice_number).all()]
-    inv_num = generate_invoice_number(existing)
+        resp = jsonify({'success': True, 'redirect': url_for('view_invoice', iid=inv.id)}) if request.is_json else redirect(url_for('view_invoice', iid=inv.id))
+
+        @after_this_request
+        def _post_invoice_tasks(response):
+            if inv.customer_email:
+                try:
+                    co = current_app.config.get('COMPANY', {})
+                    ok, emsg = send_invoice_email(inv, co)
+                    if ok:
+                        log_audit(current_user.id, 'email_invoice', 'invoice', inv.id, f'Auto-sent to {inv.customer_email}')
+                    else:
+                        log_audit(current_user.id, 'email_failed', 'invoice', inv.id, emsg)
+                except Exception as e:
+                    log_audit(current_user.id, 'email_failed', 'invoice', inv.id, str(e))
+            _run_low_stock_check()
+            return response
+
+        return resp
+    inv_num = peek_next_invoice_number()
     return render_template('billing/new_invoice.html', customers=Customer.query.order_by(Customer.name).all(), products=Product.query.filter_by(is_active=True).order_by(Product.name).all(), company=current_app.config.get('COMPANY', {}), today=date.today().isoformat(), invoice_number=inv_num)
 
 
@@ -2680,6 +3535,20 @@ def _inv_accessible(inv):
 def _jinv_editable(inv):
     """Invoices may be edited only while DRAFT or UNPAID (due) and not cancelled."""
     return inv.status != 'cancelled' and (inv.status == 'draft' or inv.payment_status in ('pending', 'due'))
+
+
+def _inv_editable_for_user(inv):
+    """Highest legitimate edit permission for the current user.
+
+    Admins may edit any non-cancelled invoice (including completed/paid ones,
+    preserving payment history); other roles keep the draft/unpaid-only rule.
+    Cancelled invoices are always immutable.
+    """
+    if inv.status == 'cancelled':
+        return False
+    if current_user.is_admin:
+        return True
+    return inv.status == 'draft' or inv.payment_status in ('pending', 'due')
 
 
 @app.route('/invoices/<int:iid>')
@@ -2706,28 +3575,262 @@ def edit_invoice(iid):
     inv = db.session.get(Invoice, iid)
     if not inv: abort(404)
     if not _inv_accessible(inv):
-        if request.is_json: return jsonify({'success': False, 'error': 'You cannot edit another user\'s invoice.'})
+        if request.is_json: return jsonify({'success': False, 'error': 'You cannot edit another user\'s invoice.'}), 403
         abort(403)
-    if not _jinv_editable(inv):
+    if not _inv_editable_for_user(inv):
         if request.method == 'POST':
-            if request.is_json: return jsonify({'success': False, 'error': 'This invoice cannot be edited because it has already been finalized.'})
+            if request.is_json: return jsonify({'success': False, 'error': 'This invoice cannot be edited because it has already been finalized.'}), 400
             flash('This invoice cannot be edited because it has already been finalized.', 'danger')
             return redirect(url_for('view_invoice', iid=inv.id))
         flash('This invoice cannot be edited because it has already been finalized.', 'danger')
         return redirect(url_for('view_invoice', iid=inv.id))
     if request.method == 'POST':
-        inv.customer_name = request.form.get('customer_name', '').strip(); inv.customer_mobile = request.form.get('customer_mobile', '').strip()
-        inv.customer_email = request.form.get('customer_email', '').strip(); inv.customer_address = request.form.get('customer_address', '').strip()
-        inv.customer_gstin = request.form.get('customer_gstin', '').strip(); inv.customer_state = request.form.get('customer_state', '')
-        inv.customer_state_code = int(request.form.get('customer_state_code', 29)); inv.invoice_date = datetime.strptime(request.form['invoice_date'], '%Y-%m-%d').date()
-        inv.due_date = datetime.strptime(request.form['due_date'], '%Y-%m-%d').date() if request.form.get('due_date') else None
-        inv.payment_method = request.form.get('payment_method', ''); inv.notes = request.form.get('notes', ''); inv.terms = request.form.get('terms', ''); inv.updated_at = datetime.utcnow()
-        old = dict(status=inv.status, customer_name=inv.customer_name)
-        db.session.commit(); log_audit(current_user.id, 'invoice_updated', 'invoice', inv.id, f'Edited {inv.invoice_number}')
-        if request.is_json: return jsonify({'success': True, 'message': f'Invoice {inv.invoice_number} updated.'})
+        old_gt = inv.grand_total or Decimal('0')
+        old_amount_paid = inv.amount_paid or Decimal('0')
+        old_customer_id = inv.customer_id
+        old_items = [(it.product_id, it.qty) for it in inv.items if it.product_id]
+
+        data = request.get_json(silent=True) or request.form
+        items_data = data.get('items', [])
+        if not items_data:
+            pn = data.getlist('product_name[]') if hasattr(data, 'getlist') else data.get('product_name', [])
+            if isinstance(pn, str): pn = [pn]
+            pids = data.getlist('product_id[]') if hasattr(data, 'getlist') else data.get('product_id', [])
+            qtys = data.getlist('qty[]') if hasattr(data, 'getlist') else data.get('qty', [])
+            rates = data.getlist('rate[]') if hasattr(data, 'getlist') else data.get('rate', [])
+            discs = data.getlist('discount[]') if hasattr(data, 'getlist') else data.get('discount', [])
+            gst_r = data.getlist('gst_rate[]') if hasattr(data, 'getlist') else data.get('gst_rate', [])
+            hsns = data.getlist('hsn[]') if hasattr(data, 'getlist') else data.get('hsn', [])
+            units = data.getlist('unit[]') if hasattr(data, 'getlist') else data.get('unit', [])
+            items_data = []
+            for i in range(len(pn) if isinstance(pn, (list, tuple)) else 0):
+                if not pn[i].strip(): continue
+                items_data.append({'product_name': pn[i], 'product_id': int(pids[i]) if pids and i < len(pids) and pids[i] else None, 'qty': int(qtys[i]) if qtys and i < len(qtys) else 1, 'price': Decimal(rates[i]) if rates and i < len(rates) else 0, 'discount': Decimal(discs[i]) if discs and i < len(discs) else 0, 'gst_rate': Decimal(gst_r[i]) if gst_r and i < len(gst_r) else 18, 'hsn': hsns[i] if hsns and i < len(hsns) else '', 'unit': units[i] if units and i < len(units) else 'pcs'})
+
+        valid_items = [it for it in items_data if it.get('product_name', '').strip()]
+        if not valid_items:
+            if request.is_json: return jsonify({'success': False, 'error': 'Invoice must have at least one item.'}), 400
+            flash('Invoice must have at least one item.', 'danger')
+            return redirect(url_for('edit_invoice', iid=inv.id))
+
+        # Inventory safety: account for old quantity -> new quantity (net delta).
+        old_map = {}
+        for pid, qty in old_items:
+            old_map[pid] = old_map.get(pid, 0) + qty
+        new_map = {}
+        for item in valid_items:
+            pid = to_int(item.get('product_id'))
+            try:
+                qty = int(item.get('qty', 1))
+            except (TypeError, ValueError):
+                qty = 1
+            if not pid or qty <= 0:
+                continue
+            new_map[pid] = new_map.get(pid, 0) + qty
+
+        allow_oos = str(data.get('allow_out_of_stock', '') or '').lower() in ('1', 'true', 'yes', 'on')
+        stock_errors = []
+        for item in valid_items:
+            pid = to_int(item.get('product_id'))
+            if not pid: continue
+            try:
+                qty = int(item.get('qty', 1))
+            except (TypeError, ValueError):
+                qty = 1
+            if qty <= 0:
+                prod = db.session.get(Product, pid)
+                stock_errors.append(f'{prod.name if prod else "Item"}: quantity must be greater than zero.')
+        for pid in sorted(set(old_map) | set(new_map)):
+            delta = new_map.get(pid, 0) - old_map.get(pid, 0)
+            if delta <= 0:
+                continue
+            prod = db.session.get(Product, pid)
+            if prod and not allow_oos and delta > prod.current_stock:
+                stock_errors.append(f'{prod.name}: insufficient stock. Only {prod.current_stock} unit(s) available.')
+        if stock_errors:
+            msg = ' '.join(stock_errors)
+            if request.is_json: return jsonify({'success': False, 'error': msg}), 400
+            flash(msg, 'danger')
+            return redirect(url_for('edit_invoice', iid=inv.id))
+
+        # Recalculate every financial value on the SERVER (browser totals ignored).
+        comp_sc = current_app.config.get('COMPANY_STATE_CODE', 29)
+        try:
+            cust_sc = int(data.get('customer_state_code') or inv.customer_state_code or comp_sc)
+        except (TypeError, ValueError):
+            cust_sc = comp_sc
+        intra = comp_sc == cust_sc
+        sub = Decimal('0'); td = Decimal('0'); tt = Decimal('0')
+        tc = Decimal('0'); ts = Decimal('0'); ti = Decimal('0')
+        new_line_items = []
+        for item in valid_items:
+            qty = int(item.get('qty', 1)); rate = Decimal(str(item.get('price', '0')))
+            dp = Decimal(str(item.get('discount', '0'))); gr = Decimal(str(item.get('gst_rate', '18')))
+            pid = to_int(item.get('product_id'))
+            ls = rate * qty
+            da = (ls * dp / Decimal('100')).quantize(Decimal('0.01'), rounding=ROUND_HALF_UP)
+            tax = ls - da
+            gst = GSTService.calculate_gst(tax, gr, intra)
+            lt = tax + gst['total_tax']
+            new_line_items.append({
+                'product_id': pid, 'product_name': item['product_name'].strip(),
+                'hsn': item.get('hsn', ''), 'qty': qty, 'unit': item.get('unit', 'pcs'),
+                'price': rate, 'discount': dp, 'gst_rate': gr, 'taxable_value': tax,
+                'cgst': gst['cgst'], 'sgst': gst['sgst'], 'igst': gst['igst'], 'total': lt,
+            })
+            sub += ls; td += da; tt += tax; tc += gst['cgst']; ts += gst['sgst']; ti += gst['igst']
+        gt = tt + tc + ts + ti
+        rg = gt.quantize(Decimal('1'), rounding=ROUND_HALF_UP)
+        ro = rg - gt
+
+        # Payment: read from submitted data and sync payment record.
+        submitted_paid = Decimal(str(data.get('amount_paid') or '0')).quantize(Decimal('0.01'), rounding=ROUND_HALF_UP)
+        if submitted_paid < Decimal('0'):
+            submitted_paid = Decimal('0')
+        if submitted_paid > rg + Decimal('0.005'):
+            err = (f'Amount paid ({format_indian_currency(submitted_paid)}) exceeds the invoice total '
+                   f'({format_indian_currency(rg)}). Please correct the paid amount.')
+            if request.is_json: return jsonify({'success': False, 'error': err}), 400
+            flash(err, 'danger')
+            return redirect(url_for('edit_invoice', iid=inv.id))
+        submitted_ref = (data.get('payment_reference') or '').strip()
+
+        # ---- all validations passed: apply changes ----
+        cid = to_int(data.get('customer_id'))
+        if cid:
+            c = db.session.get(Customer, cid)
+            if c:
+                inv.customer_id = c.id
+                inv.customer_name = c.name
+                inv.customer_mobile = c.mobile or ''
+                inv.customer_email = c.email or ''
+                inv.customer_address = c.address or ''
+                inv.customer_gstin = c.gstin or ''
+                inv.customer_state = c.state or ''
+                inv.customer_state_code = c.state_code or cust_sc
+        else:
+            inv.customer_name = (data.get('customer_name') or inv.customer_name or '').strip()
+            inv.customer_mobile = (data.get('customer_mobile') or inv.customer_mobile or '').strip()
+            inv.customer_email = (data.get('customer_email') or inv.customer_email or '').strip()
+            inv.customer_address = (data.get('customer_address') or inv.customer_address or '').strip()
+            inv.customer_gstin = (data.get('customer_gstin') or inv.customer_gstin or '').strip()
+            inv.customer_state = (data.get('customer_state') or inv.customer_state or '').strip()
+            inv.customer_state_code = cust_sc
+        inv.invoice_date = datetime.strptime(data.get('invoice_date', '') or inv.invoice_date.strftime('%Y-%m-%d'), '%Y-%m-%d').date()
+        inv.due_date = (datetime.strptime(data.get('due_date', ''), '%Y-%m-%d').date() if data.get('due_date')
+                        else None if 'due_date' in data else inv.due_date)
+        inv.payment_method = (data.get('payment_method') or inv.payment_method or '').strip()
+        inv.notes = (data.get('notes') if 'notes' in data else inv.notes) or ''
+        inv.terms = (data.get('terms') if 'terms' in data else inv.terms) or ''
+        inv.updated_at = datetime.utcnow()
+
+        # inventory movements: old -> new
+        for pid in sorted(set(old_map) | set(new_map)):
+            delta = new_map.get(pid, 0) - old_map.get(pid, 0)
+            if delta == 0: continue
+            prod = db.session.get(Product, pid)
+            if not prod: continue
+            if delta > 0:
+                prod.stock_quantity = (prod.stock_quantity or 0) - delta
+                prod.last_sale = datetime.utcnow()
+                _record_movement(pid, 'sale', -delta, reference_type='invoice', reference_id=inv.id,
+                                 notes=f'Edited {inv.invoice_number}')
+            else:
+                prod.stock_quantity = (prod.stock_quantity or 0) - delta
+                _record_movement(pid, 'return', -delta, reference_type='invoice', reference_id=inv.id,
+                                 notes=f'Edited {inv.invoice_number}')
+
+        for it in inv.items:
+            db.session.delete(it)
+        for li in new_line_items:
+            db.session.add(InvoiceItem(invoice_id=inv.id, **li))
+        inv.subtotal = sub; inv.total_discount = td; inv.total_taxable = tt
+        inv.total_cgst = tc; inv.total_sgst = ts; inv.total_igst = ti
+        inv.round_off = ro; inv.grand_total = rg; inv.is_intra_state = intra
+        _set_payment_state(inv, submitted_paid)
+
+        # keep customer purchase aggregates accurate
+        if inv.customer_id and inv.customer_id == old_customer_id:
+            client = db.session.get(Customer, inv.customer_id)
+            if client:
+                client.total_purchases = max(Decimal('0'), (client.total_purchases or Decimal('0')) - old_gt + rg)
+        elif inv.customer_id:
+            if old_customer_id:
+                old_c = db.session.get(Customer, old_customer_id)
+                if old_c:
+                    old_c.total_purchases = max(Decimal('0'), (old_c.total_purchases or Decimal('0')) - old_gt)
+                    old_c.invoice_count = max(0, (old_c.invoice_count or 0) - 1)
+            new_c = db.session.get(Customer, inv.customer_id)
+            if new_c:
+                new_c.total_purchases = (new_c.total_purchases or Decimal('0')) + rg
+                new_c.invoice_count = (new_c.invoice_count or 0) + 1
+
+        db.session.commit()
+
+        # Sync payment record: create/update to match the edited amount_paid.
+        old_total_paid = Decimal(str(old_amount_paid or '0')).quantize(Decimal('0.01'), rounding=ROUND_HALF_UP)
+        if submitted_paid != old_total_paid:
+            existing_payments = _payments_newest(inv)
+            if submitted_paid > Decimal('0'):
+                if existing_payments:
+                    # Update the most recent payment to reflect the new total paid.
+                    mp = existing_payments[0]
+                    mp.amount = submitted_paid
+                    mp.payment_method = inv.payment_method or 'cash'
+                    if submitted_ref:
+                        mp.reference_number = submitted_ref
+                    mp.updated_at = datetime.utcnow()
+                else:
+                    # No previous payments — create a new one.
+                    new_pay = Payment(
+                        invoice_id=inv.id,
+                        customer_id=inv.customer_id,
+                        payment_date=inv.invoice_date or date.today(),
+                        amount=submitted_paid,
+                        payment_method=inv.payment_method or 'cash',
+                        reference_number=submitted_ref or None,
+                        received_by=current_user.full_name if hasattr(current_user, 'full_name') else current_user.username,
+                    )
+                    db.session.add(new_pay)
+                db.session.commit()
+
+        _run_low_stock_check()
+        log_audit(current_user.id, 'invoice_updated', 'invoice', inv.id,
+                  f'Edited {inv.invoice_number} (Total: {old_gt} -> {rg}, items: {len(old_items)} -> {len(valid_items)})')
+        if request.is_json:
+            return jsonify({'success': True, 'message': 'Invoice updated successfully.',
+                            'redirect': url_for('view_invoice', iid=inv.id)})
         flash('Invoice updated.', 'success')
         return redirect(url_for('view_invoice', iid=inv.id))
-    return render_template('billing/new_invoice.html', invoice=inv, invoice_number=inv.invoice_number, customers=Customer.query.order_by(Customer.name).all(), products=Product.query.filter_by(is_active=True).order_by(Product.name).all(), edit_mode=True, company=current_app.config.get('COMPANY', {}), today=date.today().isoformat())
+
+    invoice_data = {
+        'customer_id': inv.customer_id,
+        'customer_name': inv.customer_name or '',
+        'customer_mobile': inv.customer_mobile or '',
+        'customer_email': inv.customer_email or '',
+        'customer_address': inv.customer_address or '',
+        'customer_gstin': inv.customer_gstin or '',
+        'customer_state': inv.customer_state or '',
+        'customer_state_code': inv.customer_state_code or '',
+        'invoice_date': inv.invoice_date.isoformat() if inv.invoice_date else date.today().isoformat(),
+        'due_date': inv.due_date.isoformat() if inv.due_date else '',
+        'payment_method': inv.payment_method or 'cash',
+        'amount_paid': float(inv.amount_paid or 0),
+        'payment_reference': _payment_display_ref(inv.payments[0]) if inv.payments else '',
+        'notes': inv.notes or '',
+        'terms': inv.terms or '',
+        'items': [{
+            'product_id': it.product_id, 'product_name': it.product_name,
+            'hsn': it.hsn or '', 'qty': it.qty, 'unit': it.unit or 'pcs',
+            'price': float(it.price or 0), 'discount': float(it.discount or 0),
+            'gst_rate': float(it.gst_rate or 0),
+        } for it in inv.items],
+    }
+    return render_template('billing/new_invoice.html', invoice=inv, invoice_number=inv.invoice_number,
+                           invoice_data=invoice_data, customers=Customer.query.order_by(Customer.name).all(),
+                           products=Product.query.filter_by(is_active=True).order_by(Product.name).all(),
+                           edit_mode=True, company=current_app.config.get('COMPANY', {}),
+                           today=date.today().isoformat())
 
 
 @app.route('/invoices/<int:iid>/delete', methods=['POST'])
@@ -2745,9 +3848,9 @@ def delete_invoice(iid):
     if not current_user.check_password(pw):
         if request.is_json: return jsonify({'success': False, 'error': 'Incorrect administrator password.'})
         flash('Incorrect administrator password.', 'danger'); return redirect(url_for('invoice_history'))
-    if not _jinv_editable(inv):
-        if request.is_json: return jsonify({'success': False, 'error': 'Finalized invoices cannot be deleted. Please cancel them instead.'})
-        flash('Finalized invoices cannot be deleted. Please cancel them instead.', 'danger'); return redirect(url_for('invoice_history'))
+    if inv.status == 'cancelled':
+        if request.is_json: return jsonify({'success': False, 'error': 'Cancelled invoices cannot be deleted.'})
+        flash('Cancelled invoices cannot be deleted.', 'danger'); return redirect(url_for('invoice_history'))
     num = inv.invoice_number
     client = None
     if inv.customer_id:
@@ -2755,7 +3858,11 @@ def delete_invoice(iid):
     for item in inv.items:
         if item.product_id:
             prod = db.session.get(Product, item.product_id)
-            if prod: prod.stock_quantity = (prod.stock_quantity or 0) + item.qty
+            if prod:
+                prod.stock_quantity = (prod.stock_quantity or 0) + item.qty
+                _record_movement(item.product_id, 'return', item.qty,
+                                 reference_type='invoice_delete', reference_id=inv.id,
+                                 notes=f'Deleted {num}')
     if client:
         client.total_purchases = max(Decimal('0'), (client.total_purchases or Decimal('0')) - (inv.grand_total or 0))
         client.invoice_count = max(0, (client.invoice_count or 0) - 1)
@@ -2800,7 +3907,7 @@ def print_invoice_pdf(inv_id, copy_type):
     inv = db.session.get(Invoice, inv_id)
     if not inv: abort(404)
     if not _inv_accessible(inv): abort(403)
-    return render_template('billing/print_invoice.html', invoice=inv, copy_type=copy_type, amount_words=amount_to_words(inv.grand_total), company=current_app.config.get('COMPANY', {}))
+    return render_template('billing/print_invoice.html', invoice=inv, copy_type=copy_type, copy_label=_COPY_LABELS.get(copy_type, 'CUSTOMER COPY'), amount_words=amount_to_words(inv.grand_total), company=current_app.config.get('COMPANY', {}))
 
 
 @app.route('/invoices/<int:iid>/email', methods=['POST'])
@@ -2860,8 +3967,6 @@ def _payment_payload(data):
         'reference_number': _get('reference_number', 'reference', 'payment_reference'),
         'transaction_id': _get('transaction_id'),
         'utr': _get('utr'),
-        'cheque_number': _get('cheque_number', 'cheque'),
-        'bank_name': _get('bank_name'),
         'remarks': _get('remarks', 'notes'),
         'received_by': _get('received_by', 'received'),
     }
@@ -2879,8 +3984,6 @@ def _payment_json(p, max_amount=None):
         'reference_number': p.reference_number or '',
         'transaction_id': p.transaction_id or '',
         'utr': p.utr or '',
-        'cheque_number': p.cheque_number or '',
-        'bank_name': p.bank_name or '',
         'remarks': p.remarks or '',
         'received_by': p.received_by or '',
         'display_ref': _payment_display_ref(p),
@@ -2919,37 +4022,44 @@ def add_payment(iid):
     p = Payment(invoice_id=inv.id, customer_id=inv.customer_id, amount=pay['amount'],
                 payment_method=pay['payment_method'], payment_date=pay['payment_date'],
                 reference_number=pay['reference_number'], transaction_id=pay['transaction_id'],
-                utr=pay['utr'], cheque_number=pay['cheque_number'], bank_name=pay['bank_name'],
+                utr=pay['utr'],
                 remarks=pay['remarks'], notes=pay['remarks'], received_by=pay['received_by'] or current_user.full_name)
     db.session.add(p)
     new_paid = (inv.amount_paid or Decimal('0')) + pay['amount']
     _set_payment_state(inv, new_paid)
+    inv.payment_method = pay['payment_method']
     db.session.flush()
     db.session.commit()
     log_audit(current_user.id, 'Payment Added', 'payment', p.id,
               f'{inv.invoice_number} | {format_indian_currency(pay["amount"])} via {_payment_method_label(pay["payment_method"])}',
               ip_address=request.remote_addr)
 
-    if inv.payment_status == 'paid' and inv.customer_email:
-        try:
-            co = current_app.config.get('COMPANY', {})
-            ok, emsg = send_invoice_email(inv, co)
-            if ok:
-                log_audit(current_user.id, 'email_invoice', 'invoice', inv.id, f'Payment receipt auto-sent to {inv.customer_email}')
-            else:
-                log_audit(current_user.id, 'email_failed', 'invoice', inv.id, emsg)
-        except Exception as e:
-            log_audit(current_user.id, 'email_failed', 'invoice', inv.id, str(e))
-
     flash(f'Payment of {format_indian_currency(pay["amount"])} recorded.', 'success')
     if request.is_json:
-        return jsonify({'success': True, 'message': 'Payment recorded successfully.',
+        resp = jsonify({'success': True, 'message': 'Payment recorded successfully.',
                         'amount_paid': float(inv.amount_paid), 'balance': float(inv.balance_due),
                         'balance_due': float(inv.balance_due),
                         'payment_status': inv.payment_status,
                         'status_label': _payment_status_label(inv.payment_status),
                         'payment': _payment_json(p)})
-    return redirect(url_for('view_invoice', iid=iid))
+    else:
+        resp = redirect(url_for('view_invoice', iid=iid))
+
+    if inv.payment_status == 'paid' and inv.customer_email:
+        @after_this_request
+        def _post_payment_email(response):
+            try:
+                co = current_app.config.get('COMPANY', {})
+                ok, emsg = send_invoice_email(inv, co)
+                if ok:
+                    log_audit(current_user.id, 'email_invoice', 'invoice', inv.id, f'Payment receipt auto-sent to {inv.customer_email}')
+                else:
+                    log_audit(current_user.id, 'email_failed', 'invoice', inv.id, emsg)
+            except Exception as e:
+                log_audit(current_user.id, 'email_failed', 'invoice', inv.id, str(e))
+            return response
+
+    return resp
 
 
 @app.route('/api/payments/<int:pid>/edit', methods=['POST'])
@@ -2984,11 +4094,11 @@ def edit_payment(pid):
     old_amt = p.amount
     p.amount = pay['amount']; p.payment_method = pay['payment_method']; p.payment_date = pay['payment_date']
     p.reference_number = pay['reference_number']; p.transaction_id = pay['transaction_id']; p.utr = pay['utr']
-    p.cheque_number = pay['cheque_number']; p.bank_name = pay['bank_name']
     p.remarks = pay['remarks']; p.notes = pay['remarks']
     p.received_by = pay['received_by'] or current_user.full_name
     p.updated_at = datetime.utcnow()
     _set_payment_state(inv, other_paid + pay['amount'])
+    inv.payment_method = pay['payment_method']
     db.session.commit()
     log_audit(current_user.id, 'Payment Edited', 'payment', p.id,
               f'{inv.invoice_number} | {format_indian_currency(old_amt)} -> {format_indian_currency(pay["amount"])}',
@@ -3071,7 +4181,11 @@ def cancel_invoice(iid):
     for item in inv.items:
         if item.product_id:
             prod = db.session.get(Product, item.product_id)
-            if prod: prod.stock_quantity = (prod.stock_quantity or 0) + item.qty
+            if prod:
+                prod.stock_quantity = (prod.stock_quantity or 0) + item.qty
+                _record_movement(item.product_id, 'return', item.qty,
+                                 reference_type='invoice_cancel', reference_id=inv.id,
+                                 notes=f'Cancelled {inv.invoice_number}')
     if inv.customer_id:
         client = db.session.get(Customer, inv.customer_id)
         if client:
@@ -3089,6 +4203,7 @@ def cancel_invoice(iid):
 @app.route('/quotations')
 @login_required
 def quotations_list():
+    _expire_overdue_quotations()
     return render_template('quotations/quotations.html', quotations=Quotation.query.order_by(desc(Quotation.quotation_date)).all())
 
 
@@ -3097,8 +4212,7 @@ def quotations_list():
 def new_quotation():
     if request.method == 'POST':
         data = request.get_json(silent=True) or request.form
-        existing = [q[0] for q in Quotation.query.with_entities(Quotation.quotation_number).all()]
-        qn = generate_quotation_number(existing); cust = _resolve_customer(data)
+        qn = generate_quotation_number(); cust = _resolve_customer(data)
         comp_sc = current_app.config.get('COMPANY_STATE_CODE', 29); cust_sc = int(data.get('customer_state_code', comp_sc)); intra = comp_sc == cust_sc
         qd_str = data.get('quotation_date', '')
         qd = datetime.strptime(qd_str, '%Y-%m-%d').date() if qd_str else date.today()
@@ -3132,14 +4246,14 @@ def new_quotation():
         db.session.commit(); log_audit(current_user.id, 'quotation_created', 'quotation', qt.id); flash(f'Quotation {qn} created.', 'success')
         if request.is_json: return jsonify({'success': True, 'redirect': url_for('view_quotation', qid=qt.id)})
         return redirect(url_for('view_quotation', qid=qt.id))
-    existing = [q[0] for q in Quotation.query.with_entities(Quotation.quotation_number).all()]
-    qn = generate_quotation_number(existing)
+    qn = generate_quotation_number()
     return render_template('quotations/new_quotation.html', customers=Customer.query.order_by(Customer.name).all(), products=Product.query.filter_by(is_active=True).order_by(Product.name).all(), company=current_app.config.get('COMPANY', {}), today=date.today().isoformat(), quotation_number=qn)
 
 
 @app.route('/quotations/<int:qid>')
 @login_required
 def view_quotation(qid):
+    _expire_overdue_quotations()
     q = db.session.get(Quotation, qid)
     if not q: abort(404)
     return render_template('quotations/quotation_preview.html', quotation=q, amount_words=amount_to_words(q.grand_total), company=current_app.config.get('COMPANY', {}))
@@ -3157,24 +4271,94 @@ def quotation_preview(qid):
 @login_required
 def convert_quotation_to_invoice(qid):
     qt = db.session.get(Quotation, qid)
-    if not qt: abort(404)
-    existing = [i[0] for i in Invoice.query.with_entities(Invoice.invoice_number).all()]
-    inv_num = generate_invoice_number(existing)
-    gt_rounded = qt.grand_total.quantize(Decimal('1'), rounding=ROUND_HALF_UP)
-    round_off = gt_rounded - qt.grand_total
-    inv = Invoice(invoice_number=inv_num, customer_id=qt.customer_id, customer_name=qt.customer_name, customer_mobile=qt.customer_mobile, customer_email=qt.customer_email, customer_address=qt.customer_address, customer_gstin=qt.customer_gstin, customer_state=qt.customer_state, customer_state_code=qt.customer_state_code, invoice_date=date.today(), is_intra_state=qt.is_intra_state, subtotal=qt.subtotal, total_discount=qt.total_discount, total_taxable=qt.total_taxable, total_cgst=qt.total_cgst, total_sgst=qt.total_sgst, total_igst=qt.total_igst, round_off=round_off, grand_total=gt_rounded, notes=qt.notes, terms=qt.terms, created_by=current_user.id)
-    db.session.add(inv); db.session.flush()
+    if not qt:
+        abort(404)
+    if qt.status != 'accepted':
+        flash('Only ACCEPTED quotations can be converted to an invoice.', 'danger')
+        return redirect(url_for('view_quotation', qid=qid))
+    if qt.converted_invoices:
+        flash('This quotation has already been converted to an invoice.', 'danger')
+        return redirect(url_for('view_quotation', qid=qid))
     for qi in qt.items:
-        db.session.add(InvoiceItem(invoice_id=inv.id, product_id=qi.product_id, product_name=qi.product_name, hsn=qi.hsn, qty=qi.qty, unit=qi.unit, price=qi.price, discount=qi.discount, gst_rate=qi.gst_rate, taxable_value=qi.taxable_value, cgst=qi.cgst, sgst=qi.sgst, igst=qi.igst, total=qi.total))
         if qi.product_id:
             prod = db.session.get(Product, qi.product_id)
-            if prod: prod.stock_quantity = max(0, prod.stock_quantity - qi.qty)
-    if inv.customer_id:
-        c = db.session.get(Customer, inv.customer_id)
-        if c: c.total_purchases = (c.total_purchases or Decimal('0')) + qt.grand_total; c.invoice_count = (c.invoice_count or 0) + 1
-    qt.status = 'converted'; db.session.commit()
-    log_audit(current_user.id, 'quotation_converted', 'quotation', qid, f'To: {inv_num}'); flash(f'Converted to Invoice {inv_num}.', 'success')
+            if prod and (prod.stock_quantity or 0) < qi.qty:
+                flash(f'Insufficient stock for {qi.product_name}. Only {prod.stock_quantity} unit(s) available.', 'danger')
+                return redirect(url_for('view_quotation', qid=qid))
+    try:
+        inv_num = generate_invoice_number(commit=False)
+        gt_rounded = qt.grand_total.quantize(Decimal('1'), rounding=ROUND_HALF_UP)
+        round_off = gt_rounded - qt.grand_total
+        inv = Invoice(invoice_number=inv_num, quotation_id=qt.id, customer_id=qt.customer_id, customer_name=qt.customer_name, customer_mobile=qt.customer_mobile, customer_email=qt.customer_email, customer_address=qt.customer_address, customer_gstin=qt.customer_gstin, customer_state=qt.customer_state, customer_state_code=qt.customer_state_code, invoice_date=date.today(), is_intra_state=qt.is_intra_state, subtotal=qt.subtotal, total_discount=qt.total_discount, total_taxable=qt.total_taxable, total_cgst=qt.total_cgst, total_sgst=qt.total_sgst, total_igst=qt.total_igst, round_off=round_off, grand_total=gt_rounded, notes=qt.notes, terms=qt.terms, status='completed', payment_status='due', amount_paid=Decimal('0'), balance_due=gt_rounded, created_by=current_user.id)
+        db.session.add(inv); db.session.flush()
+        for qi in qt.items:
+            db.session.add(InvoiceItem(invoice_id=inv.id, product_id=qi.product_id, product_name=qi.product_name, hsn=qi.hsn, qty=qi.qty, unit=qi.unit, price=qi.price, discount=qi.discount, gst_rate=qi.gst_rate, taxable_value=qi.taxable_value, cgst=qi.cgst, sgst=qi.sgst, igst=qi.igst, total=qi.total))
+            if qi.product_id:
+                prod = db.session.get(Product, qi.product_id)
+                if prod:
+                    prod.stock_quantity = max(0, (prod.stock_quantity or 0) - qi.qty)
+                    _record_movement(prod.id, 'sale', -qi.qty, 'invoice', inv.id, f'From quotation {qt.quotation_number}')
+        if inv.customer_id:
+            c = db.session.get(Customer, inv.customer_id)
+            if c:
+                c.total_purchases = (c.total_purchases or Decimal('0')) + qt.grand_total
+                c.invoice_count = (c.invoice_count or 0) + 1
+        qt.status = 'converted'
+        db.session.commit()
+    except IntegrityError:
+        db.session.rollback()
+        flash('This quotation has already been converted. Please refresh.', 'danger')
+        return redirect(url_for('view_quotation', qid=qid))
+    except Exception as e:
+        db.session.rollback()
+        log_audit(current_user.id, 'quotation_conversion_failed', 'quotation', qid, str(e))
+        flash(f'Conversion failed: {e}', 'danger')
+        return redirect(url_for('view_quotation', qid=qid))
+    log_audit(current_user.id, 'quotation_converted', 'quotation', qid, f'To: {inv_num}')
+    for u in User.query.filter(User.role.in_(['admin', 'manager'])).all():
+        db.session.add(Notification(user_id=u.id, title='Quotation converted',
+                                    message=f'{qt.quotation_number} was converted to Invoice {inv_num}.',
+                                    notification_type='success'))
+    db.session.commit()
+    _run_low_stock_check()
+    flash(f'Converted to Invoice {inv_num}.', 'success')
     return redirect(url_for('view_invoice', iid=inv.id))
+
+
+def _expire_overdue_quotations():
+    """Auto-expire quotations whose validity window has passed."""
+    try:
+        qts = Quotation.query.filter(Quotation.status.in_(['draft', 'sent']),
+                                     Quotation.valid_until.isnot(None),
+                                     Quotation.valid_until < date.today()).all()
+        for qt in qts:
+            qt.status = 'expired'
+            log_audit(current_user.id, 'quotation_expired', 'quotation', qt.id, 'Auto-expired past valid_until')
+        if qts:
+            db.session.commit()
+    except Exception:
+        db.session.rollback()
+
+
+@app.route('/quotations/<int:qid>/status', methods=['POST'])
+@login_required
+def update_quotation_status(qid):
+    qt = db.session.get(Quotation, qid)
+    if not qt:
+        abort(404)
+    if qt.status == 'converted':
+        flash('Converted quotations cannot change status.', 'danger')
+        return redirect(url_for('view_quotation', qid=qid))
+    new = request.form.get('status') or (request.get_json(silent=True) or {}).get('status', '')
+    if new not in ('draft', 'sent', 'accepted', 'rejected', 'expired'):
+        flash('Invalid status.', 'danger')
+        return redirect(url_for('view_quotation', qid=qid))
+    old = qt.status
+    qt.status = new
+    db.session.commit()
+    log_audit(current_user.id, 'quotation_status_changed', 'quotation', qid, f'{old} -> {new}')
+    flash(f'Quotation marked as {new}.', 'success')
+    return redirect(url_for('view_quotation', qid=qid))
 
 
 # ------------------------------------------------------------------
@@ -3252,10 +4436,6 @@ def _invoice_filter_clauses(args, default_period='month', sd=None, ed=None, allo
     gst_type = (args.get('gst_type') or '').strip()
     if gst_type in ('intra', 'inter'):
         clauses.append(Invoice.is_intra_state == (gst_type == 'intra')); filters['gst_type'] = gst_type
-
-    branch = (args.get('branch') or '').strip()
-    if branch and branch != 'all':
-        filters['branch'] = branch  # future-ready dimension
 
     if allow_product:
         product_id = to_int(args.get('product_id'))
@@ -3344,6 +4524,24 @@ def _fetch_outstanding():
             'overdue': bool(i.due_date and i.due_date < date.today()),
         })
     return out
+
+
+def _fetch_low_stock_rows():
+    products = (Product.query.filter(Product.is_active == True, Product.min_stock > 0,
+                                     Product.stock_quantity <= Product.min_stock)
+                .order_by(Product.stock_quantity.asc(), Product.name.asc()).all())
+    rows = []
+    for p in products:
+        rows.append({
+            'id': p.id, 'name': p.name, 'sku': p.sku or '', 'brand': p.brand or '',
+            'category': p.category.name if p.category else '',
+            'stock': p.stock_quantity or 0, 'min_stock': p.min_stock or 0, 'max_stock': p.max_stock or 0,
+            'suggested': _low_stock_suggested_qty(p),
+            'purchase_price': _money(p.purchase_price),
+            'stock_value': _money((p.stock_quantity or 0) * (p.purchase_price or 0)),
+            'status': p.stock_status,
+        })
+    return rows
 
 
 # ------------------------------------------------------------------
@@ -3528,6 +4726,22 @@ def outstanding_report():
     return render_template('reports/outstanding_report.html', invoices=invoices, total_outstanding=total_outstanding,
                            overdue=overdue, overdue_total=overdue_total, filters=filters, today=date.today(),
                            customers=Customer.query.order_by(Customer.name).all())
+
+
+# ------------------------------------------------------------------
+# LOW STOCK REPORT  (/reports/low-stock)
+# ------------------------------------------------------------------
+
+@app.route('/reports/low-stock')
+@login_required
+def low_stock_report():
+    if not current_user.is_admin:
+        abort(403)
+    _run_low_stock_check()
+    products = _fetch_low_stock_rows()
+    total_value = _money(sum(p['stock_value'] for p in products))
+    return render_template('reports/low_stock_report.html', products=products, total_value=total_value,
+                           today=date.today())
 
 
 # ------------------------------------------------------------------
@@ -3868,6 +5082,9 @@ def report_export(fmt, report_type):
     elif report_type == 'outstanding':
         clauses, filters = [Invoice.status != 'cancelled', Invoice.balance_due > 0], {}
         user_map = _user_name_map()
+    elif report_type == 'low_stock':
+        clauses, filters = [], {}
+        user_map = {}
     else:
         clauses, filters = _invoice_filter_clauses(request.args, default_period='year', allow_product=False)
         user_map = _user_name_map()
@@ -3913,6 +5130,11 @@ def _export_csv(report_type, clauses, user_map, fname):
             w.writerow([r['invoice_number'], r['invoice_date'], r['due_date'], r['customer_name'],
                         r['customer_mobile'], r['grand_total'], r['amount_paid'], r['balance_due'],
                         r['status'], 'Yes' if r['overdue'] else 'No'])
+    elif report_type == 'low_stock':
+        w.writerow(['Product', 'SKU', 'Brand', 'Category', 'Current Stock', 'Min Stock', 'Max Stock', 'Suggested Purchase'])
+        for r in _fetch_low_stock_rows():
+            w.writerow([r['name'], r['sku'], r['brand'], r['category'], r['stock'], r['min_stock'],
+                        r['max_stock'], r['suggested']])
     else:
         abort(404)
     buf = io.BytesIO(out.getvalue().encode('utf-8-sig'))
@@ -3958,6 +5180,12 @@ def _export_excel(report_type, clauses, user_map, fname):
             ws.append([r['invoice_number'], r['invoice_date'], r['due_date'], r['customer_name'],
                        r['customer_mobile'], r['grand_total'], r['amount_paid'], r['balance_due'],
                        r['status'], 'Yes' if r['overdue'] else 'No'])
+    elif report_type == 'low_stock':
+        ws = wb.active; ws.title = 'Low Stock Report'
+        ws.append(['Product', 'SKU', 'Brand', 'Category', 'Current Stock', 'Min Stock', 'Max Stock', 'Suggested Purchase'])
+        for r in _fetch_low_stock_rows():
+            ws.append([r['name'], r['sku'], r['brand'], r['category'], r['stock'], r['min_stock'],
+                       r['max_stock'], r['suggested']])
     else:
         abort(404)
     _style_excel(ws)
@@ -4016,6 +5244,11 @@ def _pdf_dataset(report_type, clauses, user_map):
                  round(r['grand_total'], 2), round(r['amount_paid'], 2), round(r['balance_due'], 2),
                  r['status'], 'Yes' if r['overdue'] else 'No'] for r in _fetch_outstanding()]
         return 'Outstanding Report', 'Invoices with unpaid balances', headers, rows
+    if report_type == 'low_stock':
+        headers = ['Product', 'SKU', 'Brand', 'Category', 'Current', 'Min', 'Max', 'Suggested']
+        rows = [[r['name'], r['sku'], r['brand'], r['category'], r['stock'], r['min_stock'],
+                 r['max_stock'], r['suggested']] for r in _fetch_low_stock_rows()]
+        return 'Low Stock Report', 'Products at or below minimum stock', headers, rows
     abort(404)
 
 
@@ -4030,7 +5263,7 @@ def _export_pdf(report_type, clauses, user_map, filters, fname):
 def _build_report_pdf(title, subtitle, headers, rows, filters):
     from reportlab.lib.pagesizes import A4, landscape
     from reportlab.lib import colors as rl_colors
-    from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph, Spacer
+    from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph, Spacer, Image
     from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 
     co = current_app.config.get('COMPANY', {})
@@ -4095,7 +5328,7 @@ def _build_report_pdf(title, subtitle, headers, rows, filters):
 # ------------------------------------------------------------------
 
 def _inr(v):
-    """Format as Indian-Rupee currency: Rs 2,950.00"""
+    """Format as Indian-Rupee currency: Rs. 2,950.00"""
     try:
         v = round(float(v or 0), 2)
     except (TypeError, ValueError):
@@ -4113,7 +5346,7 @@ def _inr(v):
         groups = [head[max(0, i - 2):i] for i in range(len(head), 0, -2)]
         groups.reverse()
         out = ",".join(groups) + "," + tail
-    return ("-" if neg else "") + "\u20B9" + out + "." + "%02d" % frac
+    return ("-" if neg else "") + "Rs. " + out + "." + "%02d" % frac
 
 
 def _pdf_date(v):
@@ -4487,6 +5720,80 @@ def api_product_search():
         }
         payload.append(item)
     return jsonify(payload)
+
+
+@app.route('/api/products/barcode/<barcode>')
+@login_required
+def api_product_barcode(barcode):
+    """Exact barcode lookup — used by scanner for fast single-product resolution."""
+    code = (barcode or '').strip()
+    if not code:
+        return jsonify({'found': False}), 400
+    p = Product.query.filter(Product.barcode == code, Product.is_active == True).first()
+    if not p:
+        return jsonify({'found': False, 'message': f'No product found for barcode: {code}'}), 404
+    stock = p.current_stock or 0
+    return jsonify({
+        'found': True,
+        'product': {
+            'id': p.id, 'name': p.name, 'sku': p.sku, 'barcode': p.barcode,
+            'hsn': p.hsn, 'brand': p.brand, 'unit': p.unit,
+            'selling_price': float(p.selling_price), 'price': float(p.selling_price),
+            'gst_rate': float(p.gst_rate), 'current_stock': stock, 'stock': stock,
+            'min_stock': p.min_stock or 0, 'max_stock': p.max_stock or 500,
+            'image': p.image, 'purchase_price': float(p.purchase_price) if current_user.is_admin else 0,
+        }
+    })
+
+
+@app.route('/api/products/generate-barcode')
+@login_required
+def api_generate_barcode():
+    """Generate a unique EAN-13 barcode for a new product."""
+    import random
+    for _ in range(50):
+        body = ''.join([str(random.randint(0, 9)) for _ in range(12)])
+        code13 = barcode.ean.EAN13(body)
+        full = code13.get_fullcode()
+        if not Product.query.filter_by(barcode=full).first():
+            return jsonify({'barcode': full})
+    return jsonify({'error': 'Could not generate a unique barcode. Please try again.'}), 500
+
+
+@app.route('/products/<int:pid>/barcode-image')
+@login_required
+def product_barcode_image(pid):
+    """Generate a barcode SVG image for a product."""
+    p = db.session.get(Product, pid)
+    if not p or not p.barcode:
+        abort(404)
+    code = p.barcode.strip()
+    try:
+        if len(code) == 13:
+            bc = barcode.ean.EAN13(code)
+        elif len(code) == 12:
+            bc = barcode.ean.EAN13(code)
+        elif len(code) == 8:
+            bc = barcode.ean.EAN8(code)
+        else:
+            bc = barcode.code128.Code128(code)
+    except Exception:
+        bc = barcode.code128.Code128(code)
+    buf = io.BytesIO()
+    bc.write(buf, writer=SVGWriter(), options={'module_width': 0.3, 'module_height': 15, 'font_size': 10, 'text_distance': 5, 'quiet_zone': 6.5})
+    buf.seek(0)
+    return send_file(buf, mimetype='image/svg+xml', download_name=f'barcode_{p.id}.svg')
+
+
+@app.route('/products/<int:pid>/barcode-label')
+@login_required
+def product_barcode_label(pid):
+    """Render a printable barcode label page for a product."""
+    p = db.session.get(Product, pid)
+    if not p:
+        abort(404)
+    barcode_url = url_for('product_barcode_image', pid=p.id) if p.barcode else None
+    return render_template('products/barcode_label.html', product=p, barcode_url=barcode_url)
 
 
 @app.route('/api/notifications')

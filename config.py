@@ -45,7 +45,6 @@ class Config:
         "Solar Energy | UPS Systems | Inverters | RO Solutions | Electricals",
     )
     COMPANY_GSTIN = os.getenv("COMPANY_GSTIN", "33AGEPV1534G2ZJ")
-    COMPANY_PAN = os.getenv("COMPANY_PAN", "AGEPV1534G")
     COMPANY_STATE = os.getenv("COMPANY_STATE", "Tamil Nadu")
     COMPANY_STATE_CODE = int(os.getenv("COMPANY_STATE_CODE", "33"))
     COMPANY_ADDRESS = os.getenv("COMPANY_ADDRESS", "No. 10, Kadharkhan Street, Opp. Railway Junction, Salem - 636005, Tamil Nadu")
@@ -54,14 +53,9 @@ class Config:
     COMPANY_EMAIL = os.getenv("COMPANY_EMAIL", "gvpowerssalem@gmail.com")
     COMPANY_WEBSITE = os.getenv("COMPANY_WEBSITE", "https://gvpowers.in")
 
-    BANK_NAME = os.getenv("BANK_NAME", "State Bank of India")
-    BANK_ACCOUNT = os.getenv("BANK_ACCOUNT", "12345678901234")
-    BANK_IFSC = os.getenv("BANK_IFSC", "SBIN0001234")
-    UPI_ID = os.getenv("UPI_ID", "gvpowers@upi")
-
-    ADMIN_USERNAME = os.getenv("ADMIN_USERNAME", "admin")
-    ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD", "Admin@123")
-    ADMIN_EMAIL = os.getenv("ADMIN_EMAIL", "admin@gvpowers.in")
+    ADMIN_USERNAME = os.getenv("ADMIN_USERNAME", "")
+    ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD", "")
+    ADMIN_EMAIL = os.getenv("ADMIN_EMAIL", "")
 
     GST_RATES = [0, 5, 12, 18, 28]
 
@@ -72,17 +66,12 @@ class Config:
             "tagline": self.COMPANY_TAGLINE,
             "services": self.COMPANY_SERVICES,
             "gstin": self.COMPANY_GSTIN,
-            "pan": self.COMPANY_PAN,
             "state": self.COMPANY_STATE,
             "state_code": self.COMPANY_STATE_CODE,
             "address": self.COMPANY_ADDRESS,
             "phone": self.COMPANY_PHONE,
             "email": self.COMPANY_EMAIL,
             "website": self.COMPANY_WEBSITE,
-            "bank_name": self.BANK_NAME,
-            "bank_account": self.BANK_ACCOUNT,
-            "bank_ifsc": self.BANK_IFSC,
-            "upi_id": self.UPI_ID,
         }
 
 
