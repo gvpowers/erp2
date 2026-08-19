@@ -51,9 +51,6 @@ def register(app):
             state=request.form.get("state", "").strip(),
             state_code=int(request.form.get("state_code") or 29),
             gstin=request.form.get("gstin", "").strip(),
-            bank_name=request.form.get("bank_name", "").strip(),
-            bank_account=request.form.get("bank_account", "").strip(),
-            bank_ifsc=request.form.get("bank_ifsc", "").strip(),
         )
         db.session.add(supplier)
         db.session.commit()
@@ -78,9 +75,6 @@ def register(app):
         supplier.state = (request.form.get("state", "") or supplier.state or "").strip()
         supplier.state_code = int(request.form.get("state_code") or supplier.state_code or 29)
         supplier.gstin = (request.form.get("gstin", "") or supplier.gstin or "").strip()
-        supplier.bank_name = (request.form.get("bank_name", "") or supplier.bank_name or "").strip()
-        supplier.bank_account = (request.form.get("bank_account", "") or supplier.bank_account or "").strip()
-        supplier.bank_ifsc = (request.form.get("bank_ifsc", "") or supplier.bank_ifsc or "").strip()
         db.session.commit()
         log_audit("edit_supplier", f"Edited supplier: {supplier.name}")
         flash("Supplier updated.", "success")
